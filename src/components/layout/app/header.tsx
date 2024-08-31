@@ -1,6 +1,7 @@
 import React from 'react';
 import BigScreenNavbar from './big-screen-navbar';
 import TopBar from './top-bar';
+import SmallScreenNavbar from './small-screen-navbar';
 
 export const menu = [
   {
@@ -154,6 +155,7 @@ const Header = () => {
     <div>
       <TopBar />
       <BigScreenNavbar />
+      <SmallScreenNavbar />
     </div>
   );
 };

@@ -17,7 +17,7 @@ import ThemeSwitcher from '@/components/common/theme-switcher';
 
 const BigScreenNavbar = () => {
   return (
-    <div className='mx-auto max-w-6xl container'>
+    <div className='lg:block hidden mx-auto px-4 max-w-6xl container'>
       <div className='flex justify-between items-center h-16'>
         <Logo />
         <NavigationMenu>
