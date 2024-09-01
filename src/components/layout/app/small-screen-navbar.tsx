@@ -16,10 +16,11 @@ import ThemeSwitcher from '../../common/theme-switcher';
 import { FaBars } from 'react-icons/fa';
 import Logo from './logo';
 import { menu } from './header';
+import React from 'react';
 
 const SmallScreenNavbar = () => {
   return (
-    <div className='block lg:hidden mx-auto px-4 max-w-6xl max-h-screen container'>
+    <div className='block z-50 lg:hidden mx-auto px-4 max-w-6xl max-h-screen container'>
       <div className='flex justify-between items-center h-16'>
         <Logo />
         <div className='flex items-center space-x-5'>
@@ -36,11 +37,11 @@ const SmallScreenNavbar = () => {
               }}
               className='mx-auto mt-2 px-4 sm:px-8 lg:px-12 w-screen'>
               {menu?.map(({ description, href, label, subMenu }, index) => (
-                <>
+                <React.Fragment key={`${label}-${index}`}>
                   {subMenu ? (
-                    <div key={index}>
+                    <div>
                       <Accordion type='single' collapsible>
-                        <AccordionItem value='item-1'>
+                        <AccordionItem value={`item-${index}`}>
                           <AccordionTrigger
                             style={{
                               padding: '10px 4px',
@@ -49,8 +50,8 @@ const SmallScreenNavbar = () => {
                           </AccordionTrigger>
                           <AccordionContent>
                             {subMenu.map(
-                              ({ description, href, label }, index) => (
-                                <DropdownMenuItem key={index}>
+                              ({ description, href, label }, subIndex) => (
+                                <DropdownMenuItem key={`${label}-${subIndex}`}>
                                   <Link className='w-full' href={href}>
                                     {label}
                                   </Link>
@@ -62,7 +63,7 @@ const SmallScreenNavbar = () => {
                       </Accordion>
                     </div>
                   ) : (
-                    <div key={index}>
+                    <div>
                       <DropdownMenuItem
                         style={{
                           padding: '10px 4px',
@@ -75,7 +76,7 @@ const SmallScreenNavbar = () => {
                       <DropdownMenuSeparator />
                     </div>
                   )}
-                </>
+                </React.Fragment>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>

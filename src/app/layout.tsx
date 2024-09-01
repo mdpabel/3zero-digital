@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/app/header';
 import { cookies } from 'next/headers';
+import { ClerkProvider } from '@clerk/nextjs';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,18 +21,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = cookies();
-  const theme = cookieStore.get('theme')?.value || 'dark';
+  let theme = cookieStore.get('theme')?.value;
 
   return (
-    <html className={theme} lang='en'>
-      <body className={poppins.className}>
-        <div>
-          <Header />
-          <main className='relative mx-auto px-4 w-full max-w-6xl container'>
-            {children}
-          </main>
-        </div>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html className={theme} lang='en'>
+        <body className={poppins.className}>
+          <div>
+            <Header />
+            <main className='relative mx-auto px-4 w-full max-w-6xl container'>
+              {children}
+            </main>
+          </div>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

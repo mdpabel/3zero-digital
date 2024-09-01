@@ -65,6 +65,12 @@ export const menu = [
           'Fix your hacked site that is infected by malware, redirecting, spamming sites, red warning, etc.',
       },
       {
+        label: 'WordPress Speed optimization',
+        href: '/development/wordpress-speed-optimization',
+        description:
+          'Enhance your WordPress site’s security to prevent attacks and vulnerabilities.',
+      },
+      {
         label: 'WordPress Security',
         href: '/development/wordpress-security',
         description:

@@ -17,42 +17,45 @@ import ThemeSwitcher from '@/components/common/theme-switcher';
 
 const BigScreenNavbar = () => {
   return (
-    <div className='lg:block hidden mx-auto px-4 max-w-6xl container'>
+    <div className='lg:block z-50 hidden mx-auto px-4 max-w-6xl container'>
       <div className='flex justify-between items-center h-16'>
         <Logo />
         <NavigationMenu>
           <NavigationMenuList>
             {menu.map(({ href, label, subMenu }, index) => (
-              <NavigationMenuItem asChild key={index}>
+              <NavigationMenuItem asChild key={label}>
                 {subMenu ? (
-                  <div>
+                  <li>
                     <NavigationMenuTrigger className='text-zinc-800 dark:text-zinc-200'>
                       {label}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className='gap-3 grid md:grid-cols-2 p-4 w-[400px] md:w-[500px] lg:w-[600px]'>
-                        {subMenu?.map(({ description, href, label }, index) => (
-                          <ListItem
-                            key={label + index}
-                            title={label}
-                            href={href}
-                            className='text-zinc-800 dark:text-zinc-200'>
-                            {description}
-                          </ListItem>
-                        ))}
+                        {subMenu?.map(
+                          ({ description, href, label }, subIndex) => (
+                            <ListItem
+                              key={label}
+                              title={label}
+                              href={href}
+                              className='text-zinc-800 dark:text-zinc-200'>
+                              {description}
+                            </ListItem>
+                          ),
+                        )}
                       </ul>
                     </NavigationMenuContent>
-                  </div>
+                  </li>
                 ) : (
-                  <Link href={href}>
+                  <li>
                     <NavigationMenuLink
+                      asChild
                       className={cn(
                         navigationMenuTriggerStyle(),
                         'text-zinc-800 dark:text-zinc-200',
                       )}>
-                      {label}
+                      <Link href={href}>{label} </Link>
                     </NavigationMenuLink>
-                  </Link>
+                  </li>
                 )}
               </NavigationMenuItem>
             ))}
@@ -60,7 +63,9 @@ const BigScreenNavbar = () => {
         </NavigationMenu>
         <div className='flex items-center space-x-6'>
           <ThemeSwitcher />
-          <Button variant='outline' className='border border-black'>
+          <Button
+            variant='outline'
+            className='border-zinc-800 dark:border-zinc-200 border'>
             <Link href='/login'>Get Started</Link>
           </Button>
         </div>

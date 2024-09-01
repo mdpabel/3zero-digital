@@ -10,8 +10,7 @@ const TopBar = () => {
       <div className='mx-auto px-4 max-w-6xl container'>
         <div className='flex justify-between items-center font-semibold text-sm'>
           <div className='lg:block hidden'>
-            0 Vulnerability, 0 Downtime, 0 Error. Flawless, secure digital
-            solutions every time.
+            0 Vulnerability, 0 Downtime, 0 Error. Built for perfection.
           </div>
           <div className='block lg:hidden text-center'>
             0 Vulnerability, 0 Downtime, 0 Error
