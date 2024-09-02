@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const cookieStore = cookies();
-  let theme = cookieStore.get('theme')?.value;
+  let theme = cookieStore.get('theme')?.value ?? 'dark';
 
   return (
     <ClerkProvider>
