@@ -9,7 +9,7 @@ export function cn(...inputs: ClassValue[]) {
 export function catchClerkError(err: unknown) {
   const unknownErr = 'Something went wrong, please try again later.';
   if (isClerkAPIResponseError(err)) {
-    const message = err.errors[0]?.message ?? unknownErr;
+    const message = err.errors[0]?.longMessage ?? unknownErr;
 
     return message;
   } else {

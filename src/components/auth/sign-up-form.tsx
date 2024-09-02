@@ -25,7 +25,7 @@ import Link from 'next/link';
 import { useSignUp } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import VerifyEmail from './verify-email';
+import VerifyEmail from './verify-email-form';
 import Spinner from '../common/spinner';
 import { catchClerkError } from '@/lib/utils';
 import Message from './message';
@@ -46,7 +46,6 @@ const SignUpForm = () => {
     message: string;
   }>();
   const { isLoaded, signUp, setActive } = useSignUp();
-  const [verifying, setVerifying] = useState(false);
   const router = useRouter();
   const form = useForm<SignUpFormSchema>({
     resolver: zodResolver(signUpSchema),
@@ -75,7 +74,10 @@ const SignUpForm = () => {
           'Please check your email and follow the instructions to verify your email.',
       });
 
-      setVerifying(true);
+      setTimeout(() => {
+        router.push('/verify-email');
+      }, 300);
+
       setIsLoading(false);
     } catch (error) {
       const errorMessage = catchClerkError(error);
@@ -86,14 +88,6 @@ const SignUpForm = () => {
       setIsLoading(false);
     }
   };
-
-  console.log({ verifying });
-
-  if (verifying) {
-    return (
-      <VerifyEmail isLoaded={isLoaded} setActive={setActive} signUp={signUp} />
-    );
-  }
 
   return (
     <Card className='mx-auto my-10 max-w-md text-zinc-800 dark:text-zinc-200'>

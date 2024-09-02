@@ -28,6 +28,8 @@ import {
 } from '@/components/ui/form';
 import { catchClerkError } from '@/lib/utils';
 import Spinner from '../common/spinner';
+import Message from './message';
+import { useSignUp } from '@clerk/nextjs';
 
 // Define the schema using Zod
 const otpSchema = z.object({
@@ -36,15 +38,8 @@ const otpSchema = z.object({
 
 type OTPFormSchema = z.infer<typeof otpSchema>;
 
-const VerifyEmail = ({
-  signUp,
-  isLoaded,
-  setActive,
-}: {
-  signUp: any;
-  setActive: any;
-  isLoaded: boolean;
-}) => {
+const VerifyEmailForm = () => {
+  const { isLoaded, signUp, setActive } = useSignUp();
   const [message, setMessage] = useState<{
     type: 'error' | 'success' | 'init';
     message: string;
@@ -102,6 +97,10 @@ const VerifyEmail = ({
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleVerify)} className='space-y-4'>
           <CardContent className='gap-4 grid'>
+            {message?.message && (
+              <Message type={message.type} message={message.message} />
+            )}
+
             <FormField
               control={form.control}
               name='code'
@@ -136,4 +135,4 @@ const VerifyEmail = ({
   );
 };
 
-export default VerifyEmail;
+export default VerifyEmailForm;
