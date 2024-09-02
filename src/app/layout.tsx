@@ -4,6 +4,7 @@ import './globals.css';
 import Header from '@/components/layout/app/header';
 import { cookies } from 'next/headers';
 import { ClerkProvider } from '@clerk/nextjs';
+import Providers from './providers';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -20,17 +21,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = cookies();
-  let theme = cookieStore.get('theme')?.value ?? 'dark';
+  // const cookieStore = cookies();
+  // let theme = cookieStore.get('theme')?.value ?? 'dark';
 
   return (
     <ClerkProvider>
-      <html className={theme} lang='en'>
+      <html lang='en' suppressHydrationWarning>
         <body className={poppins.className}>
-          <div>
-            <Header />
-            <main className='relative'>{children}</main>
-          </div>
+          <Providers>
+            <div className='grid grid-rows-[auto_1fr_auto] min-h-[100dvh]'>
+              <Header />
+              <main className='relative'>{children}</main>
+            </div>
+          </Providers>
         </body>
       </html>
     </ClerkProvider>

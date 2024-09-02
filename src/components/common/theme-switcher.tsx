@@ -1,12 +1,23 @@
+'use client';
 import { handleThemeSwitcher } from '@/actions/theme-switcher';
 import { cn } from '@/lib/utils';
+import { useTheme } from 'next-themes';
 import { MoonStarIcon, SunIcon } from 'lucide-react';
-import { cookies } from 'next/headers';
-import React from 'react';
+import { useEffect, useState } from 'react';
+// import { cookies } from 'next/headers';
 
 const ThemeSwitcher = ({ className = '' }: { className?: string }) => {
-  const cookieStore = cookies();
-  const theme = cookieStore.get('theme')?.value;
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   const dark = theme === 'dark';
 
   return (
@@ -15,11 +26,19 @@ const ThemeSwitcher = ({ className = '' }: { className?: string }) => {
         action={handleThemeSwitcher}
         className='flex justify-center items-center'>
         {dark ? (
-          <button name='theme' value='light' type='submit'>
+          <button
+            onClick={() => setTheme('light')}
+            name='theme'
+            value='light'
+            type='submit'>
             <MoonStarIcon />
           </button>
         ) : (
-          <button name='theme' value='dark' type='submit'>
+          <button
+            onClick={() => setTheme('dark')}
+            name='theme'
+            value='dark'
+            type='submit'>
             <SunIcon />
           </button>
         )}
