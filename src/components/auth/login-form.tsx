@@ -27,6 +27,7 @@ import { useRouter } from 'next/navigation';
 import { catchClerkError } from '@/lib/utils';
 import Message from './message';
 import Spinner from '../common/spinner';
+import PasswordInputField from './password-field';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -134,11 +135,7 @@ const LoginForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input
-                      className='border-zinc-800 dark:border-zinc-200 border'
-                      type='password'
-                      {...field}
-                    />
+                    <PasswordInputField field={field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

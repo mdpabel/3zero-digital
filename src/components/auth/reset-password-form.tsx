@@ -27,6 +27,7 @@ import Spinner from '../common/spinner';
 import Link from 'next/link';
 import { useSignIn } from '@clerk/nextjs';
 import { catchClerkError } from '@/lib/utils';
+import PasswordInputField from './password-field';
 
 const resetPasswordSchema = z.object({
   code: z.string().min(1, 'Reset code is required'),
@@ -126,12 +127,7 @@ const ResetPasswordForm = () => {
                 <FormItem>
                   <FormLabel>New Password</FormLabel>
                   <FormControl>
-                    <Input
-                      className='border-zinc-800 dark:border-zinc-200 border'
-                      type='password'
-                      placeholder='Enter new password'
-                      {...field}
-                    />
+                    <PasswordInputField field={field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

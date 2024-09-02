@@ -29,6 +29,7 @@ import VerifyEmail from './verify-email-form';
 import Spinner from '../common/spinner';
 import { catchClerkError } from '@/lib/utils';
 import Message from './message';
+import PasswordInputField from './password-field';
 
 const signUpSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),
@@ -164,11 +165,7 @@ const SignUpForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <Input
-                      className='border-zinc-800 dark:border-zinc-200 border'
-                      type='password'
-                      {...field}
-                    />
+                    <PasswordInputField field={field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
