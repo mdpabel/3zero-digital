@@ -5,86 +5,165 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Check, CheckCheck } from 'lucide-react';
 
+const theme = 'dark';
+
 const Hero = () => {
   return (
-    <section
-      className={cn(
-        'grid grid-cols-1 md:grid-cols-2 mt-6 md:mt-0 mb-10 md:mb-0 h-64 md:h-[400px]',
-      )}>
-      <div className='flex flex-col justify-center space-y-6 md:space-y-8 mx-auto border-black'>
-        <div className='space-y-5'>
-          <h1
-            style={{
-              lineHeight: 1.1,
-            }}
-            className='font-semibold text-2xl text-zinc-800 md:text-[3.2rem] dark:text-zinc-200'>
-            The Zero-Risk Solution for Your Business
-          </h1>
-          <h2 className='mb-5 font-light text-zinc-800 sm:text-xl dark:text-zinc-200'>
-            With 0 vulnerabilities, 0 downtime, and 0 errors, 3 Zero Tech
-            ensures your business runs smoothly, securely, and without
-            compromise.
-          </h2>
-        </div>
-        <div className='flex space-x-4'>
-          <Button
-            className='border-zinc-800 dark:border-zinc-200 border'
-            variant='outline'
-            asChild>
-            <Link href='/pricing' className='text-zinc-800 dark:text-zinc-200'>
-              Plans & Pricing
-            </Link>
-          </Button>
-          <Button
-            className='border-zinc-800 dark:border-zinc-200 border'
-            variant='outline'
-            asChild>
-            <Link href='/pricing' className='text-zinc-800 dark:text-zinc-200'>
-              Plans & Pricing
-            </Link>
-          </Button>
-        </div>
+    <div className='relative bg-white dark:bg-[#030712] px-10 md:px-20 py-20'>
+      <div className='mx-auto w-full max-w-6xl container'>
+        <div className='gap-8 grid grid-cols-1 md:grid-cols-5'>
+          {/* Left Side - Text Content (spans 3 columns) */}
+          <div className='flex flex-col justify-center col-span-3'>
+            <h1
+              className={`text-3xl md:text-5xl font-bold mb-6 text-zinc-800 dark:text-zinc-200`}>
+              3Zero Digital
+            </h1>
+            <p
+              className={`text-xl md:text-2xl mb-8 dark:text-gray-400 text-gray-600`}>
+              Empowering Digital Solutions with Zero Compromises
+            </p>
+            <p
+              className={`text-md md:text-lg mb-10 dark:text-gray-400 text-gray-600`}>
+              Offering top-tier software solutions with zero vulnerabilities,
+              zero downtime, and zero errors. We ensure your business achieves
+              optimal digital performance.
+            </p>
+            <div className='space-x-4'>
+              <button
+                className={`px-8 py-2.5 bg-gradient-to-r from-[#614385] to-[#516395] text-white font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105`}>
+                Services
+              </button>
+              <button
+                className={`px-8 py-2.5 bg-gradient-to-r from-[#614385] to-[#516395] text-white font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105`}>
+                Plans & Pricing
+              </button>
+            </div>
+          </div>
 
-        <div className='gap-1 md:hidden grid grid-cols-2'>
-          <div className='flex space-x-1'>
-            <Check />
-            <span>0 vulnerabilities</span>
-          </div>
-          <div className='flex space-x-1'>
-            <Check />
-            <span>0 downtime</span>
-          </div>
-          <div className='flex space-x-1'>
-            <Check />
-            <span>0 error</span>
+          {/* Right Side - Custom SVG Illustration (spans 2 columns) */}
+          <div className='relative flex justify-center items-center col-span-2'>
+            <svg
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='-30 -30 850 850' // Adjusted viewBox to provide more space
+              className='w-3/4 md:w-4/5 h-auto animate-pulse-slow'
+              fill='none'>
+              <g>
+                {/* New Outer Circle */}
+                <circle
+                  cx='400'
+                  cy='400'
+                  r='400'
+                  stroke='#614385'
+                  strokeWidth='12'
+                />
+
+                {/* Existing Outer Circle */}
+                <circle
+                  cx='400'
+                  cy='400'
+                  r='340'
+                  stroke='#614385'
+                  strokeWidth='10'
+                />
+
+                {/* Inner Circle */}
+                <circle
+                  cx='400'
+                  cy='400'
+                  r='260'
+                  stroke='#614385'
+                  strokeWidth='6'
+                />
+
+                {/* 3 Zero Elements */}
+                <text
+                  x='400'
+                  y='270'
+                  textAnchor='middle'
+                  fontSize='60'
+                  fill='#614385'
+                  fontWeight='bold'>
+                  0
+                </text>
+                <text
+                  x='400'
+                  y='330'
+                  textAnchor='middle'
+                  fontSize='24'
+                  fill='#614385'>
+                  Vulnerabilities
+                </text>
+
+                <text
+                  x='400'
+                  y='400'
+                  textAnchor='middle'
+                  fontSize='60'
+                  fill='#614385'
+                  fontWeight='bold'>
+                  0
+                </text>
+                <text
+                  x='400'
+                  y='460'
+                  textAnchor='middle'
+                  fontSize='24'
+                  fill='#614385'>
+                  Downtime
+                </text>
+
+                <text
+                  x='400'
+                  y='530'
+                  textAnchor='middle'
+                  fontSize='60'
+                  fill='#614385'
+                  fontWeight='bold'>
+                  0
+                </text>
+                <text
+                  x='400'
+                  y='590'
+                  textAnchor='middle'
+                  fontSize='24'
+                  fill='#614385'>
+                  Errors
+                </text>
+
+                {/* Connection lines between circles */}
+                <line
+                  x1='400'
+                  y1='330'
+                  x2='400'
+                  y2='270'
+                  stroke='#614385'
+                  strokeWidth='3'
+                />
+                <line
+                  x1='400'
+                  y1='460'
+                  x2='400'
+                  y2='400'
+                  stroke='#614385'
+                  strokeWidth='3'
+                />
+                <line
+                  x1='400'
+                  y1='590'
+                  x2='400'
+                  y2='530'
+                  stroke='#614385'
+                  strokeWidth='3'
+                />
+              </g>
+            </svg>
+
+            {/* Decorative Glow Effect */}
+            <div className='absolute inset-0 bg-gradient-to-br from-[#614385] to-[#516395] opacity-50 blur-3xl rounded-full w-96 h-96 animate-spin-slow'></div>
           </div>
         </div>
       </div>
-
-      <div className='md:flex flex-col justify-center items-center hidden'>
-        <Image
-          src='/images/home/hero.png'
-          alt='3 zero world'
-          width={600}
-          height={400}
-          className='-z-50 -mt-8 -mb-8 p-8 max-h-[400px] transform scale-110'
-        />
-        <div className='md:flex space-x-4 hidden'>
-          <div className='flex space-x-1'>
-            <Check />
-            <span>0 vulnerabilities</span>
-          </div>
-          <div className='flex space-x-1'>
-            <Check />
-            <span>0 downtime</span>
-          </div>
-          <div className='flex space-x-1'>
-            <Check />
-            <span>0 error</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    </div>
   );
 };
 
