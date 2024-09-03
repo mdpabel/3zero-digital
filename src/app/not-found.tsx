@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { AlertTriangle } from 'lucide-react';
 
+export const dynamic = 'force-static';
+
 export default function Custom404() {
   return (
     <div className='flex justify-center items-center bg-white dark:bg-[#0B1120] h-screen'>
