@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Check, CheckCheck } from 'lucide-react';
 
-const theme = 'dark';
 
 const Hero = () => {
   return (

@@ -13,7 +13,8 @@ export const menu = [
       {
         label: 'WordPress',
         href: '/development/wordpress',
-        description: 'Custom WordPress development, themes, plugins, and more.',
+        description:
+          'WordPress development, themes, plugins customization, and more.',
       },
       {
         label: 'Shopify',
@@ -43,12 +44,6 @@ export const menu = [
         href: '/development/wordpress-theme-development',
         description:
           'Custom WordPress theme development to match your brand and needs.',
-      },
-      {
-        label: 'Shopify Theme Development',
-        href: '/development/shopify-theme-development',
-        description:
-          'Bespoke Shopify theme development for a unique online store experience.',
       },
     ],
   },
