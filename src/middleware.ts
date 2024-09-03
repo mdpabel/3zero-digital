@@ -1,6 +1,30 @@
-import { clerkMiddleware } from '@clerk/nextjs/server';
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+import { redirect } from 'next/navigation';
+import { NextResponse } from 'next/server';
 
-export default clerkMiddleware();
+const isProtectedRoute = createRouteMatcher(['/dashboard(.*)']);
+const isAuthRoutes = createRouteMatcher([
+  '/login(.*)',
+  '/forgot-password(.*)',
+  '/reset-password(.*)',
+  '/signup(.*)',
+  '/verify-email(.*)',
+]);
+
+export default clerkMiddleware((auth, req) => {
+  if (!isAuthRoutes(req) && !isProtectedRoute(req)) {
+    return NextResponse.next();
+  }
+
+  const session = auth().sessionId;
+
+  if (isAuthRoutes(req) && session) {
+    const url = new URL('/dashboard', req.url);
+    return NextResponse.redirect(url);
+  }
+
+  if (isProtectedRoute(req)) auth().protect();
+});
 
 export const config = {
   matcher: [
