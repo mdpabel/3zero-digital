@@ -5,6 +5,7 @@ import Input from '@/components/development/input';
 import CheckboxGroup from '@/components/development/checkbox-group';
 import Textarea from '@/components/development/textarea';
 import { shopifyFormSubmission } from '@/actions/shopify-form-submission';
+import FormButton from '@/components/common/form-button';
 
 export const dynamic = 'force-static';
 
@@ -143,11 +144,7 @@ export default function Shopify() {
               placeholder='Provide any additional details about your project'
             />
 
-            <button
-              type='submit'
-              className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-md mt-8 py-3 rounded-lg w-full font-semibold text-white transform hover:scale-105 transition-transform'>
-              Submit
-            </button>
+            <FormButton />
           </form>
         </div>
       </div>
