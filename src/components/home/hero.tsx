@@ -5,10 +5,9 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Check, CheckCheck } from 'lucide-react';
 
-
 const Hero = () => {
   return (
-    <div className='relative bg-white dark:bg-[#030712] px-10 md:px-20 py-20'>
+    <div className='relative bg-white dark:bg-[#030712] px-10 md:px-20 py-10 md:py-20'>
       <div className='mx-auto w-full max-w-6xl container'>
         <div className='gap-8 grid grid-cols-1 md:grid-cols-5'>
           {/* Left Side - Text Content (spans 3 columns) */}
@@ -29,11 +28,11 @@ const Hero = () => {
             </p>
             <div className='space-x-4'>
               <button
-                className={`px-8 py-2.5 bg-gradient-to-r from-[#614385] to-[#516395] text-white font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105`}>
+                className={`px-4 py-2.5 bg-gradient-to-r from-[#614385] to-[#516395] text-white font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105`}>
                 Services
               </button>
               <button
-                className={`px-8 py-2.5 bg-gradient-to-r from-[#614385] to-[#516395] text-white font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105`}>
+                className={`px-4 py-2.5 bg-gradient-to-r from-[#614385] to-[#516395] text-white font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105`}>
                 Plans & Pricing
               </button>
             </div>
@@ -158,7 +157,7 @@ const Hero = () => {
             </svg>
 
             {/* Decorative Glow Effect */}
-            <div className='absolute inset-0 bg-gradient-to-br from-[#614385] to-[#516395] opacity-50 blur-3xl rounded-full w-96 h-96 animate-spin-slow'></div>
+            <div className='absolute inset-0 bg-gradient-to-br from-[#614385] to-[#516395] opacity-50 blur-3xl rounded-full md:w-96 h-96 animate-spin-slow'></div>
           </div>
         </div>
       </div>
