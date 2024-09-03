@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+export const dynamic = 'force-static';
+
 export default function FixMixedContentErrorService() {
   return (
     <div className='flex flex-col justify-center items-center bg-gradient-to-b from-white dark:from-gray-900 to-gray-100 dark:to-gray-800 p-6 min-h-screen'>
