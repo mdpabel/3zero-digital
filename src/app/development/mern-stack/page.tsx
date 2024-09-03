@@ -6,6 +6,8 @@ import Textarea from '@/components/development/textarea';
 import FormButton from '@/components/common/form-button';
 import { mernFormSubmission } from '@/actions/mern-form-submission';
 
+export const dynamic = 'force-static';
+
 export default function MernStackDevelopment() {
   const projectTypes = [
     { value: 'Web Application', label: 'Web Application' },

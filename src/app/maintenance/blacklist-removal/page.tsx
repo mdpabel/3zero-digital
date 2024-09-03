@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { blacklistData } from './data';
 
+export const dynamic = 'force-static';
+
 const BLACKLIST_PRICE = 20;
 
 const BlacklistRemoval = () => {

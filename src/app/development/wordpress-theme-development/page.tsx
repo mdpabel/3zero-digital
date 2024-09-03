@@ -6,6 +6,8 @@ import Textarea from '@/components/development/textarea';
 import FormButton from '@/components/common/form-button';
 import { wordpressThemeFormSubmission } from '@/actions/wordpress-theme-form-submission';
 
+export const dynamic = 'force-static';
+
 export default function WordPressThemeDevelopment() {
   const themeTypes = [
     { value: 'Custom Theme', label: 'Custom Theme' },

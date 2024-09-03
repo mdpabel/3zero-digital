@@ -6,6 +6,8 @@ import Textarea from '@/components/development/textarea';
 import FormButton from '@/components/common/form-button';
 import { frontendFormSubmission } from '@/actions/frontend-form-submission';
 
+export const dynamic = 'force-static';
+
 export default function FrontendWebDevelopment() {
   const websiteTypes = [
     { value: 'Landing Page', label: 'Landing Page' },

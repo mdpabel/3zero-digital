@@ -6,6 +6,8 @@ import Textarea from '@/components/development/textarea';
 import FormButton from '@/components/common/form-button';
 import { backendFormSubmission } from '@/actions/backend-form-submission';
 
+export const dynamic = 'force-static';
+
 export default function BackendWebDevelopment() {
   const projectTypes = [
     { value: 'API Development', label: 'API Development' },

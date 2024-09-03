@@ -6,6 +6,8 @@ import CheckboxGroup from '@/components/development/checkbox-group';
 import Textarea from '@/components/development/textarea';
 import { shopifyFormSubmission } from '@/actions/shopify-form-submission';
 
+export const dynamic = 'force-static';
+
 export default function Shopify() {
   const storeTypes = [
     { value: 'Fashion', label: 'Fashion' },

@@ -7,6 +7,8 @@ import Textarea from '@/components/development/textarea';
 import FormButton from '@/components/common/form-button';
 import { wordpressFormSubmission } from '@/actions/wordpress-form-submission';
 
+export const dynamic = 'force-static';
+
 export default function WordPress() {
   const websiteTypes = [
     { value: 'Blog', label: 'Blog' },
