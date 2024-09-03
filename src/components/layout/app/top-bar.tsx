@@ -8,7 +8,7 @@ const TopBar = () => {
         'bg-gradient-to-r text-white primary-color h-10 flex items-center',
       )}>
       <div className='mx-auto px-4 max-w-6xl container'>
-        <div className='flex justify-between items-center font-semibold text-sm'>
+        <div className='flex justify-between items-center font-medium text-sm'>
           <div className='lg:block hidden'>
             0 Vulnerability, 0 Downtime, 0 Error. Built for perfection.
           </div>

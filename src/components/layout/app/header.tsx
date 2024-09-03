@@ -55,49 +55,49 @@ export const menu = [
     subMenu: [
       {
         label: 'WordPress Malware Removal',
-        href: '/development/wordpress-malware-removal',
+        href: '/maintenance/wordpress-malware-removal',
         description:
           'Fix your hacked site that is infected by malware, redirecting, spamming sites, red warning, etc.',
       },
       {
         label: 'WordPress Speed optimization',
-        href: '/development/wordpress-speed-optimization',
+        href: '/maintenance/wordpress-speed-optimization',
         description:
           'Enhance your WordPress site’s security to prevent attacks and vulnerabilities.',
       },
       {
         label: 'WordPress Security',
-        href: '/development/wordpress-security',
+        href: '/maintenance/wordpress-security',
         description:
           'Enhance your WordPress site’s security to prevent attacks and vulnerabilities.',
       },
       {
         label: 'Ongoing WordPress maintenance',
-        href: '/development/ongoing-wordpress-maintenance',
+        href: '/maintenance/ongoing-wordpress-maintenance',
         description:
           'Continuous updates, backups, and monitoring for WordPress sites.',
       },
       {
         label: 'Blacklist Removal',
-        href: '/development/blacklist-removal',
+        href: '/maintenance/blacklist-removal',
         description:
           'Remove your website from blacklists and restore its reputation.',
       },
       {
         label: 'Email Deliverability Issues',
-        href: '/development/email-deliverability-issues',
+        href: '/maintenance/email-deliverability-issues',
         description:
           'Resolve issues with email deliverability, spam filters, and blacklisting.',
       },
       {
         label: 'Website Migration',
-        href: '/development/website-migration',
+        href: '/maintenance/website-migration',
         description:
           'Smoothly migrate your website to a new host or platform without downtime.',
       },
       {
         label: 'SSL Installation',
-        href: '/development/ssl-installation',
+        href: '/maintenance/ssl-installation',
         description:
           'Secure your website with SSL installation, ensuring safe data transmission.',
       },
