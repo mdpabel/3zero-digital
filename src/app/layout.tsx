@@ -5,6 +5,7 @@ import Header from '@/components/layout/app/header';
 import { cookies } from 'next/headers';
 import { ClerkProvider } from '@clerk/nextjs';
 import Providers from './providers';
+import Footer from '@/components/layout/app/footer';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -32,6 +33,7 @@ export default function RootLayout({
             <div className='grid grid-rows-[auto_1fr_auto] min-h-[100dvh]'>
               <Header />
               <main className='relative'>{children}</main>
+              <Footer />
             </div>
           </Providers>
         </body>
