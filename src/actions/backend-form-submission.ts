@@ -1,23 +1,72 @@
 'use server';
 
+import BackendSubmissionEmailTemplate from '@/components/email/backend-email-template';
+import { sendEmail } from '@/lib/send-email';
+import { catchZodErrors } from '@/lib/utils';
+import { backendFormSchema } from '@/schema/backend-form-schema';
 import { redirect } from 'next/navigation';
+import { z } from 'zod';
 
-export const backendFormSubmission = (formData: FormData) => {
-  // Extract form data
-  const data = {
-    projectType: formData.get('projectType'),
-    budget: formData.get('budget'),
-    timeline: formData.get('timeline'),
-    functionalities: formData.getAll('functionalities'),
-    sampleSites: formData.get('sampleSites'),
-    name: formData.get('name'),
-    email: formData.get('email'),
-    message: formData.get('message'),
-  };
+export const backendFormSubmission = async (formData: FormData) => {
+  let status = 'success' as 'success' | 'error';
+  let errors = '';
 
-  // Handle form data (e.g., send it to an API or save to a database)
-  console.log('Form Data:', data);
+  try {
+    // Extract and validate form data
+    const data = {
+      projectType: formData.get('projectType'),
+      budget: formData.get('budget'),
+      timeline: formData.get('timeline'),
+      functionalities: formData.getAll('functionalities'),
+      sampleSites: formData.get('sampleSites'),
+      name: formData.get('name'),
+      email: formData.get('email'),
+      message: formData.get('message'),
+    };
 
-  // After handling the form, redirect or show a success message
-  redirect('/thank-you'); // Replace with your actual thank-you page
+    // Validate form data with Zod schema
+    const validatedData = backendFormSchema.parse({
+      projectType: data.projectType,
+      budget: data.budget,
+      timeline: data.timeline,
+      functionalities: data.functionalities,
+      sampleSites: data.sampleSites,
+      name: data.name,
+      email: data.email,
+      message: data.message,
+    });
+
+    // If validation passes, send the email
+    await sendEmail({
+      from: validatedData.email,
+      to: process.env.EMAIL_TO!,
+      replyTo: validatedData.email,
+      subject: 'New Backend Form Submission',
+      react: BackendSubmissionEmailTemplate({
+        formData: validatedData,
+      }),
+    });
+
+    // Send confirmation email to the user
+    await sendEmail({
+      from: process.env.EMAIL_TO!,
+      to: validatedData.email,
+      replyTo: validatedData.email,
+      subject: 'We Received Your email...',
+      react: BackendSubmissionEmailTemplate({
+        formData: validatedData,
+      }),
+    });
+
+    status = 'success';
+  } catch (err) {
+    // If validation fails, handle the error
+    if (err instanceof z.ZodError) {
+      errors = catchZodErrors(err, backendFormSchema);
+    }
+    // Handle other errors (e.g., email sending failed)
+    status = 'error';
+  }
+
+  return redirect(`/form-sumission-result?status=${status}&errors=${errors}`);
 };

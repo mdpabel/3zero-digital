@@ -9,7 +9,7 @@ const FormButton = () => {
   return (
     <button
       type='submit'
-      className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-md mt-8 py-3 rounded-lg w-full font-semibold text-white transform hover:scale-105 transition-transform'>
+      className='flex justify-center items-center bg-gradient-to-r from-[#614385] to-[#516395] shadow-md mt-8 py-3 rounded-lg w-full font-semibold text-white transform hover:scale-105 transition-transform'>
       {pending ? <Spinner /> : 'Submit'}
     </button>
   );
