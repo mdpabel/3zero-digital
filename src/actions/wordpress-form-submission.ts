@@ -49,7 +49,7 @@ export const wordpressFormSubmission = async (formData: FormData) => {
       }),
     });
 
-    // Send confirmation email to the user
+    // Send confirmation email to the user.
     await sendEmail({
       from: process.env.EMAIL_TO!,
       to: validatedData.email,
