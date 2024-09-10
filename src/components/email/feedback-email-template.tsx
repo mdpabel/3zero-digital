@@ -11,28 +11,23 @@ import {
 // Define types for user confirmation email
 type UserConfirmationEmailProps = {
   name: string;
-  projectType: string;
 };
 
 const UserConfirmationEmail: React.FC<UserConfirmationEmailProps> = ({
   name,
-  projectType,
 }) => {
   return (
     <Html>
       <Head />
       <Body style={mainStyle}>
         <Container style={containerStyle}>
-          <Heading style={headingStyle}>
-            We Received Your {projectType} Project Submission
-          </Heading>
+          <Heading style={headingStyle}>We Received Your message</Heading>
 
           <Text style={bodyTextStyle}>Hi {name},</Text>
           <Text style={bodyTextStyle}>
-            Thank you for submitting your {projectType} project to 3Zero
-            Digital. Our team has received your project details and will review
-            them shortly. We’ll be in touch soon to discuss your project in more
-            detail.
+            Thank you for submitting the message. Our team has received your
+            project details and will review them shortly. We’ll be in touch soon
+            to discuss your project in more detail.
           </Text>
 
           <Text style={bodyTextStyle}>
