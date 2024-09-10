@@ -48,16 +48,6 @@ export const wordpressFormSubmission = async (formData: FormData) => {
       }),
     });
 
-    // Send confirmation email to the user
-    await sendEmail({
-      to: validatedData.email,
-      replyTo: validatedData.email,
-      subject: 'We Received Your WordPress Project Submission',
-      react: WordPressSubmissionEmail({
-        formData: validatedData,
-      }),
-    });
-
     status = 'success';
   } catch (err) {
     if (err instanceof z.ZodError) {

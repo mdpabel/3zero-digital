@@ -46,16 +46,6 @@ export const backendFormSubmission = async (formData: FormData) => {
       }),
     });
 
-    // Send confirmation email to the user
-    await sendEmail({
-      to: validatedData.email,
-      replyTo: validatedData.email,
-      subject: 'We Received Your email...',
-      react: BackendSubmissionEmailTemplate({
-        formData: validatedData,
-      }),
-    });
-
     status = 'success';
   } catch (err) {
     // If validation fails, handle the error

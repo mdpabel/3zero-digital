@@ -48,16 +48,6 @@ export const shopifyFormSubmission = async (formData: FormData) => {
       }),
     });
 
-    // Send confirmation email to the user
-    await sendEmail({
-      to: validatedData.email,
-      replyTo: validatedData.email,
-      subject: 'We Received Your Shopify Store Submission',
-      react: ShopifySubmissionEmail({
-        formData: validatedData,
-      }),
-    });
-
     status = 'success';
   } catch (err) {
     if (err instanceof z.ZodError) {

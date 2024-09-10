@@ -36,16 +36,6 @@ export const wordpressThemeFormSubmission = async (formData: FormData) => {
       message: data.message,
     });
 
-    // Send email to 3Zero Digital
-    await sendEmail({
-      to: process.env.EMAIL_TO!,
-      replyTo: validatedData.email,
-      subject: 'New WordPress Theme Project Submission',
-      react: WordPressThemeSubmissionEmail({
-        formData: validatedData,
-      }),
-    });
-
     // Send confirmation email to the user
     await sendEmail({
       to: validatedData.email,

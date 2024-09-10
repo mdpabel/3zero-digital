@@ -25,7 +25,7 @@ const UserConfirmationEmail: React.FC<UserConfirmationEmailProps> = ({
 
           <Text style={bodyTextStyle}>Hi {name},</Text>
           <Text style={bodyTextStyle}>
-            Thank you for submitting the message. Our team has received your
+            Thank you for submitting your interest. Our team has received your
             project details and will review them shortly. We’ll be in touch soon
             to discuss your project in more detail.
           </Text>
