@@ -38,7 +38,6 @@ export const mernFormSubmission = async (formData: FormData) => {
 
     // If validation passes, send the email
     await sendEmail({
-      from: validatedData.email,
       to: process.env.EMAIL_TO!,
       replyTo: validatedData.email,
       subject: 'New MERN stact Form Submission',
@@ -49,7 +48,6 @@ export const mernFormSubmission = async (formData: FormData) => {
 
     // Send confirmation email to the user
     await sendEmail({
-      from: process.env.EMAIL_TO!,
       to: validatedData.email,
       replyTo: validatedData.email,
       subject: 'We Received Your email...',

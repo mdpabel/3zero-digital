@@ -40,7 +40,6 @@ export const wordpressFormSubmission = async (formData: FormData) => {
 
     // Send email to 3Zero Digital
     await sendEmail({
-      from: validatedData.email,
       to: process.env.EMAIL_TO!,
       replyTo: validatedData.email,
       subject: 'New WordPress Project Submission',
@@ -51,7 +50,6 @@ export const wordpressFormSubmission = async (formData: FormData) => {
 
     // Send confirmation email to the user
     await sendEmail({
-      from: process.env.EMAIL_TO!,
       to: validatedData.email,
       replyTo: validatedData.email,
       subject: 'We Received Your WordPress Project Submission',

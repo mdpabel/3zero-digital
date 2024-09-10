@@ -6,12 +6,11 @@ export async function sendEmail({
   replyTo,
   subject,
   react,
-  from,
   to,
-}: Pick<CreateEmailOptions, 'replyTo' | 'subject' | 'react' | 'from' | 'to'>) {
+}: Pick<CreateEmailOptions, 'replyTo' | 'subject' | 'react' | 'to'>) {
   try {
     const response = await resend.emails.send({
-      from,
+      from: process.env.EMAIL_TO!,
       to,
       subject,
       react,
