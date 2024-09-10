@@ -44,6 +44,7 @@ export const backendFormSubmission = async (formData: FormData) => {
       react: BackendSubmissionEmailTemplate({
         formData: validatedData,
       }),
+      name: validatedData.name,
     });
 
     status = 'success';

@@ -46,6 +46,7 @@ export const shopifyFormSubmission = async (formData: FormData) => {
       react: ShopifySubmissionEmail({
         formData: validatedData,
       }),
+      name: validatedData.name,
     });
 
     status = 'success';

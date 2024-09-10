@@ -46,6 +46,7 @@ export const frontendFormSubmission = async (formData: FormData) => {
       react: FrontendSubmissionEmail({
         formData: validatedData,
       }),
+      name: validatedData.name,
     });
 
     status = 'success';

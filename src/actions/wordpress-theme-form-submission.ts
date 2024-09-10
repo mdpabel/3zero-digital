@@ -44,6 +44,7 @@ export const wordpressThemeFormSubmission = async (formData: FormData) => {
       react: WordPressThemeSubmissionEmail({
         formData: validatedData,
       }),
+      name: validatedData.name,
     });
 
     status = 'success';

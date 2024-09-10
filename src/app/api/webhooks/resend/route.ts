@@ -1,5 +1,5 @@
 import UserConfirmationEmail from '@/components/email/feedback-email-template';
-import { sendEmail } from '@/lib/send-email';
+import { resend, sendEmail } from '@/lib/send-email';
 import { NextRequest, NextResponse } from 'next/server';
 
 export const POST = async (req: NextRequest) => {
@@ -9,15 +9,8 @@ export const POST = async (req: NextRequest) => {
     if (body.type === 'email.delivered') {
       const data = body.data;
       const to = data.to[0];
-
-      // Send a notification email to the recipient
-      await sendEmail({
-        subject: 'We have received your message!',
-        to,
-        react: UserConfirmationEmail({
-          name: to,
-        }),
-      });
+      const emailId = data.email_id;
+      const subject = data.subject;
 
       return NextResponse.json({
         success: true,

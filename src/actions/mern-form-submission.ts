@@ -44,6 +44,7 @@ export const mernFormSubmission = async (formData: FormData) => {
       react: MernSubmissionEmail({
         formData: validatedData,
       }),
+      name: validatedData.name,
     });
 
     status = 'success';
