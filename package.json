@@ -19,13 +19,21 @@
     "@radix-ui/react-navigation-menu": "^1.2.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@react-email/components": "0.0.25",
+    "@tailwindcss/typography": "^0.5.15",
+    "@wordpress/base-styles": "^5.7.0",
+    "@wordpress/block-library": "^9.7.0",
     "3zero-digital": "file:",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "dompurify": "^3.1.6",
+    "he": "^1.2.0",
     "input-otp": "^1.2.4",
+    "isomorphic-dompurify": "^2.15.0",
+    "jsdom": "^25.0.0",
     "lucide-react": "^0.436.0",
     "next": "14.2.7",
     "next-themes": "^0.3.0",
+    "prismjs": "^1.29.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.53.0",
@@ -36,7 +44,9 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/dompurify": "^3.0.5",
     "@types/node": "^20",
+    "@types/prismjs": "^1.26.4",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
@@ -44,8 +54,10 @@
     "postcss": "^8",
     "prisma": "^5.19.0",
     "react-email": "3.0.1",
+    "sass": "^1.78.0",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wp-types": "^4.66.1"
   },
   "prisma": {
     "schema": "./src/prisma/schema.prisma"

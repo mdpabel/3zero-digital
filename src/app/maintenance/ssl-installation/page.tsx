@@ -1,5 +1,7 @@
 import React from 'react';
 
+export const dynamic = 'force-static';
+
 const SSLInstallation = () => {
   const benefits = [
     'Encrypts data between your website and visitors',

@@ -137,15 +137,21 @@ export const menu = [
       },
     ],
   },
-  {
-    label: 'SEO',
-    href: '/seo',
-    description:
-      'Optimize your website for search engines to improve visibility and rankings.',
-  },
+  // {
+  //   label: 'SEO',
+  //   href: '/seo',
+  //   description:
+  //     'Optimize your website for search engines to improve visibility and rankings.',
+  // },
   {
     label: 'Marketing',
     href: '/marketing',
+    description:
+      'Drive traffic and increase conversions with targeted marketing strategies.',
+  },
+  {
+    label: 'Case study',
+    href: '/case-study',
     description:
       'Drive traffic and increase conversions with targeted marketing strategies.',
   },

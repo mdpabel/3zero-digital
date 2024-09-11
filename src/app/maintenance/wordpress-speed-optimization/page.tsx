@@ -1,5 +1,7 @@
 import React from 'react';
 
+export const dynamic = 'force-static';
+
 const WordPressSpeedOptimization = () => {
   const services = [
     'Comprehensive website speed audit',

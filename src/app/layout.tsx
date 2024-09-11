@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/app/header';
-import { cookies } from 'next/headers';
 import { ClerkProvider } from '@clerk/nextjs';
 import Providers from './providers';
 import Footer from '@/components/layout/app/footer';

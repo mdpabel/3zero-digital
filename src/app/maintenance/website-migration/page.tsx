@@ -1,5 +1,7 @@
 import React from 'react';
 
+export const dynamic = 'force-static';
+
 const WebsiteMigration = () => {
   const migrationSteps = [
     'Detailed site audit and planning',

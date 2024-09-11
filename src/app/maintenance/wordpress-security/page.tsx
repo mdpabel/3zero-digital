@@ -1,5 +1,7 @@
 import React from 'react';
 
+export const dynamic = 'force-static';
+
 const WordPressSecurity = () => {
   const services = [
     'Hardened file permissions for critical WordPress files',
