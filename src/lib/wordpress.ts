@@ -8,12 +8,24 @@ export interface CaseStudy {
   outcome: string;
   services: string[];
   description: string;
+  afterImage: string;
+  beforeImage: string;
 }
 
 interface CaseStudyFields {
   outcome: string;
   services: string;
   description: string;
+  afterImage: {
+    node: {
+      sourceUrl: string;
+    };
+  };
+  beforeImage: {
+    node: {
+      sourceUrl: string;
+    };
+  };
 }
 
 interface CaseStudyNode {
@@ -50,12 +62,22 @@ export async function fetchCaseStudies(): Promise<CaseStudy[]> {
           node {
             id
             title
-            content
+            content(format: RENDERED)
             slug
             caseStudyFields {
               outcome
               services
               description
+              afterImage {
+                node {
+                  sourceUrl
+                }
+              }
+              beforeImage {
+                node {
+                  sourceUrl
+                }
+              }
             }
           }
         }
@@ -89,6 +111,8 @@ export async function fetchCaseStudies(): Promise<CaseStudy[]> {
       outcome: node.caseStudyFields?.outcome || '',
       services: node.caseStudyFields?.services.split(',') || [],
       description: node.caseStudyFields?.description || '',
+      afterImage: node.caseStudyFields?.afterImage?.node.sourceUrl || '',
+      beforeImage: node.caseStudyFields?.beforeImage?.node.sourceUrl || '',
     }));
 
     return caseStudies;
@@ -112,6 +136,16 @@ export async function fetchCaseStudyBySlug(
           outcome
           services
           description
+          afterImage {
+            node {
+              sourceUrl
+            }
+          }
+          beforeImage {
+            node {
+              sourceUrl
+            }
+          }
         }
       }
     }
@@ -148,6 +182,8 @@ export async function fetchCaseStudyBySlug(
       outcome: node.caseStudyFields?.outcome || '',
       services: node.caseStudyFields?.services.split(',') || [],
       description: node.caseStudyFields?.description || '',
+      afterImage: node.caseStudyFields?.afterImage?.node.sourceUrl || '',
+      beforeImage: node.caseStudyFields?.beforeImage?.node.sourceUrl || '',
     };
   } catch (error) {
     console.error('Fetch Error:', error);

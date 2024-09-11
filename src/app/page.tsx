@@ -1,5 +1,6 @@
+import CaseStudies from '@/components/home/case-studies';
 import Hero from '@/components/home/hero';
-import ServiceList from '@/components/home/services';
+import ServiceRecommendationTool from '@/components/home/service-recommendation';
 import ThreeZeroExplanation from '@/components/home/three-zero';
 
 export const dynamic = 'force-static';
@@ -9,7 +10,8 @@ const Home = () => {
     <div>
       <Hero />
       <ThreeZeroExplanation />
-      <ServiceList />
+      <ServiceRecommendationTool />
+      <CaseStudies />
     </div>
   );
 };

@@ -157,7 +157,7 @@ const Hero = () => {
             </svg>
 
             {/* Decorative Glow Effect */}
-            <div className='absolute inset-0 bg-gradient-to-br from-[#614385] to-[#516395] opacity-50 blur-3xl rounded-full md:w-96 h-96 animate-spin-slow'></div>
+            <div className='dark:block absolute inset-0 hidden bg-gradient-to-br from-[#614385] to-[#516395] opacity-50 blur-3xl rounded-full md:w-96 h-96 animate-spin-slow'></div>
           </div>
         </div>
       </div>
