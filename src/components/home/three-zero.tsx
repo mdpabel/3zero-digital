@@ -2,7 +2,7 @@ import React from 'react';
 
 const ThreeZeroExplanation = () => {
   return (
-    <div className='relative bg-white dark:bg-[#0B1120] px-10 md:px-20 py-24'>
+    <div className='relative bg-white dark:bg-[#0B1120] px-10 md:px-20 py-20'>
       <div className='mx-auto w-full max-w-6xl'>
         <h2 className='mb-16 font-bold text-4xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
           The 3Zero Approach

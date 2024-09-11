@@ -4,6 +4,7 @@ import { CaseStudy } from '@/lib/wordpress';
 import { useState } from 'react';
 import { FaShieldAlt, FaClock } from 'react-icons/fa';
 import { Button } from '../ui/button';
+import Image from 'next/image';
 
 const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
   const [caseStudies, setCaseStudies] = useState<CaseStudy[]>(data);
@@ -39,20 +40,24 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
           {/* Before and After Images */}
           <div className='flex-1'>
             <div className='relative mb-4'>
-              <img
+              <Image
                 src={currentStudy.beforeImage}
                 alt='Before'
                 className='rounded-lg w-full transform transition-transform duration-500 object-cover hover:scale-105'
+                width={600}
+                height={600}
               />
               <span className='top-2 left-2 absolute bg-red-500 shadow px-3 py-1 rounded text-sm text-white'>
                 Before
               </span>
             </div>
             <div className='relative'>
-              <img
+              <Image
                 src={currentStudy.afterImage}
                 alt='After'
                 className='rounded-lg w-full transform transition-transform duration-500 object-cover hover:scale-105'
+                width={600}
+                height={600}
               />
               <span className='top-2 left-2 absolute bg-green-500 shadow px-3 py-1 rounded text-sm text-white'>
                 After
@@ -61,7 +66,7 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
           </div>
 
           {/* Case Study Details */}
-          <div className='flex-1 px-4'>
+          <div className='flex-1 md:px-4'>
             <h3 className='mb-4 font-bold text-2xl text-zinc-800 dark:text-zinc-200'>
               {currentStudy.title}
             </h3>
