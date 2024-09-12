@@ -288,3 +288,12 @@ html {
   @apply bg-zinc-900;
 }
 /* WORDPRESS END  */
+
+/* COMPANY LOGOS START */
+@keyframes toLeft {
+  to {
+    left: -200px;
+  }
+}
+
+/* COMPANY LOGOS END */
