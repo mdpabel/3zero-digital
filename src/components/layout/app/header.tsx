@@ -150,8 +150,8 @@ export const menu = [
       'Drive traffic and increase conversions with targeted marketing strategies.',
   },
   {
-    label: 'Case study',
-    href: '/case-study',
+    label: 'Case studies',
+    href: '/case-studies',
     description:
       'Drive traffic and increase conversions with targeted marketing strategies.',
   },

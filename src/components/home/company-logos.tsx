@@ -41,7 +41,7 @@ const CompaniesLogo = () => {
               )}
               style={{
                 animationDelay: `${delay}s`,
-                left: `max(calc(120px * ${totalItems}), 100%)`,
+                left: `max(calc(140px * ${totalItems}), 100%)`,
                 flex: '0 0 auto',
               }}>
               <Image
