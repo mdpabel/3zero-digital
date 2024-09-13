@@ -44,7 +44,7 @@ const CaseStudyPage = async () => {
                 {study.outcome}
               </p>
               <Button>
-                <Link href={'/case-study/' + study.slug}>
+                <Link href={'/case-studies/' + study.slug}>
                   Read Full Case Study
                 </Link>
               </Button>
