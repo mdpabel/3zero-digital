@@ -51,7 +51,7 @@ export const generateCaseStudiesSitemap = async () => {
     url: `https://3zerodigital.com/case-studies/${caseStudy.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
-    priority: 0.8,
+    priority: 0.1,
   }));
 
   return caseStudySitemap;
