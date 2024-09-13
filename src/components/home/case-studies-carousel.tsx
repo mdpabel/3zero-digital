@@ -1,7 +1,7 @@
 'use client';
 
 import { CaseStudy } from '@/lib/wordpress';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { FaShieldAlt, FaClock } from 'react-icons/fa';
 import { Button } from '../ui/button';
 import Image from 'next/image';
@@ -11,6 +11,12 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
   const [caseStudies, setCaseStudies] = useState<CaseStudy[]>(data);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === caseStudies.length - 1 ? 0 : prevIndex + 1,
+    );
+  }, [caseStudies.length]);
+
   // Autoplay functionality
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -18,13 +24,7 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(intervalId); // Clear interval on component unmount
-  }, [currentIndex]);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === caseStudies.length - 1 ? 0 : prevIndex + 1,
-    );
-  };
+  }, [currentIndex, nextSlide]);
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
