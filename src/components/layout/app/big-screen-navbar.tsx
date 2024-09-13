@@ -24,7 +24,7 @@ const BigScreenNavbar = () => {
           <NavigationMenuList>
             {services.map(({ href, label, subMenu }, index) => (
               <NavigationMenuItem asChild key={label}>
-                {subMenu ? (
+                {subMenu.length > 0 ? (
                   <li>
                     <NavigationMenuTrigger className='text-zinc-800 dark:text-zinc-200'>
                       {label}
