@@ -15,8 +15,8 @@ import Link from 'next/link';
 import ThemeSwitcher from '../../common/theme-switcher';
 import { FaBars } from 'react-icons/fa';
 import Logo from './logo';
-import { menu } from './header';
 import React from 'react';
+import { services } from '@/services';
 
 const SmallScreenNavbar = () => {
   return (
@@ -36,7 +36,7 @@ const SmallScreenNavbar = () => {
                 padding: '0 16px',
               }}
               className='mx-auto mt-2 px-4 sm:px-8 lg:px-12 w-screen'>
-              {menu?.map(({ description, href, label, subMenu }, index) => (
+              {services?.map(({ description, href, label, subMenu }, index) => (
                 <React.Fragment key={`${label}-${index}`}>
                   {subMenu ? (
                     <div>

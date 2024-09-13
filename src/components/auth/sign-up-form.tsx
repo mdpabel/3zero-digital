@@ -30,6 +30,7 @@ import Spinner from '../common/spinner';
 import { catchClerkError } from '@/lib/utils';
 import Message from './message';
 import PasswordInputField from './password-field';
+import { createAccount } from '@/lib/swell/account';
 
 const signUpSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),
@@ -57,35 +58,23 @@ const SignUpForm = () => {
     setIsLoading(true);
     if (!isLoaded) return;
 
+    const { email, firstName, lastName, password } = data;
+
     try {
-      await signUp.create({
-        emailAddress: data.email,
-        password: data.password,
-        firstName: data.firstName,
-        lastName: data.lastName,
-      });
+      await Promise.all([
+        signUp.create({ emailAddress: email, password, firstName, lastName }),
+        createAccount({ email, password, firstName, lastName }),
+      ]);
 
-      await signUp.prepareEmailAddressVerification({
-        strategy: 'email_code',
-      });
-
+      await signUp.prepareEmailAddressVerification({ strategy: 'email_code' });
       setMessage({
         type: 'success',
-        message:
-          'Please check your email and follow the instructions to verify your email.',
+        message: 'Check your email for verification.',
       });
-
-      setTimeout(() => {
-        router.push('/verify-email');
-      }, 300);
-
-      setIsLoading(false);
+      router.push('/verify-email');
     } catch (error) {
-      const errorMessage = catchClerkError(error);
-      setMessage({
-        type: 'error',
-        message: errorMessage,
-      });
+      setMessage({ type: 'error', message: catchClerkError(error) });
+    } finally {
       setIsLoading(false);
     }
   };

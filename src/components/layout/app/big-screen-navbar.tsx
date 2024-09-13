@@ -1,6 +1,5 @@
 import React from 'react';
 import Logo from './logo';
-import { menu } from './header';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import {
@@ -14,6 +13,7 @@ import {
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 import ThemeSwitcher from '@/components/common/theme-switcher';
+import { services } from '@/services';
 
 const BigScreenNavbar = () => {
   return (
@@ -22,7 +22,7 @@ const BigScreenNavbar = () => {
         <Logo />
         <NavigationMenu>
           <NavigationMenuList>
-            {menu.map(({ href, label, subMenu }, index) => (
+            {services.map(({ href, label, subMenu }, index) => (
               <NavigationMenuItem asChild key={label}>
                 {subMenu ? (
                   <li>

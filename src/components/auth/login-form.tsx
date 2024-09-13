@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -28,6 +28,7 @@ import { catchClerkError } from '@/lib/utils';
 import Message from './message';
 import Spinner from '../common/spinner';
 import PasswordInputField from './password-field';
+import { login } from '@/lib/swell/account';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -51,20 +52,17 @@ const LoginForm = () => {
 
   const onSubmit = async (data: LoginFormSchema) => {
     setIsLoading(true);
-    if (!isLoaded) {
-      return;
-    }
+    if (!isLoaded) return;
+
+    const { email, password } = data;
 
     try {
-      setMessage({
-        message: '',
-        type: 'init',
-      });
+      setMessage({ message: '', type: 'init' });
 
-      const signInAttempt = await signIn.create({
-        identifier: data.email,
-        password: data.password,
-      });
+      const [signInAttempt, swellLogin] = await Promise.all([
+        signIn.create({ identifier: email, password }),
+        login({ email, password }),
+      ]);
 
       if (signInAttempt.status === 'complete') {
         await setActive({ session: signInAttempt.createdSessionId });
@@ -72,10 +70,7 @@ const LoginForm = () => {
           type: 'success',
           message: 'Login successful! Redirecting...',
         });
-
-        setTimeout(() => {
-          router.push('/dashboard');
-        }, 300);
+        setTimeout(() => router.push('/dashboard'), 300);
       } else {
         setMessage({
           type: 'error',
@@ -83,14 +78,11 @@ const LoginForm = () => {
         });
         console.error(JSON.stringify(signInAttempt, null, 2));
       }
-      setIsLoading(false);
     } catch (error) {
       const errorMessage = catchClerkError(error);
-      setMessage({
-        type: 'error',
-        message: errorMessage,
-      });
+      setMessage({ type: 'error', message: errorMessage });
       console.error(JSON.stringify(error, null, 2));
+    } finally {
       setIsLoading(false);
     }
   };

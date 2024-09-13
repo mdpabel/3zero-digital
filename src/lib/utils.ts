@@ -35,3 +35,29 @@ export function catchZodErrors(err: z.ZodError, schema: Schema) {
 
   return errors.toString();
 }
+
+type FormatCurrencyType = {
+  amount: number;
+  local?: string;
+  currency?: string;
+  decimalPlaces?: number;
+};
+
+export const formatCurrency = ({
+  amount,
+  currency = 'USD',
+  decimalPlaces = 2,
+  local = 'en-US',
+}: FormatCurrencyType) => {
+  if (!amount) {
+    return;
+  }
+
+  const formatter = new Intl.NumberFormat(local, {
+    style: 'currency',
+    currency,
+    maximumFractionDigits: decimalPlaces,
+  });
+
+  return isNaN(amount) ? '--' : formatter.format(amount);
+};

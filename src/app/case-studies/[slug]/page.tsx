@@ -3,11 +3,25 @@ import { fetchCaseStudies, fetchCaseStudyBySlug } from '@/lib/wordpress';
 
 export const dynamic = 'force-static';
 
+import type { Metadata, ResolvingMetadata } from 'next';
+
 type Props = {
   params: {
     slug: string;
   };
 };
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  const caseStudy = await fetchCaseStudyBySlug(params.slug);
+
+  return {
+    title: caseStudy?.title,
+    description: caseStudy?.description,
+  };
+}
 
 export async function generateStaticParams() {
   const caseStudies = await fetchCaseStudies();
