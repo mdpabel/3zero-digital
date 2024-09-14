@@ -23,7 +23,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { catchClerkError } from '@/lib/utils';
 import Message from './message';
 import Spinner from '../common/spinner';
@@ -45,10 +45,13 @@ const LoginForm = () => {
   }>();
   const { isLoaded, signIn, setActive } = useSignIn();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const form = useForm<LoginFormSchema>({
     resolver: zodResolver(loginSchema),
     mode: 'onTouched',
   });
+
+  const redirectUrl = searchParams.get('redirect_url') || '/dashboard';
 
   const onSubmit = async (data: LoginFormSchema) => {
     setIsLoading(true);
@@ -70,7 +73,8 @@ const LoginForm = () => {
           type: 'success',
           message: 'Login successful! Redirecting...',
         });
-        setTimeout(() => router.push('/dashboard'), 300);
+
+        router.push(redirectUrl);
       } else {
         setMessage({
           type: 'error',
