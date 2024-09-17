@@ -55,7 +55,7 @@ const OrdersTable = ({ orders }: { orders: Order[] }) => {
         accessorKey: 'id',
         cell: (info) => (
           <Link
-            href={`/orders/${info.getValue<string>()}`}
+            href={`/dashboard/orders/${info.getValue<string>()}`}
             className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-4 py-2 rounded-lg font-semibold text-white transform transition-transform hover:scale-105'>
             View Details
           </Link>
