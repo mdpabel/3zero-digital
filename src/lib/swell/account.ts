@@ -25,7 +25,6 @@ export const createAccount = async ({
   lastName,
   password,
 }: Account) => {
-  console.log(email, password);
   return await swell.account.create({
     email,
     email_optin: true,

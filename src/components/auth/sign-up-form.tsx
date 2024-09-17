@@ -25,7 +25,6 @@ import Link from 'next/link';
 import { useSignUp } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import VerifyEmail from './verify-email-form';
 import Spinner from '../common/spinner';
 import { catchClerkError } from '@/lib/utils';
 import Message from './message';

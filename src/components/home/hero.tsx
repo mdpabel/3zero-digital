@@ -1,10 +1,3 @@
-import { cn } from '@/lib/utils';
-import Image from 'next/image';
-import React from 'react';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { Check, CheckCheck } from 'lucide-react';
-
 const Hero = () => {
   return (
     <div className='relative bg-white dark:bg-[#030712] px-10 md:px-20 py-10 md:py-20'>

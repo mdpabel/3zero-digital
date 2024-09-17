@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import './globals.css';
-import Header from '@/components/layout/app/header';
 import { ClerkProvider } from '@clerk/nextjs';
 import Providers from './providers';
-import Footer from '@/components/layout/app/footer';
 
 export const metadata: Metadata = {
   title:
@@ -23,20 +21,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const cookieStore = cookies();
-  // let theme = cookieStore.get('theme')?.value ?? 'dark';
-
   return (
     <ClerkProvider>
       <html lang='en' suppressHydrationWarning>
         <body className={poppins.className}>
-          <Providers>
-            <div className='grid grid-rows-[auto_1fr_auto] min-h-[100dvh]'>
-              <Header />
-              <main className='relative'>{children}</main>
-              <Footer />
-            </div>
-          </Providers>
+          <Providers>{children}</Providers>
         </body>
       </html>
     </ClerkProvider>

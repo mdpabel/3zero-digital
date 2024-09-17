@@ -14,6 +14,7 @@ import {
 import { cn } from '@/lib/utils';
 import ThemeSwitcher from '@/components/common/theme-switcher';
 import { services } from '@/services';
+import { SignedIn, SignedOut } from '@clerk/nextjs';
 
 const BigScreenNavbar = () => {
   return (
@@ -61,13 +62,24 @@ const BigScreenNavbar = () => {
             ))}
           </NavigationMenuList>
         </NavigationMenu>
+
         <div className='flex items-center space-x-6'>
           <ThemeSwitcher />
+
+          {/* Conditionally show based on login status */}
           <Button
             variant='outline'
             className='border-zinc-800 dark:border-zinc-200 border'>
             <Link href='/login'>Get Started</Link>
           </Button>
+          {/* 
+          <SignedIn>
+            <Button
+              variant='outline'
+              className='border-zinc-800 dark:border-zinc-200 border'>
+              <Link href='/dashboard'>Dashboard</Link>
+            </Button>
+          </SignedIn> */}
         </div>
       </div>
     </div>
@@ -98,6 +110,7 @@ const ListItem = React.forwardRef<
     </li>
   );
 });
+
 ListItem.displayName = 'ListItem';
 
 export default BigScreenNavbar;

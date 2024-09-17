@@ -68,6 +68,10 @@ const VerifyEmailForm = () => {
           message: 'Email verified successfully! 🎉. Redirecting...',
         });
 
+        await fetch('/api/clerk/update-metadata', {
+          method: 'POST',
+        });
+
         setTimeout(() => {
           router.push('/dashboard');
         }, 300);

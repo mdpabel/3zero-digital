@@ -68,7 +68,14 @@ const LoginForm = () => {
       ]);
 
       if (signInAttempt.status === 'complete') {
-        await setActive({ session: signInAttempt.createdSessionId });
+        await setActive({
+          session: signInAttempt.createdSessionId,
+        });
+
+        await fetch('/api/clerk/update-metadata', {
+          method: 'POST',
+        });
+
         setMessage({
           type: 'success',
           message: 'Login successful! Redirecting...',
