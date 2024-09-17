@@ -2,6 +2,8 @@ import React from 'react';
 import OrdersTable from './orders-table';
 import { getOrders } from '@/lib/swell/order';
 
+export const dynamic = 'force-dynamic';
+
 const OrderPage = async () => {
   const orders = await getOrders();
 
