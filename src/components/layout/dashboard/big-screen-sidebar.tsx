@@ -7,7 +7,7 @@ const BigScreenSidebar = () => {
   const userRole = 'customer';
 
   return (
-    <aside className='top-0 left-0 fixed flex flex-col justify-between bg-gradient-to-br from-[#614385] to-[#516395] w-64 h-screen text-white sidebar'>
+    <aside className='top-0 left-0 fixed lg:flex flex-col justify-between hidden bg-gradient-to-br from-[#614385] to-[#516395] w-64 h-screen text-white sidebar'>
       <div className='p-4'>
         <Link href='/' className='block mb-6 px-4'>
           LOGO
