@@ -85,7 +85,7 @@ const Services = () => {
 
                 <div className='w-full'>
                   <motion.img
-                    src='/test.webp'
+                    src='/test/5.png'
                     alt={`${service.label} illustration`}
                     className='shadow-lg rounded-lg w-full h-auto'
                     initial={{ opacity: 0, scale: 0.8 }}
