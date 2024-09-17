@@ -67,8 +67,6 @@ const ForgotPasswordForm = () => {
         identifier: data.email,
       });
 
-      console.log(forgotPasswordAttempt);
-
       if (forgotPasswordAttempt.status === 'needs_first_factor') {
         // await setActive({ session: forgotPasswordAttempt.createdSessionId });
         setMessage({

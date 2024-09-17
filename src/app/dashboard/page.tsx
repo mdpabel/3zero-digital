@@ -7,10 +7,6 @@ const Dashboard = async () => {
 
   const user = await clerkClient().users.getUser(session?.id!);
 
-  console.log({
-    user: user.privateMetadata,
-  });
-
   return (
     <div className='space-y-4'>
       <h2>

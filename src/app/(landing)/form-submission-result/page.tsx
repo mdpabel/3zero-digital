@@ -16,8 +16,6 @@ const FormSubmissionResult: React.FC<Props> = ({ searchParams }) => {
     ? errors.split(',').map((error) => error.trim())
     : [];
 
-  console.log(status);
-
   return (
     <div className='flex justify-center items-center bg-gray-50 dark:bg-gray-900 min-h-screen'>
       <div className='bg-white dark:bg-gray-800 shadow-lg mx-auto p-8 rounded-lg max-w-lg text-center'>

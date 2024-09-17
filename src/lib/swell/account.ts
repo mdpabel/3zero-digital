@@ -35,10 +35,7 @@ export const createAccount = async ({
 };
 
 export const logout = async () => {
-  const res = await swell.account.logout();
-  return {
-    success: true,
-  };
+  return await swell.account.logout();
 };
 
 export const getUser = async () => {

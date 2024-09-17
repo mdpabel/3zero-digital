@@ -11,6 +11,7 @@ import {
   SheetClose,
 } from '@/components/ui/sheet'; // Sheet component
 import { Button } from '@/components/ui/button';
+import Logout from './logout';
 
 const SmallScreenSidebar = () => {
   const userRole = 'customer';
@@ -55,14 +56,7 @@ const SmallScreenSidebar = () => {
           </nav>
 
           {/* Logout Button */}
-          <div className='p-4 pl-0'>
-            <button className='flex items-center hover:bg-white px-4 py-2 rounded-lg w-full text-white hover:text-[#614385] transition'>
-              <span className='mr-3'>
-                <FaSignOutAlt />
-              </span>
-              <span>Logout</span>
-            </button>
-          </div>
+          <Logout />
         </SheetContent>
       </Sheet>
     </aside>

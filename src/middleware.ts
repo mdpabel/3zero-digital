@@ -2,7 +2,10 @@ import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 import swell from './lib/swell/swell-server';
 
-const isProtectedRoute = createRouteMatcher(['/dashboard(.*)']);
+const isProtectedRoute = createRouteMatcher([
+  '/dashboard(.*)',
+  '/dashboard/profile(.*)',
+]);
 const isAuthRoutes = createRouteMatcher([
   '/login(.*)',
   '/forgot-password(.*)',
