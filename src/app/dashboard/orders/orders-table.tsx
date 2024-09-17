@@ -8,7 +8,7 @@ import {
   ColumnDef,
   flexRender,
 } from '@tanstack/react-table';
-import { formatDate } from '@/lib/utils';
+import { cn, formatDate } from '@/lib/utils';
 import Link from 'next/link';
 import {
   Table,
@@ -79,13 +79,17 @@ const OrdersTable = ({ orders }: { orders: Order[] }) => {
   });
 
   return (
-    <div className='overflow-x-auto'>
-      <Table>
+    <div
+      style={{
+        maxWidth: '100vw',
+      }}
+      className='w-full overflow-auto'>
+      <Table className='relative'>
         <TableCaption>Your recent orders</TableCaption>
         <TableHeader>
           <TableRow>
             {table.getFlatHeaders().map((header) => (
-              <TableHead key={header.id}>
+              <TableHead key={header.id} className='text-nowrap'>
                 {header.isPlaceholder ? null : (
                   <div
                     className={`cursor-pointer ${
@@ -109,7 +113,7 @@ const OrdersTable = ({ orders }: { orders: Order[] }) => {
             table.getRowModel().rows.map((row) => (
               <TableRow key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id} className='py-5'>
+                  <TableCell key={cell.id} className={cn('py-5 text-nowrap')}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </TableCell>
                 ))}
@@ -125,7 +129,7 @@ const OrdersTable = ({ orders }: { orders: Order[] }) => {
         </TableBody>
       </Table>
 
-      <div className='flex justify-between items-center mt-4'>
+      <div className='flex flex-wrap justify-between items-center gap-2 mt-4'>
         <div>
           <button
             className='bg-gray-300 dark:bg-gray-700 disabled:opacity-50 px-4 py-2 rounded'
