@@ -88,7 +88,7 @@ const Services = () => {
 
                 <div className='flex justify-center items-center w-full'>
                   <motion.img
-                    src='/services/website-development.png'
+                    src={service.imageUrl}
                     alt={`${service.label} illustration`}
                     className='shadow-lg rounded-lg w-full h-auto'
                     initial={{ opacity: 0, scale: 0.8 }}

@@ -23,6 +23,7 @@ export const services = [
     description:
       'Comprehensive development services for WordPress, Shopify, Frontend, Backend, and more.',
     icon: <FaCode />,
+    imageUrl: '/services/1.png',
     subMenuItems: [
       {
         label: 'WordPress',
@@ -75,6 +76,7 @@ export const services = [
     description:
       'Keep your website secure and up-to-date with our maintenance services.',
     icon: <FaShieldAlt />,
+    imageUrl: '/services/2.png',
     subMenuItems: [
       {
         label: 'WordPress Malware Removal',
@@ -143,6 +145,7 @@ export const services = [
     href: '/troubleshooting',
     description: 'Quickly diagnose and fix common website errors and issues.',
     icon: <FaExclamationTriangle />,
+    imageUrl: '/services/3.png',
     subMenuItems: [
       {
         label: '404 Page',
@@ -189,6 +192,7 @@ export const services = [
     description:
       'Drive traffic and increase conversions with targeted marketing strategies.',
     icon: <FaRocket />,
+    imageUrl: '/services/4.png',
     subMenuItems: [
       {
         label: 'SEO Optimization',
