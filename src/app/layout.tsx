@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google';
 import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import Providers from './providers';
+import Script from 'next/script';
 
 export const metadata: Metadata = {
   title:
@@ -26,6 +27,10 @@ export default function RootLayout({
       <html lang='en' suppressHydrationWarning>
         <body className={poppins.className}>
           <Providers>{children}</Providers>
+          <Script
+            strategy='lazyOnload'
+            src='https://tawk.to/chat/66eac2884cbc4814f7da18fb/1i82gfq14'
+          />
         </body>
       </html>
     </ClerkProvider>

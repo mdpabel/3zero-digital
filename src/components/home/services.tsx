@@ -65,27 +65,30 @@ const Services = () => {
                     {service.description}
                   </h2>
                   <ul className='space-y-4 sm:space-y-6'>
-                    {service.subMenu.map((subService, i) => (
-                      <li key={i} className='flex items-start space-x-4'>
-                        <span className='text-indigo-500 text-xl sm:text-2xl'>
-                          {subService.icon}
-                        </span>
-                        <div>
-                          <h3 className='font-semibold text-gray-800 text-md sm:text-lg dark:text-gray-200'>
-                            {subService.label}
-                          </h3>
-                          <p className='text-gray-600 dark:text-gray-400'>
-                            {subService.description}
-                          </p>
-                        </div>
-                      </li>
-                    ))}
+                    {service.subMenuItems.map((subService, i) => {
+                      if (!subService.featured) return null;
+                      return (
+                        <li key={i} className='flex items-start space-x-4'>
+                          <span className='text-indigo-500 text-xl sm:text-2xl'>
+                            {subService.icon}
+                          </span>
+                          <div>
+                            <h3 className='font-semibold text-gray-800 text-md sm:text-lg dark:text-gray-200'>
+                              {subService.label}
+                            </h3>
+                            <p className='text-gray-600 dark:text-gray-400'>
+                              {subService.description}
+                            </p>
+                          </div>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
 
-                <div className='w-full'>
+                <div className='flex justify-center items-center w-full'>
                   <motion.img
-                    src='/test/5.png'
+                    src='/services/website-development.png'
                     alt={`${service.label} illustration`}
                     className='shadow-lg rounded-lg w-full h-auto'
                     initial={{ opacity: 0, scale: 0.8 }}

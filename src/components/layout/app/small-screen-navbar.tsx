@@ -36,48 +36,51 @@ const SmallScreenNavbar = () => {
                 padding: '0 16px',
               }}
               className='mx-auto mt-2 px-4 sm:px-8 lg:px-12 w-screen'>
-              {services?.map(({ description, href, label, subMenu }, index) => (
-                <React.Fragment key={`${label}-${index}`}>
-                  {subMenu ? (
-                    <div>
-                      <Accordion type='single' collapsible>
-                        <AccordionItem value={`item-${index}`}>
-                          <AccordionTrigger
-                            style={{
-                              padding: '10px 4px',
-                            }}>
+              {services?.map(
+                ({ description, href, label, subMenuItems }, index) => (
+                  <React.Fragment key={`${label}-${index}`}>
+                    {subMenuItems ? (
+                      <div>
+                        <Accordion type='single' collapsible>
+                          <AccordionItem value={`item-${index}`}>
+                            <AccordionTrigger
+                              style={{
+                                padding: '10px 4px',
+                              }}>
+                              {label}
+                            </AccordionTrigger>
+                            <AccordionContent>
+                              {subMenuItems.map(
+                                ({ description, href, label }, subIndex) => (
+                                  <DropdownMenuItem
+                                    key={`${label}-${subIndex}`}>
+                                    <Link className='w-full' href={href}>
+                                      {label}
+                                    </Link>
+                                  </DropdownMenuItem>
+                                ),
+                              )}
+                            </AccordionContent>
+                          </AccordionItem>
+                        </Accordion>
+                      </div>
+                    ) : (
+                      <div>
+                        <DropdownMenuItem
+                          style={{
+                            padding: '10px 4px',
+                          }}
+                          asChild>
+                          <div className='block py-2 w-full font-medium text-sm text-zinc-800 hover:text-teal-500 dark:text-zinc-100 transition cursor-pointer'>
                             {label}
-                          </AccordionTrigger>
-                          <AccordionContent>
-                            {subMenu.map(
-                              ({ description, href, label }, subIndex) => (
-                                <DropdownMenuItem key={`${label}-${subIndex}`}>
-                                  <Link className='w-full' href={href}>
-                                    {label}
-                                  </Link>
-                                </DropdownMenuItem>
-                              ),
-                            )}
-                          </AccordionContent>
-                        </AccordionItem>
-                      </Accordion>
-                    </div>
-                  ) : (
-                    <div>
-                      <DropdownMenuItem
-                        style={{
-                          padding: '10px 4px',
-                        }}
-                        asChild>
-                        <div className='block py-2 w-full font-medium text-sm text-zinc-800 hover:text-teal-500 dark:text-zinc-100 transition cursor-pointer'>
-                          {label}
-                        </div>
-                      </DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                    </div>
-                  )}
-                </React.Fragment>
-              ))}
+                          </div>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                      </div>
+                    )}
+                  </React.Fragment>
+                ),
+              )}
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

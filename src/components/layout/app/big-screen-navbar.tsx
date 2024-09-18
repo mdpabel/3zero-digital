@@ -23,16 +23,16 @@ const BigScreenNavbar = () => {
         <Logo />
         <NavigationMenu>
           <NavigationMenuList>
-            {services.map(({ href, label, subMenu }, index) => (
+            {services.map(({ href, label, subMenuItems }, index) => (
               <NavigationMenuItem asChild key={label}>
-                {subMenu.length > 0 ? (
+                {subMenuItems.length > 0 ? (
                   <li>
                     <NavigationMenuTrigger className='text-zinc-800 dark:text-zinc-200'>
                       {label}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className='gap-3 grid md:grid-cols-2 p-4 w-[400px] md:w-[500px] lg:w-[600px]'>
-                        {subMenu?.map(
+                        {subMenuItems?.map(
                           ({ description, href, label }, subIndex) => (
                             <ListItem
                               key={label}
