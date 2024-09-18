@@ -78,7 +78,7 @@ const TicketPage: React.FC = () => {
           <p className='mb-6 text-center text-gray-700 text-lg dark:text-gray-400'>
             Below are your active tickets. Select one to view or respond.
           </p>
-          <TicketList tickets={mockTickets} onTicketClick={handleTicketClick} />
+          <TicketList tickets={mockTickets} onTicketClick={handleTicketClick} /> 
         </>
       )}
 

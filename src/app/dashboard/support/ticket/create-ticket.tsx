@@ -1,7 +1,8 @@
 'use client';
-import { Button } from '@/components/ui/button';
 import React, { useState } from 'react';
-import ReactQuill from 'react-quill';
+import { Button } from '@/components/ui/button';
+import dynamic from 'next/dynamic';
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import 'react-quill/dist/quill.snow.css';
 
 interface CreateTicketProps {
