@@ -1,5 +1,6 @@
 import Header from '@/components/layout/app/header';
 import Footer from '@/components/layout/app/footer';
+import TawkChat from '@/components/common/tawk-chat';
 
 export default function RootLayout({
   children,
@@ -11,6 +12,7 @@ export default function RootLayout({
       <Header />
       <main className='relative'>{children}</main>
       <Footer />
+      <TawkChat />
     </div>
   );
 }

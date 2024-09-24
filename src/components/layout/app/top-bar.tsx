@@ -18,14 +18,10 @@ const TopBar = () => {
           <nav className='lg:block hidden'>
             <ul className='flex justify-between items-center space-x-4'>
               <li>
-                <Link href='/about-us' className='hover:underline'>
-                  About us
-                </Link>
+                <Link href='/about-us'>About us</Link>
               </li>
               <li>
-                <Link href='/privacy' className='hover:underline'>
-                  Privacy
-                </Link>
+                <Link href='/privacy'>Privacy</Link>
               </li>
               <li>
                 <Link href='/faq'>FAQ</Link>
@@ -33,6 +29,11 @@ const TopBar = () => {
 
               <li>
                 <Link href='/contact'>Contact</Link>
+              </li>
+              <li>
+                <Link target='_blank' href='https://blog.3zerodigital.com/'>
+                  Blog
+                </Link>
               </li>
             </ul>
           </nav>

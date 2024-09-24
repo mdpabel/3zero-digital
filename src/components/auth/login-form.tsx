@@ -72,9 +72,9 @@ const LoginForm = () => {
           session: signInAttempt.createdSessionId,
         });
 
-        await fetch('/api/clerk/update-metadata', {
-          method: 'POST',
-        });
+        // await fetch('/api/clerk/update-metadata', {
+        //   method: 'POST',
+        // });
 
         setMessage({
           type: 'success',

@@ -22,6 +22,10 @@ import {
 import { Order } from 'swell-js';
 
 const OrdersTable = ({ orders }: { orders: Order[] }) => {
+  console.log({
+    orders,
+  });
+
   const columns = useMemo<ColumnDef<any>[]>(
     () => [
       {
@@ -30,7 +34,7 @@ const OrdersTable = ({ orders }: { orders: Order[] }) => {
       },
       {
         header: 'Date',
-        accessorKey: 'date_created',
+        accessorKey: 'dateCreated',
         cell: (info) => formatDate(info.getValue<string>()),
       },
       {
@@ -39,12 +43,12 @@ const OrdersTable = ({ orders }: { orders: Order[] }) => {
       },
       {
         header: 'Total',
-        accessorKey: 'grand_total',
+        accessorKey: 'grandTotal',
         cell: (info) => `$${info.getValue<number>().toFixed(2)}`,
       },
       {
         header: 'Items',
-        accessorKey: 'item_quantity',
+        accessorKey: 'itemQuantity',
         cell: (info) =>
           `${info.getValue<number>()} item${
             info.getValue<number>() > 1 ? 's' : ''
@@ -82,6 +86,7 @@ const OrdersTable = ({ orders }: { orders: Order[] }) => {
     <div
       style={{
         maxWidth: '100vw',
+        overflow: 'hidden',
       }}
       className='w-full overflow-auto'>
       <Table className='relative'>
@@ -129,7 +134,7 @@ const OrdersTable = ({ orders }: { orders: Order[] }) => {
         </TableBody>
       </Table>
 
-      <div className='flex flex-wrap justify-between items-center gap-2 mt-4'>
+      <div className='flex flex-wrap justify-between items-center gap-2 mt-4 max-w-fu'>
         <div>
           <button
             className='bg-gray-300 dark:bg-gray-700 disabled:opacity-50 px-4 py-2 rounded'

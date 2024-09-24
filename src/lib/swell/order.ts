@@ -1,29 +1,14 @@
 import { getSwellCurrentUser } from './get-current-user';
-import swell from './swell-server';
+import swell from './swell-client';
 import { type ResultsResponse, type Order } from 'swell-js';
 
-export const getOrders = async (): Promise<ResultsResponse<Order>> => {
-  const account_id = await getSwellCurrentUser();
-
-  return await swell.get('/orders', {
-    where: {
-      account_id: account_id,
-    },
-    limit: 25,
-    page: 1,
+export const getOrders = async ({ limit = 10, page = 1 } = {}) => {
+  return await swell.account.listOrders({
+    limit,
+    page,
   });
 };
 
-export const getOrder = async (
-  id: string,
-): Promise<Order | null | undefined> => {
-  if (!id) return;
-
-  const account_id = await getSwellCurrentUser();
-
-  return await swell.get(`/orders/${id}`, {
-    where: {
-      account_id: account_id,
-    },
-  });
+export const getOrder = async (id: string) => {
+  return await swell.account.getOrder(id);
 };

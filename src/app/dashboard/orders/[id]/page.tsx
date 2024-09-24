@@ -1,5 +1,7 @@
+'use client';
 import { getOrder } from '@/lib/swell/order';
 import { formatDate } from '@/lib/utils';
+import useSWR from 'swr';
 import {
   FaBox,
   FaShippingFast,
@@ -7,6 +9,7 @@ import {
   FaReceipt,
   FaExclamationCircle,
 } from 'react-icons/fa';
+import OrderDetailSkeleton from './loading';
 
 type Props = {
   params: {
@@ -14,8 +17,16 @@ type Props = {
   };
 };
 
-const OrderDetail = async ({ params }: Props) => {
-  const order = await getOrder(params.id);
+const OrderDetail = ({ params }: Props) => {
+  const {
+    data: order,
+    error,
+    isLoading,
+  } = useSWR(`order:${params.id}`, () => getOrder(params.id));
+
+  if (isLoading) {
+    return <OrderDetailSkeleton />;
+  }
 
   if (!order) {
     return <div>Order not found.</div>;
@@ -50,15 +61,15 @@ const OrderDetail = async ({ params }: Props) => {
               <strong>Order Number:</strong> {order.number}
             </p>
             <p className='text-gray-600 dark:text-gray-400'>
-              <strong>Date Created:</strong> {formatDate(order.date_created!)}
+              <strong>Date Created:</strong> {formatDate(order.dateCreated!)}
             </p>
             <p className='text-gray-600 dark:text-gray-400'>
-              <strong>Total Amount:</strong> ${order.grand_total?.toFixed(2)}
+              <strong>Total Amount:</strong> ${order.grandTotal?.toFixed(2)}
             </p>
           </div>
           <div>
             <p className='text-gray-600 dark:text-gray-400'>
-              <strong>Items Ordered:</strong> {order.item_quantity}
+              <strong>Items Ordered:</strong> {order.itemQuantity}
             </p>
             <p className='text-gray-600 dark:text-gray-400'>
               <strong>Payment Method:</strong> {order.billing?.method}
@@ -171,11 +182,11 @@ const OrderDetail = async ({ params }: Props) => {
           <strong>Paid:</strong> {order.paid ? 'Yes' : 'No'}
         </p>
         <p className='text-gray-600 dark:text-gray-400'>
-          <strong>Authorized Payment ID:</strong> {order.authorized_payment_id}
+          <strong>Authorized Payment ID:</strong> {order.authorizedPaymentId}
         </p>
         <p className='text-gray-600 dark:text-gray-400'>
           <strong>Payment Total:</strong> $
-          {Number(order.payment_total)?.toFixed(2)}
+          {Number(order.paymentTotal)?.toFixed(2)}
         </p>
       </div>
     </div>
