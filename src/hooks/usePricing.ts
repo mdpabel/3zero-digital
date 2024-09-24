@@ -28,6 +28,10 @@ export const usePricing = ({
     }
   };
 
+  const setTotalQuantity = (totalQuantity: number) => {
+    setQuantity(totalQuantity);
+  };
+
   const handleCheckout = (metadata: any) => {
     startTransition(async () => {
       try {
@@ -59,5 +63,6 @@ export const usePricing = ({
     handleIncrease,
     handleDecrease,
     handleCheckout,
+    setTotalQuantity,
   };
 };

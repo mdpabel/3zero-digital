@@ -1,8 +1,14 @@
 import React from 'react';
+import EmailDeliverabilityIssueCheckoutButton from './email-deliverability-issues-checkout-button';
+import { getProduct } from '@/lib/swell/product';
+import { formatCurrency } from '@/lib/utils';
 
-export const dynamic = 'force-static';
+const EmailDeliverabilityIssues = async () => {
+  const product = await getProduct('Email Deliverability');
+  const price = product?.price!;
+  const origPrice = product?.origPrice!;
+  const productId = product?.id!;
 
-const EmailDeliverabilityIssues = () => {
   const issues = [
     'Blacklisted IP addresses',
     'Spammy content or keywords',
@@ -26,6 +32,26 @@ const EmailDeliverabilityIssues = () => {
         inbox.
       </p>
 
+      <div className='flex md:flex-row flex-col justify-between items-center my-12'>
+        <div className='mb-8 md:mb-0 text-center md:text-left'>
+          <h3 className='font-bold text-2xl text-zinc-800 dark:text-zinc-200'>
+            Complete Email Audit Service
+          </h3>
+          <p className='text-lg text-zinc-600 dark:text-zinc-400'>
+            Starting at just{' '}
+            {origPrice > price && (
+              <span className='mr-2 text-zinc-500 dark:text-zinc-400 line-through'>
+                {formatCurrency({ amount: origPrice })}
+              </span>
+            )}
+            <span className='font-bold text-zinc-800 dark:text-zinc-200'>
+              {formatCurrency({ amount: price })}
+            </span>
+          </p>
+        </div>
+        <EmailDeliverabilityIssueCheckoutButton />
+      </div>
+
       <div className='gap-8 grid grid-cols-1 md:grid-cols-2'>
         {issues.map((issue, index) => (
           <div
@@ -46,23 +72,6 @@ const EmailDeliverabilityIssues = () => {
             </div>
           </div>
         ))}
-      </div>
-
-      <div className='flex md:flex-row flex-col justify-between items-center mt-12'>
-        <div className='mb-8 md:mb-0 text-center md:text-left'>
-          <h3 className='font-bold text-2xl text-zinc-800 dark:text-zinc-200'>
-            Complete Email Audit Service
-          </h3>
-          <p className='text-lg text-zinc-600 dark:text-zinc-400'>
-            Starting at just{' '}
-            <span className='font-bold text-zinc-800 dark:text-zinc-200'>
-              $199
-            </span>
-          </p>
-        </div>
-        <button className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-md px-8 py-3 rounded-lg font-semibold text-white transform transition-transform hover:scale-105'>
-          Get Started
-        </button>
       </div>
     </div>
   );
