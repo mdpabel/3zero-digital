@@ -297,3 +297,8 @@ html {
 }
 
 /* COMPANY LOGOS END */
+
+p.tawk-text-bold-4.tawk-header-text.tawk-custom-color.card--alignment-center
+  span {
+  font-size: 17px !important;
+}
