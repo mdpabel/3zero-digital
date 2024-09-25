@@ -1,6 +1,10 @@
+import dynamic from 'next/dynamic';
 import Header from '@/components/layout/app/header';
 import Footer from '@/components/layout/app/footer';
-import TawkChat from '@/components/common/tawk-chat';
+
+const TawkChat = dynamic(() => import('@/components/common/tawk-chat'), {
+  ssr: false,
+});
 
 export default function RootLayout({
   children,
