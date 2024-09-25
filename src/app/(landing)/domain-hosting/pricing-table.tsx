@@ -47,7 +47,9 @@ const PricingTable = ({ product }: { product: swell.Product }) => {
   ];
 
   return (
-    <div className='bg-white dark:bg-gray-900 shadow-lg mx-auto p-10 rounded-lg max-w-6xl'>
+    <div
+      id='pricing'
+      className='bg-white dark:bg-gray-900 shadow-lg mx-auto p-10 rounded-lg max-w-6xl'>
       <h2 className='mb-6 font-extrabold text-3xl text-center text-gray-800 dark:text-white'>
         Domain Hosting Package
       </h2>
