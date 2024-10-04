@@ -39,3 +39,67 @@ model Reply {
   ticket    Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
   ticketId  String   @db.ObjectId
 }
+
+// PRODUCT 
+enum OrderStatus {
+  pending
+  completed
+  failed
+  canceled
+}
+
+enum PaymentStatus {
+  unpaid
+  paid
+  refunded
+  failed
+}
+
+model Category {
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  name     String
+  products Product[]
+}
+
+model Product {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  price       Float
+  origPrice   Float?
+  description String?
+  imageUrl    String?
+  deleted     Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  category    Category? @relation(fields: [categoryId], references: [id])
+  categoryId  String?   @db.ObjectId
+  orders      Order[]
+}
+
+model Order {
+  id            String        @id @default(auto()) @map("_id") @db.ObjectId
+  userId        String
+  quantity      Int
+  total         Float
+  status        OrderStatus   @default(pending)
+  paymentStatus PaymentStatus @default(unpaid) // Now using enum for payment status
+  transactionId String? // Store transaction ID from Stripe or PayPal
+  metadata      Json?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+
+  productId String  @db.ObjectId
+  product   Product @relation(fields: [productId], references: [id])
+  couponId  String? @db.ObjectId
+  coupon    Coupon? @relation(fields: [couponId], references: [id])
+}
+
+model Coupon {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  code       String    @unique // e.g., 'SUMMER21'
+  discount   Float // Percentage or flat discount
+  validFrom  DateTime
+  validUntil DateTime?
+  createdAt  DateTime  @default(now())
+  orders     Order[] // Track which orders used this coupon
+}

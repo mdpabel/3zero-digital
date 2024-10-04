@@ -7,7 +7,7 @@ export default function DashboardLayout({
 }) {
   return (
     <div className='flex'>
-      <Sidebar type='customer' />
+      <Sidebar type='admin' />
       <main className='flex-1 lg:ml-64 p-6 overflow-x-hidden'>{children}</main>
     </div>
   );
