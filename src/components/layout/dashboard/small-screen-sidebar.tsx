@@ -18,9 +18,10 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@/components/ui/accordion';
+import Image from 'next/image';
 
 const SmallScreenSidebar = ({ data }: { data: SidebarItem[] }) => {
-  const userRole = 'customer';
+  const userRole = 'admin';
 
   return (
     <aside className='block top-2 left-2 absolute lg:hidden'>
@@ -38,7 +39,14 @@ const SmallScreenSidebar = ({ data }: { data: SidebarItem[] }) => {
             <SheetHeader>
               <SheetTitle>
                 <SheetClose asChild>
-                  <Link href='/'>Logo</Link>
+                  <Link href='/'>
+                    <Image
+                      src='/images/logo-dark.png'
+                      alt='Logo'
+                      width={140}
+                      height={140}
+                    />
+                  </Link>
                 </SheetClose>
               </SheetTitle>
             </SheetHeader>

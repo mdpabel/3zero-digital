@@ -1,16 +1,10 @@
-import React from 'react';
-import AddProductForm from './add-product-form';
 import prisma from '@/prisma/db';
+import ProductForm from './product-form';
 
 const AddProduct = async () => {
   const categories = await prisma.category.findMany();
 
-  return (
-    <div>
-      <h1 className='mb-8 font-bold text-3xl'>Add New Product</h1>
-      <AddProductForm categories={categories} />
-    </div>
-  );
+  return <ProductForm categories={categories} />;
 };
 
 export default AddProduct;

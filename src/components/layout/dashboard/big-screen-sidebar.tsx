@@ -11,6 +11,8 @@ import {
 import { cn } from '@/lib/utils';
 import Logout from './logout';
 import { SidebarItem } from './data';
+import Logo from '../app/logo';
+import Image from 'next/image';
 
 const BigScreenSidebar = ({ data }: { data: SidebarItem[] }) => {
   const pathname = usePathname();
@@ -25,8 +27,13 @@ const BigScreenSidebar = ({ data }: { data: SidebarItem[] }) => {
   return (
     <aside className='top-0 left-0 fixed lg:flex flex-col justify-between hidden bg-gradient-to-br from-[#614385] to-[#516395] w-64 h-screen text-white sidebar'>
       <div className='p-4'>
-        <Link href='/' className='block mb-6 px-4'>
-          LOGO
+        <Link href='/'>
+          <Image
+            src='/images/logo-dark.png'
+            alt='Logo'
+            width={140}
+            height={140}
+          />
         </Link>
 
         <nav className='flex-1 space-y-4'>

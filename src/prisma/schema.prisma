@@ -55,6 +55,17 @@ enum PaymentStatus {
   failed
 }
 
+enum ProductType {
+  STANDARD
+  SUBSCRIPTION
+}
+
+enum BillingInterval {
+  MONTH
+  QUARTER
+  YEAR
+}
+
 model Category {
   id       String    @id @default(auto()) @map("_id") @db.ObjectId
   name     String
@@ -62,18 +73,31 @@ model Category {
 }
 
 model Product {
-  id          String    @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  price       Float
-  origPrice   Float?
-  description String?
-  imageUrl    String?
-  deleted     Boolean   @default(false)
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  category    Category? @relation(fields: [categoryId], references: [id])
-  categoryId  String?   @db.ObjectId
-  orders      Order[]
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  name            String
+  description     String?
+  imageUrl        String?
+  categoryId      String?     @db.ObjectId
+  stripeProductId String?
+  type            ProductType @default(STANDARD)
+  prices          Price[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Category  Category? @relation(fields: [categoryId], references: [id])
+  Order     Order[]
+}
+
+model Price {
+  id              String           @id @default(auto()) @map("_id") @db.ObjectId
+  product         Product          @relation(fields: [productId], references: [id])
+  productId       String           @db.ObjectId
+  stripePriceId   String
+  unitAmount      Float
+  origPrice       Float?
+  currency        String
+  billingInterval BillingInterval?
+  isRecurring     Boolean
 }
 
 model Order {

@@ -6,7 +6,20 @@ const Logo = () => {
   return (
     <div className='inline-block'>
       <Link href='/'>
-        <Image src='/images/logo-7.png' alt='Logo' width={70} height={70} />
+        <Image
+          src='/images/logo-light.png'
+          alt='Logo'
+          width={140}
+          height={140}
+          className='dark:hidden'
+        />
+        <Image
+          src='/images/logo-dark.png'
+          alt='Logo'
+          width={140}
+          height={140}
+          className='dark:block hidden'
+        />
       </Link>
     </div>
   );
