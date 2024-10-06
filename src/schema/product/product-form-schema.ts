@@ -5,7 +5,7 @@ const priceSchema = z.object({
   unitAmount: z.coerce.number().min(0.01, {
     message: 'Price must be greater than 0.',
   }), // Coerce string to number
-  billingInterval: z.enum(['month', 'quarter', 'year'], {
+  billingInterval: z.enum(['month', 'quarter', 'year', ''], {
     errorMap: () => ({
       message: 'Billing interval must be either month, quarter, or year.',
     }),

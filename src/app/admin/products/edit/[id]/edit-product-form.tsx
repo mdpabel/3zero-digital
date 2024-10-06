@@ -1,197 +1,137 @@
 'use client';
-
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { Category, Product } from '@prisma/client';
-import { z } from 'zod';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { productFormSchema } from '@/schema/product/product-form-schema';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import { useFormState } from 'react-dom';
-import FormButton from '@/components/common/form-button';
-import { cn } from '@/lib/utils';
+import React, { useEffect } from 'react';
 import { updateProduct } from '@/actions/product/update-product';
+import { Category, Product, Price } from '@prisma/client';
+import { useFormState } from 'react-dom';
+import { toast } from 'react-toastify';
+import FormButton from '@/components/common/form-button';
+import ProductType from './product-type';
 
 const EditProductForm = ({
   product,
-  category,
   categories,
+  prices,
 }: {
   product: Product;
-  category: Category;
   categories: Category[];
+  prices: Price[];
 }) => {
-  // Initialize form with existing product data
-  const form = useForm<z.infer<typeof productFormSchema>>({
-    resolver: zodResolver(productFormSchema),
-    defaultValues: {
-      name: product.name || '',
-      price: product.price || 0,
-      origPrice: product.origPrice || 0,
-      description: product.description || '',
-      imageUrl: product.imageUrl || '',
-      categoryId: product.categoryId || category.id || '',
-    },
-  });
-
   const [state, formAction] = useFormState(updateProduct, {
     message: '',
     success: false,
+    errors: {},
   });
 
+  useEffect(() => {
+    if (!state.message) return;
+
+    const toastMessage = state.success ? toast.success : toast.error;
+    const message = state.errors
+      ? Object.values(state.errors).join(', ')
+      : state.message;
+
+    if (message) {
+      toastMessage(message);
+    }
+  }, [state.message, state.errors, state.success]);
+
   return (
-    <div>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(async (values) => {
-            const formData = new FormData();
-            formData.append('id', product.id); // Include the product ID for updating
-            formData.append('name', values.name);
-            formData.append('price', values.price.toString());
-            formData.append('origPrice', values.origPrice.toString());
-            formData.append('description', values.description || '');
-            formData.append('imageUrl', values.imageUrl || '');
-            formData.append('categoryId', values.categoryId || '');
-
-            await formAction(formData); // Call the server action to update the product
-          })}
-          className='space-y-8'>
-          {/* Product Name */}
-          <FormField
-            control={form.control}
+    <div className='bg-white dark:bg-gray-900 shadow-md mx-auto p-8 rounded-md max-w-3xl'>
+      <h2 className='mb-6 font-semibold text-2xl text-gray-800 dark:text-gray-100'>
+        Edit Product
+      </h2>
+      <form
+        action={(formData) => {
+          formData.append('id', product.id);
+          formAction(formData);
+        }}
+        className='space-y-8'
+        method='POST'>
+        {/* Product Name */}
+        <div>
+          <label
+            htmlFor='name'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Product Name
+          </label>
+          <input
+            type='text'
+            id='name'
             name='name'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Product Name</FormLabel>
-                <FormControl>
-                  <Input placeholder='Product Name' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            defaultValue={product.name}
+            required
+            minLength={2}
+            placeholder='Product Name'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
           />
+        </div>
 
-          {/* Price */}
-          <FormField
-            control={form.control}
-            name='price'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Price</FormLabel>
-                <FormControl>
-                  <Input type='number' placeholder='Product Price' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+        {/* Product Type Component */}
+        <ProductType
+          productType={prices[0].isRecurring ? 'SUBSCRIPTION' : 'STANDARD'}
+          prices={prices}
+        />
 
-          {/* Original Price */}
-          <FormField
-            control={form.control}
-            name='origPrice'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Original Price</FormLabel>
-                <FormControl>
-                  <Input
-                    type='number'
-                    placeholder='Original Price'
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {/* Description */}
-          <FormField
-            control={form.control}
+        {/* Description */}
+        <div>
+          <label
+            htmlFor='description'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Description
+          </label>
+          <textarea
+            id='description'
             name='description'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Description</FormLabel>
-                <FormControl>
-                  <Textarea placeholder='Product Description' {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            defaultValue={product.description || ''}
+            placeholder='Product Description'
+            minLength={10}
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
           />
+        </div>
 
-          {/* Image URL */}
-          <FormField
-            control={form.control}
+        {/* Image URL */}
+        <div>
+          <label
+            htmlFor='imageUrl'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Image URL
+          </label>
+          <input
+            type='url'
+            id='imageUrl'
             name='imageUrl'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Image URL</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder='https://example.com/image.jpg'
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
+            defaultValue={product.imageUrl || ''}
+            placeholder='https://example.com/image.jpg'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
           />
+        </div>
 
-          {/* Category Selector */}
-          <FormField
-            control={form.control}
+        {/* Category Selector */}
+        <div>
+          <label
+            htmlFor='categoryId'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Category
+          </label>
+          <select
+            id='categoryId'
             name='categoryId'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Category</FormLabel>
-                <FormControl>
-                  <Select onValueChange={field.onChange} value={field.value}>
-                    <SelectTrigger className='w-full'>
-                      <SelectValue placeholder='Select a category' />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {categories.map((category) => (
-                        <SelectItem key={category.id} value={category.id}>
-                          {category.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+            required
+            defaultValue={product.categoryId || ''}
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
 
-          <div className='max-w-52'>
-            <FormButton>Update Product</FormButton>
-          </div>
-
-          <p
-            className={cn(
-              'text-red-500 mt-4',
-              state.success && 'text-green-800',
-            )}>
-            {state?.message}
-          </p>
-        </form>
-      </Form>
+        {/* Submit Button */}
+        <div>
+          <FormButton>Update Product</FormButton>
+        </div>
+      </form>
     </div>
   );
 };

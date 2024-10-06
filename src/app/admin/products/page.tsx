@@ -3,24 +3,23 @@ import { FaEdit } from 'react-icons/fa';
 import DeleteProduct from './delete-product';
 import Link from 'next/link';
 
+// Fetch products along with their prices and category
 const getProducts = async () => {
   const products = await prisma.product.findMany({
-    where: {
-      deleted: false,
-    },
     include: {
-      category: true,
-    },
-    orderBy: {
-      createdAt: 'desc',
+      prices: true, // Include prices for each product
+      Category: true, // Include category for each product
     },
   });
-
   return products;
 };
 
 const Products = async () => {
   const products = await getProducts();
+
+  console.log({
+    products,
+  });
 
   return (
     <div className='p-8'>
@@ -47,6 +46,9 @@ const Products = async () => {
                 Category
               </th>
               <th className='px-4 py-3 text-zinc-800 dark:text-zinc-300'>
+                Type
+              </th>
+              <th className='px-4 py-3 text-zinc-800 dark:text-zinc-300'>
                 Created At
               </th>
               <th className='px-4 py-3 text-zinc-800 dark:text-zinc-300'>
@@ -63,12 +65,21 @@ const Products = async () => {
                   {product.name}
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
-                  ${product.price.toFixed(2)}
+                  {/* Displaying the first price or a default message if no prices */}
+                  {product.prices.length > 0
+                    ? `$${product.prices[0].unitAmount.toFixed(2)}`
+                    : 'Price not available'}
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
-                  {product.category?.name || 'Uncategorized'}
+                  {/* Display category name or default to 'Uncategorized' */}
+                  {product.Category?.name || 'Uncategorized'}
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
+                  {/* Displaying product type */}
+                  {product.type}
+                </td>
+                <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
+                  {/* Formatting the creation date */}
                   {new Date(product.createdAt).toLocaleDateString()}
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
@@ -80,6 +91,7 @@ const Products = async () => {
                       <FaEdit className='inline-block w-5 h-5' />
                     </Link>
 
+                    {/* Delete Product Component */}
                     <DeleteProduct productId={product.id} />
                   </div>
                 </td>

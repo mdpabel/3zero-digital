@@ -1,16 +1,29 @@
 'use server';
-import { stripe } from '@/lib/stripe';
+import { createStripePrices } from '@/lib/stripe/create-price';
+import { createStripeProduct } from '@/lib/stripe/create-product';
 import prisma from '@/prisma/db';
 import { productFormSchema } from '@/schema/product/product-form-schema';
 import { revalidatePath } from 'next/cache';
 
+// Main function to handle the product creation
 export async function createProduct(_: any, formData: FormData) {
   try {
     const formDataObj = Object.fromEntries(formData.entries());
 
     // Build the prices array before validation
     let prices = [];
-    if (formDataObj.type === 'SUBSCRIPTION') {
+    if (formDataObj.type === 'STANDARD') {
+      if (!formDataObj.price) {
+        throw new Error('Price is required for standard products');
+      }
+
+      prices.push({
+        unitAmount: formDataObj.price,
+        origPrice: formDataObj.origPrice,
+        billingInterval: '',
+        isRecurring: false,
+      });
+    } else if (formDataObj.type === 'SUBSCRIPTION') {
       if (formDataObj.monthly) {
         const monthlyPrice = parseFloat(formDataObj.monthly as string);
         const monthlyOrigPrice = formDataObj.monthlyOrigPrice
@@ -70,7 +83,6 @@ export async function createProduct(_: any, formData: FormData) {
       }
     }
 
-    // Now validate the form data, including the prices array for subscription products
     const result = productFormSchema.safeParse({
       name: formDataObj.name,
       price: formDataObj.price
@@ -88,7 +100,6 @@ export async function createProduct(_: any, formData: FormData) {
 
     if (!result.success) {
       const errors = result.error.flatten();
-      console.log(errors);
       return {
         message: 'Validation failed',
         success: false,
@@ -96,65 +107,18 @@ export async function createProduct(_: any, formData: FormData) {
       };
     }
 
-    const { name, price, description, imageUrl, categoryId, origPrice, type } =
+    const { name, price, origPrice, description, imageUrl, categoryId, type } =
       result.data;
 
-    // Create product in Stripe
-    const stripeProduct = await stripe.products.create({
-      name,
-      metadata: { categoryId: categoryId || '' },
-    });
-
+    const stripeProduct = await createStripeProduct(name, categoryId);
     const stripeProductId = stripeProduct.id;
-    let stripePricePromises: Promise<any>[] = [];
 
-    if (type === 'STANDARD') {
-      if (!price) {
-        throw new Error('Price is required for standard products');
-      }
-
-      const stripePricePromise = stripe.prices.create({
-        unit_amount: Math.round(price * 100),
-        currency: 'usd',
-        product: stripeProductId,
-      });
-      stripePricePromises.push(stripePricePromise);
-    } else if (type === 'SUBSCRIPTION') {
-      prices.forEach((subscriptionPrice) => {
-        let interval: 'MONTH' | 'QUARTER' | 'YEAR';
-        let interval_count: number = 1;
-
-        if (subscriptionPrice.billingInterval === 'month') {
-          interval = 'MONTH';
-          interval_count = 1;
-        } else if (subscriptionPrice.billingInterval === 'quarter') {
-          interval = 'QUARTER';
-          interval_count = 3;
-        } else if (subscriptionPrice.billingInterval === 'year') {
-          interval = 'YEAR';
-          interval_count = 1;
-        } else {
-          throw new Error('Invalid billing interval');
-        }
-
-        const stripeSubscriptionPricePromise = stripe.prices.create({
-          unit_amount: Math.round(subscriptionPrice.unitAmount * 100),
-          currency: 'usd',
-          recurring: {
-            interval:
-              subscriptionPrice.billingInterval === 'quarter'
-                ? 'month'
-                : subscriptionPrice.billingInterval,
-            interval_count,
-          },
-          product: stripeProductId,
-        });
-
-        stripePricePromises.push(stripeSubscriptionPricePromise);
-      });
-    }
-
-    const stripePrices = await Promise.all(stripePricePromises);
+    const stripePrices = await createStripePrices(
+      type,
+      stripeProductId,
+      prices,
+      price,
+    );
 
     const product = await prisma.product.create({
       data: {
@@ -181,7 +145,8 @@ export async function createProduct(_: any, formData: FormData) {
             return {
               stripePriceId: stripePrice.id,
               unitAmount: stripePrice.unit_amount / 100,
-              origPrice: prices[index].origPrice || undefined, // Store original price for each subscription tier
+              origPrice:
+                parseFloat(prices[index].origPrice as string) || undefined,
               currency: 'usd',
               billingInterval,
               isRecurring: type === 'SUBSCRIPTION',
@@ -199,7 +164,6 @@ export async function createProduct(_: any, formData: FormData) {
     };
   } catch (error) {
     console.error('Error creating product:', error);
-
     return {
       message:
         'An error occurred while creating the product. Please try again later.',

@@ -13,7 +13,7 @@ const EditProduct = async ({ params }: Props) => {
     prisma.product.findUnique({
       where: { id: params.id },
       include: {
-        category: true,
+        prices: true,
       },
     }),
     prisma.category.findMany(),
@@ -23,11 +23,15 @@ const EditProduct = async ({ params }: Props) => {
     return <div>Product not found</div>;
   }
 
+  console.log({
+    price: product.prices,
+  });
+
   return (
     <div>
       <EditProductForm
         categories={categories}
-        category={product?.category!}
+        prices={product.prices}
         product={product}
       />
     </div>

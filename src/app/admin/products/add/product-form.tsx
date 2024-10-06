@@ -15,12 +15,18 @@ const ProductForm = ({ categories }: { categories: Category[] }) => {
   });
 
   useEffect(() => {
-    if (state.message) {
-      toast(state.message, {
-        type: state.success ? 'success' : 'error',
-      });
+    if (!state.message) return;
+
+    const toastMessage = state.success ? toast.success : toast.error;
+
+    const message = state.errors
+      ? Object.values(state.errors).join(', ')
+      : state.message;
+
+    if (message) {
+      toastMessage(message);
     }
-  }, [state.message, state.success]);
+  }, [state.message, state.errors, state.success]);
 
   return (
     <div className='bg-white dark:bg-gray-900 shadow-md mx-auto p-8 rounded-md max-w-3xl'>

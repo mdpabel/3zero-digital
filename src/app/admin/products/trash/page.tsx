@@ -1,5 +1,4 @@
 import prisma from '@/prisma/db';
-import { FaEdit } from 'react-icons/fa';
 import RestoreProduct from './restore-product';
 
 const getProducts = async () => {
@@ -8,7 +7,8 @@ const getProducts = async () => {
       deleted: true,
     },
     include: {
-      category: true,
+      Category: true,
+      prices: true, // Include prices
     },
     orderBy: {
       createdAt: 'desc',
@@ -18,7 +18,7 @@ const getProducts = async () => {
   return products;
 };
 
-const Products = async () => {
+const DeletedProducts = async () => {
   const products = await getProducts();
 
   return (
@@ -62,16 +62,28 @@ const Products = async () => {
                   {product.name}
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
-                  ${product.price.toFixed(2)}
+                  {/* Display Price: Handle Standard and Subscription Products */}
+                  {product.prices.length > 0
+                    ? product.prices.map((price, index) => (
+                        <div key={price.id}>
+                          {price.isRecurring
+                            ? `${price.unitAmount.toFixed(2)} / ${
+                                price.billingInterval
+                              }`
+                            : `$${price.unitAmount.toFixed(2)}`}
+                        </div>
+                      ))
+                    : 'No Price Available'}
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
-                  {product.category?.name || 'Uncategorized'}
+                  {product.Category?.name || 'Uncategorized'}
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
                   {new Date(product.createdAt).toLocaleDateString()}
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
                   <div className='flex items-center space-x-4'>
+                    {/* Restore product action */}
                     <RestoreProduct productId={product.id} />
                   </div>
                 </td>
@@ -84,4 +96,4 @@ const Products = async () => {
   );
 };
 
-export default Products;
+export default DeletedProducts;

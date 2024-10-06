@@ -1,15 +1,18 @@
 'use server';
+import { deleteStripeProduct } from '@/lib/stripe/delete-product';
 import prisma from '@/prisma/db';
 import { revalidatePath } from 'next/cache';
 
 export async function deleteProduct(productId: string) {
   try {
-    await prisma.product.update({
+    const product = await prisma.product.update({
       where: { id: productId },
       data: {
         deleted: true,
       },
     });
+
+    await deleteStripeProduct(product.stripeProductId!);
     revalidatePath('/admin/products');
     return { success: true };
   } catch (error) {
