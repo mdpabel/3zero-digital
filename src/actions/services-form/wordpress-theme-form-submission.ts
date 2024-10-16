@@ -1,20 +1,20 @@
 'use server';
 
-import MernSubmissionEmail from '@/components/email/mern-email-template';
-import { sendEmail } from '@/lib/send-email';
+import WordPressThemeSubmissionEmail from '@/components/email/wordpress-theme-email-template';
+import { sendEmail } from '@/lib/send-email'; // Assuming you have a sendEmail utility
 import { catchZodErrors } from '@/lib/utils';
-import { mernFormSchema } from '@/schema/mern-form-schema';
+import { wordpressThemeFormSchema } from '@/schema/services/wordpress-theme-form-schema';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
-export const mernFormSubmission = async (formData: FormData) => {
+export const wordpressThemeFormSubmission = async (formData: FormData) => {
   let status = 'success' as 'success' | 'error';
   let errors = '';
 
   try {
     // Extract form data
     const data = {
-      projectType: formData.get('projectType'),
+      themeType: formData.get('themeType'),
       budget: formData.get('budget'),
       timeline: formData.get('timeline'),
       functionalities: formData.getAll('functionalities'),
@@ -25,8 +25,8 @@ export const mernFormSubmission = async (formData: FormData) => {
     };
 
     // Validate form data with Zod schema
-    const validatedData = mernFormSchema.parse({
-      projectType: data.projectType,
+    const validatedData = wordpressThemeFormSchema.parse({
+      themeType: data.themeType,
       budget: data.budget,
       timeline: data.timeline,
       functionalities: data.functionalities,
@@ -36,12 +36,12 @@ export const mernFormSubmission = async (formData: FormData) => {
       message: data.message,
     });
 
-    // If validation passes, send the email
+    // Send confirmation email to the user
     await sendEmail({
-      to: process.env.EMAIL_TO!,
+      to: validatedData.email,
       replyTo: validatedData.email,
-      subject: 'New MERN stact Form Submission',
-      react: MernSubmissionEmail({
+      subject: 'We Received Your WordPress Theme Project Submission',
+      react: WordPressThemeSubmissionEmail({
         formData: validatedData,
       }),
       name: validatedData.name,
@@ -50,7 +50,7 @@ export const mernFormSubmission = async (formData: FormData) => {
     status = 'success';
   } catch (err) {
     if (err instanceof z.ZodError) {
-      errors = catchZodErrors(err, mernFormSchema);
+      errors = catchZodErrors(err, wordpressThemeFormSchema);
     }
     status = 'error';
   }

@@ -4,7 +4,7 @@ import SelectInput from '@/components/development/select';
 import Input from '@/components/development/input';
 import CheckboxGroup from '@/components/development/checkbox-group';
 import Textarea from '@/components/development/textarea';
-import { shopifyFormSubmission } from '@/actions/shopify-form-submission';
+import { shopifyFormSubmission } from '@/actions/services-form/shopify-form-submission';
 import FormButton from '@/components/common/form-button';
 
 export const dynamic = 'force-static';

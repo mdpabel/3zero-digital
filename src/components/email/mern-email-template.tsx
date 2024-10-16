@@ -8,7 +8,7 @@ import {
   Heading,
 } from '@react-email/components';
 import { z } from 'zod';
-import { mernFormSchema } from '@/schema/mern-form-schema';
+import { mernFormSchema } from '@/schema/services/mern-form-schema';
 
 type MernSubmissionEmailProps = {
   formData: z.infer<typeof mernFormSchema>;

@@ -41,7 +41,7 @@ const SmallScreenSidebar = ({ data }: { data: SidebarItem[] }) => {
                 <SheetClose asChild>
                   <Link href='/'>
                     <Image
-                      src='/images/logo-dark.png'
+                      src='/images/logo-light.png'
                       alt='Logo'
                       width={140}
                       height={140}

@@ -9,7 +9,7 @@ import {
   Heading,
 } from '@react-email/components';
 import { z } from 'zod';
-import { backendFormSchema } from '@/schema/backend-form-schema';
+import { backendFormSchema } from '@/schema/services/backend-form-schema';
 
 type BackendSubmissionEmailProps = {
   formData: z.infer<typeof backendFormSchema>;

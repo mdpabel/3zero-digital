@@ -1,18 +1,23 @@
 import React from 'react';
+import PricingTable from './pricing-table';
+import { getProduct } from '@/lib/product/get-product';
 
 export const dynamic = 'force-static';
+const benefits = [
+  'Encrypts data between your website and visitors',
+  'Boosts search engine rankings with HTTPS',
+  'Enhances trust with SSL padlock and certificate',
+  'Secures online transactions and sensitive information',
+  'Prevents data breaches and man-in-the-middle attacks',
+  'Complies with industry standards and regulations',
+  'Ensures compatibility with modern web browsers',
+  'Provides ongoing support and SSL certificate renewal',
+];
 
-const SSLInstallation = () => {
-  const benefits = [
-    'Encrypts data between your website and visitors',
-    'Boosts search engine rankings with HTTPS',
-    'Enhances trust with SSL padlock and certificate',
-    'Secures online transactions and sensitive information',
-    'Prevents data breaches and man-in-the-middle attacks',
-    'Complies with industry standards and regulations',
-    'Ensures compatibility with modern web browsers',
-    'Provides ongoing support and SSL certificate renewal',
-  ];
+const SSLInstallation = async () => {
+  const { origPrice, price, productId } = await getProduct(
+    'SSL Installation & Configuration',
+  );
 
   return (
     <div className='bg-gradient-to-b from-gray-100 dark:from-gray-900 to-white dark:to-gray-800 py-12'>
@@ -27,7 +32,14 @@ const SSLInstallation = () => {
           </p>
         </div>
 
-        <div className='gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10'>
+        <PricingTable
+          origPrice={origPrice}
+          price={price}
+          productId={productId}
+          services={benefits}
+        />
+
+        <div className='gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10 mt-8'>
           {benefits.map((benefit, index) => (
             <div
               key={index}
@@ -40,20 +52,6 @@ const SSLInstallation = () => {
               </h3>
             </div>
           ))}
-        </div>
-
-        <div className='flex md:flex-row flex-col justify-between items-center bg-gradient-to-r from-[#614385] to-[#516395] shadow-xl mt-16 p-8 rounded-lg text-white'>
-          <div className='mb-6 md:mb-0'>
-            <h3 className='font-bold text-2xl'>
-              Full SSL Installation Package
-            </h3>
-            <p className='mt-2 text-lg'>
-              Starting at just <span className='font-bold'>$99</span>
-            </p>
-          </div>
-          <button className='bg-white shadow-lg px-6 py-3 rounded-lg font-semibold text-[#614385] transform hover:scale-105 transition-transform'>
-            Get Started
-          </button>
         </div>
       </div>
     </div>

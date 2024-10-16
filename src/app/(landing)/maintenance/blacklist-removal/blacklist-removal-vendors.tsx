@@ -4,14 +4,25 @@ import { blacklistData } from './data';
 import { usePricing } from '@/hooks/usePricing';
 import { formatCurrency } from '@/lib/utils';
 import Spinner from '@/components/common/spinner';
-import { Product } from '@prisma/client';
+import Checkout from '@/components/payment/checkout';
 
-const BlacklistRemovalVendors = ({ product }: { product: Product }) => {
-  const price = product.price;
-  const origPrice = product.origPrice || product.price;
-  const productId = product.id;
-
-  const { isPending, handleCheckout, setTotalQuantity } = usePricing({
+const BlacklistRemovalVendors = ({
+  price,
+  origPrice,
+  productId,
+}: {
+  price: number;
+  origPrice: number;
+  productId: string;
+}) => {
+  const {
+    setTotalQuantity,
+    handleDecrease,
+    handleIncrease,
+    quantity,
+    totalOriginalPrice,
+    totalPrice,
+  } = usePricing({
     productId,
     price,
     origPrice,
@@ -36,49 +47,39 @@ const BlacklistRemovalVendors = ({ product }: { product: Product }) => {
     item.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
-  const onCheckout = () => {
-    handleCheckout({
-      data: selectedBlacklists,
-    });
-  };
-
-  const totalPrice = selectedBlacklists.length * price || 0;
-
   return (
     <div className='bg-white dark:bg-[#0B1120] shadow-lg p-8 rounded-lg'>
       <h2 className='mb-6 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
         Blacklist Removal Service
       </h2>
       <p className='mb-8 text-center text-lg text-zinc-700 md:text-xl dark:text-zinc-400'>
-        Select the blacklists you want to remove. Each removal costs $20.
+        Select the blacklists you want to remove. Each removal costs{' '}
+        {formatCurrency({ amount: price })}.
       </p>
 
       {/* Top Total Price and Checkout Button */}
-      <div className='bg-gray-100 dark:bg-gray-900 mb-8 p-6 rounded-lg'>
-        <h3 className='flex items-center space-x-2 font-semibold text-2xl text-zinc-800 dark:text-zinc-200'>
-          Total Price:{' '}
-          <span className='ml-2'>
-            {totalPrice > 0
-              ? formatCurrency({
-                  amount: totalPrice,
-                })
-              : 0}
-          </span>
-        </h3>
-        <p className='mb-4 text-sm text-zinc-600 dark:text-zinc-400'>
-          The total cost for removing the selected blacklists.
-        </p>
+      <div className='flex justify-between items-center bg-gray-100 dark:bg-gray-900 mb-8 p-6 rounded-lg'>
+        <div>
+          <h3 className='flex items-center space-x-2 font-semibold text-2xl text-zinc-800 dark:text-zinc-200'>
+            Total Price:{' '}
+            <span className='ml-2'>
+              {totalPrice > 0
+                ? formatCurrency({
+                    amount: totalPrice,
+                  })
+                : '$0.0'}
+            </span>
+          </h3>
+          <p className='mb-4 text-sm text-zinc-600 dark:text-zinc-400'>
+            The total cost for removing the selected blacklists.
+          </p>
+        </div>
         <div className='text-center'>
-          <button
-            onClick={onCheckout}
-            className={`${
-              selectedBlacklists.length > 0
-                ? 'bg-gradient-to-r from-[#614385] to-[#516395]'
-                : 'bg-gray-400'
-            } shadow-md w-72 flex justify-center items-center mx-auto py-3 rounded-lg font-semibold text-white transform transition-transform hover:scale-105`}
-            disabled={selectedBlacklists.length === 0}>
-            {isPending ? <Spinner /> : ' Proceed to Checkout'}
-          </button>
+          <Checkout
+            productId={productId}
+            metaData={selectedBlacklists}
+            quantity={quantity}
+          />
         </div>
       </div>
 

@@ -1,21 +1,22 @@
 'use server';
 
-import WordPressThemeSubmissionEmail from '@/components/email/wordpress-theme-email-template';
+import FrontendSubmissionEmail from '@/components/email/frontend-email-template';
 import { sendEmail } from '@/lib/send-email'; // Assuming you have a sendEmail utility
 import { catchZodErrors } from '@/lib/utils';
-import { wordpressThemeFormSchema } from '@/schema/wordpress-theme-form-schema';
+import { frontendFormSchema } from '@/schema/services/frontend-form-schema';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
-export const wordpressThemeFormSubmission = async (formData: FormData) => {
+export const frontendFormSubmission = async (formData: FormData) => {
   let status = 'success' as 'success' | 'error';
   let errors = '';
 
   try {
-    // Extract form data
+    // Extract and validate form data
     const data = {
-      themeType: formData.get('themeType'),
+      websiteType: formData.get('websiteType'),
       budget: formData.get('budget'),
+      pages: formData.get('pages'),
       timeline: formData.get('timeline'),
       functionalities: formData.getAll('functionalities'),
       sampleSites: formData.get('sampleSites'),
@@ -25,9 +26,10 @@ export const wordpressThemeFormSubmission = async (formData: FormData) => {
     };
 
     // Validate form data with Zod schema
-    const validatedData = wordpressThemeFormSchema.parse({
-      themeType: data.themeType,
+    const validatedData = frontendFormSchema.parse({
+      websiteType: data.websiteType,
       budget: data.budget,
+      pages: data.pages,
       timeline: data.timeline,
       functionalities: data.functionalities,
       sampleSites: data.sampleSites,
@@ -36,12 +38,12 @@ export const wordpressThemeFormSubmission = async (formData: FormData) => {
       message: data.message,
     });
 
-    // Send confirmation email to the user
+    // If validation passes, send the email
     await sendEmail({
-      to: validatedData.email,
+      to: process.env.EMAIL_TO!,
       replyTo: validatedData.email,
-      subject: 'We Received Your WordPress Theme Project Submission',
-      react: WordPressThemeSubmissionEmail({
+      subject: 'New frontend Form Submission',
+      react: FrontendSubmissionEmail({
         formData: validatedData,
       }),
       name: validatedData.name,
@@ -50,7 +52,7 @@ export const wordpressThemeFormSubmission = async (formData: FormData) => {
     status = 'success';
   } catch (err) {
     if (err instanceof z.ZodError) {
-      errors = catchZodErrors(err, wordpressThemeFormSchema);
+      errors = catchZodErrors(err, frontendFormSchema);
     }
     status = 'error';
   }

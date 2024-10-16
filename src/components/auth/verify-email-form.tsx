@@ -63,13 +63,16 @@ const VerifyEmailForm = () => {
 
       if (completeSignUp.status === 'complete') {
         await setActive({ session: completeSignUp.createdSessionId });
+        await fetch('/api/user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ clerkUserId: completeSignUp.createdUserId }),
+        });
         setMessage({
           type: 'success',
           message: 'Email verified successfully! 🎉. Redirecting...',
-        });
-
-        await fetch('/api/clerk/update-metadata', {
-          method: 'POST',
         });
 
         setTimeout(() => {
@@ -112,11 +115,11 @@ const VerifyEmailForm = () => {
                 <FormItem>
                   <FormControl>
                     <InputOTP {...field} maxLength={6} className='mx-auto'>
-                      <InputOTPGroup>
+                      <InputOTPGroup className='w-full'>
                         {Array.from({ length: 6 }).map((_, index) => (
                           <InputOTPSlot
                             key={index}
-                            className='border-zinc-800 dark:border-zinc-200 border'
+                            className='border-zinc-800 dark:border-zinc-200 border w-full'
                             index={index}
                           />
                         ))}

@@ -29,7 +29,6 @@ import Spinner from '../common/spinner';
 import { catchClerkError } from '@/lib/utils';
 import Message from './message';
 import PasswordInputField from './password-field';
-import { createAccount } from '@/lib/swell/account';
 
 const signUpSchema = z.object({
   firstName: z.string().min(1, 'First name is required'),
@@ -60,10 +59,12 @@ const SignUpForm = () => {
     const { email, firstName, lastName, password } = data;
 
     try {
-      await Promise.all([
-        signUp.create({ emailAddress: email, password, firstName, lastName }),
-        createAccount({ email, password, firstName, lastName }),
-      ]);
+      await signUp.create({
+        emailAddress: email,
+        password,
+        firstName,
+        lastName,
+      });
 
       await signUp.prepareEmailAddressVerification({ strategy: 'email_code' });
       setMessage({

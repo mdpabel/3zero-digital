@@ -33,8 +33,6 @@ const Services = () => {
         onValueChange={setActiveTab}>
         <TabsList className='flex flex-wrap justify-center gap-2 sm:space-x-4 bg-transparent mb-6'>
           {services.map((service) => {
-            if (service.label === 'Case Studies') return null;
-
             return (
               <TabsTrigger
                 key={service.label}

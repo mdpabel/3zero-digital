@@ -1,18 +1,18 @@
 'use server';
 
-import FrontendSubmissionEmail from '@/components/email/frontend-email-template';
-import { sendEmail } from '@/lib/send-email'; // Assuming you have a sendEmail utility
+import WordPressSubmissionEmail from '@/components/email/wordpress-email-template';
+import { sendEmail } from '@/lib/send-email';
 import { catchZodErrors } from '@/lib/utils';
-import { frontendFormSchema } from '@/schema/frontend-form-schema';
+import { wordpressFormSchema } from '@/schema/services/wordpress-form-schema';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
-export const frontendFormSubmission = async (formData: FormData) => {
+export const wordpressFormSubmission = async (formData: FormData) => {
   let status = 'success' as 'success' | 'error';
   let errors = '';
 
   try {
-    // Extract and validate form data
+    // Extract form data
     const data = {
       websiteType: formData.get('websiteType'),
       budget: formData.get('budget'),
@@ -26,7 +26,7 @@ export const frontendFormSubmission = async (formData: FormData) => {
     };
 
     // Validate form data with Zod schema
-    const validatedData = frontendFormSchema.parse({
+    const validatedData = wordpressFormSchema.parse({
       websiteType: data.websiteType,
       budget: data.budget,
       pages: data.pages,
@@ -38,12 +38,12 @@ export const frontendFormSubmission = async (formData: FormData) => {
       message: data.message,
     });
 
-    // If validation passes, send the email
+    // Send email to 3Zero Digital
     await sendEmail({
       to: process.env.EMAIL_TO!,
       replyTo: validatedData.email,
-      subject: 'New frontend Form Submission',
-      react: FrontendSubmissionEmail({
+      subject: 'New WordPress Project Submission',
+      react: WordPressSubmissionEmail({
         formData: validatedData,
       }),
       name: validatedData.name,
@@ -52,7 +52,7 @@ export const frontendFormSubmission = async (formData: FormData) => {
     status = 'success';
   } catch (err) {
     if (err instanceof z.ZodError) {
-      errors = catchZodErrors(err, frontendFormSchema);
+      errors = catchZodErrors(err, wordpressFormSchema);
     }
     status = 'error';
   }

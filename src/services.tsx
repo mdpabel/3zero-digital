@@ -243,12 +243,4 @@ export const services = [
       },
     ],
   },
-  {
-    label: 'Case Studies',
-    href: '/case-studies',
-    description:
-      'Explore our case studies to see how we’ve helped businesses grow.',
-    icon: <FaPen />,
-    subMenuItems: [],
-  },
 ];

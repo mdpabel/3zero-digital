@@ -8,7 +8,7 @@ import {
   Heading,
 } from '@react-email/components';
 import { z } from 'zod';
-import { frontendFormSchema } from '@/schema/frontend-form-schema';
+import { frontendFormSchema } from '@/schema/services/frontend-form-schema';
 
 // Define types for frontend form data
 type FrontendSubmissionEmailProps = {

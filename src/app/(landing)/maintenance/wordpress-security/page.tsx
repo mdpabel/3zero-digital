@@ -1,22 +1,28 @@
 import React from 'react';
+import PricingTable from './pricing-table';
+import { getProduct } from '@/lib/product/get-product';
 
 export const dynamic = 'force-static';
 
-const WordPressSecurity = () => {
-  const services = [
-    'Hardened file permissions for critical WordPress files',
-    'Advanced firewall protection against DDoS and brute force attacks',
-    'Prevention of user enumeration and unauthorized access',
-    'Form security enhancements with anti-spam measures',
-    'Secure login with custom URLs and multi-factor authentication',
-    'Protection against SQL injection, XSS, and other common exploits',
-    'Automated malware scanning and removal',
-    'Real-time monitoring and threat detection',
-    'Regular updates for plugins, themes, and WordPress core',
-  ];
+const services = [
+  'Hardened file permissions for critical WordPress files',
+  'Advanced firewall protection against DDoS and brute force attacks',
+  'Prevention of user enumeration and unauthorized access',
+  'Form security enhancements with anti-spam measures',
+  'Secure login with custom URLs and multi-factor authentication',
+  'Protection against SQL injection, XSS, and other common exploits',
+  'Automated malware scanning and removal',
+  'Real-time monitoring and threat detection',
+  'Regular updates for plugins, themes, and WordPress core',
+];
+
+const WordPressSecurity = async () => {
+  const { origPrice, price, productId } = await getProduct(
+    'Comprehensive WordPress Security',
+  );
 
   return (
-    <div className='bg-white dark:bg-[#0B1120] shadow-lg mx-auto mt-10 p-8 rounded-lg max-w-5xl'>
+    <div className='bg-white dark:bg-[#0B1120] shadow-lg mx-auto my-10 p-8 rounded-lg max-w-5xl'>
       <h2 className='mb-6 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
         Comprehensive WordPress Security
       </h2>
@@ -46,30 +52,12 @@ const WordPressSecurity = () => {
         </div>
 
         {/* Pricing Table */}
-        <div className='flex flex-col justify-center items-center'>
-          <div className='bg-gray-100 dark:bg-gray-900 shadow-md p-6 rounded-lg w-full'>
-            <h3 className='mb-4 font-semibold text-2xl text-center text-zinc-800 dark:text-zinc-200'>
-              Security Service Package
-            </h3>
-            <div className='mb-6 text-center'>
-              <span className='block font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
-                $399
-              </span>
-              <span className='block mt-2 text-sm text-zinc-600 dark:text-zinc-400'>
-                One-time fee
-              </span>
-            </div>
-            <p className='mb-6 text-center text-sm text-zinc-600 dark:text-zinc-400'>
-              Includes comprehensive security measures, ongoing monitoring, and
-              threat detection to ensure your site remains secure.
-            </p>
-            <div className='text-center'>
-              <button className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-md px-6 py-3 rounded-lg font-semibold text-white transform transition-transform hover:scale-105'>
-                Get Started
-              </button>
-            </div>
-          </div>
-        </div>
+        <PricingTable
+          origPrice={origPrice}
+          price={price}
+          productId={productId}
+          services={services}
+        />
       </div>
     </div>
   );

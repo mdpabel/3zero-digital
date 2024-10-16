@@ -1,9 +1,8 @@
 const Hero = () => {
   return (
-    <div className='relative bg-white dark:bg-[#030712] px-10 md:px-20 py-10 md:py-20'>
+    <div className='relative bg-white dark:bg-[#030712] px-10 md:px-20 py-10 md:pt-20 '>
       <div className='mx-auto w-full max-w-6xl container'>
         <div className='gap-8 grid grid-cols-1 md:grid-cols-5'>
-          {/* Left Side - Text Content (spans 3 columns) */}
           <div className='flex flex-col justify-center col-span-3'>
             <h1
               className={`text-3xl md:text-5xl font-bold mb-6 text-zinc-800 dark:text-zinc-200`}>

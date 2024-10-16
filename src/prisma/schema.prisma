@@ -41,19 +41,6 @@ model Reply {
 }
 
 // PRODUCT 
-enum OrderStatus {
-  pending
-  completed
-  failed
-  canceled
-}
-
-enum PaymentStatus {
-  unpaid
-  paid
-  refunded
-  failed
-}
 
 enum ProductType {
   STANDARD
@@ -101,14 +88,29 @@ model Price {
   isRecurring     Boolean
 }
 
+enum OrderStatus {
+  pending
+  completed
+  failed
+  canceled
+}
+
+enum PaymentStatus {
+  unpaid
+  paid
+  refunded
+  failed
+}
+
 model Order {
   id            String        @id @default(auto()) @map("_id") @db.ObjectId
-  userId        String
+  userId        String        @db.ObjectId
   quantity      Int
   total         Float
+  currency      String        @default("USD")
   status        OrderStatus   @default(pending)
-  paymentStatus PaymentStatus @default(unpaid) // Now using enum for payment status
-  transactionId String? // Store transaction ID from Stripe or PayPal
+  paymentStatus PaymentStatus @default(unpaid)
+  transactionId String?       @unique
   metadata      Json?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
@@ -117,6 +119,7 @@ model Order {
   product   Product @relation(fields: [productId], references: [id])
   couponId  String? @db.ObjectId
   coupon    Coupon? @relation(fields: [couponId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
 }
 
 model Coupon {
@@ -127,4 +130,13 @@ model Coupon {
   validUntil DateTime?
   createdAt  DateTime  @default(now())
   orders     Order[] // Track which orders used this coupon
+}
+
+model User {
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  clerkUserId      String   @unique
+  stripeCustomerId String?  @unique // Store Stripe Customer ID
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  Order            Order[]
 }

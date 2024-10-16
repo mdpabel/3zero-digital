@@ -8,7 +8,7 @@ import {
   Heading,
 } from '@react-email/components';
 import { z } from 'zod';
-import { wordpressFormSchema } from '@/schema/wordpress-form-schema';
+import { wordpressFormSchema } from '@/schema/services/wordpress-form-schema';
 
 type WordPressSubmissionEmailProps = {
   formData: z.infer<typeof wordpressFormSchema>;

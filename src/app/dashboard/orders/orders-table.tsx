@@ -19,36 +19,44 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Order } from 'swell-js';
+import { Order, OrderStatus, PaymentStatus } from '@prisma/client';
 
 const OrdersTable = ({ orders }: { orders: Order[] }) => {
-  console.log({
-    orders,
-  });
-
-  const columns = useMemo<ColumnDef<any>[]>(
+  const columns = useMemo<ColumnDef<Order>[]>(
     () => [
       {
-        header: 'Order Number',
-        accessorKey: 'number',
+        header: 'Order ID',
+        accessorKey: 'id',
       },
       {
         header: 'Date',
-        accessorKey: 'dateCreated',
+        accessorKey: 'createdAt',
         cell: (info) => formatDate(info.getValue<string>()),
       },
       {
-        header: 'Status',
+        header: 'Order Status',
         accessorKey: 'status',
+        cell: (info) => {
+          const status = info.getValue<OrderStatus>();
+          return status.charAt(0).toUpperCase() + status.slice(1);
+        },
+      },
+      {
+        header: 'Payment Status',
+        accessorKey: 'paymentStatus',
+        cell: (info) => {
+          const status = info.getValue<PaymentStatus>();
+          return status.charAt(0).toUpperCase() + status.slice(1);
+        },
       },
       {
         header: 'Total',
-        accessorKey: 'grandTotal',
+        accessorKey: 'total',
         cell: (info) => `$${info.getValue<number>().toFixed(2)}`,
       },
       {
         header: 'Items',
-        accessorKey: 'itemQuantity',
+        accessorKey: 'quantity',
         cell: (info) =>
           `${info.getValue<number>()} item${
             info.getValue<number>() > 1 ? 's' : ''
@@ -134,7 +142,7 @@ const OrdersTable = ({ orders }: { orders: Order[] }) => {
         </TableBody>
       </Table>
 
-      <div className='flex flex-wrap justify-between items-center gap-2 mt-4 max-w-fu'>
+      <div className='flex flex-wrap justify-between items-center gap-2 mt-4 max-w-full'>
         <div>
           <button
             className='bg-gray-300 dark:bg-gray-700 disabled:opacity-50 px-4 py-2 rounded'

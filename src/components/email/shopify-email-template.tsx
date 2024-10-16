@@ -8,7 +8,7 @@ import {
   Heading,
 } from '@react-email/components';
 import { z } from 'zod';
-import { shopifyFormSchema } from '@/schema/shopify-form-schema';
+import { shopifyFormSchema } from '@/schema/services/shopify-form-schema';
 
 type ShopifySubmissionEmailProps = {
   formData: z.infer<typeof shopifyFormSchema>;

@@ -1,18 +1,23 @@
-import React from 'react';
+import { getProduct } from '@/lib/product/get-product';
+import PricingTable from './pricing-table';
 
 export const dynamic = 'force-static';
 
-const WordPressMaintenance = () => {
-  const services = [
-    'Regular security audits to identify vulnerabilities',
-    '24/7 malware and threat monitoring',
-    'Automated daily backups with secure storage',
-    'Core, theme, and plugin updates with vulnerability checks',
-    'Firewall management and brute force attack prevention',
-    'Login security enhancements with two-factor authentication',
-    'File integrity monitoring and restoration services',
-    'Performance optimization with security hardening',
-  ];
+const services = [
+  'Regular security audits to identify vulnerabilities',
+  '24/7 malware and threat monitoring',
+  'Automated daily backups with secure storage',
+  'Core, theme, and plugin updates with vulnerability checks',
+  'Firewall management and brute force attack prevention',
+  'Login security enhancements with two-factor authentication',
+  'File integrity monitoring and restoration services',
+  'Performance optimization with security hardening',
+];
+
+const WordPressMaintenance = async () => {
+  const { origPrice, price, productId } = await getProduct(
+    'Ongoing WordPress Security Maintenance',
+  );
 
   return (
     <div className='bg-white dark:bg-[#0B1120] shadow-lg mx-auto p-8 rounded-lg max-w-6xl'>
@@ -26,7 +31,14 @@ const WordPressMaintenance = () => {
         best.
       </p>
 
-      <div className='gap-8 grid grid-cols-1 lg:grid-cols-2'>
+      <PricingTable
+        origPrice={origPrice}
+        price={price}
+        productId={productId}
+        services={services}
+      />
+
+      <div className='gap-8 grid grid-cols-1 lg:grid-cols-2 mt-8'>
         {services.map((service, index) => (
           <div
             key={index}
@@ -46,23 +58,6 @@ const WordPressMaintenance = () => {
             </div>
           </div>
         ))}
-      </div>
-
-      <div className='flex md:flex-row flex-col justify-between items-center mt-12'>
-        <div className='mb-8 md:mb-0 text-center md:text-left'>
-          <h3 className='font-bold text-2xl text-zinc-800 dark:text-zinc-200'>
-            Comprehensive Security Package
-          </h3>
-          <p className='text-lg text-zinc-600 dark:text-zinc-400'>
-            Starting at just{' '}
-            <span className='font-bold text-zinc-800 dark:text-zinc-200'>
-              $129/month
-            </span>
-          </p>
-        </div>
-        <button className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-md px-8 py-3 rounded-lg font-semibold text-white transform transition-transform hover:scale-105'>
-          Get Started
-        </button>
       </div>
     </div>
   );

@@ -7,17 +7,17 @@ const Logo = () => {
     <div className='inline-block'>
       <Link href='/'>
         <Image
-          src='/images/logo-light.png'
+          src='/images/logo-dark.png'
           alt='Logo'
-          width={140}
-          height={140}
+          width={150}
+          height={150}
           className='dark:hidden'
         />
         <Image
-          src='/images/logo-dark.png'
+          src='/images/logo-light.png'
           alt='Logo'
-          width={140}
-          height={140}
+          width={150}
+          height={150}
           className='dark:block hidden'
         />
       </Link>

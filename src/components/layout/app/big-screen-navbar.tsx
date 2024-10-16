@@ -60,6 +60,16 @@ const BigScreenNavbar = () => {
                 )}
               </NavigationMenuItem>
             ))}
+            <li>
+              <NavigationMenuLink
+                asChild
+                className={cn(
+                  navigationMenuTriggerStyle(),
+                  'text-zinc-800 dark:text-zinc-200',
+                )}>
+                <Link href='/case-studies'>Case Studies</Link>
+              </NavigationMenuLink>
+            </li>
           </NavigationMenuList>
         </NavigationMenu>
 

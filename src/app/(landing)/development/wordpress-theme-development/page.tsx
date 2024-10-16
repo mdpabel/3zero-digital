@@ -4,7 +4,7 @@ import Input from '@/components/development/input';
 import CheckboxGroup from '@/components/development/checkbox-group';
 import Textarea from '@/components/development/textarea';
 import FormButton from '@/components/common/form-button';
-import { wordpressThemeFormSubmission } from '@/actions/wordpress-theme-form-submission';
+import { wordpressThemeFormSubmission } from '@/actions/services-form/wordpress-theme-form-submission';
 
 export const dynamic = 'force-static';
 

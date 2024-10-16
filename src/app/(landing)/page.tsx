@@ -12,9 +12,8 @@ const Home = () => {
   return (
     <div>
       <Hero />
-      <ThreeZeroExplanation />
-      <CompanyLogosMarquee />
       <Services />
+      <CompanyLogosMarquee />
       <CaseStudies />
     </div>
   );

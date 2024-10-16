@@ -29,14 +29,14 @@ const BigScreenSidebar = ({ data }: { data: SidebarItem[] }) => {
       <div className='p-4'>
         <Link href='/'>
           <Image
-            src='/images/logo-dark.png'
+            src='/images/logo-light.png'
             alt='Logo'
             width={140}
             height={140}
           />
         </Link>
 
-        <nav className='flex-1 space-y-4'>
+        <nav className='flex-1 space-y-4 mt-6'>
           <Accordion type='single' collapsible>
             {data.map((item, index) => (
               <div key={index}>

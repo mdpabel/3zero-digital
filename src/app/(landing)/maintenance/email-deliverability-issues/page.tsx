@@ -1,24 +1,24 @@
 import React from 'react';
 import EmailDeliverabilityIssueCheckoutButton from './email-deliverability-issues-checkout-button';
-import { getProduct } from '@/lib/swell/product';
 import { formatCurrency } from '@/lib/utils';
+import { getProduct } from '@/lib/product/get-product';
+import PricingTable from './pricing-table';
+
+const issues = [
+  'Blacklisted IP addresses',
+  'Spammy content or keywords',
+  'Incorrect DNS settings (SPF, DKIM, DMARC)',
+  'Poor sender reputation',
+  'Lack of email authentication protocols',
+  'High bounce rates',
+  'Low engagement rates (open/click-through rates)',
+  'Email content flagged as suspicious',
+];
 
 const EmailDeliverabilityIssues = async () => {
-  const product = await getProduct('Email Deliverability');
-  const price = product?.price!;
-  const origPrice = product?.origPrice!;
-  const productId = product?.id!;
-
-  const issues = [
-    'Blacklisted IP addresses',
-    'Spammy content or keywords',
-    'Incorrect DNS settings (SPF, DKIM, DMARC)',
-    'Poor sender reputation',
-    'Lack of email authentication protocols',
-    'High bounce rates',
-    'Low engagement rates (open/click-through rates)',
-    'Email content flagged as suspicious',
-  ];
+  const { origPrice, price, productId } = await getProduct(
+    'Email Deliverability Solutions',
+  );
 
   return (
     <div className='bg-white dark:bg-[#0B1120] shadow-lg mx-auto p-10 rounded-lg max-w-6xl'>
@@ -32,25 +32,7 @@ const EmailDeliverabilityIssues = async () => {
         inbox.
       </p>
 
-      <div className='flex md:flex-row flex-col justify-between items-center my-12'>
-        <div className='mb-8 md:mb-0 text-center md:text-left'>
-          <h3 className='font-bold text-2xl text-zinc-800 dark:text-zinc-200'>
-            Complete Email Audit Service
-          </h3>
-          <p className='text-lg text-zinc-600 dark:text-zinc-400'>
-            Starting at just{' '}
-            {origPrice > price && (
-              <span className='mr-2 text-zinc-500 dark:text-zinc-400 line-through'>
-                {formatCurrency({ amount: origPrice })}
-              </span>
-            )}
-            <span className='font-bold text-zinc-800 dark:text-zinc-200'>
-              {formatCurrency({ amount: price })}
-            </span>
-          </p>
-        </div>
-        <EmailDeliverabilityIssueCheckoutButton />
-      </div>
+      <PricingTable origPrice={origPrice} price={price} productId={productId} />
 
       <div className='gap-8 grid grid-cols-1 md:grid-cols-2'>
         {issues.map((issue, index) => (

@@ -1,15 +1,12 @@
-'use client';
-import { getOrder } from '@/lib/swell/order';
+import { getCurrentUser } from '@/lib/get-current-user';
 import { formatDate } from '@/lib/utils';
-import useSWR from 'swr';
+import prisma from '@/prisma/db';
 import {
   FaBox,
-  FaShippingFast,
   FaCreditCard,
   FaReceipt,
   FaExclamationCircle,
 } from 'react-icons/fa';
-import OrderDetailSkeleton from './loading';
 
 type Props = {
   params: {
@@ -17,28 +14,38 @@ type Props = {
   };
 };
 
-const OrderDetail = ({ params }: Props) => {
-  const {
-    data: order,
-    error,
-    isLoading,
-  } = useSWR(`order:${params.id}`, () => getOrder(params.id));
+const OrderDetail = async ({ params }: Props) => {
+  const { userId } = await getCurrentUser();
 
-  if (isLoading) {
-    return <OrderDetailSkeleton />;
-  }
+  const order = await prisma.order.findFirst({
+    where: {
+      id: params.id,
+      userId: userId,
+    },
+    include: {
+      product: {
+        include: {
+          prices: true,
+        },
+      },
+    },
+  });
 
   if (!order) {
-    return <div>Order not found.</div>;
+    return <p>Order not found</p>;
   }
 
+  const prices = order.product?.prices || [];
+  const productPrice =
+    prices.length > 0 ? prices[0].unitAmount.toFixed(2) : 'N/A';
+
   // @ts-ignore
-  const metaData: string[] = order.items?.[0]?.metadata?.data || [];
+  const metaData = JSON.parse(order.metadata ?? '[]');
 
   return (
     <div className='mx-auto px-4 py-10 max-w-5xl'>
       <h1 className='mb-8 font-bold text-4xl text-gray-800 dark:text-gray-200'>
-        Order #{order.number}
+        Order #{order.id}
       </h1>
 
       <div className='bg-white dark:bg-gray-900 shadow-lg mb-8 p-6 rounded-lg'>
@@ -48,34 +55,40 @@ const OrderDetail = ({ params }: Props) => {
           </h2>
           <span
             className={`px-3 py-1 rounded-full text-sm ${
-              order.status === 'complete'
+              order.status === 'completed'
                 ? 'bg-green-100 text-green-800'
+                : order.status === 'failed'
+                ? 'bg-red-100 text-red-800'
+                : order.status === 'canceled'
+                ? 'bg-red-100 text-red-800'
                 : 'bg-yellow-100 text-yellow-800'
             }`}>
-            {order.status?.charAt(0).toUpperCase()! + order.status?.slice(1)}
+            {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
           </span>
         </div>
+
         <div className='gap-4 grid grid-cols-1 md:grid-cols-2'>
           <div>
             <p className='text-gray-600 dark:text-gray-400'>
-              <strong>Order Number:</strong> {order.number}
+              <strong>Order ID:</strong> {order.id}
             </p>
             <p className='text-gray-600 dark:text-gray-400'>
-              <strong>Date Created:</strong> {formatDate(order.dateCreated!)}
+              <strong>Date Created:</strong>{' '}
+              {formatDate(order.createdAt.toString())}
             </p>
             <p className='text-gray-600 dark:text-gray-400'>
-              <strong>Total Amount:</strong> ${order.grandTotal?.toFixed(2)}
+              <strong>Total Amount:</strong> ${order.total.toFixed(2)}
             </p>
           </div>
           <div>
             <p className='text-gray-600 dark:text-gray-400'>
-              <strong>Items Ordered:</strong> {order.itemQuantity}
+              <strong>Items Ordered:</strong> {order.quantity}
             </p>
             <p className='text-gray-600 dark:text-gray-400'>
-              <strong>Payment Method:</strong> {order.billing?.method}
+              <strong>Payment Status:</strong> {order.paymentStatus}
             </p>
             <p className='text-gray-600 dark:text-gray-400'>
-              <strong>Paid:</strong> {order.paid ? 'Yes' : 'No'}
+              <strong>Currency:</strong> {order.currency}
             </p>
           </div>
         </div>
@@ -85,26 +98,20 @@ const OrderDetail = ({ params }: Props) => {
         <div className='flex items-center mb-6'>
           <FaBox className='mr-3 text-2xl text-gray-800 dark:text-gray-200' />
           <h2 className='font-semibold text-2xl text-gray-800 dark:text-gray-200'>
-            Items Ordered
+            Ordered Products
           </h2>
         </div>
-        {order.items && order.items.length > 0 ? (
-          order.items.map((item: any, index: number) => (
-            <div key={index} className='border-gray-300 mb-4 pb-4 border-b'>
-              <p className='text-gray-800 dark:text-gray-200'>
-                <strong>Product:</strong> {item.name}
-              </p>
-              <p className='text-gray-600 dark:text-gray-400'>
-                <strong>Quantity:</strong> {item.quantity}
-              </p>
-              <p className='text-gray-600 dark:text-gray-400'>
-                <strong>Price:</strong> ${item.price.toFixed(2)}
-              </p>
-            </div>
-          ))
-        ) : (
-          <p className='text-gray-600 dark:text-gray-400'>No items found.</p>
-        )}
+        <div className='border-gray-300 mb-4 pb-4 border-b'>
+          <p className='text-gray-800 dark:text-gray-200'>
+            <strong>Product:</strong> {order.product.name}
+          </p>
+          <p className='text-gray-600 dark:text-gray-400'>
+            <strong>Quantity:</strong> {order.quantity}
+          </p>
+          <p className='text-gray-600 dark:text-gray-400'>
+            <strong>Price per item:</strong> ${productPrice}
+          </p>
+        </div>
       </div>
 
       {metaData.length > 0 && (
@@ -112,13 +119,13 @@ const OrderDetail = ({ params }: Props) => {
           <div className='flex items-center mb-6'>
             <FaExclamationCircle className='mr-3 text-2xl text-red-600 dark:text-red-400' />
             <h2 className='font-semibold text-2xl text-gray-800 dark:text-gray-200'>
-              Order details
+              Order Details
             </h2>
           </div>
           <ul className='pl-5 text-gray-800 dark:text-gray-200 list-disc'>
-            {metaData.map((symptom: string, index: number) => (
+            {metaData.map((detail: string, index: number) => (
               <li key={index} className='mb-2'>
-                {symptom}
+                {detail}
               </li>
             ))}
           </ul>
@@ -133,43 +140,12 @@ const OrderDetail = ({ params }: Props) => {
           </h2>
         </div>
         <p className='text-gray-800 dark:text-gray-200'>
-          <strong>Name:</strong> {order.billing?.name}
+          <strong>Paid:</strong> {order.paymentStatus === 'paid' ? 'Yes' : 'No'}
         </p>
         <p className='text-gray-600 dark:text-gray-400'>
-          <strong>Address:</strong> {order.billing?.address1},{' '}
-          {order.billing?.city}, {order.billing?.zip}, {order.billing?.country}
-        </p>
-        <p className='text-gray-600 dark:text-gray-400'>
-          <strong>Card Last 4:</strong> **** **** ****{' '}
-          {order.billing?.card?.last4}
+          <strong>Transaction ID:</strong> {order.transactionId || 'N/A'}
         </p>
       </div>
-
-      {order.shipping && Object.keys(order.shipping).length > 0 ? (
-        <div className='bg-white dark:bg-gray-900 shadow-lg mb-8 p-6 rounded-lg'>
-          <div className='flex items-center mb-6'>
-            <FaShippingFast className='mr-3 text-2xl text-gray-800 dark:text-gray-200' />
-            <h2 className='font-semibold text-2xl text-gray-800 dark:text-gray-200'>
-              Shipping Information
-            </h2>
-          </div>
-          <p className='text-gray-800 dark:text-gray-200'>
-            <strong>Name:</strong> {order.shipping.name || 'N/A'}
-          </p>
-          <p className='text-gray-600 dark:text-gray-400'>
-            <strong>Address:</strong> {order.shipping.address1 || 'N/A'}
-          </p>
-        </div>
-      ) : (
-        <div className='bg-white dark:bg-gray-900 shadow-lg mb-8 p-6 rounded-lg'>
-          <h2 className='font-semibold text-gray-800 text-xl dark:text-gray-200'>
-            Shipping Information
-          </h2>
-          <p className='text-gray-600 dark:text-gray-400'>
-            No shipping information provided.
-          </p>
-        </div>
-      )}
 
       <div className='bg-white dark:bg-gray-900 shadow-lg p-6 rounded-lg'>
         <div className='flex items-center mb-6'>
@@ -179,14 +155,7 @@ const OrderDetail = ({ params }: Props) => {
           </h2>
         </div>
         <p className='text-gray-800 dark:text-gray-200'>
-          <strong>Paid:</strong> {order.paid ? 'Yes' : 'No'}
-        </p>
-        <p className='text-gray-600 dark:text-gray-400'>
-          <strong>Authorized Payment ID:</strong> {order.authorizedPaymentId}
-        </p>
-        <p className='text-gray-600 dark:text-gray-400'>
-          <strong>Payment Total:</strong> $
-          {Number(order.paymentTotal)?.toFixed(2)}
+          <strong>Total Paid:</strong> ${order.total.toFixed(2)}
         </p>
       </div>
     </div>

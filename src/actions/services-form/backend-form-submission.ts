@@ -1,22 +1,21 @@
 'use server';
 
-import WordPressSubmissionEmail from '@/components/email/wordpress-email-template';
+import BackendSubmissionEmailTemplate from '@/components/email/backend-email-template';
 import { sendEmail } from '@/lib/send-email';
 import { catchZodErrors } from '@/lib/utils';
-import { wordpressFormSchema } from '@/schema/wordpress-form-schema';
+import { backendFormSchema } from '@/schema/services/backend-form-schema';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
-export const wordpressFormSubmission = async (formData: FormData) => {
+export const backendFormSubmission = async (formData: FormData) => {
   let status = 'success' as 'success' | 'error';
   let errors = '';
 
   try {
-    // Extract form data
+    // Extract and validate form data
     const data = {
-      websiteType: formData.get('websiteType'),
+      projectType: formData.get('projectType'),
       budget: formData.get('budget'),
-      pages: formData.get('pages'),
       timeline: formData.get('timeline'),
       functionalities: formData.getAll('functionalities'),
       sampleSites: formData.get('sampleSites'),
@@ -26,10 +25,9 @@ export const wordpressFormSubmission = async (formData: FormData) => {
     };
 
     // Validate form data with Zod schema
-    const validatedData = wordpressFormSchema.parse({
-      websiteType: data.websiteType,
+    const validatedData = backendFormSchema.parse({
+      projectType: data.projectType,
       budget: data.budget,
-      pages: data.pages,
       timeline: data.timeline,
       functionalities: data.functionalities,
       sampleSites: data.sampleSites,
@@ -38,12 +36,12 @@ export const wordpressFormSubmission = async (formData: FormData) => {
       message: data.message,
     });
 
-    // Send email to 3Zero Digital
+    // If validation passes, send the email
     await sendEmail({
       to: process.env.EMAIL_TO!,
       replyTo: validatedData.email,
-      subject: 'New WordPress Project Submission',
-      react: WordPressSubmissionEmail({
+      subject: 'New Backend Form Submission',
+      react: BackendSubmissionEmailTemplate({
         formData: validatedData,
       }),
       name: validatedData.name,
@@ -51,11 +49,13 @@ export const wordpressFormSubmission = async (formData: FormData) => {
 
     status = 'success';
   } catch (err) {
+    // If validation fails, handle the error
     if (err instanceof z.ZodError) {
-      errors = catchZodErrors(err, wordpressFormSchema);
+      errors = catchZodErrors(err, backendFormSchema);
     }
+    // Handle other errors (e.g., email sending failed)
     status = 'error';
   }
 
-  return redirect(`/form-submission-result?status=${status}&errors=${errors}`);
+  return redirect(`/form-sumission-result?status=${status}&errors=${errors}`);
 };

@@ -7,7 +7,7 @@ const getProducts = async () => {
       deleted: true,
     },
     include: {
-      Category: true,
+      category: true,
       prices: true, // Include prices
     },
     orderBy: {
@@ -76,7 +76,7 @@ const DeletedProducts = async () => {
                     : 'No Price Available'}
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
-                  {product.Category?.name || 'Uncategorized'}
+                  {product.category?.name || 'Uncategorized'}
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
                   {new Date(product.createdAt).toLocaleDateString()}

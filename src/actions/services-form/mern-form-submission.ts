@@ -1,18 +1,18 @@
 'use server';
 
-import BackendSubmissionEmailTemplate from '@/components/email/backend-email-template';
+import MernSubmissionEmail from '@/components/email/mern-email-template';
 import { sendEmail } from '@/lib/send-email';
 import { catchZodErrors } from '@/lib/utils';
-import { backendFormSchema } from '@/schema/backend-form-schema';
+import { mernFormSchema } from '@/schema/services/mern-form-schema';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
-export const backendFormSubmission = async (formData: FormData) => {
+export const mernFormSubmission = async (formData: FormData) => {
   let status = 'success' as 'success' | 'error';
   let errors = '';
 
   try {
-    // Extract and validate form data
+    // Extract form data
     const data = {
       projectType: formData.get('projectType'),
       budget: formData.get('budget'),
@@ -25,7 +25,7 @@ export const backendFormSubmission = async (formData: FormData) => {
     };
 
     // Validate form data with Zod schema
-    const validatedData = backendFormSchema.parse({
+    const validatedData = mernFormSchema.parse({
       projectType: data.projectType,
       budget: data.budget,
       timeline: data.timeline,
@@ -40,8 +40,8 @@ export const backendFormSubmission = async (formData: FormData) => {
     await sendEmail({
       to: process.env.EMAIL_TO!,
       replyTo: validatedData.email,
-      subject: 'New Backend Form Submission',
-      react: BackendSubmissionEmailTemplate({
+      subject: 'New MERN stact Form Submission',
+      react: MernSubmissionEmail({
         formData: validatedData,
       }),
       name: validatedData.name,
@@ -49,13 +49,11 @@ export const backendFormSubmission = async (formData: FormData) => {
 
     status = 'success';
   } catch (err) {
-    // If validation fails, handle the error
     if (err instanceof z.ZodError) {
-      errors = catchZodErrors(err, backendFormSchema);
+      errors = catchZodErrors(err, mernFormSchema);
     }
-    // Handle other errors (e.g., email sending failed)
     status = 'error';
   }
 
-  return redirect(`/form-sumission-result?status=${status}&errors=${errors}`);
+  return redirect(`/form-submission-result?status=${status}&errors=${errors}`);
 };

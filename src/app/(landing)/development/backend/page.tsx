@@ -4,7 +4,7 @@ import Input from '@/components/development/input';
 import CheckboxGroup from '@/components/development/checkbox-group';
 import Textarea from '@/components/development/textarea';
 import FormButton from '@/components/common/form-button';
-import { backendFormSubmission } from '@/actions/backend-form-submission';
+import { backendFormSubmission } from '@/actions/services-form/backend-form-submission';
 
 export const dynamic = 'force-static';
 

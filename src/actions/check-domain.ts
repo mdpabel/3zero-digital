@@ -8,12 +8,6 @@ export async function checkDomainAvailabilityasync(
   const apiSecret = process.env.GODADDY_SECRET;
   const environment = process.env.ENVIRONMENT; // Can be 'production' or 'ote'
 
-  console.log({
-    apiKey,
-    apiSecret,
-    environment,
-  });
-
   const domain = payload.get('domain')?.toString();
 
   if (!domain) {

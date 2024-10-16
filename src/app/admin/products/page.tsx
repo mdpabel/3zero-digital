@@ -8,7 +8,7 @@ const getProducts = async () => {
   const products = await prisma.product.findMany({
     include: {
       prices: true, // Include prices for each product
-      Category: true, // Include category for each product
+      category: true, // Include category for each product
     },
   });
   return products;
@@ -72,7 +72,7 @@ const Products = async () => {
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
                   {/* Display category name or default to 'Uncategorized' */}
-                  {product.Category?.name || 'Uncategorized'}
+                  {product.category?.name || 'Uncategorized'}
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
                   {/* Displaying product type */}

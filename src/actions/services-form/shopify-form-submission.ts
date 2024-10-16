@@ -3,7 +3,7 @@
 import ShopifySubmissionEmail from '@/components/email/shopify-email-template';
 import { sendEmail } from '@/lib/send-email'; // Assuming you have a sendEmail utility
 import { catchZodErrors } from '@/lib/utils';
-import { shopifyFormSchema } from '@/schema/shopify-form-schema';
+import { shopifyFormSchema } from '@/schema/services/shopify-form-schema';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
