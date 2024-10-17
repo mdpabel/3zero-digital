@@ -1,20 +1,21 @@
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
 import Image from 'next/image';
+import logoLight from '@/../public/images/logo-light.png';
+import logoDark from '@/../public/images/logo-dark.gif';
 
 const Logo = () => {
   return (
     <div className='inline-block'>
       <Link href='/'>
         <Image
-          src='/images/logo-dark.png'
+          src={logoLight}
           alt='Logo'
           width={150}
           height={150}
           className='dark:hidden'
         />
         <Image
-          src='/images/logo-light.png'
+          src={logoDark}
           alt='Logo'
           width={150}
           height={150}

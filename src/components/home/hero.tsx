@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import heroDarkGif from '@/../public/images/hero/hero-dark.gif';
-import heroLightGif from '@/../public/images/hero/hero-light.png';
+import heroLightGif from '@/../public/images/hero/hero-light.gif';
 
 const Hero = () => {
   return (
