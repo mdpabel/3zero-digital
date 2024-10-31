@@ -10,6 +10,19 @@ export const metadata: Metadata = {
     '3 Zero Digital - Achieving Perfection with 0 Vulnerability, 0 Downtime, 0 Error',
   description:
     '3 Zero Digital is committed to achieving perfection in software development and maintenance, ensuring zero vulnerability, zero downtime, and zero errors in all digital solutions. Specializing in secure and high-performance web services.',
+  robots: {
+    index: true,
+    follow: true,
+    nocache: false,
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 const poppins = Poppins({
