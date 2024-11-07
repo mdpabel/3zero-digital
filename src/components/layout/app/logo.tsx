@@ -17,6 +17,7 @@ const Logo = () => {
         <Image
           src={logoDark}
           alt='Logo'
+          unoptimized
           width={150}
           height={150}
           className='dark:block hidden'

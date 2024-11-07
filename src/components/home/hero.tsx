@@ -38,11 +38,13 @@ const Hero = () => {
             <Image
               src={heroDarkGif}
               alt='3zero digital'
+              unoptimized
               className='dark:block hidden'
             />
             <Image
               src={heroLightGif}
               alt='3zero digital'
+              unoptimized
               className='block dark:hidden'
             />
           </div>

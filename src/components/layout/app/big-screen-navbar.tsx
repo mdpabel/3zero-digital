@@ -54,7 +54,9 @@ const BigScreenNavbar = () => {
                         navigationMenuTriggerStyle(),
                         'text-zinc-800 dark:text-zinc-200',
                       )}>
-                      <Link href={href}>{label} </Link>
+                      <Link prefetch={true} href={href}>
+                        {label}{' '}
+                      </Link>
                     </NavigationMenuLink>
                   </li>
                 )}
@@ -67,7 +69,9 @@ const BigScreenNavbar = () => {
                   navigationMenuTriggerStyle(),
                   'text-zinc-800 dark:text-zinc-200',
                 )}>
-                <Link href='/case-studies'>Case Studies</Link>
+                <Link prefetch={true} href='/case-studies'>
+                  Case Studies
+                </Link>
               </NavigationMenuLink>
             </li>
           </NavigationMenuList>
@@ -80,14 +84,16 @@ const BigScreenNavbar = () => {
           <Button
             variant='outline'
             className='border-zinc-800 dark:border-zinc-200 border'>
-            <Link href='/login'>Get Started</Link>
+            <Link prefetch={true} href='/login'>
+              Get Started
+            </Link>
           </Button>
           {/* 
           <SignedIn>
             <Button
               variant='outline'
               className='border-zinc-800 dark:border-zinc-200 border'>
-              <Link href='/dashboard'>Dashboard</Link>
+              <Link prefetch={true} href='/dashboard'>Dashboard</Link>
             </Button>
           </SignedIn> */}
         </div>
@@ -104,6 +110,7 @@ const ListItem = React.forwardRef<
     <li>
       <NavigationMenuLink asChild>
         <Link
+          prefetch={true}
           href={props.href!}
           ref={ref}
           className={cn(

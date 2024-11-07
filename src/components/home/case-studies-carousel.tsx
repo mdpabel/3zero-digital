@@ -20,7 +20,7 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
   // Autoplay functionality
   useEffect(() => {
     const intervalId = setInterval(() => {
-      nextSlide();
+      // nextSlide();
     }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(intervalId); // Clear interval on component unmount
@@ -53,30 +53,34 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
             key={currentStudy.title}>
             {/* Before and After Images */}
             <div className='flex-1'>
-              <div className='relative mb-4'>
-                <Image
-                  src={currentStudy.beforeImage}
-                  alt='Before'
-                  className='rounded-lg w-full object-cover hover:scale-105 transition-transform duration-500'
-                  width={600}
-                  height={600}
-                />
-                <span className='top-2 left-2 absolute bg-red-500 shadow px-3 py-1 rounded text-sm text-white'>
-                  Before
-                </span>
-              </div>
-              <div className='relative'>
-                <Image
-                  src={currentStudy.afterImage}
-                  alt='After'
-                  className='rounded-lg w-full object-cover hover:scale-105 transition-transform duration-500'
-                  width={600}
-                  height={600}
-                />
-                <span className='top-2 left-2 absolute bg-green-500 shadow px-3 py-1 rounded text-sm text-white'>
-                  After
-                </span>
-              </div>
+              {currentStudy.beforeImage && (
+                <div className='relative flex justify-center items-center mb-4 overflow-hidden'>
+                  <Image
+                    src={currentStudy.beforeImage}
+                    alt='Before'
+                    className='rounded-lg w-full h-auto max-h-96 md:max-h-[500px] transition-transform duration-500 object-cover'
+                    width={600}
+                    height={400}
+                  />
+                  <span className='top-2 left-2 absolute bg-red-500 shadow px-3 py-1 rounded text-sm text-white'>
+                    Before
+                  </span>
+                </div>
+              )}
+              {currentStudy.afterImage && (
+                <div className='relative flex justify-center items-center overflow-hidden'>
+                  <Image
+                    src={currentStudy.afterImage}
+                    alt='After'
+                    className='rounded-lg w-full h-auto max-h-96 md:max-h-[500px] transition-transform duration-500 object-cover'
+                    width={600}
+                    height={400}
+                  />
+                  <span className='top-2 left-2 absolute bg-green-500 shadow px-3 py-1 rounded text-sm text-white'>
+                    After
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Case Study Details */}

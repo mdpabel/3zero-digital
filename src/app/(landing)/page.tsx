@@ -1,10 +1,10 @@
-import type { Metadata } from 'next';
-import React from 'react';
-import CaseStudies from '@/components/home/case-studies';
+import lazy from 'next/dynamic';
+import React, { Suspense } from 'react';
 import Hero from '@/components/home/hero';
-import ThreeZeroExplanation from '@/components/home/three-zero';
 import Services from '@/components/home/services';
 import CompanyLogosMarquee from '@/components/home/company-logos';
+import CaseStudyCarouselSkeleton from '@/components/home/case-studies-skeleton';
+import CaseStudies from '@/components/home/case-studies';
 
 export const dynamic = 'force-static';
 
@@ -14,7 +14,9 @@ const Home = () => {
       <Hero />
       <Services />
       <CompanyLogosMarquee />
-      <CaseStudies />
+      <Suspense fallback={<CaseStudyCarouselSkeleton />}>
+        <CaseStudies />
+      </Suspense>
     </div>
   );
 };

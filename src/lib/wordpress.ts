@@ -10,6 +10,7 @@ export interface CaseStudy {
   description: string;
   afterImage: string;
   beforeImage: string;
+  screenshot: string;
 }
 
 interface CaseStudyFields {
@@ -22,6 +23,11 @@ interface CaseStudyFields {
     };
   };
   beforeImage: {
+    node: {
+      sourceUrl: string;
+    };
+  };
+  screenshot: {
     node: {
       sourceUrl: string;
     };
@@ -113,6 +119,7 @@ export async function fetchCaseStudies(): Promise<CaseStudy[]> {
       description: node.caseStudyFields?.description || '',
       afterImage: node.caseStudyFields?.afterImage?.node.sourceUrl || '',
       beforeImage: node.caseStudyFields?.beforeImage?.node.sourceUrl || '',
+      screenshot: node.caseStudyFields?.screenshot?.node.sourceUrl || '',
     }));
 
     return caseStudies;
@@ -184,6 +191,7 @@ export async function fetchCaseStudyBySlug(
       description: node.caseStudyFields?.description || '',
       afterImage: node.caseStudyFields?.afterImage?.node.sourceUrl || '',
       beforeImage: node.caseStudyFields?.beforeImage?.node.sourceUrl || '',
+      screenshot: node.caseStudyFields?.screenshot?.node.sourceUrl || '',
     };
   } catch (error) {
     console.error('Fetch Error:', error);
