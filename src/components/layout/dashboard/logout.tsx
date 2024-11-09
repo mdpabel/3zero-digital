@@ -2,7 +2,6 @@
 import { FaSignOutAlt } from 'react-icons/fa';
 import { useClerk } from '@clerk/nextjs';
 import { useState, useTransition } from 'react';
-import { logout as swellLogout } from '@/lib/swell/account';
 import Spinner from '@/components/common/spinner';
 
 const Logout = () => {
@@ -12,12 +11,9 @@ const Logout = () => {
   const logout = async () => {
     try {
       setPending(true);
-      await Promise.all([
-        swellLogout(),
-        signOut({
-          redirectUrl: 'login?redirect_url=/dashboard',
-        }),
-      ]);
+      await signOut({
+        redirectUrl: 'login?redirect_url=/dashboard',
+      });
     } catch (error) {
       console.log(error);
     } finally {

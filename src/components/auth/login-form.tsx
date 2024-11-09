@@ -28,7 +28,6 @@ import { catchClerkError } from '@/lib/utils';
 import Message from './message';
 import Spinner from '../common/spinner';
 import PasswordInputField from './password-field';
-import { login } from '@/lib/swell/account';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -62,10 +61,10 @@ const LoginForm = () => {
     try {
       setMessage({ message: '', type: 'init' });
 
-      const [signInAttempt, swellLogin] = await Promise.all([
-        signIn.create({ identifier: email, password }),
-        login({ email, password }),
-      ]);
+      const signInAttempt = await signIn.create({
+        identifier: email,
+        password,
+      });
 
       if (signInAttempt.status === 'complete') {
         await setActive({
