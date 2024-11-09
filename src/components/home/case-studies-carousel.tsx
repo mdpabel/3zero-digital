@@ -62,7 +62,7 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
                     width={600}
                     height={400}
                   />
-                  <span className='top-2 left-2 absolute bg-red-500 shadow px-3 py-1 rounded text-sm text-white'>
+                  <span className='top-2 left-2 absolute bg-red-700 shadow px-3 py-1 rounded text-sm text-white'>
                     Before
                   </span>
                 </div>
@@ -76,7 +76,7 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
                     width={600}
                     height={400}
                   />
-                  <span className='top-2 left-2 absolute bg-green-500 shadow px-3 py-1 rounded text-sm text-white'>
+                  <span className='top-2 left-2 absolute bg-green-700 shadow px-3 py-1 rounded text-sm text-white'>
                     After
                   </span>
                 </div>

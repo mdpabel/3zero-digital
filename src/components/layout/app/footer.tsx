@@ -42,17 +42,20 @@ export default function Footer() {
           <div className='flex space-x-6'>
             <Link
               href='https://www.facebook.com'
-              className='hover:text-zinc-300 transition-colors'>
+              className='hover:text-zinc-300 transition-colors'
+              aria-label='Visit our Facebook page'>
               <FaFacebookF className='w-6 h-6' />
             </Link>
             <Link
               href='https://www.twitter.com'
-              className='hover:text-zinc-300 transition-colors'>
+              className='hover:text-zinc-300 transition-colors'
+              aria-label='Visit our Twitter profile'>
               <FaTwitter className='w-6 h-6' />
             </Link>
             <Link
               href='https://www.linkedin.com'
-              className='hover:text-zinc-300 transition-colors'>
+              className='hover:text-zinc-300 transition-colors'
+              aria-label='Visit our LinkedIn profile'>
               <FaLinkedinIn className='w-6 h-6' />
             </Link>
           </div>

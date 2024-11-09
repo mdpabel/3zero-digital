@@ -44,7 +44,11 @@ const Hero = () => {
               muted
               playsInline
               preload='auto'
-              style={{ border: 'none', outline: 'none' }}>
+              style={{
+                backgroundColor: '#030712',
+                border: 'none',
+                outline: 'none',
+              }}>
               <source src='/images/hero.webm' type='video/webm' />
               <source src='/images/hero.mp4' type='video/mp4' />
               Your browser does not support the video tag.

@@ -5,7 +5,7 @@ import FAQ from './faq';
 import DomainSearch from './domain-search';
 
 const DomainHosting = () => {
-  const product: swell.Product = {
+  const product = {
     price: 10,
     origPrice: 20,
     id: 'domain-hosting-id',
