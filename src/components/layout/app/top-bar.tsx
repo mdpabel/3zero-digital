@@ -18,10 +18,7 @@ const TopBar = () => {
           <nav className='lg:block hidden'>
             <ul className='flex justify-between items-center space-x-4'>
               <li>
-                <Link href='/about-us'>About us</Link>
-              </li>
-              <li>
-                <Link href='/privacy'>Privacy</Link>
+                <Link href='/privacy-policy'>Privacy policy</Link>
               </li>
               <li>
                 <Link href='/faq'>FAQ</Link>
