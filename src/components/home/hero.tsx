@@ -35,18 +35,35 @@ const Hero = () => {
           </div>
 
           <div className='relative flex justify-center items-center col-span-2'>
-            <Image
-              src={heroDarkGif}
-              alt='3zero digital'
-              unoptimized
+            <video
               className='dark:block hidden'
-            />
-            <Image
-              src={heroLightGif}
-              alt='3zero digital'
-              unoptimized
+              width='320'
+              height='240'
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload='auto'
+              style={{ border: 'none', outline: 'none' }}>
+              <source src='/images/hero.webm' type='video/webm' />
+              <source src='/images/hero.mp4' type='video/mp4' />
+              Your browser does not support the video tag.
+            </video>
+
+            <video
               className='block dark:hidden'
-            />
+              width='320'
+              height='240'
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload='auto'
+              style={{ border: 'none', outline: 'none' }}>
+              <source src='/images/hero-light.webm' type='video/webm' />
+              <source src='/images/hero-light.mp4' type='video/mp4' />
+              Your browser does not support the video tag.
+            </video>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ const CookieYes = dynamic(() => import('./cookie-yes'), { ssr: false });
 const TawkLiveChat = dynamic(() => import('./tawk-live-chat'), { ssr: false });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://3zerodigital.com'),
   title:
     '3 Zero Digital - Achieving Perfection with 0 Vulnerability, 0 Downtime, 0 Error',
   description:
