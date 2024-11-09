@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import Title from '../common/title';
 import { services } from '@/services';
+import Image from 'next/image';
 
 const Services = () => {
   const [activeTab, setActiveTab] = useState('Development');
@@ -85,14 +86,19 @@ const Services = () => {
                 </div>
 
                 <div className='flex justify-center items-center w-full'>
-                  <motion.img
-                    src={service.imageUrl}
-                    alt={`${service.label} illustration`}
-                    className='shadow-lg rounded-lg w-full h-auto'
+                  <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.6 }}
-                  />
+                    className='shadow-lg rounded-lg w-full h-auto'>
+                    <Image
+                      src={service.imageUrl}
+                      alt={`${service.label} illustration`}
+                      width={500}
+                      height={500}
+                      className='rounded-lg'
+                    />
+                  </motion.div>
                 </div>
               </motion.div>
             </TabsContent>
