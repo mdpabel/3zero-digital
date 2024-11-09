@@ -8,7 +8,7 @@ const PrivacyPolicy = () => {
           Privacy Policy
         </h1>
         <p className='mt-4 text-center text-gray-600 text-lg dark:text-gray-300'>
-          Last Updated: <span className='font-semibold'>[Insert Date]</span>
+          Last Updated: <span className='font-semibold'>November 9, 2024</span>
         </p>
         <div className='space-y-10 mt-8'>
           {/* Section 1 */}
@@ -140,18 +140,18 @@ const PrivacyPolicy = () => {
           {/* Section 8 */}
           <section>
             <h2 className='font-semibold text-2xl text-gray-800 dark:text-gray-200'>
-              8. Contact Us
+              9. Contact Us
             </h2>
             <p className='mt-4 text-gray-700 dark:text-gray-300'>
-              If you have questions about this Privacy Policy, reach us at:
+              For questions about these Terms:
             </p>
             <ul className='space-y-2 mt-4 text-gray-700 dark:text-gray-300'>
               <li>
                 <strong>Email:</strong>{' '}
                 <a
-                  href='mailto:privacy@3zerodigital.com'
+                  href='mailto:support@3zerodigital.com'
                   className='text-blue-600 dark:text-blue-400 underline'>
-                  info@3zerodigital.com
+                  support@3zerodigital.com
                 </a>
               </li>
               <li>
