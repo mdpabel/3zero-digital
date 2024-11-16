@@ -3,7 +3,7 @@ import React from 'react';
 import CaseStudyCarousel from './case-studies-carousel';
 
 const CaseStudies = async () => {
-  const caseStudies = await fetchCaseStudies();
+  const caseStudies = (await fetchCaseStudies()).reverse();
 
   return <CaseStudyCarousel data={caseStudies} />;
 };
