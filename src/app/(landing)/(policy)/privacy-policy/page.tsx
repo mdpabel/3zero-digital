@@ -1,5 +1,7 @@
 import { FaUserShield, FaCookieBite, FaRegEdit, FaLock } from 'react-icons/fa';
 
+export const dynamic = 'force-static';
+
 const PrivacyPolicy = () => {
   return (
     <div className='bg-gray-100 dark:bg-gray-900 px-6 py-12 md:py-20'>

@@ -1,12 +1,7 @@
 import React from 'react';
-import {
-  FaRegCheckCircle,
-  FaExclamationTriangle,
-  FaTools,
-  FaCogs,
-  FaBullhorn,
-} from 'react-icons/fa';
+import { FaRegCheckCircle, FaTools, FaCogs, FaBullhorn } from 'react-icons/fa';
 
+export const dynamic = 'force-static';
 const RefundPolicy: React.FC = () => {
   return (
     <div className='bg-gray-100 dark:bg-gray-900 px-6 py-12 md:py-20'>

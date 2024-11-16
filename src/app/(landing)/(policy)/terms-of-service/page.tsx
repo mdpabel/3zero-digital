@@ -7,6 +7,8 @@ import {
   FaExclamationTriangle,
 } from 'react-icons/fa';
 
+export const dynamic = 'force-static';
+
 const TermsOfService = () => {
   return (
     <div className='bg-gray-100 dark:bg-gray-900 px-6 py-12 md:py-20'>

@@ -1,5 +1,7 @@
 import React from 'react';
 
+export const dynamic = 'force-static';
+
 const CookiePolicy = () => {
   return (
     <div>
