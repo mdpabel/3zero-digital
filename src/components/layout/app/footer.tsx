@@ -8,7 +8,9 @@ import { services } from '@/services';
 import Link from 'next/link';
 import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
-import Logo from './logo';
+import Image from 'next/image';
+import logoLight from '@/../public/images/logo-light.png';
+import logoDark from '@/../public/images/logo-dark.png';
 
 // Define the navigation items in arrays
 const quickLinks = [
@@ -37,7 +39,11 @@ const Footer: React.FC = () => (
       <div className='gap-8 grid grid-cols-1 md:grid-cols-4'>
         {/* Logo & Social Media */}
         <div className='flex flex-col items-center md:items-start'>
-          <Logo />
+          <div className='inline-block'>
+            <Link href='/'>
+              <Image src={logoDark} alt='Logo' width={110} />
+            </Link>
+          </div>
           <p className='mt-2 text-center text-sm md:text-left'>
             Achieving perfection with 0 Vulnerability, 0 Downtime, 0 Error.
           </p>
@@ -63,6 +69,24 @@ const Footer: React.FC = () => (
               className='hover:text-zinc-300 transition-colors'>
               <FaLinkedinIn className='w-6 h-6' />
             </Link>
+          </div>
+          {/* Contact Info */}
+          <div className='mt-6 text-center md:text-left'>
+            <p className='text-sm'>
+              <strong>Phone:</strong> +44 7878 798374
+            </p>
+            <p className='text-sm'>
+              <strong>Email:</strong>{' '}
+              <Link
+                href='mailto:support@3zerodigital.com'
+                className='hover:underline'>
+                support@3zerodigital.com
+              </Link>
+            </p>
+            <p className='text-sm'>
+              <strong>Address:</strong> Suite A 82 James Carter Road,
+              Mildenhall, Bury St. Edmunds, England, United Kingdom, IP28 7DE
+            </p>
           </div>
         </div>
 
