@@ -1,40 +1,12 @@
-'use client';
-
+import { contactUsSubmission } from '@/actions/contact-us';
 import FormButton from '@/components/common/form-button';
 import Input from '@/components/development/input';
 import SelectInput from '@/components/development/select';
 import Textarea from '@/components/development/textarea';
-import { useState } from 'react';
 
 export const dynamic = 'force-static';
 
 const ContactPage = () => {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const formData = new FormData(e.currentTarget);
-
-    try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to submit form');
-      }
-
-      alert('Your message has been sent successfully!');
-    } catch (error) {
-      alert('An error occurred. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const inquiryTypes = [
     { value: 'sales', label: 'Sales Inquiries' },
     { value: 'billing', label: 'Billing' },
@@ -89,7 +61,7 @@ const ContactPage = () => {
 
         <div className='mt-12'>
           <form
-            onSubmit={handleSubmit}
+            action={contactUsSubmission}
             className='bg-white dark:bg-gray-900 shadow-lg p-6 md:p-10 rounded-lg'>
             <SelectInput
               id='InquiryType'
@@ -104,13 +76,6 @@ const ContactPage = () => {
               name='name'
               placeholder='Your Name'
               label='Your Name'
-              required
-            />
-            <Input
-              id='Email Address'
-              name='Email Address'
-              placeholder='Email Address'
-              label='Email Address'
               required
             />
             <Input

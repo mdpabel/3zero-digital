@@ -6,16 +6,17 @@ export const dynamic = 'force-static';
 import type { Metadata, ResolvingMetadata } from 'next';
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export async function generateMetadata(
   { params }: Props,
   parent: ResolvingMetadata,
 ): Promise<Metadata> {
-  const caseStudy = await fetchCaseStudyBySlug(params.slug);
+  const slug = (await params).slug;
+  const caseStudy = await fetchCaseStudyBySlug(slug);
 
   return {
     title: caseStudy?.title,
@@ -32,7 +33,8 @@ export async function generateStaticParams() {
 }
 
 const CaseStudy = async ({ params }: Props) => {
-  const caseStudy = await fetchCaseStudyBySlug(params.slug);
+  const slug = (await params).slug;
+  const caseStudy = await fetchCaseStudyBySlug(slug);
 
   if (!caseStudy) {
     return <div>Case study not found</div>;

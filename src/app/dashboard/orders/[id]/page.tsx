@@ -9,17 +9,18 @@ import {
 } from 'react-icons/fa';
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 const OrderDetail = async ({ params }: Props) => {
+  const id = (await params).id;
   const { userId } = await getCurrentUser();
 
   const order = await prisma.order.findFirst({
     where: {
-      id: params.id,
+      id: id,
       userId: userId,
     },
     include: {

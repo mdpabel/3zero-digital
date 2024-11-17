@@ -5,7 +5,7 @@ const CookieYes = () => {
   return (
     <Script
       id='cookieyes'
-      strategy='worker'
+      strategy='lazyOnload'
       type='text/javascript'
       src='https://cdn-cookieyes.com/client_data/5cdf576570b3e24a0a725fb2/script.js'></Script>
   );

@@ -1,6 +1,5 @@
 import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
-import swell from './lib/swell/swell-server';
 
 const isProtectedRoute = createRouteMatcher([
   '/dashboard(.*)',
@@ -14,26 +13,26 @@ const isAuthRoutes = createRouteMatcher([
   '/verify-email(.*)',
 ]);
 
-export default clerkMiddleware((auth, req) => {
+export default clerkMiddleware(async (auth, req) => {
   if (!isAuthRoutes(req) && !isProtectedRoute(req)) {
     return NextResponse.next();
   }
 
-  const session = auth().sessionId;
+  const session = (await auth()).sessionId;
 
   if (isAuthRoutes(req) && session) {
     const url = new URL('/dashboard', req.url);
     return NextResponse.redirect(url);
   }
 
-  if (isProtectedRoute(req)) auth().protect();
+  if (isProtectedRoute(req)) await auth.protect();
 });
 
 export const config = {
   matcher: [
-    // Skip Next.js internals and all static files, unless found in search params
+    // Skip all static files, unless found in search params
     '/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    // Always run for API routes
+    // Always run for api routes
     '/(api|trpc)(.*)',
   ],
 };

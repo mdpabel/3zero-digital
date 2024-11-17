@@ -2,9 +2,8 @@ import dynamic from 'next/dynamic';
 import Header from '@/components/layout/app/header';
 import Footer from '@/components/layout/app/footer';
 
-const TawkChat = dynamic(() => import('@/components/common/tawk-chat'), {
-  ssr: false,
-});
+const TawkChat = dynamic(() => import('@/components/common/tawk-chat'));
+const CookieYes = dynamic(() => import('@/components/common/cookie-yes'));
 
 export default function RootLayout({
   children,
@@ -17,6 +16,7 @@ export default function RootLayout({
       <main className='relative'>{children}</main>
       <Footer />
       <TawkChat />
+      <CookieYes />
     </div>
   );
 }

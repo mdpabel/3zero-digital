@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import Logo from './logo';
 import Link from 'next/link';
@@ -14,9 +15,11 @@ import {
 import { cn } from '@/lib/utils';
 import ThemeSwitcher from '@/components/common/theme-switcher';
 import { services } from '@/services';
-import { SignedIn, SignedOut } from '@clerk/nextjs';
+import { SignedIn, SignedOut, useSession } from '@clerk/nextjs';
 
 const BigScreenNavbar = () => {
+  const { isSignedIn } = useSession();
+
   return (
     <div className='lg:block z-50 hidden mx-auto px-4 max-w-6xl container'>
       <div className='flex justify-between items-center h-16'>
@@ -83,20 +86,17 @@ const BigScreenNavbar = () => {
           {/* Conditionally show based on login status */}
           <Button
             variant='outline'
-            className='border-zinc-800 dark:border-zinc-200 px-4 py-2 border text-lg'>
-            <Link prefetch={true} href='/login'>
-              Get Started
-            </Link>
+            className='border-zinc-800 dark:border-zinc-200 px-4 py-2 border text-base'>
+            {isSignedIn ? (
+              <Link prefetch={true} href='/dashboard'>
+                Dashboard
+              </Link>
+            ) : (
+              <Link prefetch={true} href='/login'>
+                Get Started
+              </Link>
+            )}
           </Button>
-
-          {/* 
-          <SignedIn>
-            <Button
-              variant='outline'
-              className='border-zinc-800 dark:border-zinc-200 border'>
-              <Link prefetch={true} href='/dashboard'>Dashboard</Link>
-            </Button>
-          </SignedIn> */}
         </div>
       </div>
     </div>

@@ -3,14 +3,14 @@ import React from 'react';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 
 type Props = {
-  searchParams: {
+  searchParams: Promise<{
     status: 'error' | 'success';
     errors?: string;
-  };
+  }>;
 };
 
-const FormSubmissionResult: React.FC<Props> = ({ searchParams }) => {
-  const { status, errors } = searchParams;
+const FormSubmissionResult: React.FC<Props> = async ({ searchParams }) => {
+  const { status, errors } = await searchParams;
 
   const errorArray = errors
     ? errors.split(',').map((error) => error.trim())

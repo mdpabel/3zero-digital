@@ -3,13 +3,13 @@ import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 
 type Props = {
-  searchParams: {
+  searchParams: Promise<{
     session_id: string;
-  };
+  }>;
 };
 
 const PaymentSuccess = async ({ searchParams }: Props) => {
-  const sessionId = searchParams.session_id;
+  const sessionId = (await searchParams).session_id;
 
   const user = await currentUser();
 

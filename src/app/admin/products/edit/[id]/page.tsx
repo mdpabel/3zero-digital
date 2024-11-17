@@ -3,15 +3,16 @@ import React from 'react';
 import EditProductForm from './edit-product-form';
 
 type Props = {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 };
 
 const EditProduct = async ({ params }: Props) => {
+  const id = (await params).id;
   const [product, categories] = await Promise.all([
     prisma.product.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         prices: true,
       },

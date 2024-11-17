@@ -3,10 +3,6 @@ import { Poppins } from 'next/font/google';
 import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import Providers from './providers';
-import dynamic from 'next/dynamic';
-
-const CookieYes = dynamic(() => import('./cookie-yes'), { ssr: false });
-const TawkLiveChat = dynamic(() => import('./tawk-live-chat'), { ssr: false });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://3zerodigital.com'),
@@ -44,8 +40,6 @@ export default function RootLayout({
       <html lang='en' suppressHydrationWarning>
         <body className={poppins.className}>
           <Providers>{children}</Providers>
-          <TawkLiveChat />
-          <CookieYes />
         </body>
       </html>
     </ClerkProvider>
