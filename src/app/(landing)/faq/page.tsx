@@ -6,6 +6,8 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 
+export const dynamic = 'force-static';
+
 const faqs = [
   {
     question: 'What services does 3Zero Digital offer?',

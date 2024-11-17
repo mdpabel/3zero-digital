@@ -6,6 +6,8 @@ import SelectInput from '@/components/development/select';
 import Textarea from '@/components/development/textarea';
 import { useState } from 'react';
 
+export const dynamic = 'force-static';
+
 const ContactPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 

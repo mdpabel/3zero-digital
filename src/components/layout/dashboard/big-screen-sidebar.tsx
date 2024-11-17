@@ -11,7 +11,6 @@ import {
 import { cn } from '@/lib/utils';
 import Logout from './logout';
 import { SidebarItem } from './data';
-import Logo from '../app/logo';
 import Image from 'next/image';
 
 const BigScreenSidebar = ({ data }: { data: SidebarItem[] }) => {
@@ -29,7 +28,7 @@ const BigScreenSidebar = ({ data }: { data: SidebarItem[] }) => {
       <div className='p-4'>
         <Link href='/'>
           <Image
-            src='/images/logo-light.png'
+            src='/images/logo-dark.png'
             alt='Logo'
             width={140}
             height={140}
