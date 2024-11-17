@@ -1,3 +1,5 @@
+'use client';
+import React, { useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,17 +17,25 @@ import Link from 'next/link';
 import ThemeSwitcher from '../../common/theme-switcher';
 import { FaBars } from 'react-icons/fa';
 import Logo from './logo';
-import React from 'react';
 import { services } from '@/services';
 
 const SmallScreenNavbar = () => {
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+
+  const handleMenuItemClick = () => {
+    // Close the dropdown menu when a menu item is clicked
+    setDropdownOpen(false);
+  };
+
   return (
     <div className='block z-50 lg:hidden mx-auto px-4 max-w-6xl max-h-screen container'>
       <div className='flex justify-between items-center h-16'>
         <Logo />
         <div className='flex items-center space-x-5'>
           <ThemeSwitcher className='shadow-lg shadow-zinc-800/9 rounded-full w-9 h-9' />
-          <DropdownMenu>
+          <DropdownMenu
+            open={isDropdownOpen}
+            onOpenChange={(open) => setDropdownOpen(open)}>
             <DropdownMenuTrigger>
               <div className='flex justify-center items-center bg-white/90 dark:bg-zinc-800/90 shadow-lg shadow-zinc-800/9 backdrop-blur rounded-full w-9 h-9'>
                 <FaBars className='w-5 h-5' />
@@ -53,7 +63,8 @@ const SmallScreenNavbar = () => {
                               {subMenuItems.map(
                                 ({ description, href, label }, subIndex) => (
                                   <DropdownMenuItem
-                                    key={`${label}-${subIndex}`}>
+                                    key={`${label}-${subIndex}`}
+                                    onClick={handleMenuItemClick}>
                                     <Link className='w-full' href={href}>
                                       {label}
                                     </Link>
@@ -70,7 +81,8 @@ const SmallScreenNavbar = () => {
                           style={{
                             padding: '10px 4px',
                           }}
-                          asChild>
+                          asChild
+                          onClick={handleMenuItemClick}>
                           <div className='block py-2 w-full font-medium text-sm text-zinc-800 hover:text-teal-500 dark:text-zinc-100 transition cursor-pointer'>
                             {label}
                           </div>
