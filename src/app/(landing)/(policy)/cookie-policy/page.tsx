@@ -1,130 +1,153 @@
-import React from 'react';
+import { FaCookieBite, FaShieldAlt } from 'react-icons/fa';
 
 export const dynamic = 'force-static';
 
 const CookiePolicy = () => {
   return (
-    <div>
-      <style>
-        {`
-          a.cky-banner-element {
-            padding: 8px 30px;
-            background: #F8F9FA;
-            color: #858A8F;
-            border: 1px solid #DEE2E6;
-            box-sizing: border-box;
-            border-radius: 2px;
-            cursor: pointer;
-          }
-        `}
-      </style>
-      <h1 className='cookie-policy-h1'>Cookie Policy</h1>
-      <p>
-        Effective Date: 09-Nov-2024 <br />
-        Last Updated: 09-Nov-2024
-      </p>
-      <br />
-      <h5>What are cookies?</h5>
-      <div className='cookie-policy-p'>
-        <p>
-          This Cookie Policy explains what cookies are and how we use them, the
-          types of cookies we use i.e, the information we collect using cookies
-          and how that information is used, and how to manage the cookie
-          settings.
+    <div className='bg-gray-100 dark:bg-gray-900 px-6 py-12 md:py-20'>
+      <div className='mx-auto max-w-5xl'>
+        <h1 className='font-bold text-3xl text-center text-gray-900 md:text-5xl dark:text-white'>
+          Cookie Policy
+        </h1>
+        <p className='mt-4 text-center text-gray-600 text-lg dark:text-gray-300'>
+          Last Updated: <span className='font-semibold'>November 9, 2024</span>
         </p>
-        <p>
-          Cookies are small text files that are used to store small pieces of
-          information. They are stored on your device when the website is loaded
-          on your browser. These cookies help us make the website function
-          properly, make it more secure, provide better user experience, and
-          understand how the website performs and to analyze what works and
-          where it needs improvement.
-        </p>
+        <div className='space-y-10 mt-8'>
+          {/* Section 1 */}
+          <section>
+            <h2 className='font-semibold text-2xl text-gray-800 dark:text-gray-200'>
+              <FaCookieBite className='inline-block mr-2' />
+              1. What Are Cookies?
+            </h2>
+            <p className='mt-4 text-gray-700 dark:text-gray-300'>
+              Cookies are small text files that are stored on your device when
+              you visit our website. They allow us to recognize your browser and
+              capture and remember certain information.
+            </p>
+          </section>
+
+          {/* Section 2 */}
+          <section>
+            <h2 className='font-semibold text-2xl text-gray-800 dark:text-gray-200'>
+              <FaCookieBite className='inline-block mr-2' />
+              2. Types of Cookies We Use
+            </h2>
+            <p className='mt-4 text-gray-700 dark:text-gray-300'>
+              We use the following types of cookies on our website:
+            </p>
+            <ul className='space-y-2 mt-4 text-gray-700 dark:text-gray-300 list-disc list-inside'>
+              <li>
+                <strong>Essential Cookies</strong>: These cookies are necessary
+                for the operation of our website, such as remembering your login
+                information or preferences.
+              </li>
+              <li>
+                <strong>Performance Cookies</strong>: These cookies help us
+                understand how visitors interact with our website by collecting
+                anonymous data. They help improve the functionality and user
+                experience.
+              </li>
+              <li>
+                <strong>Functional Cookies</strong>: These cookies allow our
+                website to remember your preferences, such as language or
+                region, to enhance your experience.
+              </li>
+              <li>
+                <strong>Advertising Cookies</strong>: These cookies track your
+                browsing habits to deliver more relevant advertisements to you,
+                based on your interests.
+              </li>
+            </ul>
+          </section>
+
+          {/* Section 3 */}
+          <section>
+            <h2 className='font-semibold text-2xl text-gray-800 dark:text-gray-200'>
+              <FaCookieBite className='inline-block mr-2' />
+              3. How We Use Cookies
+            </h2>
+            <p className='mt-4 text-gray-700 dark:text-gray-300'>
+              We use cookies for several purposes, including:
+            </p>
+            <ul className='space-y-2 mt-4 text-gray-700 dark:text-gray-300 list-disc list-inside'>
+              <li>To analyze website traffic and improve user experience.</li>
+              <li>To enable social media features.</li>
+              <li>To provide personalized content and advertisements.</li>
+              <li>To remember user preferences and settings across visits.</li>
+            </ul>
+          </section>
+
+          {/* Section 4 */}
+          <section>
+            <h2 className='font-semibold text-2xl text-gray-800 dark:text-gray-200'>
+              <FaShieldAlt className='inline-block mr-2' />
+              4. Managing Cookies
+            </h2>
+            <p className='mt-4 text-gray-700 dark:text-gray-300'>
+              You can control and manage cookies through your browser settings.
+              You can choose to disable cookies, but please note that this may
+              affect the functionality of the website.
+            </p>
+            <p className='mt-4 text-gray-700 dark:text-gray-300'>
+              Most browsers allow you to block cookies or set notifications when
+              a cookie is being used. Refer to your browser's help section for
+              more details.
+            </p>
+          </section>
+
+          {/* Section 5 */}
+          <section>
+            <h2 className='font-semibold text-2xl text-gray-800 dark:text-gray-200'>
+              <FaCookieBite className='inline-block mr-2' />
+              5. Third-Party Cookies
+            </h2>
+            <p className='mt-4 text-gray-700 dark:text-gray-300'>
+              We may also use third-party cookies for analytics, advertising,
+              and social media features. These third parties may collect
+              information about your activities on our site and other websites.
+            </p>
+          </section>
+
+          {/* Section 6 */}
+          <section>
+            <h2 className='font-semibold text-2xl text-gray-800 dark:text-gray-200'>
+              6. Changes to This Cookie Policy
+            </h2>
+            <p className='mt-4 text-gray-700 dark:text-gray-300'>
+              We may update our Cookie Policy from time to time. Any changes
+              will be posted on this page, along with the updated date.
+            </p>
+          </section>
+
+          {/* Section 7 */}
+          <section>
+            <h2 className='font-semibold text-2xl text-gray-800 dark:text-gray-200'>
+              7. Contact Us
+            </h2>
+            <p className='mt-4 text-gray-700 dark:text-gray-300'>
+              If you have any questions about our Cookie Policy, feel free to
+              reach out to us:
+            </p>
+            <ul className='space-y-2 mt-4 text-gray-700 dark:text-gray-300'>
+              <li>
+                <strong>Email:</strong>{' '}
+                <a
+                  href='mailto:support@3zerodigital.com'
+                  className='text-blue-600 dark:text-blue-400 underline'>
+                  support@3zerodigital.com
+                </a>
+              </li>
+              <li>
+                <strong>Phone:</strong> +44 7878 798374
+              </li>
+              <li>
+                <strong>Address:</strong> Suite A 82 James Carter Road,
+                Mildenhall, Bury St. Edmunds, England, United Kingdom, IP28 7DE
+              </li>
+            </ul>
+          </section>
+        </div>
       </div>
-      <br />
-      <h5>How do we use cookies?</h5>
-      <div className='cookie-policy-p'>
-        <p>
-          As most of the online services, our website uses first-party and
-          third-party cookies for several purposes. First-party cookies are
-          mostly necessary for the website to function the right way, and they
-          do not collect any of your personally identifiable data.
-        </p>
-        <p>
-          The third-party cookies used on our website are mainly for
-          understanding how the website performs, how you interact with our
-          website, keeping our services secure, providing advertisements that
-          are relevant to you, and all in all providing you with a better and
-          improved user experience and help speed up your future interactions
-          with our website.
-        </p>
-      </div>
-      <br />
-      <h5>Types of Cookies we use</h5>
-      <div className='cky-audit-table-element'></div>
-      <br />
-      <h5 style={{ marginBottom: '20px' }}>Manage cookie preferences</h5>
-      <a className='cky-banner-element'>Cookie Settings</a> <br />
-      <div>
-        <p>
-          You can change your cookie preferences any time by clicking the above
-          button. This will let you revisit the cookie consent banner and change
-          your preferences or withdraw your consent right away.
-        </p>
-        <p>
-          In addition to this, different browsers provide different methods to
-          block and delete cookies used by websites. You can change the settings
-          of your browser to block/delete the cookies. Listed below are the
-          links to the support documents on how to manage and delete cookies
-          from the major web browsers.
-        </p>
-        <p>
-          Chrome:{' '}
-          <a
-            target='_blank'
-            href='https://support.google.com/accounts/answer/32050'>
-            https://support.google.com/accounts/answer/32050
-          </a>
-        </p>
-        <p>
-          Safari:{' '}
-          <a
-            target='_blank'
-            href='https://support.apple.com/en-in/guide/safari/sfri11471/mac'>
-            https://support.apple.com/en-in/guide/safari/sfri11471/mac
-          </a>
-        </p>
-        <p>
-          Firefox:{' '}
-          <a
-            target='_blank'
-            href='https://support.mozilla.org/en-US/kb/clear-cookies-and-site-data-firefox?redirectslug=delete-cookies-remove-info-websites-stored&amp;redirectlocale=en-US'>
-            https://support.mozilla.org/en-US/kb/clear-cookies-and-site-data-firefox?redirectslug=delete-cookies-remove-info-websites-stored&amp;redirectlocale=en-US
-          </a>
-        </p>
-        <p>
-          Internet Explorer:{' '}
-          <a
-            target='_blank'
-            href='https://support.microsoft.com/en-us/topic/how-to-delete-cookie-files-in-internet-explorer-bca9446f-d873-78de-77ba-d42645fa52fc'>
-            https://support.microsoft.com/en-us/topic/how-to-delete-cookie-files-in-internet-explorer-bca9446f-d873-78de-77ba-d42645fa52fc
-          </a>
-        </p>
-        <p>
-          If you are using any other web browser, please visit your browser’s
-          official support documents.
-        </p>
-      </div>
-      <br />
-      <p className='cookie-policy-p'>
-        Cookie Policy Generated By{' '}
-        <a
-          target='_blank'
-          href='https://www.cookieyes.com/?utm_source=CP&utm_medium=footer&utm_campaign=UW'>
-          CookieYes - Cookie Policy Generator
-        </a>
-        .
-      </p>
     </div>
   );
 };
