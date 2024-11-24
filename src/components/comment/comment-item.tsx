@@ -28,7 +28,7 @@ const CommentItem = ({ comment, comments, postId }: CommentItemProps) => {
             </Link>
           </h4>
           <h5 className='text-neutral-700 text-sm dark:text-white'>
-            {formatDate(comment.date, true)}
+            {formatDate(comment.date)}
           </h5>
         </div>
       </div>

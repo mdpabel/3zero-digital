@@ -1,9 +1,9 @@
 'use client';
 
-import { saveComment } from '@/actions/save-comment';
 import { cn } from '@/lib/utils';
 import React, { useState, useTransition, useActionState } from 'react';
 import Spinner from '../common/spinner';
+import { saveComment } from '@/actions/blog/save-comment';
 
 type CommentFormProps = {
   postId: number; // The ID of the post to which the comment belongs
@@ -113,7 +113,7 @@ const CommentForm = ({
           <div className='flex lg:flex-row flex-col lg:items-center gap-5'>
             <button
               type='submit'
-              className='bg-teal-600 hover:bg-teal-700 mt-2 py-1.5 rounded w-36 text-white transition'
+              className='bg-[#614385] mt-2 py-1.5 rounded w-36 text-white transition 0'
               disabled={pending}>
               {pending ? <Spinner /> : parentId ? 'Post Reply' : 'Post Comment'}
             </button>
