@@ -1,6 +1,7 @@
 'use server';
 
 import BackendSubmissionEmailTemplate from '@/components/email/backend-email-template';
+import { verifyCfTurnstileToken } from '@/lib/security/cf-turnstile';
 import { sendEmail } from '@/lib/send-email';
 import { catchZodErrors } from '@/lib/utils';
 import { backendFormSchema } from '@/schema/services/backend-form-schema';
@@ -22,7 +23,19 @@ export const backendFormSubmission = async (formData: FormData) => {
       name: formData.get('name'),
       email: formData.get('email'),
       message: formData.get('message'),
+      token: formData.get('cf-token'),
     };
+
+    // Verify Turnstile token
+    const token = data.token as string;
+
+    if (token) {
+      const res = await verifyCfTurnstileToken(token);
+
+      if (!res) {
+        return;
+      }
+    }
 
     // Validate form data with Zod schema
     const validatedData = backendFormSchema.parse({
@@ -57,5 +70,5 @@ export const backendFormSubmission = async (formData: FormData) => {
     status = 'error';
   }
 
-  return redirect(`/form-sumission-result?status=${status}&errors=${errors}`);
+  redirect(`/form-submission-result?status=${status}&errors=${errors}`);
 };

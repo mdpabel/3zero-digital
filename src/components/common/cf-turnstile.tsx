@@ -7,7 +7,7 @@ const CFTurnstile = () => {
   const turnstile = useTurnstile();
 
   return (
-    <div>
+    <div className='mt-6'>
       <Turnstile
         sitekey={
           process.env.NODE_ENV === 'development'

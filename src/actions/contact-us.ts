@@ -5,15 +5,11 @@ import { verifyCfTurnstileToken } from '@/lib/security/cf-turnstile';
 import { sendEmail } from '@/lib/send-email';
 import { catchZodErrors } from '@/lib/utils';
 import { contactFormSchema } from '@/schema/contact-form-schema';
-import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
-export const contactUsSubmission = async (formData: FormData) => {
-  let status = 'success' as 'success' | 'error';
-  let errors = '';
-
+export const contactUsSubmission = async (_: any, formData: FormData) => {
   try {
-    // Extract and validate form data
+    // Extract form data
     const data = {
       inquiryType: formData.get('InquiryType'),
       name: formData.get('name'),
@@ -22,53 +18,71 @@ export const contactUsSubmission = async (formData: FormData) => {
       token: formData.get('cf-token'),
     };
 
+    // Verify Turnstile token
     const token = data.token as string;
     if (token) {
       const res = await verifyCfTurnstileToken(token);
       if (!res) {
-        console.log({ res, token });
-        return;
+        return {
+          status: false,
+          message:
+            'CAPTCHA verification failed. Please verify you are not a robot.',
+        };
       }
     }
 
-    // Validate form data with Zod schema
-    const validatedData = contactFormSchema.parse({
+    // Validate form data using Zod schema
+    const validatedData = contactFormSchema.safeParse({
       inquiryType: data.inquiryType,
       name: data.name,
       email: data.email,
       message: data.message,
     });
 
+    if (!validatedData.success) {
+      // Handle validation errors
+      const errors = catchZodErrors(validatedData.error, contactFormSchema);
+      return {
+        status: false,
+        message: `Validation failed: ${errors}`,
+      };
+    }
+
+    const { email, inquiryType, name, message } = validatedData.data;
+
     // Send the email
     await sendEmail({
       to: process.env.EMAIL_TO!, // The recipient's email address
-      replyTo: validatedData.email, // Use the email address from the form data for the reply-to field
-      subject: `New Contact Us Inquiry - ${validatedData.inquiryType}`, // Use the inquiry type in the subject
+      replyTo: email, // Use the email address from the form data for the reply-to field
+      subject: `New Contact Us Inquiry - ${inquiryType}`, // Use the inquiry type in the subject
       react: ContactUsEmailTemplate({
-        name: validatedData.name, // Include the sender's name
-        email: validatedData.email, // Include the sender's email
-        inquiryType: validatedData.inquiryType, // Include the inquiry type
-        message: validatedData.message || '', // Include the message, or an empty string if not provided
+        name: name, // Include the sender's name
+        email: email, // Include the sender's email
+        inquiryType: inquiryType, // Include the inquiry type
+        message: message || '', // Include the message, or an empty string if not provided
       }),
-      name: validatedData.name, // Ensure that 'name' is included in the email options
+      name: name, // Ensure that 'name' is included in the email options
     });
 
-    status = 'success';
+    // If email is sent successfully
+    return {
+      status: true,
+      message: 'Your message has been sent successfully!',
+    };
   } catch (err) {
-    // Handle validation errors
+    // Handle unexpected errors
     if (err instanceof z.ZodError) {
-      errors = catchZodErrors(err, contactFormSchema);
-    } else {
-      // Handle other errors
-      errors = 'An unexpected error occurred. Please try again later.';
+      const errors = catchZodErrors(err, contactFormSchema);
+      return {
+        status: false,
+        message: `Validation error: ${errors}`,
+      };
     }
-    status = 'error';
-  }
 
-  // Redirect with the status and error message
-  return redirect(
-    `/form-submission-result?status=${status}&errors=${encodeURIComponent(
-      errors,
-    )}`,
-  );
+    console.error('Unexpected error occurred:', err);
+    return {
+      status: false,
+      message: 'An unexpected error occurred. Please try again later.',
+    };
+  }
 };
