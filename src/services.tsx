@@ -1,7 +1,6 @@
 import {
   FaWordpress,
   FaShopify,
-  FaCode,
   FaServer,
   FaReact,
   FaShieldAlt,
@@ -13,7 +12,10 @@ import {
   FaFacebook,
   FaLink,
   FaYoutube,
-  FaWordpressSimple,
+  FaHtml5,
+  FaNodeJs,
+  FaJs,
+  FaCode,
 } from 'react-icons/fa';
 
 export const services = [
@@ -21,22 +23,46 @@ export const services = [
     label: 'Development',
     href: '/development',
     description:
-      'Comprehensive development services for WordPress, Shopify, Frontend, Backend, and more.',
-    icon: <FaCode />,
+      'Comprehensive development services for modern web platforms, e-commerce, and full-stack applications.',
+    icon: <FaJs />,
     imageUrl: '/services/1.png',
     subMenuItems: [
       {
-        label: 'WordPress',
+        label: 'WordPress Solutions',
         href: '/development/wordpress',
-        description: 'WordPress development, themes, plugins customization.',
+        description: 'Custom themes, plugins, and WordPress site development.',
         icon: <FaWordpress />,
         featured: true,
       },
       {
-        label: 'Shopify',
+        label: 'Headless WordPress & Next.js',
+        href: '/development/headless-wordpress',
+        description:
+          'Build modern, high-performance headless WordPress sites with Next.js.',
+        icon: <FaReact />,
+        featured: true,
+      },
+      {
+        label: 'Shopify Development',
         href: '/development/shopify',
-        description: 'Shopify development for e-commerce.',
+        description:
+          'Create scalable and engaging e-commerce stores using Shopify.',
         icon: <FaShopify />,
+        featured: true,
+      },
+      {
+        label: 'Fullstack Next.js Applications',
+        href: '/development/nextjs-fullstack',
+        description: 'End-to-end Next.js application development.',
+        icon: <FaNodeJs />,
+        featured: true,
+      },
+      {
+        label: 'MERN Stack Development',
+        href: '/development/mern-stack',
+        description:
+          'Full-stack development using MongoDB, Express, React, and Node.js.',
+        icon: <FaReact />,
         featured: true,
       },
       {
@@ -47,25 +73,11 @@ export const services = [
         featured: true,
       },
       {
-        label: 'Backend',
-        href: '/development/backend',
-        description: 'Backend development with Node.js, PHP, and more.',
-        icon: <FaServer />,
-        featured: true,
-      },
-      {
-        label: 'MERN Stack',
-        href: '/development/mern-stack',
-        description: 'Full-stack development using MERN stack.',
-        icon: <FaReact />,
-        featured: true,
-      },
-      {
-        label: 'WP Theme Development',
-        href: '/development/wordpress-theme-development',
+        label: 'Static HTML & CSS Websites',
+        href: '/development/static-sites',
         description:
-          'Custom WordPress theme development to match your brand and needs.',
-        icon: <FaWordpressSimple />,
+          'Develop lightweight, responsive static websites with HTML5 and CSS3.',
+        icon: <FaHtml5 />,
         featured: true,
       },
     ],
