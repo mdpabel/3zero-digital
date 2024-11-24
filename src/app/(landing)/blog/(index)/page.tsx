@@ -1,6 +1,8 @@
 import Blogs from '@/components/blog/blogs';
 import SearchForm from '@/components/blog/search-form';
 
+export const dynamic = 'force-static';
+
 type Props = {
   searchParams: Promise<{ page: string; search: string }>;
 };
