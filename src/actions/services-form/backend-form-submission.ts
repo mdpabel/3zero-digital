@@ -33,6 +33,7 @@ export const backendFormSubmission = async (formData: FormData) => {
       const res = await verifyCfTurnstileToken(token);
 
       if (!res) {
+        console.log('You are a robot!');
         return;
       }
     }
