@@ -4,6 +4,7 @@ import { fetchCaseStudies, fetchCaseStudyBySlug } from '@/lib/wordpress';
 export const dynamic = 'force-static';
 
 import type { Metadata, ResolvingMetadata } from 'next';
+import Link from 'next/link';
 
 type Props = {
   params: Promise<{
@@ -79,9 +80,11 @@ const CaseStudy = async ({ params }: Props) => {
           Get in touch with us today and see how we can help your business
           succeed.
         </p>
-        <button className='bg-white hover:bg-gray-200 px-6 py-3 rounded-lg font-semibold text-indigo-600'>
+        <Link
+          href='/contact'
+          className='bg-white hover:bg-gray-200 px-6 py-3 rounded-lg font-semibold text-indigo-600'>
           Contact Us
-        </button>
+        </Link>
       </section>
     </div>
   );

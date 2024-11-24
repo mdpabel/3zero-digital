@@ -1,6 +1,7 @@
 'use server';
 
 import ContactUsEmailTemplate from '@/components/email/contact-us-email-template'; // Import the correct email template
+import { verifyCfTurnstileToken } from '@/lib/security/cf-turnstile';
 import { sendEmail } from '@/lib/send-email';
 import { catchZodErrors } from '@/lib/utils';
 import { contactFormSchema } from '@/schema/contact-form-schema';
@@ -18,7 +19,17 @@ export const contactUsSubmission = async (formData: FormData) => {
       name: formData.get('name'),
       email: formData.get('email'),
       message: formData.get('message'),
+      token: formData.get('cf-token'),
     };
+
+    const token = data.token as string;
+    if (token) {
+      const res = await verifyCfTurnstileToken(token);
+      if (!res) {
+        console.log({ res, token });
+        return;
+      }
+    }
 
     // Validate form data with Zod schema
     const validatedData = contactFormSchema.parse({

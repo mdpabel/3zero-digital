@@ -4,6 +4,8 @@ import { NextResponse } from 'next/server';
 const isProtectedRoute = createRouteMatcher([
   '/dashboard(.*)',
   '/dashboard/profile(.*)',
+  '/dashboard/orders(.*)',
+  '/dashboard/support(.*)',
 ]);
 const isAuthRoutes = createRouteMatcher([
   '/login(.*)',
@@ -20,7 +22,11 @@ export default clerkMiddleware(async (auth, req) => {
 
   const session = (await auth()).sessionId;
 
-  if (isAuthRoutes(req) && session) {
+  if (session && isAuthRoutes(req)) {
+    console.log({
+      test: isAuthRoutes(req),
+      hello: 1,
+    });
     const url = new URL('/dashboard', req.url);
     return NextResponse.redirect(url);
   }

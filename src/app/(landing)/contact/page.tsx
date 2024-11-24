@@ -1,4 +1,6 @@
+'use client';
 import { contactUsSubmission } from '@/actions/contact-us';
+import CFTurnstile from '@/components/common/cf-turnstile';
 import FormButton from '@/components/common/form-button';
 import Input from '@/components/development/input';
 import SelectInput from '@/components/development/select';
@@ -92,6 +94,7 @@ const ContactPage = () => {
               placeholder='Provide any additional details about your project'
             />
 
+            <CFTurnstile />
             <FormButton />
           </form>
         </div>

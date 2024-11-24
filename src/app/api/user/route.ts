@@ -11,7 +11,6 @@ export const POST = async (req: NextRequest) => {
         clerkUserId: clerkUserId as string,
       },
     });
-    console.log({ res });
     return NextResponse.json({
       success: true,
     });

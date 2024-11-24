@@ -85,6 +85,7 @@ const BigScreenNavbar = () => {
 
           {/* Conditionally show based on login status */}
           <Button
+            asChild
             variant='outline'
             className='border-zinc-800 dark:border-zinc-200 px-4 py-2 border text-base'>
             {isSignedIn ? (

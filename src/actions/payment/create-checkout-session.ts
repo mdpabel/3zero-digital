@@ -17,6 +17,10 @@ export const createStripeSession = async (_: any, formData: FormData) => {
       return { success: false, message: 'You are not authorized' };
     }
 
+    if (parseInt(quantity) <= 0) {
+      return { success: false, message: 'Quantity must be greater than zero' };
+    }
+
     const email = session.emailAddresses[0].emailAddress;
     const name = `${session.firstName} ${session.lastName}`;
     const userId = session.id;
@@ -24,12 +28,9 @@ export const createStripeSession = async (_: any, formData: FormData) => {
     const user = await prisma.user.findUnique({
       where: { clerkUserId: userId },
     });
+
     if (!user) {
       return { success: false, message: 'User not found' };
-    }
-
-    if (parseInt(quantity) <= 0) {
-      return { success: false, message: 'Quantity must be greater than zero' };
     }
 
     let stripeCustomerId = user.stripeCustomerId;
