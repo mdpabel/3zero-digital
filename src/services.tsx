@@ -16,6 +16,9 @@ import {
   FaNodeJs,
   FaJs,
   FaCode,
+  FaCube,
+  FaImage,
+  FaPlay,
 } from 'react-icons/fa';
 
 export const services = [
@@ -207,19 +210,34 @@ export const services = [
     imageUrl: '/services/4.png',
     subMenuItems: [
       {
+        label: '3D Model',
+        href: '/marketing/3d-model',
+        description: 'Create stunning 3D models for your business or projects.',
+        icon: <FaCube />,
+        featured: true,
+      },
+      {
+        label: '3D Render Image',
+        href: '/marketing/3d-render-image',
+        description:
+          'Generate high-quality 3D render images for visualization and marketing.',
+        icon: <FaImage />,
+        featured: true,
+      },
+      {
+        label: '3D Animation',
+        href: '/marketing/3d-animation',
+        description:
+          'Develop captivating 3D animations to promote your products or services.',
+        icon: <FaPlay />,
+        featured: true,
+      },
+      {
         label: 'SEO Optimization',
         href: '/marketing/seo-optimization',
         description: 'Optimize your site for search engine visibility.',
         icon: <FaRocket />,
         featured: true,
-      },
-      {
-        label: 'YouTube Marketing',
-        href: '/marketing/youtube',
-        description:
-          'Promote your business through targeted YouTube marketing strategies.',
-        icon: <FaYoutube />,
-        featured: false,
       },
       {
         label: 'Backlink Building',
@@ -235,22 +253,6 @@ export const services = [
         description:
           'Boost your brand’s online presence with effective social media marketing.',
         icon: <FaFacebook />,
-        featured: true,
-      },
-      {
-        label: 'Email Marketing',
-        href: '/marketing/email',
-        description:
-          'Engage your audience through targeted email marketing campaigns.',
-        icon: <FaEnvelope />,
-        featured: true,
-      },
-      {
-        label: 'Content Marketing',
-        href: '/marketing/content',
-        description:
-          'Create compelling content that attracts and engages your target audience.',
-        icon: <FaPen />,
         featured: true,
       },
     ],

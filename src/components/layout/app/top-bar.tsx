@@ -28,9 +28,7 @@ const TopBar = () => {
                 <Link href='/contact'>Contact</Link>
               </li>
               <li>
-                <Link target='_blank' href='https://blog.3zerodigital.com/'>
-                  Blog
-                </Link>
+                <Link href='/blog'>Blog</Link>
               </li>
             </ul>
           </nav>
