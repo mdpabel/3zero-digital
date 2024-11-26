@@ -84,7 +84,7 @@ const SearchForm = () => {
             {posts?.map((post) => (
               <li
                 key={post.id}
-                className='hover:bg-[#516395] dark:hover:bg-[#614385] p-4 rounded-md transition'>
+                className='hover:bg-[#614385] p-4 rounded-md hover:text-white transition'>
                 <Link
                   href={`/blog/${post.slug}`}
                   onClick={() => setOpen(false)} // Close dialog on click
@@ -92,7 +92,7 @@ const SearchForm = () => {
                   <div>
                     <dl>
                       <dt className='sr-only'>Published on</dt>
-                      <dd className='font-medium text-base text-muted-foreground leading-6'>
+                      <dd className='font-medium text-base leading-6'>
                         <time dateTime={post.date}>
                           {formatDate(post.date)}
                         </time>

@@ -11,45 +11,73 @@ import { WP_REST_API_Post } from 'wp-types';
 type Props = {
   params: Promise<{ slug: string }>;
 };
-
 export async function generateMetadata({
   params,
 }: Props): Promise<Metadata | undefined> {
   const { slug } = await params;
 
   // Fetch the post by slug
-  const { posts } = await getPosts({
-    slug,
-  });
+  const { posts } = await getPosts({ slug });
 
   const post = Array.isArray(posts) ? posts[0] : posts;
 
-  const media = await getMediaById(post?.featured_media!);
-
+  // If no post is found, return undefined
   if (!post) {
     return;
   }
 
+  const data = post as WP_REST_API_Post & {
+    meta: {
+      yoast_head_json: any;
+    };
+  };
+
+  const yoast_head_json = data.meta.yoast_head_json;
+
+  // Fallback to Yoast SEO or WordPress post data
+  const title = yoast_head_json?.title || post.title.rendered;
+  const description = yoast_head_json?.og_description || post.excerpt.rendered;
+  const ogTitle = yoast_head_json?.og_title || title;
+  const ogDescription = yoast_head_json?.og_description || description;
+  const ogImage =
+    yoast_head_json?.og_image ||
+    (await getMediaById(post.featured_media!))?.source_url;
+  const canonical = 'https://www.3zerodigital.com/' + post.slug;
+  const robots = yoast_head_json?.robots || {
+    index: 'index',
+    follow: 'follow',
+  }; // Default robots rules
+  const author = yoast_head_json?.author || 'Unknown'; // Default author
+  const publishedTime = yoast_head_json?.article_published_time || post.date;
+  const twitterCard = yoast_head_json?.twitter_card || 'summary_large_image';
+
+  // Return all metadata, combining Yoast SEO data and WordPress data
   return {
-    title: post.title.rendered,
-    description: post.excerpt.rendered,
+    title,
+    description,
+    robots: robots, // Include robots directive if available
+    alternates: {
+      canonical,
+    }, // Include canonical URL if available
+    authors: [author],
     openGraph: {
-      title: post.title.rendered,
-      description: post.excerpt.rendered,
-      siteName: post.title.rendered,
-      locale: 'en_US',
-      type: 'article',
-      publishedTime: post.date,
+      title: ogTitle,
+      description: ogDescription,
+      siteName: yoast_head_json?.og_site_name || post.title.rendered,
+      locale: yoast_head_json?.og_locale || 'en_US',
+      type: yoast_head_json?.og_type || 'article',
+      publishedTime: publishedTime,
       modifiedTime: post.modified,
-      url: './',
-      images: media?.source_url,
+      url: yoast_head_json?.og_url || post.link,
+      images: ogImage ? [ogImage] : [],
     },
     twitter: {
-      card: 'summary_large_image',
-      title: post.title.rendered,
-      description: post.excerpt.rendered,
-      images: [media?.source_url!],
+      card: twitterCard,
+      title: ogTitle,
+      description: ogDescription,
+      images: ogImage ? [ogImage] : [],
     },
+    // schema: yoast_head_json?.schema, // Include schema if available
   };
 }
 
@@ -82,6 +110,8 @@ const BlogPage = async ({ params }: Props) => {
   if (!post) {
     return <div>Post not found</div>;
   }
+
+  console.log({ post });
 
   return (
     <article className='space-y-4 mx-auto py-8 max-w-3xl'>

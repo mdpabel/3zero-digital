@@ -1,7 +1,3 @@
-import Image from 'next/image';
-import heroDarkGif from '@/../public/images/hero/hero-dark.gif';
-import heroLightGif from '@/../public/images/hero/hero-light.gif';
-
 const Hero = () => {
   return (
     <div className='relative bg-white dark:bg-[#030712] px-10 md:px-20 py-10 md:pt-10'>
@@ -56,8 +52,8 @@ const Hero = () => {
 
             <video
               className='block dark:hidden'
-              width='320'
-              height='240'
+              width='400'
+              height='300'
               autoPlay
               loop
               muted

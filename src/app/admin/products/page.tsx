@@ -88,7 +88,7 @@ const Products = async () => {
                     <Link
                       href={`/admin/products/edit/${product.id}`}
                       className='text-blue-500 hover:text-blue-600 dark:hover:text-blue-500 dark:text-blue-400 transition-colors'>
-                      <FaEdit className='inline-block w-5 h-5' />
+                      <FaEdit className='inline-block w-5 h-5 cursor-pointer' />
                     </Link>
 
                     {/* Delete Product Component */}

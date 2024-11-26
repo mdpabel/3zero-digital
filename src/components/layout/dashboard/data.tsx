@@ -67,7 +67,34 @@ export const adminDashboardSidebarItems = [
       },
       {
         label: 'Category',
-        href: '/admin/category',
+        href: '/admin/products/category',
+        icon: <FaThList />,
+      },
+    ],
+  },
+  {
+    label: 'Templates',
+    icon: <FaBox />,
+    roles: ['admin'],
+    subItems: [
+      {
+        label: 'All Templates',
+        href: '/admin/templates',
+        icon: <FaThList />,
+      },
+      {
+        label: 'Add Product',
+        href: '/admin/templates/add',
+        icon: <FaPlus />,
+      },
+      {
+        label: 'Trash Templates',
+        href: '/admin/templates/trash',
+        icon: <FaTrash />,
+      },
+      {
+        label: 'Category',
+        href: '/admin/templates/category',
         icon: <FaThList />,
       },
     ],

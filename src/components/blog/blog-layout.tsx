@@ -3,7 +3,7 @@ import BlogsSidebar from '../layout/blog/blogs-sidebar';
 
 const BlogsLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className='mx-auto px-6 py-4 max-w-6xl'>
+    <div className='mx-auto px-6 py-8 max-w-6xl'>
       <div className='flex lg:flex-row flex-col gap-10'>
         {/* Sidebar */}
         <div className='lg:top-4 lg:sticky w-full lg:w-96 lg:h-[100dvh] overflow-auto'>
