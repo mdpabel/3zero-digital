@@ -7,6 +7,7 @@ export const POST = async (req: NextRequest) => {
   revalidatePath('/case-studies', 'page');
 
   revalidatePath('/(blog)/blog/(index)', 'layout');
+  revalidatePath('/(blog)/blog/(index)', 'page');
   revalidatePath('/blog', 'page');
   revalidatePath('/(blog)/blog/[slug]', 'page');
   revalidatePath('/(blog)/blog/category/[slug]', 'page');

@@ -10,6 +10,8 @@ type Props = {
   search?: string;
 };
 
+export const revalidate = 86400;
+
 const POSTS_PER_PAGE = 5;
 
 const Blogs = async ({ categorySlug, page, tagSlug, search }: Props) => {
