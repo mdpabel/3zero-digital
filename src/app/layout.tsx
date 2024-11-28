@@ -21,16 +21,14 @@ export const metadata: Metadata = {
       '3 Zero Digital is committed to achieving perfection in software development and maintenance, ensuring zero vulnerability, zero downtime, and zero errors in all digital solutions.',
     url: 'https://3zerodigital.com',
     siteName: '3 Zero Digital',
-    images: [
-      'https://3zerodigital.com/images/social-banner.jpg', // Ensure this is a large image (1200x630px)
-    ],
+    images: ['https://3zerodigital.com/images/social-banner.png'],
     locale: 'en_US',
     type: 'website',
   },
   alternates: {
     canonical: 'https://3zerodigital.com',
     types: {
-      'application/rss+xml': 'https://3zerodigital.com/feed.xml', // If you have an RSS feed
+      'application/rss+xml': 'https://3zerodigital.com/feed.xml',
     },
   },
   robots: {
@@ -50,7 +48,7 @@ export const metadata: Metadata = {
     title:
       '3 Zero Digital - Achieving Perfection with 0 Vulnerability, 0 Downtime, 0 Error',
     card: 'summary_large_image',
-    images: ['https://3zerodigital.com/images/social-banner.jpg'], // Ensure this is a large image (1200x630px)
+    images: ['https://3zerodigital.com/images/social-banner.jpg'],
   },
 };
 
