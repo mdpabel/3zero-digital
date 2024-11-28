@@ -1,5 +1,3 @@
-'use client';
-import React, { useState } from 'react';
 import PricingTable from './pricing-table';
 import FAQ from './faq';
 import DomainSearch from './domain-search';
