@@ -153,7 +153,7 @@ const Footer: React.FC = () => (
       {/* Copyright Section */}
       <div className='border-zinc-200 dark:border-zinc-700 mt-8 pt-6 border-t text-center text-sm'>
         <p>
-          &copy; {new Date().getFullYear()} 3 Zero Digital. All rights reserved.
+          &copy; {new Date().getFullYear()} 3Zero Digital. All rights reserved.
         </p>
       </div>
     </div>

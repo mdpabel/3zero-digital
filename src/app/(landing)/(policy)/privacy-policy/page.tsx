@@ -25,7 +25,7 @@ const PrivacyPolicy = () => {
               1. Information We Collect
             </h2>
             <p className='mt-4 text-gray-700 dark:text-gray-300'>
-              At <strong>3 Zero Digital</strong>, we collect the following types
+              At <strong>3Zero Digital</strong>, we collect the following types
               of information:
             </p>
             <ul className='space-y-2 mt-4 text-gray-700 dark:text-gray-300 list-disc list-inside'>

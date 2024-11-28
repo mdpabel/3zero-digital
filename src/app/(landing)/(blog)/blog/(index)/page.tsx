@@ -6,8 +6,6 @@ export const metadata = genMetaData({
   title: 'Blog',
 });
 
-export const dynamic = 'force-static';
-
 type Props = {
   searchParams: Promise<{ page: string; search: string }>;
 };

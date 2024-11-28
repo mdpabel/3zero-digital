@@ -34,7 +34,7 @@ const TermsOfService = () => {
               1. Our Commitment
             </h2>
             <p className='mt-4 text-gray-700 dark:text-gray-300'>
-              At <strong>3 Zero Digital</strong>, our mission is to strive for
+              At <strong>3Zero Digital</strong>, our mission is to strive for
               "zero vulnerability, zero downtime, and zero error." While
               achieving absolute perfection may not always be feasible, we are
               committed to providing exceptional services and continuously

@@ -6,10 +6,6 @@ import { FaTrashAlt } from 'react-icons/fa';
 const DeleteTemplate = ({ templateId }: { templateId: string }) => {
   const [isPendig, setIsPending] = useState(false);
 
-  console.log({
-    isPendig,
-  });
-
   return (
     <button
       type='submit'

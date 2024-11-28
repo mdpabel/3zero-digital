@@ -22,7 +22,7 @@ const faqs = [
   {
     question: 'What makes 3Zero Digital different from other agencies?',
     answer:
-      'At 3Zero Digital, we prioritize achieving perfection with our 3 Zero principles: 0 Vulnerability, 0 Downtime, and 0 Error, ensuring robust, secure, and reliable solutions for our clients.',
+      'At 3Zero Digital, we prioritize achieving perfection with our 3Zero principles: 0 Vulnerability, 0 Downtime, and 0 Error, ensuring robust, secure, and reliable solutions for our clients.',
   },
   {
     question: 'How can I get started with 3Zero Digital?',

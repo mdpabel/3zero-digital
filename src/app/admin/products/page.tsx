@@ -17,10 +17,6 @@ const getProducts = async () => {
 const Products = async () => {
   const products = await getProducts();
 
-  console.log({
-    products,
-  });
-
   return (
     <div className='p-8'>
       <h1 className='mb-8 font-bold text-4xl text-zinc-900 dark:text-zinc-200'>

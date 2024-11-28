@@ -12,13 +12,13 @@ const RefundPolicy: React.FC = () => {
     <div className='bg-gray-100 dark:bg-gray-900 px-6 py-12 md:py-20'>
       <div className='mx-auto max-w-5xl'>
         <h1 className='font-bold text-3xl text-center text-gray-900 md:text-5xl dark:text-white'>
-          3 Zero Digital Refund Policy
+          3Zero Digital Refund Policy
         </h1>
         <p className='mt-4 text-center text-gray-600 text-lg dark:text-gray-300'>
           Last Updated: <span className='font-semibold'>November 9, 2024</span>
         </p>
         <p className='mt-4 text-center text-gray-600 text-lg dark:text-gray-300'>
-          At 3 Zero Digital, we aim for customer satisfaction with our services
+          At 3Zero Digital, we aim for customer satisfaction with our services
           and products. Due to the nature of our work, we have specific refund
           policies. Please read the details carefully for different service
           categories.

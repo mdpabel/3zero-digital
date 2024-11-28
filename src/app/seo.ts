@@ -65,7 +65,7 @@ export function getServiceMetadata(serviceHref: string) {
 
   // Default metadata if no matching service or subservice is found
   return genMetaData({
-    title: '3 Zero Digital | Services',
+    title: '3Zero Digital | Services',
     description: 'Explore our wide range of services.',
     url: 'https://3zerodigital.com/services',
   });
