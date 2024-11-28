@@ -1,5 +1,10 @@
 import React from 'react';
 import { FaRegCheckCircle, FaTools, FaCogs, FaBullhorn } from 'react-icons/fa';
+import { genMetaData } from '@/app/seo';
+
+export const metadata = genMetaData({
+  title: 'Refund Policy',
+});
 
 export const dynamic = 'force-static';
 const RefundPolicy: React.FC = () => {

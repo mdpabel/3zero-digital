@@ -2,6 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import { fetchCaseStudies } from '@/lib/wordpress';
 import { Button } from '@/components/ui/button';
+import { genMetaData } from '@/app/seo';
+
+export const metadata = genMetaData({
+  title: 'Case studies',
+});
 
 export const dynamic = 'force-static';
 

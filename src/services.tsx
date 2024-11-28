@@ -26,7 +26,6 @@ export const services = [
     description:
       'Comprehensive development services for modern web platforms, e-commerce, and full-stack applications.',
     icon: <FaJs />,
-    imageUrl: '/services/1.png',
     meta: {
       title: 'Web Development Services | Custom Solutions for Your Business',
       description:
@@ -130,7 +129,6 @@ export const services = [
     description:
       'Keep your website secure and up-to-date with our maintenance services.',
     icon: <FaShieldAlt />,
-    imageUrl: '/services/2.png',
     meta: {
       title: 'Website Maintenance Services | Secure, Fast & Up-to-Date',
       description:
@@ -245,7 +243,6 @@ export const services = [
     href: '/troubleshooting',
     description: 'Quickly diagnose and fix common website errors and issues.',
     icon: <FaExclamationTriangle />,
-    imageUrl: '/services/3.png',
     meta: {
       title:
         'Website Troubleshooting Services | Fix Errors & Restore Functionality',
@@ -280,7 +277,7 @@ export const services = [
       },
       {
         label: '403 Forbidden',
-        href: '/error/403-fobidden',
+        href: '/error/403-forbidden',
         description: 'Fix 403 errors for access issues.',
         icon: <FaExclamationTriangle />,
         featured: true,
@@ -324,7 +321,6 @@ export const services = [
     description:
       'Drive traffic and increase conversions with targeted marketing strategies.',
     icon: <FaRocket />,
-    imageUrl: '/services/4.png',
     meta: {
       title: 'Digital Marketing Services | SEO, Social Media & More',
       description:

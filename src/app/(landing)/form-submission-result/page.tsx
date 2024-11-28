@@ -1,6 +1,11 @@
 import GoBack from '@/components/common/go-back-button';
 import React from 'react';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
+import { genMetaData } from '@/app/seo';
+
+export const metadata = genMetaData({
+  title: 'Form submission result',
+});
 
 type Props = {
   searchParams: Promise<{

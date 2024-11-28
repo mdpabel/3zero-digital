@@ -1,5 +1,10 @@
 import React from 'react';
 import CardImage from './images';
+import { genMetaData } from '@/app/seo';
+
+export const metadata = genMetaData({
+  title: 'Shop',
+});
 
 const ShopPage = () => {
   const categories = [

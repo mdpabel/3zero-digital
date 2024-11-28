@@ -1,7 +1,9 @@
 import React from 'react';
 import PricingTable from './pricing-table';
 import { getProduct } from '@/lib/product/get-product';
-import { services } from '@/services';
+import { getServiceMetadata } from '@/app/seo';
+
+export const metadata = getServiceMetadata('/maintenance/website-migration');
 
 export const dynamic = 'force-static';
 

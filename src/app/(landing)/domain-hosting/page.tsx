@@ -3,6 +3,11 @@ import React, { useState } from 'react';
 import PricingTable from './pricing-table';
 import FAQ from './faq';
 import DomainSearch from './domain-search';
+import { genMetaData } from '@/app/seo';
+
+export const metadata = genMetaData({
+  title: 'Domain hosting',
+});
 
 const DomainHosting = () => {
   const product = {

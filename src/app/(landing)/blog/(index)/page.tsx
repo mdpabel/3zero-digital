@@ -1,5 +1,10 @@
 import Blogs from '@/components/blog/blogs';
 import SearchForm from '@/components/blog/search-form';
+import { genMetaData } from '@/app/seo';
+
+export const metadata = genMetaData({
+  title: 'Blog',
+});
 
 export const dynamic = 'force-static';
 

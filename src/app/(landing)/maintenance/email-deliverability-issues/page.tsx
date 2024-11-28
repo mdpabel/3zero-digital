@@ -4,6 +4,12 @@ import { formatCurrency } from '@/lib/utils';
 import { getProduct } from '@/lib/product/get-product';
 import PricingTable from './pricing-table';
 
+import { getServiceMetadata } from '@/app/seo';
+
+export const metadata = getServiceMetadata(
+  '/maintenance/email-deliverability-issues',
+);
+
 const issues = [
   'Blacklisted IP addresses',
   'Spammy content or keywords',

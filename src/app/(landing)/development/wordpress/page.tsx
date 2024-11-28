@@ -6,8 +6,11 @@ import CheckboxGroup from '@/components/development/checkbox-group';
 import Textarea from '@/components/development/textarea';
 import FormButton from '@/components/common/form-button';
 import { wordpressFormSubmission } from '@/actions/services-form/wordpress-form-submission';
+import { getServiceMetadata } from '@/app/seo';
 
 export const dynamic = 'force-static';
+
+export const metadata = getServiceMetadata('/development/wordpress');
 
 export default function WordPress() {
   const websiteTypes = [

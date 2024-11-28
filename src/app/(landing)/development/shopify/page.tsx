@@ -6,8 +6,11 @@ import CheckboxGroup from '@/components/development/checkbox-group';
 import Textarea from '@/components/development/textarea';
 import { shopifyFormSubmission } from '@/actions/services-form/shopify-form-submission';
 import FormButton from '@/components/common/form-button';
+import { getServiceMetadata } from '@/app/seo';
 
 export const dynamic = 'force-static';
+
+export const metadata = getServiceMetadata('/development/shopify');
 
 export default function Shopify() {
   const storeTypes = [

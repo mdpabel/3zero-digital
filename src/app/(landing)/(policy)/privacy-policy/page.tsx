@@ -1,4 +1,9 @@
 import { FaUserShield, FaCookieBite, FaRegEdit, FaLock } from 'react-icons/fa';
+import { genMetaData } from '@/app/seo';
+
+export const metadata = genMetaData({
+  title: 'Privacy Policy',
+});
 
 export const dynamic = 'force-static';
 

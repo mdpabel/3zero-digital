@@ -5,8 +5,11 @@ import CheckboxGroup from '@/components/development/checkbox-group';
 import Textarea from '@/components/development/textarea';
 import FormButton from '@/components/common/form-button';
 import { nextJsFullStackFormSubmission } from '@/actions/services-form/nextjs-fullstack-form-submission';
+import { getServiceMetadata } from '@/app/seo';
 
 export const dynamic = 'force-static';
+
+export const metadata = getServiceMetadata('/development/nextjs-fullstack');
 
 export default function NextJsFullStackDevelopment() {
   const projectTypes = [

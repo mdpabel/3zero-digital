@@ -1,5 +1,10 @@
 import { getProduct } from '@/lib/product/get-product';
 import PricingTable from './pricing-table';
+import { getServiceMetadata } from '@/app/seo';
+
+export const metadata = getServiceMetadata(
+  '/maintenance/ongoing-wordpress-maintenance',
+);
 
 export const dynamic = 'force-static';
 

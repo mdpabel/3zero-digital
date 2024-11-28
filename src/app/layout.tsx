@@ -4,31 +4,28 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import './globals.css';
 import { ClerkProvider } from '@clerk/nextjs';
 import Providers from './providers';
+import { siteMetadata } from './metadata';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://3zerodigital.com'),
+  metadataBase: new URL(siteMetadata.url),
   title: {
-    default:
-      '3 Zero Digital - Achieving Perfection with 0 Vulnerability, 0 Downtime, 0 Error',
-    template: '%s | 3 Zero Digital',
+    default: `${siteMetadata.title} - Achieving Perfection with 0 Vulnerability, 0 Downtime, 0 Error`,
+    template: '%s | ' + siteMetadata.title,
   },
-  description:
-    '3 Zero Digital is committed to achieving perfection in software development and maintenance, ensuring zero vulnerability, zero downtime, and zero errors in all digital solutions. Specializing in secure and high-performance web services.',
+  description: siteMetadata.description,
   openGraph: {
-    title:
-      '3 Zero Digital - Achieving Perfection with 0 Vulnerability, 0 Downtime, 0 Error',
-    description:
-      '3 Zero Digital is committed to achieving perfection in software development and maintenance, ensuring zero vulnerability, zero downtime, and zero errors in all digital solutions.',
-    url: 'https://3zerodigital.com',
-    siteName: '3 Zero Digital',
-    images: ['https://3zerodigital.com/images/social-banner.png'],
+    title: `${siteMetadata.title} - Achieving Perfection with 0 Vulnerability, 0 Downtime, 0 Error`,
+    description: siteMetadata.description,
+    url: siteMetadata.url,
+    siteName: siteMetadata.title,
+    images: [siteMetadata.socialBanner],
     locale: 'en_US',
     type: 'website',
   },
   alternates: {
-    canonical: 'https://3zerodigital.com',
+    canonical: siteMetadata.url,
     types: {
-      'application/rss+xml': 'https://3zerodigital.com/feed.xml',
+      'application/rss+xml': `${siteMetadata.url}/feed.xml`,
     },
   },
   robots: {
@@ -45,10 +42,9 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title:
-      '3 Zero Digital - Achieving Perfection with 0 Vulnerability, 0 Downtime, 0 Error',
+    title: `${siteMetadata.title} - Achieving Perfection with 0 Vulnerability, 0 Downtime, 0 Error`,
     card: 'summary_large_image',
-    images: ['https://3zerodigital.com/images/social-banner.jpg'],
+    images: [siteMetadata.socialBanner],
   },
 };
 

@@ -1,6 +1,9 @@
+import { getServiceMetadata } from '@/app/seo';
 import Link from 'next/link';
 
 export const dynamic = 'force-static';
+
+export const metadata = getServiceMetadata('/error/403-forbidden');
 
 export default function Fix403ErrorService() {
   return (

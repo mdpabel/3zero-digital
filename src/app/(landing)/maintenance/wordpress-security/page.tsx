@@ -1,6 +1,9 @@
 import React from 'react';
 import PricingTable from './pricing-table';
 import { getProduct } from '@/lib/product/get-product';
+import { getServiceMetadata } from '@/app/seo';
+
+export const metadata = getServiceMetadata('/maintenance/wordpress-security');
 
 export const dynamic = 'force-static';
 

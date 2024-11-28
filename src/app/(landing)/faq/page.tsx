@@ -5,6 +5,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { genMetaData } from '@/app/seo';
+
+export const metadata = genMetaData({
+  title: 'Frequently asked questions',
+});
 
 export const dynamic = 'force-static';
 

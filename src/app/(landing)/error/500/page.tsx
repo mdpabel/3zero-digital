@@ -1,6 +1,9 @@
+import { getServiceMetadata } from '@/app/seo';
 import Link from 'next/link';
 
 export const dynamic = 'force-static';
+
+export const metadata = getServiceMetadata('/error/500');
 
 export default function Fix500ErrorService() {
   return (

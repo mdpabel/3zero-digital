@@ -1,3 +1,9 @@
+import { genMetaData } from '@/app/seo';
+
+export const metadata = genMetaData({
+  title: 'Payment cancel',
+});
+
 const PaymentCancel = () => {
   return (
     <div className='relative bg-white dark:bg-[#030712] px-10 md:px-20 py-10 md:py-20'>

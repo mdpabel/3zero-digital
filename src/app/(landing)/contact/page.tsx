@@ -1,4 +1,9 @@
 import ContactForm from './contact-form';
+import { genMetaData } from '@/app/seo';
+
+export const metadata = genMetaData({
+  title: 'Contact us',
+});
 
 export const dynamic = 'force-static';
 

@@ -5,8 +5,11 @@ import CheckboxGroup from '@/components/development/checkbox-group';
 import Textarea from '@/components/development/textarea';
 import FormButton from '@/components/common/form-button';
 import { frontendFormSubmission } from '@/actions/services-form/frontend-form-submission';
+import { getServiceMetadata } from '@/app/seo';
 
 export const dynamic = 'force-static';
+
+export const metadata = getServiceMetadata('/development/frontend');
 
 export default function FrontendWebDevelopment() {
   const websiteTypes = [

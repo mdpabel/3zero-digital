@@ -5,8 +5,11 @@ import CheckboxGroup from '@/components/development/checkbox-group';
 import Textarea from '@/components/development/textarea';
 import FormButton from '@/components/common/form-button';
 import { htmlCssFormSubmission } from '@/actions/services-form/html-css-static-form-submission';
+import { getServiceMetadata } from '@/app/seo';
 
 export const dynamic = 'force-static';
+
+export const metadata = getServiceMetadata('/development/static-sites');
 
 export default function HtmlCssStaticDevelopment() {
   const websiteTypes = [

@@ -5,8 +5,11 @@ import CheckboxGroup from '@/components/development/checkbox-group';
 import Textarea from '@/components/development/textarea';
 import FormButton from '@/components/common/form-button';
 import { mernFormSubmission } from '@/actions/services-form/mern-form-submission';
+import { getServiceMetadata } from '@/app/seo';
 
 export const dynamic = 'force-static';
+
+export const metadata = getServiceMetadata('/development/mern-stack');
 
 export default function MernStackDevelopment() {
   const projectTypes = [

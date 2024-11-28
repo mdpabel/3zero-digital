@@ -1,6 +1,9 @@
+import { getServiceMetadata } from '@/app/seo';
 import Link from 'next/link';
 
 export const dynamic = 'force-static';
+
+export const metadata = getServiceMetadata('/error/404');
 
 export default function Fix404ErrorService() {
   return (

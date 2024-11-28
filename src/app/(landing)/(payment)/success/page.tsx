@@ -1,6 +1,11 @@
 import { stripe } from '@/lib/stripe/stripe';
 import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
+import { genMetaData } from '@/app/seo';
+
+export const metadata = genMetaData({
+  title: 'Payment success',
+});
 
 type Props = {
   searchParams: Promise<{

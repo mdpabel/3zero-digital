@@ -6,6 +6,11 @@ import {
   FaMoneyBillWave,
   FaExclamationTriangle,
 } from 'react-icons/fa';
+import { genMetaData } from '@/app/seo';
+
+export const metadata = genMetaData({
+  title: 'Terms of Service',
+});
 
 export const dynamic = 'force-static';
 
