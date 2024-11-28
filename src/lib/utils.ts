@@ -71,3 +71,11 @@ export const formatDate = (dateString: string): string => {
     day: 'numeric',
   }).format(date);
 };
+
+export const generateTitleFromSlug = (slug: string) => {
+  // Split the slug by hyphens and join by spaces
+  const title = slug.split('-').join(' ');
+
+  // Capitalize the first letter of the title and make the rest lowercase
+  return title.charAt(0).toUpperCase() + title.slice(1);
+};
