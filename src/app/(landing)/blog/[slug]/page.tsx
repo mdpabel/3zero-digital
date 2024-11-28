@@ -111,8 +111,6 @@ const BlogPage = async ({ params }: Props) => {
     return <div>Post not found</div>;
   }
 
-  console.log({ post });
-
   return (
     <article className='space-y-4 mx-auto py-8 max-w-3xl'>
       {/* Date */}
