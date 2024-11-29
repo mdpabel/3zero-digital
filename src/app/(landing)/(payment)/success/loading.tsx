@@ -1,6 +1,6 @@
 const PaymentSuccessLoading = () => {
   return (
-    <div className='relative bg-white dark:bg-[#030712] px-10 md:px-20 py-10 md:py-20'>
+    <div className='relative px-10 md:px-20 py-10 md:py-20'>
       <div className='mx-auto w-full max-w-6xl text-center container'>
         <div className='bg-gray-200 dark:bg-gray-700 mx-auto mb-6 rounded w-3/4 md:w-2/4 h-10'></div>
 

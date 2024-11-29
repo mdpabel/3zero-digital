@@ -34,7 +34,7 @@ const PaymentSuccess = async ({ searchParams }: Props) => {
     const paymentStatus = session.payment_status;
 
     return (
-      <div className='relative bg-white dark:bg-[#030712] px-10 md:px-20 py-10 md:py-20'>
+      <div className='relative px-10 md:px-20 py-10 md:py-20'>
         <div className='mx-auto w-full max-w-6xl text-center container'>
           <div className='mb-10 text-center'>
             <h1 className='mb-6 font-bold text-4xl text-zinc-800 md:text-5xl dark:text-zinc-200'>
@@ -77,7 +77,7 @@ const PaymentSuccess = async ({ searchParams }: Props) => {
     console.error('Error retrieving payment details:', error);
 
     return (
-      <div className='relative bg-white dark:bg-[#030712] px-10 md:px-20 py-10 md:py-20'>
+      <div className='relative px-10 md:px-20 py-10 md:py-20'>
         <div className='mx-auto w-full max-w-6xl text-center container'>
           <h1 className='mb-4 font-bold text-4xl text-red-500 md:text-5xl'>
             ⚠️ Invalid or Unauthorized Session

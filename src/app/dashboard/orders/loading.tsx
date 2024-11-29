@@ -20,7 +20,7 @@ const pageTitle = 'Your Orders';
 
 const TableSkeleton = () => {
   return (
-    <div className='bg-white dark:bg-[#030712] py-10 md:py-20'>
+    <div className='py-10 md:py-20'>
       <div className='mx-auto max-w-6xl container'>
         <h1 className='mb-6 font-bold text-3xl text-zinc-800 md:text-5xl dark:text-zinc-200'>
           {pageTitle}

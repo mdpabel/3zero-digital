@@ -6,7 +6,7 @@ export const metadata = genMetaData({
 
 const PaymentCancel = () => {
   return (
-    <div className='relative bg-white dark:bg-[#030712] px-10 md:px-20 py-10 md:py-20'>
+    <div className='relative px-10 md:px-20 py-10 md:py-20'>
       <div className='mx-auto w-full max-w-6xl text-center container'>
         <h1 className='mb-6 font-bold text-4xl text-zinc-800 md:text-5xl dark:text-zinc-200'>
           ❌ Payment Cancelled

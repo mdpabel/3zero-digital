@@ -13,7 +13,7 @@ const OrderPage = async () => {
   });
 
   return (
-    <div className='bg-white dark:bg-[#030712] md:px-10 py-10 md:py-20'>
+    <div className='md:px-10 py-10 md:py-20'>
       <div className='mx-auto max-w-6xl container'>
         <h1 className='mb-6 font-bold text-3xl text-zinc-800 md:text-5xl dark:text-zinc-200'>
           Your Orders

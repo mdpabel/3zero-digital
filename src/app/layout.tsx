@@ -9,12 +9,12 @@ import { siteMetadata } from './metadata';
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.url),
   title: {
-    default: `${siteMetadata.title} - Achieving Perfection with 0 Vulnerability, 0 Downtime, 0 Error`,
+    default: `${siteMetadata.title} - Secure All-in-One Website Solutions.`,
     template: '%s | ' + siteMetadata.title,
   },
   description: siteMetadata.description,
   openGraph: {
-    title: `${siteMetadata.title} - Achieving Perfection with 0 Vulnerability, 0 Downtime, 0 Error`,
+    title: `${siteMetadata.title} - Secure All-in-One Website Solutions.`,
     description: siteMetadata.description,
     url: siteMetadata.url,
     siteName: siteMetadata.title,
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: `${siteMetadata.title} - Achieving Perfection with 0 Vulnerability, 0 Downtime, 0 Error`,
+    title: `${siteMetadata.title} - Secure All-in-One Website Solutions.`,
     card: 'summary_large_image',
     images: [siteMetadata.socialBanner],
   },
