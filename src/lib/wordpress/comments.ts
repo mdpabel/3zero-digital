@@ -8,7 +8,7 @@ export const fetchComments = async (postId: number) => {
       {
         cache: 'force-cache',
         next: {
-          tags: ['comments'],
+          tags: ['comments', 'post'],
         },
       },
     );

@@ -14,7 +14,7 @@ export const fetchCategories = cache(
       const response = await fetch(url, {
         cache: 'force-cache',
         next: {
-          tags: ['categories'],
+          tags: ['categories', 'post'],
         },
       });
 
@@ -41,7 +41,7 @@ export const getCategoryBySlug = cache(
         {
           cache: 'force-cache',
           next: {
-            tags: ['categories'],
+            tags: ['categories', 'post'],
           },
         },
       );

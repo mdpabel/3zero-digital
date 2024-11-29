@@ -8,7 +8,7 @@ export const fetchTags = cache(async (): Promise<WP_REST_API_Tags> => {
     const response = await fetch(`${API_URL}/wp-json/wp/v2/tags`, {
       cache: 'force-cache',
       next: {
-        tags: ['tags'],
+        tags: ['tags', 'post'],
       },
     });
     if (!response.ok) {

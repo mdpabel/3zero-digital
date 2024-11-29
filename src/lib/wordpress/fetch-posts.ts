@@ -74,7 +74,7 @@ export const getPosts = cache(
         {
           cache: 'force-cache',
           next: {
-            tags: ['posts'],
+            tags: ['posts', 'post'],
           },
         },
       );
@@ -121,7 +121,7 @@ export const getPostsWithTagNames = cache(
       const tagsResponse = await fetch(`${API_URL}/wp-json/wp/v2/tags`, {
         cache: 'force-cache',
         next: {
-          tags: ['posts'],
+          tags: ['posts', 'post'],
         },
       });
 
