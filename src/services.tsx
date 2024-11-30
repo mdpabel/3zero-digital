@@ -35,7 +35,7 @@ export const services = [
     subMenuItems: [
       {
         label: 'WordPress Solutions',
-        href: '/development/wordpress',
+        href: '/wordpress',
         description: 'Custom themes, plugins, and WordPress site development.',
         icon: <FaWordpress />,
         featured: true,
@@ -48,7 +48,7 @@ export const services = [
       },
       {
         label: 'Headless WordPress & Next.js',
-        href: '/development/headless-wordpress',
+        href: '/headless-wordpress',
         description:
           'Build modern, high-performance headless WordPress sites with Next.js.',
         icon: <FaReact />,
@@ -61,7 +61,7 @@ export const services = [
       },
       {
         label: 'Shopify Development',
-        href: '/development/shopify',
+        href: '/shopify',
         description:
           'Create scalable and engaging e-commerce stores using Shopify.',
         icon: <FaShopify />,
@@ -74,7 +74,7 @@ export const services = [
       },
       {
         label: 'Fullstack Next.js Applications',
-        href: '/development/nextjs-fullstack',
+        href: '/nextjs-fullstack',
         description: 'End-to-end Next.js application development.',
         icon: <FaNodeJs />,
         featured: true,
@@ -86,7 +86,7 @@ export const services = [
       },
       {
         label: 'MERN Stack Development',
-        href: '/development/mern-stack',
+        href: '/mern-stack',
         description:
           'Full-stack development using MongoDB, Express, React, and Node.js.',
         icon: <FaReact />,
@@ -99,7 +99,7 @@ export const services = [
       },
       {
         label: 'Frontend',
-        href: '/development/frontend',
+        href: '/frontend',
         description: 'Modern frontend development using HTML, CSS, JavaScript.',
         icon: <FaCode />,
         featured: true,
@@ -111,7 +111,7 @@ export const services = [
       },
       {
         label: 'Static HTML & CSS Websites',
-        href: '/development/static-sites',
+        href: '/static-sites',
         description:
           'Develop lightweight, responsive static websites with HTML5 and CSS3.',
         icon: <FaHtml5 />,
@@ -139,7 +139,7 @@ export const services = [
     subMenuItems: [
       {
         label: 'WordPress Malware Removal',
-        href: '/maintenance/wordpress-malware-removal',
+        href: '/wordpress-malware-removal',
         description: 'Fix hacked sites with malware or redirect issues.',
         icon: <FaBug />,
         featured: true,
@@ -151,7 +151,7 @@ export const services = [
       },
       {
         label: 'WordPress Speed Optimization',
-        href: '/maintenance/wordpress-speed-optimization',
+        href: '/wordpress-speed-optimization',
         description: 'Speed up your WordPress website for optimal performance.',
         icon: <FaRocket />,
         featured: true,
@@ -163,7 +163,7 @@ export const services = [
       },
       {
         label: 'WordPress Security',
-        href: '/maintenance/wordpress-security',
+        href: '/wordpress-security',
         description: 'Enhance WordPress security to prevent attacks.',
         icon: <FaShieldAlt />,
         featured: true,
@@ -175,7 +175,7 @@ export const services = [
       },
       {
         label: 'Ongoing WordPress Maintenance',
-        href: '/maintenance/ongoing-wordpress-maintenance',
+        href: '/ongoing-wordpress-maintenance',
         description: 'Continuous backups, updates, and monitoring.',
         icon: <FaShieldAlt />,
         featured: true,
@@ -188,7 +188,7 @@ export const services = [
       },
       {
         label: 'Blacklist Removal',
-        href: '/maintenance/blacklist-removal',
+        href: '/blacklist-removal',
         description:
           'Remove your website from blacklists and restore its reputation.',
         icon: <FaShieldAlt />,
@@ -201,7 +201,7 @@ export const services = [
       },
       {
         label: 'Email Deliverability Issues',
-        href: '/maintenance/email-deliverability-issues',
+        href: '/email-deliverability-issues',
         description:
           'Resolve issues with email deliverability, spam filters, and blacklisting.',
         icon: <FaEnvelope />,
@@ -214,7 +214,7 @@ export const services = [
       },
       {
         label: 'Website Migration',
-        href: '/maintenance/website-migration',
+        href: '/website-migration',
         description:
           'Smoothly migrate your website to a new host or platform without downtime.',
         icon: <FaServer />,
@@ -227,7 +227,7 @@ export const services = [
       },
       {
         label: 'SSL Installation',
-        href: '/maintenance/ssl-installation',
+        href: '/ssl-installation',
         description:
           'Secure your website with SSL installation, ensuring safe data transmission.',
         icon: <FaShieldAlt />,
@@ -255,7 +255,7 @@ export const services = [
     subMenuItems: [
       {
         label: '404 Page',
-        href: '/error/404',
+        href: '/404-not-found-error',
         description: 'Fix 404 errors and ensure proper redirection.',
         icon: <FaExclamationTriangle />,
         featured: true,
@@ -267,7 +267,7 @@ export const services = [
       },
       {
         label: '500 Page',
-        href: '/error/500',
+        href: '/500-internal-server-error',
         description: 'Resolve 500 Internal Server Errors.',
         icon: <FaExclamationTriangle />,
         featured: true,
@@ -280,7 +280,7 @@ export const services = [
       },
       {
         label: '403 Forbidden',
-        href: '/error/403-forbidden',
+        href: '/403-forbidden',
         description: 'Fix 403 errors for access issues.',
         icon: <FaExclamationTriangle />,
         featured: true,
@@ -292,7 +292,7 @@ export const services = [
       },
       {
         label: 'Mixed Content Error',
-        href: '/error/mixed-content-error',
+        href: '/mixed-content-error',
         description:
           'Resolve mixed content errors to ensure all elements are loaded securely.',
         icon: <FaExclamationTriangle />,
@@ -305,7 +305,7 @@ export const services = [
       },
       {
         label: 'White Screen Of Death',
-        href: '/error/white-screen-of-death',
+        href: '/white-screen-of-death',
         description:
           'Diagnose and fix the white screen issue that makes your site inaccessible.',
         icon: <FaExclamationTriangle />,
@@ -333,7 +333,7 @@ export const services = [
     subMenuItems: [
       {
         label: '3D Model',
-        href: '/marketing/3d-model',
+        href: '/3d-model',
         description: 'Create stunning 3D models for your business or projects.',
         icon: <FaCube />,
         featured: true,
@@ -345,7 +345,7 @@ export const services = [
       },
       {
         label: '3D Render Image',
-        href: '/marketing/3d-render-image',
+        href: '/3d-render-image',
         description:
           'Generate high-quality 3D render images for visualization and marketing.',
         icon: <FaImage />,
@@ -358,7 +358,7 @@ export const services = [
       },
       {
         label: '3D Animation',
-        href: '/marketing/3d-animation',
+        href: '/3d-animation',
         description:
           'Develop captivating 3D animations to promote your products or services.',
         icon: <FaPlay />,
@@ -371,7 +371,7 @@ export const services = [
       },
       {
         label: 'SEO Optimization',
-        href: '/marketing/seo-optimization',
+        href: '/seo-optimization',
         description: 'Optimize your site for search engine visibility.',
         icon: <FaRocket />,
         featured: true,
@@ -383,7 +383,7 @@ export const services = [
       },
       {
         label: 'Backlink Building',
-        href: '/marketing/backlink-building',
+        href: '/backlink-building',
         description:
           'Increase your site’s authority through strategic backlink building.',
         icon: <FaLink />,
@@ -396,7 +396,7 @@ export const services = [
       },
       {
         label: 'Social Media Marketing',
-        href: '/marketing/social-media',
+        href: '/social-media',
         description:
           'Boost your brand’s online presence with effective social media marketing.',
         icon: <FaFacebook />,

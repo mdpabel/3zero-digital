@@ -1,4 +1,4 @@
-import { fetchCaseStudies } from '@/lib/wordpress';
+import { fetchCaseStudies } from '@/lib/case-study';
 import { fetchCategories } from '@/lib/wordpress/fetch-category';
 import { getPosts } from '@/lib/wordpress/fetch-posts';
 import { fetchTags } from '@/lib/wordpress/fetch-tags';

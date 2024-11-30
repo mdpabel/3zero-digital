@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { fetchCaseStudies } from '@/lib/wordpress';
+import { fetchCaseStudies } from '@/lib/case-study';
 import { Button } from '@/components/ui/button';
 import { genMetaData } from '@/app/seo';
 

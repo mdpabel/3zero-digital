@@ -1,5 +1,5 @@
 import DOMPurify from 'isomorphic-dompurify';
-import { fetchCaseStudies, fetchCaseStudyBySlug } from '@/lib/wordpress';
+import { fetchCaseStudies, fetchCaseStudyBySlug } from '@/lib/case-study';
 
 export const dynamic = 'force-static';
 

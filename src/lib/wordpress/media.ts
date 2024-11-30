@@ -12,7 +12,6 @@ export const getMediaById = cache(async (id: number) => {
 
     if (!response.ok) {
       if (response.status === 404) {
-        console.warn(`Media with ID ${id} not found`);
         return null;
       }
     }

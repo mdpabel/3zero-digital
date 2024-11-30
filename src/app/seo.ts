@@ -71,5 +71,5 @@ export function getServiceMetadata(serviceHref: string) {
   });
 }
 
-// Example usage - Generating metadata for /marketing/social-media
-const metadata = getServiceMetadata('/marketing/social-media');
+// Example usage - Generating metadata for /social-media
+const metadata = getServiceMetadata('/social-media');

@@ -1,5 +1,4 @@
 'use client';
-import { handleThemeSwitcher } from '@/actions/theme-switcher';
 import { cn } from '@/lib/utils';
 import { useTheme } from 'next-themes';
 import { MoonStarIcon, SunIcon } from 'lucide-react';
@@ -21,9 +20,7 @@ const ThemeSwitcher = ({ className = '' }: { className?: string }) => {
 
   return (
     <div className={cn('flex justify-center items-center', className)}>
-      <form
-        action={handleThemeSwitcher}
-        className='flex justify-center items-center'>
+      <form className='flex justify-center items-center'>
         {dark ? (
           <button
             onClick={() => setTheme('light')}

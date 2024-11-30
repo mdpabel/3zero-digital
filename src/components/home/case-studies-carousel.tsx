@@ -1,6 +1,6 @@
 'use client';
 
-import { CaseStudy } from '@/lib/wordpress';
+import { CaseStudy } from '@/lib/case-study';
 import { useState, useEffect, useCallback } from 'react';
 import { FaShieldAlt, FaClock } from 'react-icons/fa';
 import { Button } from '../ui/button';
