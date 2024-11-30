@@ -6,6 +6,7 @@ import { getServiceMetadata } from '@/app/seo';
 export const metadata = getServiceMetadata('/ssl-installation');
 
 export const dynamic = 'force-static';
+
 const benefits = [
   'Encrypts data between your website and visitors',
   'Boosts search engine rankings with HTTPS',

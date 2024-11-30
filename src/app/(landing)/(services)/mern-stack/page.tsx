@@ -4,6 +4,8 @@ import Quiz from '@/components/comment/quiz';
 import { benefits, questions } from './data';
 import { getServiceMetadata } from '@/app/seo';
 
+export const dynamic = 'force-static';
+
 export const metadata = getServiceMetadata('/mern-stack');
 
 const MernStack = () => {

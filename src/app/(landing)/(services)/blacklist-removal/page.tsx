@@ -1,6 +1,7 @@
-import prisma from '@/prisma/db';
 import BlacklistRemovalVendors from './blacklist-removal-vendors';
 import { getProduct } from '@/lib/product/get-product';
+
+export const dynamic = 'force-static';
 
 import { getServiceMetadata } from '@/app/seo';
 

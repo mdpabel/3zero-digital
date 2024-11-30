@@ -4,6 +4,8 @@ import { formatCurrency } from '@/lib/utils';
 import { getProduct } from '@/lib/product/get-product';
 import PricingTable from './pricing-table';
 
+export const dynamic = 'force-static';
+
 import { getServiceMetadata } from '@/app/seo';
 
 export const metadata = getServiceMetadata('/email-deliverability-issues');
