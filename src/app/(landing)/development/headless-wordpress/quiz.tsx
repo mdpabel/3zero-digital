@@ -87,11 +87,13 @@ const Quiz = () => {
     setCompleted(false);
   };
 
+  const year = new Date().getFullYear();
+
   return (
     <section className='py-16'>
       <div className='mx-auto px-4 container-xl'>
         <h2 className='mb-8 font-semibold text-3xl text-center text-zinc-800 dark:text-zinc-200'>
-          Is Your Website Ready for 2024? Take Our 30-Second Quiz!
+          Is Your Website Ready for {year}? Take Our 30-Second Quiz!
         </h2>
 
         {!completed ? (
@@ -121,8 +123,8 @@ const Quiz = () => {
             </h3>
             <p className='mt-4 text-zinc-600 dark:text-zinc-300'>
               {score === questions.length
-                ? 'Great job! Your website is ready for 2024!'
-                : 'Your website could benefit from some updates to get ready for 2024.'}
+                ? `Great job! Your website is ready for ${year}!`
+                : `Your website could benefit from some updates to get ready for ${year}.`}
             </p>
 
             <div className='mt-8'>
@@ -142,7 +144,7 @@ const Quiz = () => {
                   <p className='mt-4 text-zinc-600 dark:text-zinc-300'>
                     Your website could benefit from our modern web services.
                     Contact us today to optimize your performance and prepare
-                    for 2024.
+                    for {year}.
                   </p>
                 </div>
               )}

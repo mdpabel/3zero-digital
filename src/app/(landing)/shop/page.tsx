@@ -16,7 +16,7 @@ const ShopPage = () => {
     'Marketing',
     'Forums',
     'Muse Templates',
-    'Jamstack',
+    'Headless',
     'Courses',
     'Template Kits',
     'UI Templates',
