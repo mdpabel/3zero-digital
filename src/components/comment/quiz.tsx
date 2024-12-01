@@ -44,7 +44,7 @@ const Quiz = ({ questions }: { questions: Question[] }) => {
 
         {!completed ? (
           <div className='flex flex-col items-center gap-8'>
-            <div className='bg-white dark:bg-zinc-900 shadow-lg px-8 py-12 rounded-lg w-full md:max-w-xl'>
+            <div className='bg-white dark:bg-gray-900 shadow-lg px-8 py-12 rounded-lg w-full md:max-w-xl'>
               <h3 className='font-semibold text-xl text-zinc-800 dark:text-zinc-200'>
                 {questions[currentQuestionIndex].question}
               </h3>

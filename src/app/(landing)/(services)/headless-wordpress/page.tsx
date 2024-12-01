@@ -3,6 +3,9 @@ import KeyBenefits from '@/components/comment/key-benefits';
 import Quiz from '@/components/comment/quiz';
 import { benefits, questions } from './data';
 import { getServiceMetadata } from '@/app/seo';
+import PerformanceComparison from './performance-comparison';
+import DevelopmentServiceForm from '@/components/comment/development-service-form';
+import { FaCogs } from 'react-icons/fa';
 
 export const dynamic = 'force-static';
 
@@ -23,10 +26,17 @@ const HeadlessWordPressAndNextJs = () => {
         firstBtnLink='/get-a-quote?service=headless-wordpress'
       />
 
-      <KeyBenefits
+      <PerformanceComparison />
+
+      <DevelopmentServiceForm
+        Icon={<FaCogs className='text-2xl text-white md:text-3xl' />}
+        title='Headless WordPress & NextJs'
+      />
+
+      {/* <KeyBenefits
         benefits={benefits}
         title='Key Benefits of Headless WordPress & Next.js'
-      />
+      /> */}
       <Quiz questions={questions} />
     </div>
   );
