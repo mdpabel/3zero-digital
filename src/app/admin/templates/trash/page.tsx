@@ -9,7 +9,7 @@ const DeletedTemplates = async () => {
       deleted: true,
     },
     include: {
-      category: true,
+      categories: true,
     },
   });
 
@@ -56,7 +56,10 @@ const DeletedTemplates = async () => {
                     {template.name}
                   </td>
                   <td className='px-6 py-4 text-gray-800 text-sm dark:text-gray-200'>
-                    {template.category.name}
+                    {/* Display all categories as a comma-separated list */}
+                    {template.categories
+                      .map((category) => category.name)
+                      .join(', ')}
                   </td>
                   <td className='px-6 py-4 text-gray-800 text-sm dark:text-gray-200'>
                     ${template.price.toFixed(2)}
