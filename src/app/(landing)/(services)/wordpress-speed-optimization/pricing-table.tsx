@@ -24,7 +24,7 @@ const PricingTable = ({
 
   return (
     <div className='flex flex-col justify-center items-center'>
-      <div className='bg-gray-100 dark:bg-gray-900 shadow-md p-6 rounded-lg w-full'>
+      <div className='shadow-md p-6 rounded-lg w-full'>
         <h3 className='mb-4 font-semibold text-2xl text-center text-zinc-800 dark:text-zinc-200'>
           Speed Optimization Service
         </h3>

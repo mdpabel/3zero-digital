@@ -58,7 +58,7 @@ const BlacklistRemovalVendors = ({
       </p>
 
       {/* Top Total Price and Checkout Button */}
-      <div className='flex justify-between items-center bg-gray-100 dark:bg-gray-900 mb-8 p-6 rounded-lg'>
+      <div className='flex justify-between items-center mb-8 p-6 rounded-lg'>
         <div>
           <h3 className='flex items-center space-x-2 font-semibold text-2xl text-zinc-800 dark:text-zinc-200'>
             Total Price:{' '}

@@ -9,7 +9,7 @@ export const dynamic = 'force-static';
 
 const CookiePolicy = () => {
   return (
-    <div className='bg-gray-100 dark:bg-gray-900 px-6 py-12 md:py-20'>
+    <div className='px-6 py-12 md:py-20'>
       <div className='mx-auto max-w-5xl'>
         <h1 className='font-bold text-3xl text-center text-gray-900 md:text-5xl dark:text-white'>
           Cookie Policy

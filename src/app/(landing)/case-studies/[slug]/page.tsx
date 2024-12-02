@@ -56,7 +56,7 @@ const CaseStudy = async ({ params }: Props) => {
 
       {/* Outcomes Section */}
       <section>
-        <div className='bg-gray-100 dark:bg-gray-900 shadow p-8 rounded-lg'>
+        <div className='shadow p-8 rounded-lg'>
           <h2 className='mb-4 font-bold text-2xl text-center text-zinc-800 dark:text-zinc-200'>
             The Outcome
           </h2>
