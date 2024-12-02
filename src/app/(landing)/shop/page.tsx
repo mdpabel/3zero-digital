@@ -1,62 +1,28 @@
 import React from 'react';
 import CardImage from './images';
 import { genMetaData } from '@/app/seo';
+import prisma from '@/prisma/db';
+import { FaCartShopping } from 'react-icons/fa6';
+import Link from 'next/link';
 
 export const metadata = genMetaData({
   title: 'Shop',
 });
 
-const ShopPage = () => {
-  const categories = [
-    'Site Templates',
-    'WordPress',
-    'CMS Themes',
-    'eCommerce',
-    'Blogging',
-    'Marketing',
-    'Forums',
-    'Muse Templates',
-    'Headless',
-    'Courses',
-    'Template Kits',
-    'UI Templates',
-  ];
+const ShopPage = async () => {
+  const categories = await prisma.templateCategory.findMany();
 
-  const products = [
-    {
-      name: 'Modern Portfolio Template',
-      images: [
-        'https://via.placeholder.com/300x200?text=Image+1',
-        'https://via.placeholder.com/300x200?text=Image+2',
-        'https://via.placeholder.com/300x200?text=Image+3',
-      ],
-      price: '$59',
-      salePrice: '$49',
+  const products = await prisma.template.findMany({
+    where: {
+      deleted: false,
     },
-    {
-      name: 'Ecommerce Store Template',
-      images: [
-        'https://via.placeholder.com/300x200?text=Image+1',
-        'https://via.placeholder.com/300x200?text=Image+2',
-        'https://via.placeholder.com/300x200?text=Image+3',
-      ],
-      price: '$89',
-      salePrice: '$79',
+    include: {
+      images: true,
     },
-    {
-      name: 'Blog & Magazine Template',
-      images: [
-        'https://via.placeholder.com/300x200?text=Image+1',
-        'https://via.placeholder.com/300x200?text=Image+2',
-        'https://via.placeholder.com/300x200?text=Image+3',
-      ],
-      price: '$69',
-      salePrice: '$59',
-    },
-  ];
+  });
 
   return (
-    <div className='relative mx-auto px-10 py-10 w-full max-w-6xl container'>
+    <div className='relative mx-auto px-4 py-10 w-full max-w-6xl container'>
       {/* Header Section */}
       <header className='mb-10 text-center'>
         <h1 className='font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
@@ -75,11 +41,11 @@ const ShopPage = () => {
           Categories
         </h2>
         <div className='flex flex-wrap gap-4'>
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <button
-              key={index}
+              key={category.id}
               className='bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800 shadow-md px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200'>
-              {category}
+              {category.name}
             </button>
           ))}
         </div>
@@ -100,7 +66,7 @@ const ShopPage = () => {
 
               {/* Product Info */}
               <h3 className='mb-2 font-bold text-lg text-zinc-800 dark:text-zinc-200'>
-                {product.name}
+                <Link href={`/shop/${product.slug}`}>{product.name}</Link>
               </h3>
               <div className='flex justify-between items-center text-gray-600 dark:text-gray-400'>
                 <div className='flex flex-col'>
@@ -110,12 +76,15 @@ const ShopPage = () => {
                   </span>
                 </div>
                 <div className='flex items-center space-x-2'>
-                  <button className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-md px-4 py-2 rounded-lg font-semibold text-white'>
+                  <Link
+                    href={product.liveUrl}
+                    target='_blank'
+                    className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-md px-4 py-1.5 rounded-lg font-semibold text-white'>
                     Live Preview
-                  </button>
+                  </Link>
                   <button className='bg-gray-100 dark:bg-gray-800 shadow-md px-4 py-2 rounded-full'>
                     <span role='img' aria-label='cart'>
-                      🛒
+                      <FaCartShopping />
                     </span>
                   </button>
                 </div>

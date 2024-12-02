@@ -24,7 +24,7 @@ const WebsiteMigration = async () => {
   );
 
   return (
-    <div className='bg-white dark:bg-[#0B1120] shadow-lg mx-auto p-10 rounded-lg max-w-6xl'>
+    <div className='shadow-lg mx-auto p-10 rounded-lg max-w-6xl'>
       <h2 className='mb-8 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
         Website Migration Services
       </h2>

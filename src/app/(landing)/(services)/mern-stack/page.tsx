@@ -3,6 +3,8 @@ import KeyBenefits from '@/components/comment/key-benefits';
 import Quiz from '@/components/comment/quiz';
 import { benefits, questions } from './data';
 import { getServiceMetadata } from '@/app/seo';
+import DevelopmentServiceForm from '@/components/comment/development-service-form';
+import { FaNode } from 'react-icons/fa';
 
 export const dynamic = 'force-static';
 
@@ -14,13 +16,18 @@ const MernStack = () => {
       <HeroSection
         title='Fullstack App Development with MERN Stack'
         subtitle='Dynamic, Scalable, and Efficient Web Applications Built to Empower Your Business.'
-        description='Unlock the power of modern web technologies with our MERN stack development services. We specialize in creating dynamic and scalable fullstack applications using MongoDB, Express.js, React, and Node.js. Whether you need a high-performance e-commerce platform, a robust SaaS solution, or a custom app, we deliver tailored solutions that drive growth and efficiency for your business.'
+        description='Build powerful, scalable apps with our MERN stack expertise. From high-performance eCommerce to custom solutions, we craft dynamic applications that fuel growth and efficiency.'
         youtubeId='na2iB6nBzIc'
         firstBtnText='Build Your Fullstack Solution Today'
         firstBtnLink='/get-a-quote?service=mern-stack'
       />
 
-      <KeyBenefits benefits={benefits} title='Key Benefits of MERN stack' />
+      <DevelopmentServiceForm
+        Icon={<FaNode className='text-2xl text-white md:text-3xl' />}
+        title='Fullstack MERN Solutions for Scalable, High-Performance Applications!'
+      />
+
+      {/* <KeyBenefits benefits={benefits} title='Key Benefits of MERN stack' /> */}
       <Quiz questions={questions} />
     </div>
   );

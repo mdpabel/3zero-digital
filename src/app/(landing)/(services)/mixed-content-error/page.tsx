@@ -8,7 +8,7 @@ export const metadata = getServiceMetadata('/mixed-content-error');
 export default function FixMixedContentErrorService() {
   return (
     <div className='flex flex-col justify-center items-center bg-gradient-to-b from-white dark:from-gray-900 to-gray-100 dark:to-gray-800 p-6 min-h-screen'>
-      <div className='bg-white dark:bg-[#0B1120] shadow-lg p-8 rounded-lg w-full max-w-4xl'>
+      <div className='shadow-lg p-8 rounded-lg w-full max-w-4xl'>
         <h1 className='mb-8 font-bold text-4xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
           Fix Mixed Content Errors
         </h1>

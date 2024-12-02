@@ -14,7 +14,7 @@ const CaseStudyPage = async () => {
   const caseStudies = await fetchCaseStudies();
 
   return (
-    <div className='bg-white dark:bg-[#0B1120] px-4 md:px-20 py-12 md:py-24'>
+    <div className='px-4 md:px-20 py-12 md:py-24'>
       <div className='mx-auto max-w-6xl'>
         <h1 className='mb-10 font-bold text-4xl text-center text-zinc-800 dark:text-zinc-200'>
           Our Case Studies

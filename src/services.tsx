@@ -109,19 +109,6 @@ export const services = [
             'Create modern, responsive user interfaces using the latest frontend technologies like HTML5, CSS3, and JavaScript.',
         },
       },
-      {
-        label: 'Static HTML & CSS Websites',
-        href: '/static-sites',
-        description:
-          'Develop lightweight, responsive static websites with HTML5 and CSS3.',
-        icon: <FaHtml5 />,
-        featured: true,
-        meta: {
-          title: 'Static HTML & CSS Website Development | Fast & SEO-Friendly',
-          description:
-            'Build lightweight, fast-loading, and SEO-friendly static websites using HTML5 and CSS3.',
-        },
-      },
     ],
   },
   {

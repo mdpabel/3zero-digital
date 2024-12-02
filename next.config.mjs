@@ -11,6 +11,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'blog.3zerodigital.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+      },
     ],
   },
   typescript: {

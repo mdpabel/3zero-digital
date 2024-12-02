@@ -1,6 +1,6 @@
 const UnderDevelopment = () => {
   return (
-    <div className='flex flex-col justify-center items-center bg-white dark:bg-[#0B1120] shadow-lg p-6 rounded-lg min-h-screen text-center'>
+    <div className='flex flex-col justify-center items-center shadow-lg p-6 rounded-lg min-h-screen text-center'>
       <h1 className='mb-6 font-bold text-4xl text-zinc-800 md:text-5xl dark:text-zinc-200'>
         Under Development
       </h1>

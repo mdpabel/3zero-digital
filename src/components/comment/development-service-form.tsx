@@ -237,10 +237,11 @@ const DevelopmentServiceForm = ({ Icon, title }: Props) => {
                 <FormLabel>Required Functionalities</FormLabel>
                 <FormControl>
                   <div className='gap-4 grid grid-cols-2'>
-                    {functionalities.map((func) => (
+                    {functionalities.map((func, index) => (
                       <div key={func} className='flex items-center space-x-2'>
                         <Checkbox
                           value={func}
+                          id={'' + index}
                           checked={field.value?.includes(func)}
                           onCheckedChange={(checked) => {
                             const value = [...(field.value || [])];
@@ -249,7 +250,7 @@ const DevelopmentServiceForm = ({ Icon, title }: Props) => {
                             field.onChange(value);
                           }}
                         />
-                        <label>{func}</label>
+                        <label htmlFor={'' + index}>{func}</label>
                       </div>
                     ))}
                   </div>

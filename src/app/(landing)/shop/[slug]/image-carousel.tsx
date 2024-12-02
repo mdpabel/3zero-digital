@@ -1,11 +1,14 @@
 'use client';
+import { Image as TemplateImage } from '@prisma/client';
 import Slider from 'react-slick';
+
+// Import Slick styles
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Image as PrismaImage } from '@prisma/client';
 import Image from 'next/image';
 
-const CardImage = ({ images }: { images: PrismaImage[] }) => {
+const ImageCarousel = ({ images }: { images: TemplateImage[] }) => {
+  // React Slick Settings
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -21,13 +24,11 @@ const CardImage = ({ images }: { images: PrismaImage[] }) => {
     <div className='relative mb-4'>
       <Slider {...sliderSettings}>
         {images.map((image) => (
-          <Image
+          <img
             key={image.id}
             src={image.url}
             alt={`Product Image ${image.id}`}
-            className='rounded-lg w-full h-40 object-fill'
-            width={200}
-            height={200}
+            className='rounded-lg w-full object-fill'
           />
         ))}
       </Slider>
@@ -35,4 +36,4 @@ const CardImage = ({ images }: { images: PrismaImage[] }) => {
   );
 };
 
-export default CardImage;
+export default ImageCarousel;

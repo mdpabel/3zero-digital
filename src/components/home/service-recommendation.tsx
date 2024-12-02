@@ -9,7 +9,7 @@ const ServiceRecommendationTool = () => {
     });
 
   return (
-    <div className='bg-white dark:bg-[#0B1120] px-4 md:px-10 py-10'>
+    <div className='px-4 md:px-10 py-10'>
       <h2 className='mb-16 font-bold text-4xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
         Find the Perfect Solution for Your Website Needs
       </h2>

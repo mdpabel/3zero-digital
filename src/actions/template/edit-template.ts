@@ -3,17 +3,18 @@
 import prisma from '@/prisma/db';
 import slugify from 'slugify';
 
-export async function addTemplate(_: unknown, formData: FormData) {
+export async function editTemplate(_: any, formData: FormData) {
   try {
     // Extract data from the FormData object
     const name = formData.get('name') as string | null;
     const description = formData.get('description') as string | null;
-    const categoryIds = formData.getAll('categoryIds') as string[];
+    const categoryIds = formData.get('categoryIds') as string;
     const price = parseFloat(formData.get('price') as string);
     const salePrice = parseFloat(formData.get('salePrice') as string) || 0;
     const imageUrls = formData.get('imageUrls') as string | null;
     const templateUrl = formData.get('templateUrl') as string;
     const templateLiveUrl = formData.get('templateLiveUrl') as string;
+    const id = formData.get('id') as string;
 
     // Validate required fields
     if (
@@ -37,21 +38,24 @@ export async function addTemplate(_: unknown, formData: FormData) {
     const categories = await prisma.templateCategory.findMany({
       where: {
         id: {
-          in: categoryIds,
+          in: JSON.parse(categoryIds),
         },
       },
     });
 
-    // Ensure all provided category IDs are valid
-    if (categories.length !== categoryIds.length) {
-      return {
-        success: false,
-        message: 'Some category IDs are invalid.',
-      };
+    // Check if template exists and include related categories
+    const existingTemplate = await prisma.template.findUnique({
+      where: { id },
+      include: { categories: true }, // Include related categories here
+    });
+
+    if (!existingTemplate) {
+      return { success: false, message: 'Template not found' };
     }
 
-    // Save the template in the database
-    await prisma.template.create({
+    // Update the template
+    await prisma.template.update({
+      where: { id },
       data: {
         name,
         slug,
@@ -61,27 +65,31 @@ export async function addTemplate(_: unknown, formData: FormData) {
         fileUrl: templateUrl,
         liveUrl: templateLiveUrl,
         images: {
-          create: images.map((url) => ({ url })), // Directly store image URLs in the database
+          deleteMany: {}, // Delete all existing images before adding new ones
+          create: images.map((url) => ({ url })), // Add new images
         },
         categories: {
+          disconnect: existingTemplate.categories.map((category) => ({
+            id: category.id, // Disconnect previous categories
+          })),
           connect: categories.map((category) => ({
-            id: category.id, // Connect each category to the template
+            id: category.id, // Connect new categories
           })),
         },
       },
     });
 
-    return { success: true, message: 'Template added successfully!' };
+    return { success: true, message: 'Template updated successfully!' };
   } catch (error: any) {
     // Log error for debugging (optional)
-    console.error('Error adding template:', error);
+    console.error('Error editing template:', error);
 
     // Return a standardized error response
     return {
       success: false,
       message:
         error.message ||
-        'An unexpected error occurred while adding the template',
+        'An unexpected error occurred while editing the template',
     };
   }
 }

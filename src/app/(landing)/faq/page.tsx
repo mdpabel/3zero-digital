@@ -78,7 +78,7 @@ const faqs = [
 
 const FAQPage = () => {
   return (
-    <div className='bg-white dark:bg-[#0B1120] px-4 md:px-20 py-12 md:py-24'>
+    <div className='px-4 md:px-20 py-12 md:py-24'>
       <div className='mx-auto max-w-4xl'>
         <h2 className='mb-8 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
           Frequently Asked Questions

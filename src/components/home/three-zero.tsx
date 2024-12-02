@@ -3,7 +3,7 @@ import Title from '../common/title';
 
 const Why3Zero = () => {
   return (
-    <div className='relative bg-white dark:bg-[#0B1120] px-10 md:px-20 py-10 dark:py-20 overflow-hidden'>
+    <div className='relative px-10 md:px-20 py-10 dark:py-20 overflow-hidden'>
       <div className='mx-auto w-full max-w-6xl'>
         <Title
           title='Why Choose 3zero'

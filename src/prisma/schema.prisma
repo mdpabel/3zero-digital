@@ -147,29 +147,31 @@ model User {
 }
 
 // TEMPLATE START 
-
 model TemplateCategory {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
-  name      String     @unique
-  templates Template[]
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  name       String    @unique
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  Template   Template? @relation(fields: [templateId], references: [id])
+  templateId String?   @db.ObjectId
 }
 
 model Template {
-  id          String           @id @default(auto()) @map("_id") @db.ObjectId
-  name        String           @unique
-  fileUrl     String // URL or path to the template file
+  id          String             @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  slug        String
+  fileUrl     String
+  liveUrl     String
   description String?
   price       Float
   salePrice   Float
-  categoryId  String           @db.ObjectId
-  category    TemplateCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryIds String[]           @db.ObjectId // Array of category IDs (workaround for MongoDB)
   images      Image[]
-  deleted     Boolean          @default(false)
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
+  deleted     Boolean            @default(false)
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
   Order       Order[]
+  categories  TemplateCategory[]
 }
 
 model Image {

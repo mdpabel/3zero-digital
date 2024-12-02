@@ -3,9 +3,10 @@
 import prisma from '@/prisma/db';
 import slugify from 'slugify';
 
-export async function addTemplate(_: unknown, formData: FormData) {
+export async function updateTemplate(_: unknown, formData: FormData) {
   try {
     // Extract data from the FormData object
+    const id = formData.get('id') as string | null;
     const name = formData.get('name') as string | null;
     const description = formData.get('description') as string | null;
     const categoryIds = formData.getAll('categoryIds') as string[];
@@ -17,6 +18,7 @@ export async function addTemplate(_: unknown, formData: FormData) {
 
     // Validate required fields
     if (
+      !id ||
       !name ||
       !description ||
       !categoryIds.length ||
@@ -50,8 +52,9 @@ export async function addTemplate(_: unknown, formData: FormData) {
       };
     }
 
-    // Save the template in the database
-    await prisma.template.create({
+    // Update the template in the database
+    await prisma.template.update({
+      where: { id },
       data: {
         name,
         slug,
@@ -61,27 +64,29 @@ export async function addTemplate(_: unknown, formData: FormData) {
         fileUrl: templateUrl,
         liveUrl: templateLiveUrl,
         images: {
+          deleteMany: {}, // Remove all existing images before adding new ones
           create: images.map((url) => ({ url })), // Directly store image URLs in the database
         },
         categories: {
-          connect: categories.map((category) => ({
-            id: category.id, // Connect each category to the template
-          })),
+          disconnect: categoriesToDisconnect.map((category) => ({
+            id: category.id,
+          })), // Disconnect selected categories
+          connect: categories.map((category) => ({ id: category.id })), // Reconnect categories based on the new selection
         },
       },
     });
 
-    return { success: true, message: 'Template added successfully!' };
+    return { success: true, message: 'Template updated successfully!' };
   } catch (error: any) {
     // Log error for debugging (optional)
-    console.error('Error adding template:', error);
+    console.error('Error updating template:', error);
 
     // Return a standardized error response
     return {
       success: false,
       message:
         error.message ||
-        'An unexpected error occurred while adding the template',
+        'An unexpected error occurred while updating the template',
     };
   }
 }

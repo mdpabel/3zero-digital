@@ -45,7 +45,7 @@ const CaseStudy = async ({ params }: Props) => {
   const cleanContent = DOMPurify.sanitize(caseStudy.content);
 
   return (
-    <div className='bg-white dark:bg-[#0B1120] px-4 md:px-20 py-6 md:py-12'>
+    <div className='px-4 md:px-20 py-6 md:py-12'>
       {/* Hero Section */}
       <h1 className='mb-4 pb-3 font-bold text-center text-xl text-zinc-800 md:text-2xl dark:text-zinc-200'>
         {caseStudy.title}

@@ -3,6 +3,8 @@ import KeyBenefits from '@/components/comment/key-benefits';
 import Quiz from '@/components/comment/quiz';
 import { benefits, questions } from './data';
 import { getServiceMetadata } from '@/app/seo';
+import DevelopmentServiceForm from '@/components/comment/development-service-form';
+import { FaWordpress } from 'react-icons/fa';
 
 export const dynamic = 'force-static';
 
@@ -14,16 +16,21 @@ const WordPressDevelopment = () => {
       <HeroSection
         title='Expert WordPress Development'
         subtitle='Custom, Scalable, and Secure Solutions for Your Business Growth.'
-        description='Your website is the cornerstone of your online presence. We specialize in building WordPress sites that are not only visually stunning but also optimized for speed, security, and scalability. Whether you need an eCommerce platform, a business website, or a custom solution, we deliver tailored results to meet your goals and exceed expectations.'
+        description='Your website is key to your online presence. We build WordPress sites that are visually appealing, fast, secure, and scalable. From eCommerce to business websites, we create tailored solutions that meet your goals and exceed expectations.'
         youtubeId='na2iB6nBzIc'
         firstBtnText='Start Building Your Dream Website'
         firstBtnLink='/get-a-quote?service=wordpress'
       />
 
-      <KeyBenefits
+      <DevelopmentServiceForm
+        Icon={<FaWordpress className='text-2xl text-white md:text-3xl' />}
+        title='Custom WordPress Solutions for Seamless Performance & Growth'
+      />
+
+      {/* <KeyBenefits
         benefits={benefits}
         title='Key Benefits of WordPress for Web Development'
-      />
+      /> */}
       <Quiz questions={questions} />
     </div>
   );

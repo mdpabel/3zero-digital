@@ -47,7 +47,7 @@ const SSLInstallation = async () => {
           {benefits.map((benefit, index) => (
             <div
               key={index}
-              className='border-gray-200 dark:border-gray-700 bg-white dark:bg-[#0B1120] shadow-lg hover:shadow-2xl p-6 border rounded-lg transform transition-transform hover:scale-105'>
+              className='border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl p-6 border rounded-lg transform transition-transform hover:scale-105'>
               <div className='flex justify-center items-center bg-gradient-to-r from-[#614385] to-[#516395] mb-4 rounded-full w-12 h-12 text-white'>
                 <span className='font-bold text-xl'>{index + 1}</span>
               </div>

@@ -23,7 +23,7 @@ const WordPressMaintenance = async () => {
   );
 
   return (
-    <div className='bg-white dark:bg-[#0B1120] shadow-lg mx-auto p-8 rounded-lg max-w-6xl'>
+    <div className='shadow-lg mx-auto my-10 p-8 rounded-lg max-w-6xl'>
       <h2 className='mb-6 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
         Ongoing WordPress Security Maintenance
       </h2>

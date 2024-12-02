@@ -5,7 +5,7 @@ export const dynamic = 'force-static';
 
 export default function Custom404() {
   return (
-    <div className='flex justify-center items-center bg-white dark:bg-[#0B1120] h-screen'>
+    <div className='flex justify-center items-center h-screen'>
       <div className='px-4 text-center'>
         <div className='flex justify-center mb-4'>
           <AlertTriangle className='w-16 h-16 text-[#516395]' />
