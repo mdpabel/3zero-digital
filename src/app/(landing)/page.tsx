@@ -1,10 +1,8 @@
-import lazy from 'next/dynamic';
 import React, { Suspense } from 'react';
 import Hero from '@/components/home/hero';
 import Services from '@/components/home/services';
-import CompanyLogosMarquee from '@/components/home/company-logos';
-import CaseStudyCarouselSkeleton from '@/components/home/case-studies-skeleton';
 import CaseStudies from '@/components/home/case-studies';
+import Templates from '@/components/shop/templates';
 
 export const dynamic = 'force-static';
 
@@ -13,8 +11,10 @@ const Home = () => {
     <div>
       <Hero />
       <Services />
-      <CompanyLogosMarquee />
-      <Suspense fallback={<CaseStudyCarouselSkeleton />}>
+      <Suspense fallback='loading...'>
+        <Templates featured />
+      </Suspense>
+      <Suspense fallback='loading...'>
         <CaseStudies />
       </Suspense>
     </div>

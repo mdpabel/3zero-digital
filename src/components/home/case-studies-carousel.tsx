@@ -1,6 +1,6 @@
 'use client';
 
-import { CaseStudy } from '@/lib/case-study';
+import { CaseStudy } from '@/lib/wordpress/case-study';
 import { useState, useEffect, useCallback } from 'react';
 import { FaShieldAlt, FaClock } from 'react-icons/fa';
 import { Button } from '../ui/button';
@@ -39,7 +39,7 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
   const currentStudy = caseStudies[currentIndex];
 
   return (
-    <div className='bg-gray-50 dark:bg-[#0B1120] px-6 md:px-16 py-12'>
+    <div className='px-6 md:px-16 py-12'>
       <Title
         title='Our Case Studies'
         subTitle='Learn more about how we helped businesses achieve their goals.'
@@ -124,12 +124,12 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
         <div className='flex justify-center items-center gap-4'>
           <Button
             onClick={prevSlide}
-            className='shadow-md px-6 py-2 rounded-full font-semibold text-white transition-transform hover:scale-105'>
+            className='shadow-md px-6 py-2 font-semibold text-white transition-transform hover:scale-105'>
             Prev
           </Button>
           <Button
             onClick={nextSlide}
-            className='shadow-md px-6 py-2 rounded-full font-semibold text-white transition-transform hover:scale-105'>
+            className='shadow-md px-6 py-2 font-semibold text-white transition-transform hover:scale-105'>
             Next
           </Button>
         </div>

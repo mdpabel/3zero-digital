@@ -5,7 +5,7 @@ import { Button } from '../ui/button';
 
 const CaseStudyCarouselSkeleton = () => {
   return (
-    <div className='bg-gray-50 dark:bg-[#0B1120] px-6 md:px-16 py-12 animate-pulse'>
+    <div className='bg-gray-50 dark:bg-[#0B1120] mx-auto px-6 md:px-16 py-12 max-w-7xl animate-pulse'>
       {/* Title Section */}
       <div className='mb-8'>
         <div className='bg-gray-200 dark:bg-gray-700 mb-4 rounded w-48 h-6'></div>

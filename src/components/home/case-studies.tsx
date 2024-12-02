@@ -1,4 +1,4 @@
-import { fetchCaseStudies } from '@/lib/case-study';
+import { fetchCaseStudies } from '@/lib/wordpress/case-study';
 import React from 'react';
 import CaseStudyCarousel from './case-studies-carousel';
 

@@ -11,20 +11,18 @@ const BlogList = ({
   posts: WP_REST_API_Posts;
 }) => {
   return (
-    <div>
-      <ul>
-        {posts.map((post, index) => (
-          <li
-            key={index}
-            className={cn(
-              'py-8',
-              index !== posts.length - 1 && 'border-b-neutral-400 border-b',
-            )}>
-            <BlogCard style={style} post={post} />
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {posts.map((post, index) => (
+        <li
+          key={index}
+          className={cn(
+            'py-8',
+            index !== posts.length - 1 && 'border-b-neutral-400 border-b',
+          )}>
+          <BlogCard style={style} post={post} />
+        </li>
+      ))}
+    </ul>
   );
 };
 

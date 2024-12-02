@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 const CardImage = ({ images }: { images: PrismaImage[] }) => {
   const sliderSettings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,

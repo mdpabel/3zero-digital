@@ -93,6 +93,11 @@ const SmallScreenNavbar = () => {
                   </React.Fragment>
                 ),
               )}
+              <DropdownMenuItem onClick={handleMenuItemClick}>
+                <Link className='pb-6 w-full' href='/shop'>
+                  Shop
+                </Link>
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

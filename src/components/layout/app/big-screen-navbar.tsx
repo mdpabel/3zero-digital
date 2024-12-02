@@ -15,7 +15,7 @@ import {
 import { cn } from '@/lib/utils';
 import ThemeSwitcher from '@/components/common/theme-switcher';
 import { services } from '@/services';
-import { SignedIn, SignedOut, useSession } from '@clerk/nextjs';
+import { useSession } from '@clerk/nextjs';
 
 const BigScreenNavbar = () => {
   const { isSignedIn } = useSession();
@@ -72,8 +72,8 @@ const BigScreenNavbar = () => {
                   navigationMenuTriggerStyle(),
                   'text-zinc-800 dark:text-zinc-200',
                 )}>
-                <Link prefetch={true} href='/case-studies'>
-                  Case Studies
+                <Link prefetch={true} href='/shop'>
+                  Shop
                 </Link>
               </NavigationMenuLink>
             </li>

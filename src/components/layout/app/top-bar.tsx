@@ -1,6 +1,14 @@
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
+// Define the navigation items in an array
+const navItems = [
+  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/contact', label: 'Contact' },
+  { href: '/blog', label: 'Blog' },
+];
+
 const TopBar = () => {
   return (
     <div
@@ -17,19 +25,11 @@ const TopBar = () => {
           </div>
           <nav className='lg:block hidden'>
             <ul className='flex justify-between items-center space-x-4'>
-              <li>
-                <Link href='/privacy-policy'>Privacy policy</Link>
-              </li>
-              <li>
-                <Link href='/faq'>FAQ</Link>
-              </li>
-
-              <li>
-                <Link href='/contact'>Contact</Link>
-              </li>
-              <li>
-                <Link href='/blog'>Blog</Link>
-              </li>
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href}>{item.label}</Link>
+                </li>
+              ))}
             </ul>
           </nav>
         </div>
