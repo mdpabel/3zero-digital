@@ -34,8 +34,8 @@ export const services = [
     },
     subMenuItems: [
       {
-        label: 'WordPress Solutions',
-        href: '/wordpress',
+        label: 'WordPress Development',
+        href: '/wordpress-development',
         description: 'Custom themes, plugins, and WordPress site development.',
         icon: <FaWordpress />,
         featured: true,

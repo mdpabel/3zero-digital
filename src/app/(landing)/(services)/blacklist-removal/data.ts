@@ -115,3 +115,65 @@ export const blacklistData: BlacklistItem[] = [
   { name: 'Zillya' },
   { name: 'ZoneAlarm' },
 ];
+
+export const questions = [
+  {
+    question:
+      'Has your website recently been flagged as “Not Secure” by browsers or search engines?',
+    options: ['Yes', 'No'],
+    correctAnswer: 'Yes',
+  },
+  {
+    question:
+      'Are visitors receiving warnings when trying to access your website?',
+    options: ['Yes', 'No'],
+    correctAnswer: 'Yes',
+  },
+  {
+    question:
+      'Have you checked if your website is listed on any major blacklist databases?',
+    options: ['Yes', 'No'],
+    correctAnswer: 'No',
+  },
+  {
+    question:
+      'Do you know the source of malware or spam causing your blacklist issue?',
+    options: ['Yes', 'No'],
+    correctAnswer: 'No',
+  },
+  {
+    question:
+      'Are you regularly scanning your site to prevent future infections?',
+    options: ['Yes', 'No'],
+    correctAnswer: 'No',
+  },
+  {
+    question: 'Has your email server been blacklisted for sending spam emails?',
+    options: ['Yes', 'No'],
+    correctAnswer: 'Yes',
+  },
+  {
+    question:
+      'Are you using security measures like SSL and firewalls to protect your site?',
+    options: ['Yes', 'No'],
+    correctAnswer: 'No',
+  },
+  {
+    question:
+      'Do you have a team monitoring and addressing security alerts 24/7?',
+    options: ['Yes', 'No'],
+    correctAnswer: 'No',
+  },
+  {
+    question:
+      'Have you identified and removed infected files from your website?',
+    options: ['Yes', 'No'],
+    correctAnswer: 'No',
+  },
+  {
+    question:
+      'Are you aware of how blacklist issues can impact your search engine rankings?',
+    options: ['Yes', 'No'],
+    correctAnswer: 'No',
+  },
+];

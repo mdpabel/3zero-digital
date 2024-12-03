@@ -7,6 +7,9 @@ import PricingTable from './pricing-table';
 export const dynamic = 'force-static';
 
 import { getServiceMetadata } from '@/app/seo';
+import HeroSection from '@/components/comment/hero-section';
+import Quiz from '@/components/comment/quiz';
+import { questions } from './data';
 
 export const metadata = getServiceMetadata('/email-deliverability-issues');
 
@@ -27,8 +30,17 @@ const EmailDeliverabilityIssues = async () => {
   );
 
   return (
-    <div className='shadow-lg mx-auto p-10 rounded-lg max-w-6xl'>
-      <h2 className='mb-8 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
+    <div className='mx-auto p-4 max-w-6xl'>
+      <HeroSection
+        title='Struggling with Email Deliverability? We Have the Solution!'
+        subtitle='Ensure Your Emails Reach the Inbox, Not the Spam Folder!'
+        description="Did you know that 53% of users abandon a site that takes more than 3 seconds to load? Similarly, emails that don't land in the inbox can cost you valuable engagement. Our expert team specializes in optimizing email deliverability, ensuring your messages reach your audience effectively."
+        youtubeId='dQw4w9WgXcQ' // Replace with your actual video ID
+        firstBtnLink='/contact-us'
+        firstBtnText='Improve My Email Deliverability'
+      />
+
+      <h2 className='mt-10 mb-8 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
         Email Deliverability Solutions
       </h2>
 
@@ -44,7 +56,7 @@ const EmailDeliverabilityIssues = async () => {
         {issues.map((issue, index) => (
           <div
             key={index}
-            className='flex items-start border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 shadow-md hover:shadow-lg p-6 border rounded-lg transition-shadow'>
+            className='flex items-start border-gray-200 dark:border-gray-900 bg-gray-50 dark:bg-gray-800 shadow-md hover:shadow-lg p-6 border rounded-lg transition-shadow'>
             <div className='flex flex-shrink-0 justify-center items-center bg-gradient-to-r from-[#614385] to-[#516395] mr-4 rounded-full w-12 h-12 text-white'>
               <span className='font-semibold text-lg'>{index + 1}</span>
             </div>
@@ -61,6 +73,8 @@ const EmailDeliverabilityIssues = async () => {
           </div>
         ))}
       </div>
+
+      <Quiz questions={questions} />
     </div>
   );
 };

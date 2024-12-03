@@ -1,32 +1,38 @@
-import HeroSection from '@/components/comment/hero-section';
-import { FaShieldAlt, FaRocket, FaMobileAlt } from 'react-icons/fa';
-import wordpressSecurity from '@/../public/images/services/wordpress-security.png';
-import wordpressPerformance from '@/../public/images/services/wordpress-performance.png';
-import wordpressUX from '@/../public/images/services/wordpress-ui-ux.png';
-import KeyBenefits from '@/components/comment/key-benefits';
-import Quiz from '@/components/comment/quiz';
-
-export const benefits = [
+export const processes = [
   {
-    icon: <FaShieldAlt />,
-    title: 'Top-Notch Security',
+    title: 'Consultation & Planning',
     description:
-      'Protect your site from hackers and data breaches. Our WordPress websites are built with the latest security practices, including regular updates, strong encryption, and secure hosting to ensure your site stays safe and your data stays protected.',
-    image: wordpressSecurity,
+      'Understand your goals, define the scope, and outline features for your WordPress site.',
+    icon: '👥',
   },
   {
-    icon: <FaRocket />,
-    title: 'Blazing-Fast Performance',
+    title: 'Wireframing & Design',
     description:
-      'Your visitors expect speed. With optimized WordPress themes, caching, and CDN integration, we ensure that your site loads quickly, keeping users engaged and improving SEO rankings. A faster website leads to a better user experience and higher conversions.',
-    image: wordpressPerformance,
+      'Visualize the layout with mockups and ensure a user-friendly design.',
+    icon: '✏️',
   },
   {
-    icon: <FaMobileAlt />,
-    title: 'Responsive & User-Friendly Design',
+    title: 'Development & Coding',
     description:
-      'A great website is not just about looks—it’s about how it works. We build fully responsive WordPress websites that provide a seamless experience across all devices. With modern UI/UX design principles, your visitors will have an intuitive and engaging experience every time.',
-    image: wordpressUX,
+      'Bring your design to life with WordPress themes, plugins and functionality.',
+    icon: '💻',
+  },
+  {
+    title: 'Content Integration',
+    description: 'Upload and optimize content for better user experience.',
+    icon: '📄',
+  },
+  {
+    title: 'Testing & Feedback',
+    description:
+      'Conduct thorough testing and incorporate your feedback before launch.',
+    icon: '✅',
+  },
+  {
+    title: 'Deployment & Support',
+    description:
+      'Launch your site and provide ongoing maintenance and support.',
+    icon: '🚀',
   },
 ];
 

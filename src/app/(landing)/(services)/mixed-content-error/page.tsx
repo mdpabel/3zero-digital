@@ -7,7 +7,7 @@ export const metadata = getServiceMetadata('/mixed-content-error');
 
 export default function FixMixedContentErrorService() {
   return (
-    <div className='flex flex-col justify-center items-center bg-gradient-to-b from-white dark:from-gray-900 to-gray-100 dark:to-gray-800 p-6 min-h-screen'>
+    <div className='flex flex-col justify-center items-center p-6 min-h-[100dvh]'>
       <div className='shadow-lg p-8 rounded-lg w-full max-w-4xl'>
         <h1 className='mb-8 font-bold text-4xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
           Fix Mixed Content Errors
@@ -32,7 +32,7 @@ export default function FixMixedContentErrorService() {
         </div>
 
         <div className='gap-6 grid grid-cols-1 md:grid-cols-2 mt-12'>
-          <div className='bg-gray-50 dark:bg-gray-800 shadow-md p-6 rounded-lg'>
+          <div className='bg-gray-300 dark:bg-gray-900 shadow-xl p-6 rounded-lg'>
             <h3 className='mb-4 font-semibold text-xl text-zinc-800 dark:text-zinc-200'>
               What’s Included
             </h3>
@@ -85,7 +85,7 @@ export default function FixMixedContentErrorService() {
             </ul>
           </div>
 
-          <div className='flex justify-center items-center bg-gray-50 dark:bg-gray-800 shadow-md p-6 rounded-lg'>
+          <div className='flex justify-center items-center bg-gray-300 dark:bg-gray-900 shadow-xl p-6 rounded-lg'>
             <div>
               <h3 className='mb-4 font-bold text-2xl text-center text-zinc-800 dark:text-zinc-200'>
                 Why Choose Us?

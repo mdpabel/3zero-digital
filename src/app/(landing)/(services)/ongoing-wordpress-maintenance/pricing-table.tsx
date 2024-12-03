@@ -23,7 +23,7 @@ const PricingTable = ({
   } = usePricing({ productId, price, origPrice });
 
   return (
-    <div className='flex md:flex-row flex-col justify-between items-center mt-12'>
+    <div className='flex md:flex-row flex-col justify-between items-center bg-gray-200 dark:bg-gray-900 shadow-xl mt-12 p-8 rounded-lg'>
       <div className='mb-8 md:mb-0 text-center md:text-left'>
         <h3 className='font-bold text-2xl text-zinc-800 dark:text-zinc-200'>
           Ongoing WordPress Maintenance

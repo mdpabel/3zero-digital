@@ -2,6 +2,9 @@ import React from 'react';
 import PricingTable from './pricing-table';
 import { getProduct } from '@/lib/product/get-product';
 import { getServiceMetadata } from '@/app/seo';
+import HeroSection from '@/components/comment/hero-section';
+import Quiz from '@/components/comment/quiz';
+import { questions } from './data';
 
 export const metadata = getServiceMetadata('/website-migration');
 
@@ -24,8 +27,17 @@ const WebsiteMigration = async () => {
   );
 
   return (
-    <div className='shadow-lg mx-auto p-10 rounded-lg max-w-6xl'>
-      <h2 className='mb-8 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
+    <div className='mx-auto max-w-6xl'>
+      <HeroSection
+        title='Seamless Website Migration – Zero Downtime, 100% Reliability!'
+        subtitle='Switch Hosts or domains Without Losing a Single Byte!'
+        description='Planning to migrate your website but worried about data loss, downtime, or SEO impact? We specialize in hassle-free website migration services to ensure your site runs smoothly on its new home. Over 500+ websites successfully migrated!'
+        youtubeId='dQw4w9WgXcQ' // Replace with your actual video ID
+        firstBtnLink='/contact-us'
+        firstBtnText='Migrate My Website Now'
+      />
+
+      <h2 className='mt-10 mb-8 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
         Website Migration Services
       </h2>
 
@@ -46,7 +58,7 @@ const WebsiteMigration = async () => {
         {migrationSteps.map((step, index) => (
           <div
             key={index}
-            className='flex items-start border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 shadow-md hover:shadow-lg p-6 border rounded-lg transition-shadow'>
+            className='flex items-start border-gray-200 dark:border-gray-900 bg-gray-50 dark:bg-gray-800 shadow-md hover:shadow-lg p-6 border rounded-lg transition-shadow'>
             <div className='flex flex-shrink-0 justify-center items-center bg-gradient-to-r from-[#614385] to-[#516395] mr-4 rounded-full w-12 h-12 text-white'>
               <span className='font-semibold text-lg'>{index + 1}</span>
             </div>
@@ -63,6 +75,7 @@ const WebsiteMigration = async () => {
           </div>
         ))}
       </div>
+      <Quiz questions={questions} />
     </div>
   );
 };

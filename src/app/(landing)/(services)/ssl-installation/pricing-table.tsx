@@ -23,7 +23,7 @@ const PricingTable = ({
   } = usePricing({ productId, price, origPrice });
 
   return (
-    <div className='flex md:flex-row flex-col justify-between items-center bg-gradient-to-r from-[#614385] to-[#516395] shadow-xl mt-16 p-8 rounded-lg text-white'>
+    <div className='flex md:flex-row flex-col justify-between items-center bg-gray-200 dark:bg-gray-900 shadow-xl mt-16 p-8 rounded-lg text-white'>
       <div className='mb-6 md:mb-0'>
         <h3 className='font-bold text-2xl'>Full SSL Installation Package</h3>
         <p className='mt-2 text-lg'>

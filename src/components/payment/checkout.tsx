@@ -3,10 +3,10 @@
 import { SignedIn, SignedOut } from '@clerk/nextjs';
 import Link from 'next/link';
 import Spinner from '../common/spinner';
-import { useFormState, useFormStatus } from 'react-dom';
+import { useFormStatus } from 'react-dom';
 import { createStripeSession } from '@/actions/payment/create-checkout-session';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useActionState, useEffect } from 'react';
 
 const Checkout = ({
   productId,
@@ -20,7 +20,7 @@ const Checkout = ({
   paymentMode?: 'subscription' | 'payment';
 }) => {
   const router = useRouter();
-  const [state, action] = useFormState(createStripeSession, {
+  const [state, action] = useActionState(createStripeSession, {
     success: false,
     message: '',
     sessionUrl: '',

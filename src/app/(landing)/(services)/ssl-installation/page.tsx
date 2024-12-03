@@ -1,21 +1,52 @@
 import React from 'react';
+import {
+  FaLock,
+  FaSearch,
+  FaCertificate,
+  FaShieldAlt,
+  FaBug,
+  FaGlobe,
+  FaSyncAlt,
+  FaCheckCircle,
+} from 'react-icons/fa';
 import PricingTable from './pricing-table';
 import { getProduct } from '@/lib/product/get-product';
 import { getServiceMetadata } from '@/app/seo';
+import HeroSection from '@/components/comment/hero-section';
+import Quiz from '@/components/comment/quiz';
+import { questions } from './data';
 
 export const metadata = getServiceMetadata('/ssl-installation');
-
 export const dynamic = 'force-static';
 
+// Icons mapped to benefits
 const benefits = [
-  'Encrypts data between your website and visitors',
-  'Boosts search engine rankings with HTTPS',
-  'Enhances trust with SSL padlock and certificate',
-  'Secures online transactions and sensitive information',
-  'Prevents data breaches and man-in-the-middle attacks',
-  'Complies with industry standards and regulations',
-  'Ensures compatibility with modern web browsers',
-  'Provides ongoing support and SSL certificate renewal',
+  { text: 'Encrypts data between your website and visitors', icon: <FaLock /> },
+  { text: 'Boosts search engine rankings with HTTPS', icon: <FaSearch /> },
+  {
+    text: 'Enhances trust with SSL padlock and certificate',
+    icon: <FaCertificate />,
+  },
+  {
+    text: 'Secures online transactions and sensitive information',
+    icon: <FaShieldAlt />,
+  },
+  {
+    text: 'Prevents data breaches and man-in-the-middle attacks',
+    icon: <FaBug />,
+  },
+  {
+    text: 'Complies with industry standards and regulations',
+    icon: <FaGlobe />,
+  },
+  {
+    text: 'Ensures compatibility with modern web browsers',
+    icon: <FaSyncAlt />,
+  },
+  {
+    text: 'Provides ongoing support and SSL certificate renewal',
+    icon: <FaCheckCircle />,
+  },
 ];
 
 const SSLInstallation = async () => {
@@ -24,8 +55,18 @@ const SSLInstallation = async () => {
   );
 
   return (
-    <div className='bg-gradient-to-b from-gray-100 dark:from-gray-900 to-white dark:to-gray-800 py-12'>
-      <div className='mx-auto px-6 lg:px-8 max-w-7xl'>
+    <div className='mx-auto p-4 max-w-6xl'>
+      <HeroSection
+        title='Secure Your Website with SSL – Build Trust Instantly!'
+        subtitle="Say Goodbye to 'Not Secure' Warnings Today!"
+        description='An SSL certificate is no longer optional—it’s a necessity. Protect your website, enhance SEO, and earn your visitors’ trust. With over 500+ SSL installations, we ensure your website stays secure and credible.'
+        youtubeId='dQw4w9WgXcQ' // Replace with your actual video ID
+        firstBtnLink='/contact-us'
+        firstBtnText='Get SSL Installed Now'
+      />
+
+      <div className='mx-auto mt-10 px-6 lg:px-8 max-w-7xl'>
+        {/* Hero Section */}
         <div className='text-center'>
           <h2 className='font-extrabold text-4xl text-zinc-800 dark:text-zinc-200'>
             SSL Installation & Configuration
@@ -36,28 +77,37 @@ const SSLInstallation = async () => {
           </p>
         </div>
 
+        {/* Pricing Table */}
         <PricingTable
           origPrice={origPrice}
           price={price}
           productId={productId}
-          services={benefits}
+          services={benefits.map((b) => b.text)}
         />
 
-        <div className='gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-10 mt-8'>
-          {benefits.map((benefit, index) => (
-            <div
-              key={index}
-              className='border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl p-6 border rounded-lg transform transition-transform hover:scale-105'>
-              <div className='flex justify-center items-center bg-gradient-to-r from-[#614385] to-[#516395] mb-4 rounded-full w-12 h-12 text-white'>
-                <span className='font-bold text-xl'>{index + 1}</span>
-              </div>
-              <h3 className='font-semibold text-lg text-zinc-800 dark:text-zinc-200'>
-                {benefit}
-              </h3>
-            </div>
-          ))}
+        {/* Benefits List */}
+        <div className='mt-16'>
+          <h3 className='font-semibold text-2xl text-center text-zinc-800 dark:text-zinc-200'>
+            Why Choose Our SSL Installation Service?
+          </h3>
+          <ul className='space-y-6 mt-8'>
+            {benefits.map((benefit, index) => (
+              <li
+                key={index}
+                className='flex items-center space-x-4 bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl p-4 rounded-lg transform transition-transform hover:scale-[1.02]'>
+                <div className='text-3xl text-indigo-600 dark:text-indigo-400'>
+                  {benefit.icon}
+                </div>
+                <p className='text-lg text-zinc-800 dark:text-zinc-200'>
+                  {benefit.text}
+                </p>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
+
+      <Quiz questions={questions} />
     </div>
   );
 };

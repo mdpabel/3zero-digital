@@ -47,7 +47,7 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
 
       {/* Case Study Content */}
       <div className='flex flex-col items-center gap-8'>
-        <div className='relative w-full max-w-5xl'>
+        <div className='relative w-full max-w-6xl'>
           <div
             className='flex md:flex-row flex-col items-center gap-8 bg-white dark:bg-gray-900 shadow-lg p-8 rounded-lg w-full transform transition-transform duration-700 ease-in-out'
             key={currentStudy.title}>

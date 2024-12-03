@@ -1,10 +1,11 @@
 import HeroSection from '@/components/comment/hero-section';
 import KeyBenefits from '@/components/comment/key-benefits';
 import Quiz from '@/components/comment/quiz';
-import { benefits, questions } from './data';
+import { processes, questions } from './data';
 import { getServiceMetadata } from '@/app/seo';
 import DevelopmentServiceForm from '@/components/comment/development-service-form';
 import { FaWordpress } from 'react-icons/fa';
+import ProcessSteps from '@/components/comment/process-steps';
 
 export const dynamic = 'force-static';
 
@@ -26,12 +27,11 @@ const WordPressDevelopment = () => {
         Icon={<FaWordpress className='text-2xl text-white md:text-3xl' />}
         title='Custom WordPress Solutions for Seamless Performance & Growth'
       />
-
-      {/* <KeyBenefits
-        benefits={benefits}
-        title='Key Benefits of WordPress for Web Development'
-      /> */}
       <Quiz questions={questions} />
+      <ProcessSteps
+        title='How We Build Your Dream WordPress Site'
+        processes={processes}
+      />
     </div>
   );
 };
