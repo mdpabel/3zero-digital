@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const dynamic = 'force-static';
 
-export const metadata = getServiceMetadata('/500');
+export const metadata = getServiceMetadata('http-500-internal-server-error');
 
 export default function Fix500ErrorService() {
   return (

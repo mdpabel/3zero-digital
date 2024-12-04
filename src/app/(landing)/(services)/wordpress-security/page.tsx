@@ -24,7 +24,7 @@ const services = [
 
 const WordPressSecurity = async () => {
   const { origPrice, price, productId } = await getProduct(
-    'Comprehensive WordPress Security',
+    'wordpress-security',
   );
 
   return (

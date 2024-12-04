@@ -9,7 +9,7 @@ import ProcessSteps from '@/components/comment/process-steps';
 
 export const dynamic = 'force-static';
 
-export const metadata = getServiceMetadata('/wordpress');
+export const metadata = getServiceMetadata('wordpress-development');
 
 const WordPressDevelopment = () => {
   return (

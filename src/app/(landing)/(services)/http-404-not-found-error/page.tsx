@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const dynamic = 'force-static';
 
-export const metadata = getServiceMetadata('/404');
+export const metadata = getServiceMetadata('http-404-not-found-error');
 
 export default function Fix404ErrorService() {
   return (

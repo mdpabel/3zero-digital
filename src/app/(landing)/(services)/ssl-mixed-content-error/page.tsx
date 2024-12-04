@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const dynamic = 'force-static';
 
-export const metadata = getServiceMetadata('/mixed-content-error');
+export const metadata = getServiceMetadata('ssl-mixed-content-error');
 
 export default function FixMixedContentErrorService() {
   return (

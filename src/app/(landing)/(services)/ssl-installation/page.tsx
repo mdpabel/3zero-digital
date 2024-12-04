@@ -16,7 +16,7 @@ import HeroSection from '@/components/comment/hero-section';
 import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 
-export const metadata = getServiceMetadata('/ssl-installation');
+export const metadata = getServiceMetadata('ssl-installation');
 export const dynamic = 'force-static';
 
 // Icons mapped to benefits
@@ -50,9 +50,7 @@ const benefits = [
 ];
 
 const SSLInstallation = async () => {
-  const { origPrice, price, productId } = await getProduct(
-    'SSL Installation & Configuration',
-  );
+  const { origPrice, price, productId } = await getProduct('ssl-installation');
 
   return (
     <div className='mx-auto p-4 max-w-6xl'>

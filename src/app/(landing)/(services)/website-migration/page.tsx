@@ -22,9 +22,7 @@ const migrationSteps = [
 ];
 
 const WebsiteMigration = async () => {
-  const { origPrice, price, productId } = await getProduct(
-    'Website Migration Services',
-  );
+  const { origPrice, price, productId } = await getProduct('website-migration');
 
   return (
     <div className='mx-auto max-w-6xl'>

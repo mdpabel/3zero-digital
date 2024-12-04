@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export const dynamic = 'force-static';
 
-export const metadata = getServiceMetadata('/403-forbidden');
+export const metadata = getServiceMetadata('http-403-forbidden-error');
 
 export default function Fix403ErrorService() {
   return (

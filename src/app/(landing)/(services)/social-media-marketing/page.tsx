@@ -3,7 +3,7 @@ import { getServiceMetadata } from '@/app/seo';
 
 export const dynamic = 'force-static';
 
-export const metadata = getServiceMetadata('/social-media');
+export const metadata = getServiceMetadata('social-media-marketing');
 
 const page = () => {
   return <UnderDevelopment />;

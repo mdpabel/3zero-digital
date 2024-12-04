@@ -8,7 +8,7 @@ import { FaShopify } from 'react-icons/fa';
 
 export const dynamic = 'force-static';
 
-export const metadata = getServiceMetadata('/shopify');
+export const metadata = getServiceMetadata('shopify-store-development');
 
 const ShopifyWebsiteDevelopment = () => {
   return (

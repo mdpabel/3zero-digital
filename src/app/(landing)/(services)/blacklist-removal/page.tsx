@@ -8,12 +8,10 @@ import HeroSection from '@/components/comment/hero-section';
 import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 
-export const metadata = getServiceMetadata('/blacklist-removal');
+export const metadata = getServiceMetadata('blacklist-removal');
 
 const page = async () => {
-  const { origPrice, price, productId } = await getProduct(
-    'Blacklist Removal Service',
-  );
+  const { origPrice, price, productId } = await getProduct('blacklist-removal');
 
   return (
     <div className='mx-auto p-4 max-w-6xl'>

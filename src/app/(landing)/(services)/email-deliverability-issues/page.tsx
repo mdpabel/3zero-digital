@@ -1,6 +1,4 @@
 import React from 'react';
-import EmailDeliverabilityIssueCheckoutButton from './email-deliverability-issues-checkout-button';
-import { formatCurrency } from '@/lib/utils';
 import { getProduct } from '@/lib/product/get-product';
 import PricingTable from './pricing-table';
 
@@ -11,7 +9,7 @@ import HeroSection from '@/components/comment/hero-section';
 import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 
-export const metadata = getServiceMetadata('/email-deliverability-issues');
+export const metadata = getServiceMetadata('email-deliverability-issues');
 
 const issues = [
   'Blacklisted IP addresses',
@@ -26,7 +24,7 @@ const issues = [
 
 const EmailDeliverabilityIssues = async () => {
   const { origPrice, price, productId } = await getProduct(
-    'Email Deliverability Solutions',
+    'email-deliverability-issues',
   );
 
   return (

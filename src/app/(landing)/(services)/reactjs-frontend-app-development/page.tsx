@@ -8,7 +8,7 @@ import { FaReact } from 'react-icons/fa'; // Import React icon for frontend serv
 
 export const dynamic = 'force-static'; // Force static rendering for SEO and performance
 
-export const metadata = getServiceMetadata('/frontend'); // Set metadata for SEO (title, description)
+export const metadata = getServiceMetadata('reactjs-frontend-app-development'); // Set metadata for SEO (title, description)
 
 const FrontendDevelopment = () => {
   return (

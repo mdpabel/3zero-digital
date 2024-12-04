@@ -12,10 +12,13 @@ import HeroSection from '@/components/comment/hero-section';
 import { getProduct } from '@/lib/product/get-product';
 import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
+import { getServiceMetadata } from '@/app/seo';
+
+export const metadata = getServiceMetadata('ongoing-wordpress-maintenance');
 
 const WordPressMaintenance = async () => {
   const { origPrice, price, productId } = await getProduct(
-    'Ongoing WordPress Security Maintenance',
+    'ongoing-wordpress-maintenance',
   );
 
   const services = [

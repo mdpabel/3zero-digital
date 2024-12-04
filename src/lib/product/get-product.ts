@@ -1,10 +1,10 @@
 import prisma from '@/prisma/db';
 import { Category, Product } from '@prisma/client';
 
-export const getProduct = async (name: string) => {
+export const getProduct = async (slug: string) => {
   const product = await prisma.product.findFirst({
     where: {
-      name,
+      slug,
     },
     include: {
       prices: true,

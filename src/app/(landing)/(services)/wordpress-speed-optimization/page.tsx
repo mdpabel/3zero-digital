@@ -22,7 +22,7 @@ const services = [
 
 const WordPressSpeedOptimization = async () => {
   const { origPrice, price, productId } = await getProduct(
-    'WordPress Speed Optimization',
+    'wordpress-speed-optimization',
   );
 
   return (

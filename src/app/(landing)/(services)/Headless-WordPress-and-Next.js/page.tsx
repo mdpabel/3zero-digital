@@ -1,15 +1,14 @@
 import HeroSection from '@/components/comment/hero-section';
-import KeyBenefits from '@/components/comment/key-benefits';
 import Quiz from '@/components/comment/quiz';
-import { benefits, questions } from './data';
 import { getServiceMetadata } from '@/app/seo';
-import PerformanceComparison from './performance-comparison';
 import DevelopmentServiceForm from '@/components/comment/development-service-form';
 import { FaCogs } from 'react-icons/fa';
+import PerformanceComparison from './performance-comparison';
+import { questions } from './data';
 
 export const dynamic = 'force-static';
 
-export const metadata = getServiceMetadata('/headless-wordpress');
+export const metadata = getServiceMetadata('headless-wordpress-and-next.js');
 
 const HeadlessWordPressAndNextJs = () => {
   return (

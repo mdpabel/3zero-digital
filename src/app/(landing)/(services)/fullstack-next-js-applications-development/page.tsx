@@ -8,7 +8,9 @@ import { FaReact } from 'react-icons/fa';
 
 export const dynamic = 'force-static';
 
-export const metadata = getServiceMetadata('/nextjs-fullstack');
+export const metadata = getServiceMetadata(
+  'fullstack-next-js-applications-development',
+);
 
 const NextJsFullStack = () => {
   return (

@@ -8,7 +8,7 @@ import { FaNode } from 'react-icons/fa';
 
 export const dynamic = 'force-static';
 
-export const metadata = getServiceMetadata('/mern-stack');
+export const metadata = getServiceMetadata('mern-stack-app-development');
 
 const MernStack = () => {
   return (

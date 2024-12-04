@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { siteMetadata } from './metadata';
-import { services } from '@/services';
+import prisma from '@/prisma/db';
 
 interface PageSEOProps {
   title: string;
@@ -39,28 +39,20 @@ export function genMetaData({
 }
 
 // Function to dynamically generate metadata for a service or subservice
-export function getServiceMetadata(serviceHref: string) {
-  // Loop through the services to find the matching service or subservice
-  for (const service of services) {
-    // Check the main service
-    if (service.href === serviceHref) {
-      return genMetaData({
-        title: service.meta.title,
-        description: service.meta.description,
-        url: `https://3zerodigital.com${service.href}`,
-      });
-    }
+export async function getServiceMetadata(serviceHref: string) {
+  const service = await prisma.product.findFirst({
+    where: {
+      slug: serviceHref,
+    },
+  });
 
-    // Check subservices if they exist
-    for (const subservice of service.serviceCategories) {
-      if (subservice.href === serviceHref) {
-        return genMetaData({
-          title: subservice.meta.title,
-          description: subservice.meta.description,
-          url: `https://3zerodigital.com${subservice.href}`,
-        });
-      }
-    }
+  if (service) {
+    console.log({ service });
+    return genMetaData({
+      title: service.metaTitle!,
+      description: service.metaDescription!,
+      url: `https://3zerodigital.com/${service.slug}`,
+    });
   }
 
   // Default metadata if no matching service or subservice is found
@@ -70,6 +62,3 @@ export function getServiceMetadata(serviceHref: string) {
     url: 'https://3zerodigital.com/services',
   });
 }
-
-// Example usage - Generating metadata for /social-media
-const metadata = getServiceMetadata('/social-media');
