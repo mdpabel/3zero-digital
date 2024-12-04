@@ -18,8 +18,13 @@ import ThemeSwitcher from '../../common/theme-switcher';
 import { FaBars } from 'react-icons/fa';
 import Logo from './logo';
 import { services } from '@/services';
+import { ServiceWithProducts } from '@/lib/product/get-product';
 
-const SmallScreenNavbar = () => {
+const SmallScreenNavbar = ({
+  services,
+}: {
+  services: ServiceWithProducts[];
+}) => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const handleMenuItemClick = () => {
@@ -47,30 +52,28 @@ const SmallScreenNavbar = () => {
               }}
               className='mx-auto mt-2 px-4 sm:px-8 lg:px-12 w-screen'>
               {services?.map(
-                ({ description, href, label, subMenuItems }, index) => (
-                  <React.Fragment key={`${label}-${index}`}>
-                    {subMenuItems ? (
+                ({ slug, description, icon, name, products, id }) => (
+                  <React.Fragment key={id}>
+                    {products ? (
                       <div>
                         <Accordion type='single' collapsible>
-                          <AccordionItem value={`item-${index}`}>
+                          <AccordionItem value={id}>
                             <AccordionTrigger
                               style={{
                                 padding: '10px 4px',
                               }}>
-                              {label}
+                              {name}
                             </AccordionTrigger>
                             <AccordionContent>
-                              {subMenuItems.map(
-                                ({ description, href, label }, subIndex) => (
-                                  <DropdownMenuItem
-                                    key={`${label}-${subIndex}`}
-                                    onClick={handleMenuItemClick}>
-                                    <Link className='w-full' href={href}>
-                                      {label}
-                                    </Link>
-                                  </DropdownMenuItem>
-                                ),
-                              )}
+                              {products.map(({ slug, name, id }, subIndex) => (
+                                <DropdownMenuItem
+                                  key={`${id}-${subIndex}`}
+                                  onClick={handleMenuItemClick}>
+                                  <Link className='w-full' href={slug}>
+                                    {name}
+                                  </Link>
+                                </DropdownMenuItem>
+                              ))}
                             </AccordionContent>
                           </AccordionItem>
                         </Accordion>
@@ -84,7 +87,7 @@ const SmallScreenNavbar = () => {
                           asChild
                           onClick={handleMenuItemClick}>
                           <div className='block py-2 w-full font-medium text-sm text-zinc-800 hover:text-teal-500 dark:text-zinc-100 transition cursor-pointer'>
-                            {label}
+                            {name}
                           </div>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
@@ -93,11 +96,15 @@ const SmallScreenNavbar = () => {
                   </React.Fragment>
                 ),
               )}
-              <DropdownMenuItem onClick={handleMenuItemClick}>
-                <Link className='pb-6 w-full' href='/shop'>
-                  Shop
-                </Link>
-              </DropdownMenuItem>
+              <div>
+                <DropdownMenuItem asChild onClick={handleMenuItemClick}>
+                  <Link
+                    className='block py-2 pb-6 pl-1 w-full font-medium text-sm text-zinc-800 hover:text-teal-500 dark:text-zinc-100 transition cursor-pointer'
+                    href='/shop'>
+                    Shop
+                  </Link>
+                </DropdownMenuItem>
+              </div>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

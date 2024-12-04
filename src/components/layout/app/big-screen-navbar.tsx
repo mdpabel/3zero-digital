@@ -14,10 +14,10 @@ import {
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 import ThemeSwitcher from '@/components/common/theme-switcher';
-import { services } from '@/services';
 import { useSession } from '@clerk/nextjs';
+import { ServiceWithProducts } from '@/lib/product/get-product';
 
-const BigScreenNavbar = () => {
+const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
   const { isSignedIn } = useSession();
 
   return (
@@ -26,26 +26,24 @@ const BigScreenNavbar = () => {
         <Logo />
         <NavigationMenu>
           <NavigationMenuList>
-            {services.map(({ href, label, subMenuItems }, index) => (
-              <NavigationMenuItem asChild key={label}>
-                {subMenuItems.length > 0 ? (
+            {services.map(({ slug, name, products, id }) => (
+              <NavigationMenuItem asChild key={id}>
+                {products.length > 0 ? (
                   <li>
                     <NavigationMenuTrigger className='text-zinc-800 dark:text-zinc-200'>
-                      {label}
+                      {name}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className='gap-3 grid md:grid-cols-2 p-4 w-[400px] md:w-[500px] lg:w-[600px]'>
-                        {subMenuItems?.map(
-                          ({ description, href, label }, subIndex) => (
-                            <ListItem
-                              key={label}
-                              title={label}
-                              href={href}
-                              className='text-zinc-800 dark:text-zinc-200'>
-                              {description}
-                            </ListItem>
-                          ),
-                        )}
+                        {products?.map(({ description, slug, name }) => (
+                          <ListItem
+                            key={name}
+                            title={name}
+                            href={slug}
+                            className='text-zinc-800 dark:text-zinc-200'>
+                            {description}
+                          </ListItem>
+                        ))}
                       </ul>
                     </NavigationMenuContent>
                   </li>
@@ -57,8 +55,8 @@ const BigScreenNavbar = () => {
                         navigationMenuTriggerStyle(),
                         'text-zinc-800 dark:text-zinc-200',
                       )}>
-                      <Link prefetch={true} href={href}>
-                        {label}{' '}
+                      <Link prefetch={true} href={slug!}>
+                        {name}{' '}
                       </Link>
                     </NavigationMenuLink>
                   </li>

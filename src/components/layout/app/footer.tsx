@@ -118,7 +118,7 @@ const Footer: React.FC = () => (
                 </AccordionTrigger>
                 <AccordionContent>
                   <ul className='space-y-2 mt-4'>
-                    {service.subMenuItems.map((item, subIndex) => (
+                    {service.serviceCategories.map((item, subIndex) => (
                       <li key={subIndex} className='flex items-center gap-2'>
                         {item.icon}
                         <Link href={item.href} className='hover:underline'>

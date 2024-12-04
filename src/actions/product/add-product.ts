@@ -4,6 +4,7 @@ import { createStripeProduct } from '@/lib/stripe/create-product';
 import prisma from '@/prisma/db';
 import { productFormSchema } from '@/schema/product/product-form-schema';
 import { revalidatePath } from 'next/cache';
+import slugify from 'slugify';
 
 // Main function to handle the product creation
 export async function createProduct(_: any, formData: FormData) {
@@ -96,6 +97,10 @@ export async function createProduct(_: any, formData: FormData) {
       categoryId: formDataObj.categoryId,
       type: formDataObj.type,
       prices: prices.length > 0 ? prices : undefined,
+      metaTitle: formDataObj.metaTitle,
+      metaDescription: formDataObj.metaDescription,
+      metaKeywords: formDataObj.metaKeywords,
+      icon: formDataObj.icon,
     });
 
     if (!result.success) {
@@ -107,8 +112,19 @@ export async function createProduct(_: any, formData: FormData) {
       };
     }
 
-    const { name, price, origPrice, description, imageUrl, categoryId, type } =
-      result.data;
+    const {
+      name,
+      price,
+      origPrice,
+      description,
+      imageUrl,
+      categoryId,
+      type,
+      metaDescription,
+      metaKeywords,
+      metaTitle,
+      icon,
+    } = result.data;
 
     const stripeProduct = await createStripeProduct(name, categoryId);
     const stripeProductId = stripeProduct.id;
@@ -120,6 +136,8 @@ export async function createProduct(_: any, formData: FormData) {
       price,
     );
 
+    const slug = slugify(name);
+
     const product = await prisma.product.create({
       data: {
         name,
@@ -128,6 +146,8 @@ export async function createProduct(_: any, formData: FormData) {
         categoryId,
         stripeProductId,
         type,
+        icon,
+        slug,
         prices: {
           create: stripePrices.map((stripePrice, index) => {
             let billingInterval: 'MONTH' | 'QUARTER' | 'YEAR' | null = null;
@@ -153,9 +173,13 @@ export async function createProduct(_: any, formData: FormData) {
             };
           }),
         },
+        metaTitle,
+        metaDescription,
+        metaKeywords,
       },
     });
 
+    revalidatePath(`/${product.slug}`);
     revalidatePath('/admin/products');
 
     return {

@@ -8,7 +8,7 @@ export async function addTemplate(_: unknown, formData: FormData) {
     // Extract data from the FormData object
     const name = formData.get('name') as string | null;
     const description = formData.get('description') as string | null;
-    const categoryIds = formData.getAll('categoryIds') as string[];
+    const categoryIds = formData.get('categoryIds') as string;
     const price = parseFloat(formData.get('price') as string);
     const salePrice = parseFloat(formData.get('salePrice') as string) || 0;
     const imageUrls = formData.get('imageUrls') as string | null;
@@ -37,18 +37,10 @@ export async function addTemplate(_: unknown, formData: FormData) {
     const categories = await prisma.templateCategory.findMany({
       where: {
         id: {
-          in: categoryIds,
+          in: JSON.parse(categoryIds),
         },
       },
     });
-
-    // Ensure all provided category IDs are valid
-    if (categories.length !== categoryIds.length) {
-      return {
-        success: false,
-        message: 'Some category IDs are invalid.',
-      };
-    }
 
     // Save the template in the database
     await prisma.template.create({

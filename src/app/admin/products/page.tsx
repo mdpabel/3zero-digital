@@ -6,6 +6,9 @@ import Link from 'next/link';
 // Fetch products along with their prices and category
 const getProducts = async () => {
   const products = await prisma.product.findMany({
+    where: {
+      deleted: false,
+    },
     include: {
       prices: true, // Include prices for each product
       category: true, // Include category for each product

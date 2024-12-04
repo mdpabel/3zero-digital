@@ -52,7 +52,7 @@ export function getServiceMetadata(serviceHref: string) {
     }
 
     // Check subservices if they exist
-    for (const subservice of service.subMenuItems) {
+    for (const subservice of service.serviceCategories) {
       if (subservice.href === serviceHref) {
         return genMetaData({
           title: subservice.meta.title,

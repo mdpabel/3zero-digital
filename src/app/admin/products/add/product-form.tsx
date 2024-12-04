@@ -1,14 +1,13 @@
 'use client';
 import FormButton from '@/components/common/form-button';
-import React, { useEffect } from 'react';
+import React, { useActionState, useEffect } from 'react';
 import ProductType from './product-type';
 import { createProduct } from '@/actions/product/add-product';
 import { Category } from '@prisma/client';
-import { useFormState } from 'react-dom';
 import { toast } from 'react-toastify';
 
 const ProductForm = ({ categories }: { categories: Category[] }) => {
-  const [state, action] = useFormState(createProduct, {
+  const [state, action] = useActionState(createProduct, {
     message: '',
     success: false,
     errors: {},
@@ -105,6 +104,85 @@ const ProductForm = ({ categories }: { categories: Category[] }) => {
               </option>
             ))}
           </select>
+        </div>
+
+        {/* SEO Title */}
+        <div>
+          <label
+            htmlFor='metaTitle'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Meta Title
+          </label>
+          <input
+            type='text'
+            id='metaTitle'
+            name='metaTitle'
+            placeholder='SEO Title for Product'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
+        </div>
+
+        {/* SEO Description */}
+        <div>
+          <label
+            htmlFor='metaDescription'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Meta Description
+          </label>
+          <textarea
+            id='metaDescription'
+            name='metaDescription'
+            placeholder='SEO Description for Product'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
+        </div>
+
+        {/* SEO Keywords */}
+        <div>
+          <label
+            htmlFor='metaKeywords'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Meta Keywords
+          </label>
+          <input
+            type='text'
+            id='metaKeywords'
+            name='metaKeywords'
+            placeholder='SEO Keywords for Product (comma-separated)'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
+        </div>
+
+        {/* SEO Image URL */}
+        <div>
+          <label
+            htmlFor='metaImageUrl'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Meta Image URL
+          </label>
+          <input
+            type='url'
+            id='metaImageUrl'
+            name='metaImageUrl'
+            placeholder='SEO Image URL for Product (e.g., social sharing)'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
+        </div>
+
+        {/* SEO Image URL */}
+        <div>
+          <label
+            htmlFor='icon'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Icon Name (Font awesome)
+          </label>
+          <input
+            type='text'
+            id='icon'
+            name='icon'
+            placeholder='SEO Image URL for Product (e.g., social sharing)'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
         </div>
 
         {/* Submit Button */}

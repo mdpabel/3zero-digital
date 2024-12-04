@@ -2,6 +2,7 @@
 import prisma from '@/prisma/db';
 import { categoryFormSchema } from '@/schema/product/category-form-schema';
 import { revalidatePath } from 'next/cache';
+import slugify from 'slugify';
 
 export async function createCategory(_: any, formData: FormData) {
   try {
@@ -9,6 +10,7 @@ export async function createCategory(_: any, formData: FormData) {
 
     const result = categoryFormSchema.safeParse({
       name: formDataObj.name,
+      description: formDataObj.description,
     });
 
     if (!result.success) {
@@ -17,10 +19,12 @@ export async function createCategory(_: any, formData: FormData) {
       return { message: 'Validation failed', success: false };
     }
 
-    const { name } = result.data;
+    const { name, description } = result.data;
+
+    const slug = slugify(name);
 
     await prisma.category.create({
-      data: { name },
+      data: { name, description, slug },
     });
 
     revalidatePath('/admin/category');

@@ -20,16 +20,16 @@ const Templates = async ({ featured = false }: { featured?: boolean }) => {
   return (
     <div className='relative mx-auto px-4 py-10 w-full max-w-6xl container'>
       {/* Header Section */}
-      <header className='mb-10 text-center'>
-        <h1 className='font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
+      <div className='mb-10 text-center'>
+        <h2 className='font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
           Explore Premium Templates for Your Business
-        </h1>
+        </h2>
         <p className='mt-2 text-gray-600 text-lg dark:text-gray-400'>
           Browse our collection of professionally designed templates, tailored
           to meet the needs of your business. Get started today and elevate your
           online presence.
         </p>
-      </header>
+      </div>
 
       {/* Categories Section */}
       <section className='mb-10'>

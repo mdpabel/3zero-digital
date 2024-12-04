@@ -9,7 +9,7 @@ type Props = {
 
 const ProcessSteps = ({ processes, title }: Props) => {
   return (
-    <div className='bg-gray-300 dark:bg-gray-900 mb-10 py-12'>
+    <div className='dark:bg-gray-900 mb-10 py-12'>
       <div className='mx-auto px-6 lg:px-8 max-w-7xl'>
         <h2 className='font-bold text-3xl text-center text-zinc-800 dark:text-zinc-200'>
           {title}

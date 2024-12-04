@@ -10,7 +10,6 @@ import {
   FaEnvelope,
   FaFacebook,
   FaLink,
-  FaHtml5,
   FaNodeJs,
   FaJs,
   FaCode,
@@ -32,7 +31,7 @@ export const services = [
       description:
         'We provide modern web development services including e-commerce platforms, WordPress sites, and full-stack applications to help grow your online presence.',
     },
-    subMenuItems: [
+    serviceCategories: [
       {
         label: 'WordPress Development',
         href: '/wordpress-development',
@@ -123,7 +122,7 @@ export const services = [
       description:
         'Ensure your website stays secure, fast, and up-to-date with ongoing maintenance services including backups, updates, and performance optimization.',
     },
-    subMenuItems: [
+    serviceCategories: [
       {
         label: 'WordPress Malware Removal',
         href: '/wordpress-malware-removal',
@@ -239,7 +238,7 @@ export const services = [
       description:
         'We quickly diagnose and resolve common website errors such as 404, 500, and 403 to keep your site running smoothly.',
     },
-    subMenuItems: [
+    serviceCategories: [
       {
         label: '404 Page',
         href: '/404-not-found-error',
@@ -317,7 +316,7 @@ export const services = [
       description:
         'Boost your online visibility and drive conversions with targeted digital marketing strategies including SEO, social media, and 3D content.',
     },
-    subMenuItems: [
+    serviceCategories: [
       {
         label: '3D Model',
         href: '/3d-model',
@@ -396,4 +395,4 @@ export const services = [
       },
     ],
   },
-];
+] as const;

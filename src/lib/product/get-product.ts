@@ -1,4 +1,5 @@
 import prisma from '@/prisma/db';
+import { Category, Product } from '@prisma/client';
 
 export const getProduct = async (name: string) => {
   const product = await prisma.product.findFirst({
@@ -24,4 +25,30 @@ export const getProduct = async (name: string) => {
     origPrice,
     productId,
   };
+};
+
+// Shape of the data passed to ServicesClient
+export interface ServiceWithProducts extends Category {
+  products: Product[];
+}
+
+export const getProductWithServices = async () => {
+  const products = await prisma.product.findMany({
+    where: {
+      deleted: false,
+    },
+    include: {
+      category: true, // This will give you the category for each product
+    },
+  });
+
+  const categories = await prisma.category.findMany();
+
+  // Create an array of services with products
+  const services: ServiceWithProducts[] = categories.map((category) => ({
+    ...category,
+    products: products.filter((product) => product.categoryId === category.id),
+  }));
+
+  return services;
 };

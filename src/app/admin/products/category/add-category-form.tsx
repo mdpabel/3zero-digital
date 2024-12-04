@@ -14,17 +14,17 @@ import {
 } from '@/components/ui/form';
 import { categoryFormSchema } from '@/schema/product/category-form-schema';
 import { createCategory } from '@/actions/product/add-category';
-import { useFormState } from 'react-dom';
 import FormButton from '@/components/common/form-button';
 import { cn } from '@/lib/utils';
+import { useActionState } from 'react';
 
 const AddCategoryForm = () => {
   const form = useForm<z.infer<typeof categoryFormSchema>>({
     resolver: zodResolver(categoryFormSchema),
-    defaultValues: { name: '' },
+    defaultValues: { name: '', description: '' },
   });
 
-  const [state, formAction] = useFormState(createCategory, {
+  const [state, formAction] = useActionState(createCategory, {
     message: '',
     success: false,
   });
@@ -33,21 +33,28 @@ const AddCategoryForm = () => {
     <div>
       <h1 className='mb-8 font-bold text-3xl'>Add New Category</h1>
       <Form {...form}>
-        <form
-          action={() => {
-            const values = form.getValues();
-            const formData = new FormData();
-            formData.append('name', values.name);
-            formAction(formData);
-          }}
-          className='space-y-8'>
+        <form action={formAction} className='space-y-8'>
           {/* Category Name */}
           <FormField
             control={form.control}
             name='name'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Category Name</FormLabel>
+                <FormLabel>Name</FormLabel>
+                <FormControl>
+                  <Input placeholder='Category Name' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name='description'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Description</FormLabel>
                 <FormControl>
                   <Input placeholder='Category Name' {...field} />
                 </FormControl>

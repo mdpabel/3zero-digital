@@ -10,8 +10,8 @@ const generateServicesSitemap = () => {
   const urls: MetadataRoute.Sitemap = [];
 
   services.forEach((service) => {
-    if (service.subMenuItems.length > 0) {
-      service.subMenuItems.forEach((subService) => {
+    if (service.serviceCategories.length > 0) {
+      service.serviceCategories.forEach((subService) => {
         urls.push({
           url: `https://3zerodigital.com${subService.href}`,
           lastModified: new Date(),

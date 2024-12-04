@@ -44,6 +44,11 @@ export const productFormSchema = z
       }),
     }),
 
+    metaTitle: z.string().optional(),
+    metaDescription: z.string().optional(),
+    metaKeywords: z.string().optional(),
+    icon: z.string().optional(),
+
     // Prices array for subscription products
     prices: z
       .array(priceSchema)
