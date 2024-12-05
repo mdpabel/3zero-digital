@@ -2,9 +2,16 @@ import prisma from '@/prisma/db';
 import { FaEdit } from 'react-icons/fa';
 import DeleteProduct from './delete-product';
 import Link from 'next/link';
+import ProductsPagination from './products-pagination';
 
-// Fetch products along with their prices and category
-const getProducts = async () => {
+type SearchParams = Promise<{ page: string }>;
+
+const PAGE_SIZE = 6;
+
+const Products = async ({ searchParams }: { searchParams: SearchParams }) => {
+  const { page } = await searchParams;
+
+  const totalProducts = await prisma.product.count();
   const products = await prisma.product.findMany({
     where: {
       deleted: false,
@@ -13,12 +20,9 @@ const getProducts = async () => {
       prices: true, // Include prices for each product
       category: true, // Include category for each product
     },
+    take: PAGE_SIZE,
+    skip: PAGE_SIZE * (parseInt(page ?? '1', 10) - 1),
   });
-  return products;
-};
-
-const Products = async () => {
-  const products = await getProducts();
 
   return (
     <div className='p-8'>
@@ -97,6 +101,13 @@ const Products = async () => {
               </tr>
             ))}
           </tbody>
+          <tfoot className='mx-auto w-full'>
+            <ProductsPagination
+              currPage={parseInt(page, 10) ?? 1}
+              pageSize={PAGE_SIZE}
+              totalProducts={totalProducts}
+            />
+          </tfoot>
         </table>
       )}
     </div>

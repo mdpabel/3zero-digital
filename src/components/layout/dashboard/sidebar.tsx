@@ -35,15 +35,9 @@ const DashboardSidebar = async ({ type }: { type: 'admin' | 'dashboard' }) => {
   return (
     <Sidebar variant='sidebar'>
       <SidebarHeader className='primary-color'>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton size='lg' asChild>
-              <Link href='/'>
-                <Image src={logo} alt='Logo' width={140} height={140} />
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <Link className='p-1' href='/'>
+          <Image src={logo} alt='Logo' width={140} height={140} />
+        </Link>
       </SidebarHeader>
       <SidebarContent className='primary-color'>
         <SidebarNavMain items={items} />

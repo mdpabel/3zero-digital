@@ -57,6 +57,7 @@ export const adminDashboardSidebarItems = [
     href: '#',
     icon: <FaBox />,
     roles: ['admin'],
+    isOpen: true,
     subItems: [
       {
         label: 'All Products',
@@ -155,6 +156,7 @@ export const adminDashboardSidebarItems = [
 export type SidebarItem = {
   label: string;
   href: string;
+  isOpen?: boolean;
   icon: JSX.Element;
   roles: string[]; // Roles that can access the item
   subItems?: {
