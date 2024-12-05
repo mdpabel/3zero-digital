@@ -78,13 +78,13 @@ const ProductsPagination = ({
       <Pagination>
         <PaginationContent>
           {/* Previous button */}
-          <PaginationItem>
+          <PaginationItem className='cursor-pointer'>
             <PaginationPrevious onClick={handlePrevPage} />
           </PaginationItem>
 
           {/* Dynamically render page numbers */}
           {pages.map((page) => (
-            <PaginationItem key={page}>
+            <PaginationItem className='cursor-pointer' key={page}>
               <PaginationLink
                 onClick={() => handlePageClick(page)}
                 isActive={page === currentPage}>
@@ -95,13 +95,13 @@ const ProductsPagination = ({
 
           {/* Ellipsis if there are more than 10 pages */}
           {totalPages > 10 && (
-            <PaginationItem>
+            <PaginationItem className='cursor-pointer'>
               <PaginationEllipsis />
             </PaginationItem>
           )}
 
           {/* Next button */}
-          <PaginationItem>
+          <PaginationItem className='cursor-pointer'>
             <PaginationNext onClick={handleNextPage} />
           </PaginationItem>
         </PaginationContent>

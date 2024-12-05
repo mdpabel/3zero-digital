@@ -30,7 +30,7 @@ export function SidebarNavMain({ items }: { items: SidebarItem[] }) {
           <Collapsible key={item.label} asChild defaultOpen={true}>
             <SidebarMenuItem>
               <SidebarMenuButton asChild tooltip={item.label}>
-                <Link href={item.href!} className='py-5'>
+                <Link href={item.href!} className='py-5 text-white'>
                   {item.icon}
                   <span>{item.label}</span>
                 </Link>
@@ -48,7 +48,9 @@ export function SidebarNavMain({ items }: { items: SidebarItem[] }) {
                       {item.subItems?.map((subItem) => (
                         <SidebarMenuSubItem key={subItem.label}>
                           <SidebarMenuSubButton asChild>
-                            <Link href={subItem.href}>
+                            <Link
+                              href={subItem.href}
+                              className='py-5 text-white'>
                               <span>{subItem.label}</span>
                             </Link>
                           </SidebarMenuSubButton>
