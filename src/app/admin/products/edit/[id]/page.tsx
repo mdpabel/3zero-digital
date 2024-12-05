@@ -15,6 +15,7 @@ const EditProduct = async ({ params }: Props) => {
       where: { id: id },
       include: {
         prices: true,
+        category: true,
       },
     }),
     prisma.category.findMany(),
@@ -23,10 +24,6 @@ const EditProduct = async ({ params }: Props) => {
   if (!product) {
     return <div>Product not found</div>;
   }
-
-  console.log({
-    price: product.prices,
-  });
 
   return (
     <div>

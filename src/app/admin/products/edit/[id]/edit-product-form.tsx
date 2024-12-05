@@ -82,9 +82,9 @@ const EditProductForm = ({
           <textarea
             id='description'
             name='description'
-            defaultValue={product.description || ''}
-            placeholder='Product Description'
+            defaultValue={product.description!}
             minLength={10}
+            placeholder='Product Description'
             className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
           />
         </div>
@@ -100,7 +100,7 @@ const EditProductForm = ({
             type='url'
             id='imageUrl'
             name='imageUrl'
-            defaultValue={product.imageUrl || ''}
+            defaultValue={product.imageUrl!}
             placeholder='https://example.com/image.jpg'
             className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
           />
@@ -116,8 +116,8 @@ const EditProductForm = ({
           <select
             id='categoryId'
             name='categoryId'
+            defaultValue={product.categoryId!}
             required
-            defaultValue={product.categoryId || ''}
             className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
@@ -127,9 +127,92 @@ const EditProductForm = ({
           </select>
         </div>
 
+        {/* SEO Title */}
+        <div>
+          <label
+            htmlFor='metaTitle'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Meta Title
+          </label>
+          <input
+            type='text'
+            id='metaTitle'
+            name='metaTitle'
+            defaultValue={product.metaTitle!}
+            placeholder='SEO Title for Product'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
+        </div>
+
+        {/* SEO Description */}
+        <div>
+          <label
+            htmlFor='metaDescription'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Meta Description
+          </label>
+          <textarea
+            id='metaDescription'
+            name='metaDescription'
+            defaultValue={product.metaDescription!}
+            placeholder='SEO Description for Product'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
+        </div>
+
+        {/* SEO Keywords */}
+        <div>
+          <label
+            htmlFor='metaKeywords'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Meta Keywords
+          </label>
+          <input
+            type='text'
+            id='metaKeywords'
+            name='metaKeywords'
+            defaultValue={product.metaKeywords!}
+            placeholder='SEO Keywords for Product (comma-separated)'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
+        </div>
+
+        {/* SEO Image URL */}
+        <div>
+          <label
+            htmlFor='metaImageUrl'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Meta Image URL
+          </label>
+          <input
+            type='url'
+            id='metaImageUrl'
+            name='metaImageUrl'
+            placeholder='SEO Image URL for Product (e.g., social sharing)'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
+        </div>
+
+        {/* Icon */}
+        <div>
+          <label
+            htmlFor='icon'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Icon Name (Font awesome)
+          </label>
+          <input
+            type='text'
+            id='icon'
+            name='icon'
+            defaultValue={product.icon!}
+            placeholder='SEO Image URL for Product (e.g., social sharing)'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
+        </div>
+
         {/* Submit Button */}
         <div>
-          <FormButton>Update Product</FormButton>
+          <FormButton />
         </div>
       </form>
     </div>

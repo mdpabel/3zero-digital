@@ -99,6 +99,10 @@ export async function updateProduct(_: any, formData: FormData) {
       categoryId: formDataObj.categoryId,
       type: formDataObj.type,
       prices: prices.length > 0 ? prices : undefined,
+      metaTitle: formDataObj.metaTitle,
+      metaDescription: formDataObj.metaDescription,
+      metaKeywords: formDataObj.metaKeywords,
+      icon: formDataObj.icon,
     });
 
     if (!result.success) {
@@ -110,8 +114,18 @@ export async function updateProduct(_: any, formData: FormData) {
       };
     }
 
-    const { name, price, origPrice, description, imageUrl, categoryId, type } =
-      result.data;
+    const {
+      name,
+      price,
+      origPrice,
+      description,
+      imageUrl,
+      categoryId,
+      type,
+      metaTitle,
+      metaDescription,
+      metaKeywords,
+    } = result.data;
 
     // Fetch existing product from database
     const existingProduct = await prisma.product.findUnique({
@@ -178,6 +192,9 @@ export async function updateProduct(_: any, formData: FormData) {
             };
           }),
         },
+        metaTitle,
+        metaDescription,
+        metaKeywords,
       },
     });
 
