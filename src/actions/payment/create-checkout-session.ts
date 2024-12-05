@@ -87,6 +87,15 @@ export const createStripeSession = async (_: any, formData: FormData) => {
       cancel_url: `${process.env.FRONTEND_URL}/cancel`,
     });
 
+    await prisma.order.update({
+      where: {
+        id: order.id,
+      },
+      data: {
+        paymentLink: stripeSession.url,
+      },
+    });
+
     return {
       success: true,
       message: 'Checkout session created successfully',

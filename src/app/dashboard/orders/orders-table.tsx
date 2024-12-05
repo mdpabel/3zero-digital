@@ -9,6 +9,7 @@ import {
   flexRender,
 } from '@tanstack/react-table';
 import { cn, formatDate } from '@/lib/utils';
+import { FaEye } from 'react-icons/fa'; // Import the icon from react-icons
 import Link from 'next/link';
 import {
   Table,
@@ -19,14 +20,21 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Order, OrderStatus, PaymentStatus } from '@prisma/client';
+import { Order, OrderStatus, PaymentStatus, Product } from '@prisma/client';
 
-const OrdersTable = ({ orders }: { orders: Order[] }) => {
+const OrdersTable = ({
+  orders,
+}: {
+  orders: (Order & {
+    product: Product;
+  })[];
+}) => {
   const columns = useMemo<ColumnDef<Order>[]>(
     () => [
       {
-        header: 'Order ID',
-        accessorKey: 'id',
+        header: 'Product Name',
+        accessorKey: 'product.name', // Access the product name directly
+        cell: (info) => info.getValue<string>(),
       },
       {
         header: 'Date',
@@ -42,25 +50,9 @@ const OrdersTable = ({ orders }: { orders: Order[] }) => {
         },
       },
       {
-        header: 'Payment Status',
-        accessorKey: 'paymentStatus',
-        cell: (info) => {
-          const status = info.getValue<PaymentStatus>();
-          return status.charAt(0).toUpperCase() + status.slice(1);
-        },
-      },
-      {
         header: 'Total',
         accessorKey: 'total',
         cell: (info) => `$${info.getValue<number>().toFixed(2)}`,
-      },
-      {
-        header: 'Items',
-        accessorKey: 'quantity',
-        cell: (info) =>
-          `${info.getValue<number>()} item${
-            info.getValue<number>() > 1 ? 's' : ''
-          }`,
       },
       {
         header: 'Actions',
@@ -69,9 +61,28 @@ const OrdersTable = ({ orders }: { orders: Order[] }) => {
           <Link
             href={`/dashboard/orders/${info.getValue<string>()}`}
             className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-4 py-2 rounded-lg font-semibold text-white transform transition-transform hover:scale-105'>
-            View Details
+            <FaEye className='inline-block text-white' />
           </Link>
         ),
+      },
+      // Add Payment Link column if unpaid
+      {
+        header: 'Payment Link',
+        accessorKey: 'paymentLink',
+        cell: (info) => {
+          const paymentLink = info.getValue<string>();
+          return paymentLink && info.row.original.paymentStatus === 'unpaid' ? (
+            <a
+              href={paymentLink}
+              className='text-blue-500'
+              target='_blank'
+              rel='noopener noreferrer'>
+              Pay Now
+            </a>
+          ) : (
+            'Paid'
+          );
+        },
       },
     ],
     [],

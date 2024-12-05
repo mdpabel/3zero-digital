@@ -1,15 +1,33 @@
 import React from 'react';
 import OrdersTable from './orders-table';
 import prisma from '@/prisma/db';
-import { getCurrentUser } from '@/lib/get-current-user';
+import { auth } from '@clerk/nextjs/server';
+import { RedirectToSignIn } from '@clerk/nextjs';
 
 const OrderPage = async () => {
-  const { userId } = await getCurrentUser();
+  const { userId } = await auth();
 
-  const orders = await prisma.order.findMany({
+  if (!userId) {
+    return <RedirectToSignIn />;
+  }
+
+  const userWithOrders = await prisma.user.findFirst({
     where: {
-      userId: userId,
+      clerkUserId: userId,
     },
+    include: {
+      orders: {
+        include: {
+          product: true,
+        },
+      },
+    },
+  });
+
+  const orders = userWithOrders?.orders;
+
+  console.log({
+    orders,
   });
 
   return (

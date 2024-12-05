@@ -91,6 +91,7 @@ model Order {
   total         Float
   currency      String        @default("USD")
   status        OrderStatus   @default(pending)
+  paymentLink   String?
   paymentStatus PaymentStatus @default(unpaid)
   transactionId String?       @unique
   metadata      Json?
@@ -125,7 +126,7 @@ model User {
   stripeCustomerId String?  @unique // Store Stripe Customer ID
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
-  Order            Order[]
+  orders           Order[]
 }
 
 // TEMPLATE START 

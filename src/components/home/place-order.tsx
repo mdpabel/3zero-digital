@@ -17,8 +17,6 @@ const PlaceOrder = ({ productId }: { productId: string }) => {
     sessionUrl: '',
   });
 
-  console.log({ state });
-
   useEffect(() => {
     if (state.sessionUrl) {
       router.push(state.sessionUrl);
@@ -29,7 +27,7 @@ const PlaceOrder = ({ productId }: { productId: string }) => {
     <>
       <SignedOut>
         <Button asChild>
-          <Link href={`/login?redirect_to=/`}>
+          <Link href={`/login?redirect_url=/`}>
             <FaShoppingCart className='mr-2' />
             Place order
           </Link>

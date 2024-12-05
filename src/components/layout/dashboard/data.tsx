@@ -9,6 +9,7 @@ import {
   FaPlus,
   FaThList,
   FaTrash,
+  FaCogs,
 } from 'react-icons/fa';
 
 export const customerDashboardSidebarItems = [
@@ -36,6 +37,12 @@ export const customerDashboardSidebarItems = [
     icon: <FaUser />,
     roles: ['customer'],
   },
+  {
+    label: 'Admin',
+    href: '/admin',
+    icon: <FaCogs />,
+    roles: ['customer', 'admin'],
+  },
 ];
 
 export const adminDashboardSidebarItems = [
@@ -47,6 +54,7 @@ export const adminDashboardSidebarItems = [
   },
   {
     label: 'Products',
+    href: '#',
     icon: <FaBox />,
     roles: ['admin'],
     subItems: [
@@ -75,6 +83,7 @@ export const adminDashboardSidebarItems = [
   {
     label: 'Templates',
     icon: <FaBox />,
+    href: '#',
     roles: ['admin'],
     subItems: [
       {
@@ -102,6 +111,7 @@ export const adminDashboardSidebarItems = [
   {
     label: 'Orders',
     icon: <FaListAlt />,
+    href: '#',
     roles: ['admin'],
     subItems: [
       {
@@ -144,7 +154,7 @@ export const adminDashboardSidebarItems = [
 
 export type SidebarItem = {
   label: string;
-  href?: string;
+  href: string;
   icon: JSX.Element;
   roles: string[]; // Roles that can access the item
   subItems?: {
