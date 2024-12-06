@@ -66,7 +66,7 @@ const BlogCard = ({ post, style = 1 }: Props) => {
           {/* Read More */}
           <div className='font-medium text-base leading-6'>
             <Link
-              href={post.link}
+              href={post.link.replace('https://blog.', 'https://')}
               className='text-[#614385] hover:text-[#614385] transition'
               aria-label={`Read more: "${post.title.rendered}"`}>
               Read more →
