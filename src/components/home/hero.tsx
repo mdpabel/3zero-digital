@@ -14,9 +14,10 @@ const Hero = () => {
             </p>
             <p
               className={`text-md md:text-lg mb-10 dark:text-gray-400 text-gray-600`}>
-              Offering top-tier software solutions with zero vulnerabilities,
-              zero downtime, and zero errors. We ensure your business achieves
-              optimal digital performance.
+              Offering top-tier custom web development and website security
+              solutions with virtually zero vulnerabilities, zero downtime, and
+              zero errors. We ensure your business achieves optimal digital
+              performance.
             </p>
             <div className='space-x-4'>
               <button
