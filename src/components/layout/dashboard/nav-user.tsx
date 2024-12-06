@@ -25,7 +25,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { User } from '@clerk/nextjs/server';
+import { useClerk } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
 
 export function NavUser({
   avatar,
@@ -36,6 +37,8 @@ export function NavUser({
   email: string | undefined;
   avatar: string | undefined;
 }) {
+  const router = useRouter();
+  const { signOut } = useClerk();
   const { isMobile } = useSidebar();
 
   return (
@@ -98,8 +101,15 @@ export function NavUser({
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <LogOut />
-              Log out
+              <button
+                className='flex items-center gap-2'
+                onClick={async () => {
+                  await signOut();
+                  router.push('/');
+                }}>
+                <LogOut />
+                Log out
+              </button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
