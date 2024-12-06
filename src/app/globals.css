@@ -313,3 +313,7 @@ html {
 }
 
 /* COMPANY LOGOS END */
+
+.fd-swap {
+  font-display: swap;
+}

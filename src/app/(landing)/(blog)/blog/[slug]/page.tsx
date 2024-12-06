@@ -112,7 +112,7 @@ const BlogPage = async ({ params }: Props) => {
   }
 
   return (
-    <article className='space-y-4 mx-auto py-8 max-w-3xl'>
+    <article className='space-y-4 mx-auto px-4 py-8 max-w-3xl'>
       {/* Date */}
       <div className='text-neutral-500 dark:text-neutral-400'>
         Published on {new Date(post.date).toLocaleDateString()}
