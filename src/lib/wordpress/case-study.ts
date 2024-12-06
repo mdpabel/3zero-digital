@@ -98,6 +98,9 @@ export async function fetchCaseStudies(): Promise<CaseStudy[]> {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ query }),
+      next: {
+        tags: ['case-study'],
+      },
     });
 
     const json: GraphQLCaseStudiesResponse = await response.json();
@@ -168,6 +171,9 @@ export async function fetchCaseStudyBySlug(
         query,
         variables: { slug },
       }),
+      next: {
+        tags: ['case-study'],
+      },
     });
 
     const json: GraphQLCaseStudyBySlugResponse = await response.json();
