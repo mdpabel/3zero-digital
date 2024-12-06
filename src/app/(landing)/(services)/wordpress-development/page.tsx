@@ -17,7 +17,9 @@ const WordPressDevelopment = () => {
       <HeroSection
         title='Expert WordPress Development'
         subtitle='Custom, Scalable, and Secure Solutions for Your Business Growth.'
-        description='Your website is key to your online presence. We build WordPress sites that are visually appealing, fast, secure, and scalable. From eCommerce to business websites, we create tailored solutions that meet your goals and exceed expectations.'
+        description='Your website is key to your online presence. We specialize in custom WordPress
+development, creating visually appealing, fast, secure, and scalable sites. From eCommerce to
+business websites, we deliver tailored solutions that meet your goals and exceed expectations.'
         youtubeId='na2iB6nBzIc'
         firstBtnText='Start Building Your Dream Website'
         firstBtnLink='/get-a-quote?service=wordpress'

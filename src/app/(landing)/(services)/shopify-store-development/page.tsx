@@ -1,7 +1,6 @@
 import HeroSection from '@/components/comment/hero-section';
-import KeyBenefits from '@/components/comment/key-benefits';
 import Quiz from '@/components/comment/quiz';
-import { benefits, questions } from './data';
+import { questions } from './data';
 import { getServiceMetadata } from '@/app/seo';
 import DevelopmentServiceForm from '@/components/comment/development-service-form';
 import { FaShopify } from 'react-icons/fa';
@@ -16,7 +15,10 @@ const ShopifyWebsiteDevelopment = () => {
       <HeroSection
         title='Shopify Store Development'
         subtitle='Custom, Scalable, and Conversion-Focused Shopify Solutions.'
-        description='Your online store is the foundation of your eCommerce success. We specialize in creating Shopify stores that are fast, secure, and designed to maximize sales. Whether you need a new store, custom features, or a redesign, our expert team delivers tailored solutions to meet your business goals and provide a seamless shopping experience for your customers.'
+        description='We specialize in Shopify store development to build fast, secure stores that maximize
+sales. Whether you need a new store, custom features, a redesign, or want to clone a
+Shopify store, our expert team delivers tailored solutions to achieve your business goals
+and ensure a seamless shopping experience.'
         youtubeId='na2iB6nBzIc'
         firstBtnText='Launch Your Shopify Store Today'
         firstBtnLink='/get-a-quote?service=shopify'
@@ -27,10 +29,6 @@ const ShopifyWebsiteDevelopment = () => {
         title="Build a High-Converting Shopify Store for Your Brand's Success!"
       />
 
-      {/* <KeyBenefits
-        benefits={benefits}
-        title='Key Benefits of Shopify for store development'
-      /> */}
       <Quiz questions={questions} />
     </div>
   );
