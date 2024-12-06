@@ -50,7 +50,7 @@ export function NavUser({
                 <AvatarImage src={avatar} alt={name} />
                 <AvatarFallback className='rounded-lg'>CN</AvatarFallback>
               </Avatar>
-              <div className='flex-1 grid text-left text-sm leading-tight'>
+              <div className='flex-1 grid text-left text-sm text-white leading-tight'>
                 <span className='font-semibold truncate'>{name}</span>
                 <span className='text-xs truncate'>{email}</span>
               </div>

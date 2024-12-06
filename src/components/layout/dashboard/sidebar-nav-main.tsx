@@ -24,7 +24,6 @@ import Link from 'next/link';
 export function SidebarNavMain({ items }: { items: SidebarItem[] }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible key={item.label} asChild defaultOpen={true}>

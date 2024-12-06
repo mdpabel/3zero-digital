@@ -14,16 +14,16 @@ import PlaceOrder from './place-order';
 const ServicesClient = ({ services }: { services: ServiceWithProducts[] }) => {
   const [activeTab, setActiveTab] = useState('Development');
 
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     const currentIndex = services.findIndex(
-  //       (service) => service.label === activeTab,
-  //     );
-  //     const nextTab = services[(currentIndex + 1) % services.length].label;
-  //     setActiveTab(nextTab);
-  //   }, 50000000);
-  //   return () => clearInterval(interval);
-  // }, [activeTab]);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const currentIndex = services.findIndex(
+        (service) => service.name === activeTab,
+      );
+      const nextTab = services[(currentIndex + 1) % services.length].name;
+      setActiveTab(nextTab);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [activeTab]);
 
   return (
     <div className='mx-auto px-4 py-10 sm:py-16 max-w-6xl'>
