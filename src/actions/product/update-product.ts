@@ -200,6 +200,7 @@ export async function updateProduct(_: any, formData: FormData) {
 
     // Revalidate the path to update the products page
     revalidatePath('/admin/products');
+    revalidatePath(existingProduct.slug);
 
     return {
       message: 'Product updated successfully.',

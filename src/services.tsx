@@ -47,7 +47,7 @@ export const services = [
       },
       {
         label: 'Headless WordPress & Next.js',
-        href: '/headless-wordpress',
+        href: '/headless-wordpress-and-next.js',
         description:
           'Build modern, high-performance headless WordPress sites with Next.js.',
         icon: <FaReact />,
