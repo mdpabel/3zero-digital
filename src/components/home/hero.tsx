@@ -8,12 +8,10 @@ const Hero = () => {
               className={`text-3xl md:text-5xl font-bold mb-4 text-zinc-800 dark:text-zinc-200`}>
               3Zero Digital
             </h1>
-            <p
-              className={`text-xl md:text-2xl mb-8 dark:text-gray-400 fd-swap text-gray-600`}>
+            <p className='mb-8 text-gray-600 text-xl md:text-2xl dark:text-gray-400'>
               Empowering Digital Solutions with Zero Compromises
             </p>
-            <p
-              className={`text-md md:text-lg mb-10 dark:text-gray-400 fd-swap text-gray-600`}>
+            <p className='mb-10 text-gray-600 text-md md:text-lg dark:text-gray-400'>
               Offering top-tier custom web development and website security
               solutions with virtually zero vulnerabilities, zero downtime, and
               zero errors. We ensure your business achieves optimal digital
