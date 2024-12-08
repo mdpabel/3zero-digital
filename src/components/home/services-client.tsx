@@ -9,7 +9,8 @@ import { FaRegFileAlt } from 'react-icons/fa';
 import Link from 'next/link';
 import IconRenderer from '../comment/icon-render';
 import { ServiceWithProducts } from '@/lib/product/get-product';
-import PlaceOrder from './place-order';
+import dynamic from 'next/dynamic';
+const PlaceOrder = dynamic(() => import('./place-order'));
 
 const ServicesClient = ({ services }: { services: ServiceWithProducts[] }) => {
   const [activeTab, setActiveTab] = useState('Development');
