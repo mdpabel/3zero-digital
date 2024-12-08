@@ -46,8 +46,6 @@ export async function getServiceMetadata(serviceHref: string) {
     },
   });
 
-  console.log({ metaTitle: service?.metaTitle });
-
   if (service) {
     return genMetaData({
       title: service.metaTitle!,

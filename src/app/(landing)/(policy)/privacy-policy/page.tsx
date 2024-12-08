@@ -78,7 +78,6 @@ const PrivacyPolicy = () => {
                 <strong>Service Providers</strong>: We may share your data with
                 third-party service providers, including:
                 <ul className='ml-10 list-disc'>
-                  <li>Clerk for authentication</li>
                   <li>Stripe for payment processing</li>
                   <li>Email platforms for communication</li>
                   <li>Tawk.to for live chat support</li>

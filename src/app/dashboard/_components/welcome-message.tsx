@@ -1,12 +1,10 @@
-import { currentUser } from '@clerk/nextjs/server';
+import { auth } from '@/auth';
 
 const WelcomeMessage = async () => {
-  const session = await currentUser();
+  const session = await auth();
 
   return (
-    <h2 className='text-xl'>
-      👋 Hi, {session?.firstName + ' ' + session?.lastName}! Welcome back!
-    </h2>
+    <h2 className='text-xl'>👋 Hi, {session?.user?.name}! Welcome back!</h2>
   );
 };
 

@@ -4,8 +4,6 @@ import { APIProvider, Map } from '@vis.gl/react-google-maps';
 const GoogleMap = () => {
   const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAP_API!;
 
-  console.log({ API_KEY });
-
   return (
     <div className='mt-12'>
       <APIProvider apiKey={API_KEY}>

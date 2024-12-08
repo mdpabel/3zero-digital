@@ -1,22 +1,22 @@
 import React from 'react';
 import OrdersTable from './orders-table';
 import prisma from '@/prisma/db';
-import { auth } from '@clerk/nextjs/server';
-import { RedirectToSignIn } from '@clerk/nextjs';
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
 const OrderPage = async () => {
-  const { userId } = await auth();
+  const session = await auth();
 
-  if (!userId) {
-    return <RedirectToSignIn />;
+  if (!session) {
+    return redirect('/login');
   }
 
   const userWithOrders = await prisma.user.findFirst({
     where: {
-      clerkUserId: userId,
+      email: session.user?.email,
     },
     include: {
-      orders: {
+      Order: {
         include: {
           product: true,
         },
@@ -24,11 +24,7 @@ const OrderPage = async () => {
     },
   });
 
-  const orders = userWithOrders?.orders;
-
-  console.log({
-    orders,
-  });
+  const orders = userWithOrders?.Order;
 
   return (
     <div className='md:px-10 py-10 md:py-20'>

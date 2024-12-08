@@ -25,8 +25,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { useClerk } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
+import { signOut } from '@/auth';
 
 export function NavUser({
   avatar,
@@ -38,7 +38,6 @@ export function NavUser({
   avatar: string | undefined;
 }) {
   const router = useRouter();
-  const { signOut } = useClerk();
   const { isMobile } = useSidebar();
 
   return (

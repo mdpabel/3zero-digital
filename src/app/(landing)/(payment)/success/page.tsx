@@ -1,7 +1,7 @@
 import { stripe } from '@/lib/stripe/stripe';
-import { currentUser } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 import { genMetaData } from '@/app/seo';
+import { auth } from '@/auth';
 
 export const metadata = genMetaData({
   title: 'Payment success',
@@ -16,7 +16,8 @@ type Props = {
 const PaymentSuccess = async ({ searchParams }: Props) => {
   const sessionId = (await searchParams).session_id;
 
-  const user = await currentUser();
+  const session = await auth();
+  const user = session?.user;
 
   if (!user) {
     return redirect('/login');

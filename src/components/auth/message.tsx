@@ -8,6 +8,11 @@ const Message = ({
   type: 'error' | 'success' | 'init';
   message: string;
 }) => {
+  console.log({
+    message,
+    type,
+  });
+
   if (type === 'success') {
     return (
       <div

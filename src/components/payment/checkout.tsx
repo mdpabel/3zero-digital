@@ -1,12 +1,12 @@
 'use client';
 
-import { SignedIn, SignedOut } from '@clerk/nextjs';
 import Link from 'next/link';
 import Spinner from '../common/spinner';
 import { useFormStatus } from 'react-dom';
 import { createStripeSession } from '@/actions/payment/create-checkout-session';
 import { useRouter } from 'next/navigation';
 import { useActionState, useEffect } from 'react';
+import { useSession } from 'next-auth/react';
 
 const Checkout = ({
   productId,
@@ -53,22 +53,23 @@ const Checkout = ({
 
 const CheckoutButton = () => {
   const { pending } = useFormStatus();
+  const { status } = useSession();
 
   return (
     <div className='text-center'>
-      <SignedIn>
-        <button className='flex justify-center items-center bg-gradient-to-r from-[#614385] to-[#516395] shadow-md mx-auto py-3 rounded-lg w-64 font-semibold text-white transform transition-transform hover:scale-105 text-center'>
+      {status === 'authenticated' && (
+        <button className='flex justify-center items-center bg-gradient-to-r from-[#614385] to-[#516395] shadow-md mx-auto py-3 rounded-lg w-64 font-semibold text-center text-white transform transition-transform hover:scale-105'>
           <span>{pending ? <Spinner /> : 'Proceed to Checkout'}</span>
         </button>
-      </SignedIn>
+      )}
 
-      <SignedOut>
+      {status === 'unauthenticated' && (
         <Link
           href={`/login`}
-          className='flex justify-center items-center bg-gradient-to-r from-[#614385] to-[#516395] shadow-md mx-auto py-3 rounded-lg w-64 font-semibold text-white transform transition-transform hover:scale-105 text-center'>
+          className='flex justify-center items-center bg-gradient-to-r from-[#614385] to-[#516395] shadow-md mx-auto py-3 rounded-lg w-64 font-semibold text-center text-white transform transition-transform hover:scale-105'>
           Login to proceed
         </Link>
-      </SignedOut>
+      )}
     </div>
   );
 };

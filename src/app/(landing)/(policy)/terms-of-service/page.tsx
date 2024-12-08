@@ -93,7 +93,6 @@ const TermsOfService = () => {
               We leverage trusted third-party tools, including:
             </p>
             <ul className='mt-4 ml-10 text-gray-700 dark:text-gray-300 list-disc'>
-              <li>Clerk for authentication</li>
               <li>Stripe for payment processing</li>
               <li>Resend for email communications</li>
               <li>Tawk.to for live chat support</li>

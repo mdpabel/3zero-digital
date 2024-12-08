@@ -1,11 +1,20 @@
+import { auth } from '@/auth';
 import { Button } from '@/components/ui/button';
 import prisma from '@/prisma/db';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 import React from 'react';
 
 const UnPaidOrders = async () => {
+  const session = await auth();
+
+  if (!session || session.user?.id) {
+    redirect('/login');
+  }
+
   const orders = await prisma.order.findMany({
     where: {
+      userId: session?.user?.id,
       paymentStatus: {
         not: {
           equals: 'paid',

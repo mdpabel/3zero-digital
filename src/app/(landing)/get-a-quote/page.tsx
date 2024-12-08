@@ -23,7 +23,7 @@ const GetAQuota = () => {
         . Built for perfection.
       </p>
 
-      <DevelopmentServiceForm />
+      {/* <DevelopmentServiceForm />  */}
     </div>
   );
 };

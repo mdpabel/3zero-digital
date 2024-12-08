@@ -1,9 +1,9 @@
 'use server';
 
+import { auth } from '@/auth';
 import { stripe } from '@/lib/stripe/stripe';
 import prisma from '@/prisma/db';
 import { paymentIntentSchema } from '@/schema/payment/payment-intent-schema';
-import { currentUser } from '@clerk/nextjs/server';
 import { z } from 'zod';
 
 export const createStripeSession = async (_: any, formData: FormData) => {
@@ -11,42 +11,42 @@ export const createStripeSession = async (_: any, formData: FormData) => {
     const { productId, quantity, paymentMode, metaData } =
       paymentIntentSchema.parse(Object.fromEntries(formData.entries()));
 
-    const session = await currentUser();
+    // Authenticate user
+    const session = await auth();
 
-    if (!session || !session.id) {
+    if (!session || !session.user) {
       return { success: false, message: 'You are not authorized' };
+    }
+
+    // Check session expiration
+    if (session.expires && new Date(session.expires) < new Date()) {
+      return {
+        success: false,
+        message: 'Your session has expired. Please log in again.',
+      };
     }
 
     if (parseInt(quantity) <= 0) {
       return { success: false, message: 'Quantity must be greater than zero' };
     }
 
-    const email = session.emailAddresses[0].emailAddress;
-    const name = `${session.firstName} ${session.lastName}`;
-    const userId = session.id;
+    const userId = session.user.id;
+    const email = session.user.email;
 
+    if (!email) {
+      return { success: false, message: 'Email must be provided' };
+    }
+
+    // Find user by email
     const user = await prisma.user.findUnique({
-      where: { clerkUserId: userId },
+      where: { email },
     });
 
     if (!user) {
       return { success: false, message: 'User not found' };
     }
 
-    let stripeCustomerId = user.stripeCustomerId;
-    if (!stripeCustomerId) {
-      const customer = await stripe.customers.create({
-        email,
-        name,
-        metadata: { clerkUserId: userId },
-      });
-      stripeCustomerId = customer.id;
-      await prisma.user.update({
-        where: { clerkUserId: userId },
-        data: { stripeCustomerId },
-      });
-    }
-
+    // Fetch product and ensure it has prices
     const product = await prisma.product.findUnique({
       where: { id: productId },
       include: { prices: true },
@@ -56,22 +56,35 @@ export const createStripeSession = async (_: any, formData: FormData) => {
       return { success: false, message: 'Product not found or has no price' };
     }
 
+    // Extract product price
     const productPrice = product.prices[0].unitAmount;
 
+    // Log order data for debugging
+    console.log('Creating Order:', {
+      userId: user.id,
+      productId: product.id,
+      quantity: parseInt(quantity),
+      total: productPrice * parseInt(quantity),
+      metadata: metaData || '{}',
+    });
+
+    const parsedMetaData = metaData ? JSON.parse(metaData) : {};
+    // Create the order in the database
     const order = await prisma.order.create({
       data: {
         userId: user.id,
-        productId: productId,
+        productId: product.id,
         quantity: parseInt(quantity),
         total: productPrice * parseInt(quantity),
-        metadata: metaData || '{}',
+        metadata: parsedMetaData,
       },
     });
 
+    // Create Stripe session
     const stripeSession = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: paymentMode,
-      customer_email: email,
+      customer_email: user.email!,
       line_items: [
         {
           price: product.prices[0].stripePriceId,
@@ -79,7 +92,7 @@ export const createStripeSession = async (_: any, formData: FormData) => {
         },
       ],
       metadata: {
-        userId,
+        userId: user.id,
         productId,
         orderId: order.id,
       },
@@ -87,6 +100,7 @@ export const createStripeSession = async (_: any, formData: FormData) => {
       cancel_url: `${process.env.FRONTEND_URL}/cancel`,
     });
 
+    // Update the order with the Stripe session URL
     await prisma.order.update({
       where: {
         id: order.id,

@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import { GoogleTagManager } from '@next/third-parties/google';
 import './globals.css';
-import { ClerkProvider } from '@clerk/nextjs';
 import Providers from './providers';
 import { siteMetadata } from './metadata';
 
@@ -58,13 +57,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-      <html lang='en' suppressHydrationWarning>
-        <body className={poppins.className}>
-          <Providers>{children}</Providers>
-          <GoogleTagManager gtmId='GTM-T7DTDMX7' />
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang='en' suppressHydrationWarning>
+      <body className={poppins.className}>
+        <Providers>{children}</Providers>
+        <GoogleTagManager gtmId='GTM-T7DTDMX7' />
+      </body>
+    </html>
   );
 }

@@ -1,16 +1,16 @@
+import { auth } from '@/auth';
 import prisma from '@/prisma/db';
-import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
 
 export const getCurrentUser = async () => {
   const session = await auth();
-  if (!session || !session.userId) {
+  if (!session || !session.user) {
     return redirect('/login');
   }
 
   const user = await prisma.user.findFirst({
     where: {
-      clerkUserId: session?.userId,
+      email: session.user.email,
     },
   });
 

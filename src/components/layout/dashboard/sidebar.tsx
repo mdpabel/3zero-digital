@@ -18,14 +18,19 @@ import {
 import logo from '@/../public/images/logo-dark.png';
 import Link from 'next/link';
 import Image from 'next/image';
-import { currentUser } from '@clerk/nextjs/server';
+import { auth } from '@/auth';
+import { redirect } from 'next/navigation';
 
 const DashboardSidebar = async ({ type }: { type: 'admin' | 'dashboard' }) => {
-  const user = await currentUser();
+  const session = await auth();
 
-  const name = user?.firstName + ' ' + user?.lastName;
-  const email = user?.primaryEmailAddress?.emailAddress;
-  const avatar = user?.imageUrl;
+  if (!session) {
+    return redirect('/login');
+  }
+
+  const name = session?.user?.name!;
+  const email = session?.user?.email!;
+  const avatar = '';
 
   const items =
     type === 'admin'

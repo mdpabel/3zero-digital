@@ -1,5 +1,4 @@
 'use client';
-import { useSignIn } from '@clerk/nextjs';
 import {
   Card,
   CardContent,
@@ -9,7 +8,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { useActionState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -23,79 +22,26 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { catchClerkError } from '@/lib/utils';
 import Message from './message';
 import Spinner from '../common/spinner';
-import PasswordInputField from './password-field';
+import { loginAction } from '@/actions/auth/login';
+import { LoginSchema } from '@/schema/auth/login-schmea';
 
-const loginSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters'),
-});
-
-type LoginFormSchema = z.infer<typeof loginSchema>;
+type LoginFormSchema = z.infer<typeof LoginSchema>;
 
 const LoginForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [message, setMessage] = useState<{
-    type: 'error' | 'success' | 'init';
-    message: string;
-  }>();
-  const { isLoaded, signIn, setActive } = useSignIn();
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const form = useForm<LoginFormSchema>({
-    resolver: zodResolver(loginSchema),
-    mode: 'onTouched',
+  const [{ message, success }, action] = useActionState(loginAction, {
+    success: false,
+    message: '',
   });
+  const [pending, startTransition] = useTransition();
 
-  const redirectUrl = searchParams.get('redirect_url') || '/dashboard';
-
-  const onSubmit = async (data: LoginFormSchema) => {
-    setIsLoading(true);
-    if (!isLoaded) return;
-
-    const { email, password } = data;
-
-    try {
-      setMessage({ message: '', type: 'init' });
-
-      const signInAttempt = await signIn.create({
-        identifier: email,
-        password,
-      });
-
-      if (signInAttempt.status === 'complete') {
-        await setActive({
-          session: signInAttempt.createdSessionId,
-        });
-
-        // await fetch('/api/clerk/update-metadata', {
-        //   method: 'POST',
-        // });
-
-        setMessage({
-          type: 'success',
-          message: 'Login successful! Redirecting...',
-        });
-
-        router.push(redirectUrl);
-      } else {
-        setMessage({
-          type: 'error',
-          message: 'Additional verification required',
-        });
-        console.error(JSON.stringify(signInAttempt, null, 2));
-      }
-    } catch (error) {
-      const errorMessage = catchClerkError(error);
-      setMessage({ type: 'error', message: errorMessage });
-      console.error(JSON.stringify(error, null, 2));
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const form = useForm<LoginFormSchema>({
+    resolver: zodResolver(LoginSchema),
+    defaultValues: {
+      email: '',
+    },
+  });
 
   return (
     <Card className='mx-auto my-10 max-w-md text-zinc-800 dark:text-zinc-200'>
@@ -106,10 +52,17 @@ const LoginForm = () => {
         </CardDescription>
       </CardHeader>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+        <form
+          action={async (formData) => {
+            const isValid = await form.trigger();
+            if (isValid) {
+              startTransition(() => action(formData));
+            }
+          }}
+          className='space-y-4'>
           <CardContent className='gap-4 grid pb-0'>
-            {message?.message && (
-              <Message type={message.type} message={message.message} />
+            {message && (
+              <Message type={success ? 'success' : 'error'} message={message} />
             )}
 
             <FormField
@@ -117,27 +70,9 @@ const LoginForm = () => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Email</FormLabel>
+                  <FormLabel>Username</FormLabel>
                   <FormControl>
-                    <Input
-                      className='border-zinc-800 dark:border-zinc-200 border'
-                      placeholder='m@example.com'
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name='password'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <PasswordInputField field={field} />
+                    <Input placeholder='user@domain.com' {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -154,7 +89,7 @@ const LoginForm = () => {
           </CardContent>
           <CardFooter className='flex flex-col gap-2'>
             <Button className='w-full' type='submit'>
-              {isLoading ? <Spinner /> : 'Sign In'}
+              {pending ? <Spinner /> : 'Sign In'}
             </Button>
             <div className='text-center'>
               <span className='text-muted-foreground text-sm'>

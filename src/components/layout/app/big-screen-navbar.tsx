@@ -14,11 +14,11 @@ import {
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 import ThemeSwitcher from '@/components/common/theme-switcher';
-import { useSession } from '@clerk/nextjs';
+import { useSession } from 'next-auth/react';
 import { ServiceWithProducts } from '@/lib/product/get-product';
 
 const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
-  const { isSignedIn } = useSession();
+  const { data, status } = useSession();
 
   return (
     <div className='lg:block z-50 hidden mx-auto px-4 max-w-6xl container'>
@@ -86,7 +86,7 @@ const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
             asChild
             variant='outline'
             className='border-zinc-800 dark:border-zinc-200 px-4 py-2 border text-base'>
-            {isSignedIn ? (
+            {status === 'authenticated' ? (
               <Link prefetch={true} href='/dashboard'>
                 Dashboard
               </Link>

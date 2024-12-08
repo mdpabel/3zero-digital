@@ -1,19 +1,19 @@
 'use client';
 import { FaSignOutAlt } from 'react-icons/fa';
-import { useClerk } from '@clerk/nextjs';
-import { useState, useTransition } from 'react';
+import { useState } from 'react';
 import Spinner from '@/components/common/spinner';
+import { signOut } from '@/auth';
+import { useRouter } from 'next/navigation';
 
 const Logout = () => {
   const [pending, setPending] = useState(false);
-  const { signOut } = useClerk();
+  const router = useRouter();
 
   const logout = async () => {
     try {
       setPending(true);
-      await signOut({
-        redirectUrl: 'login?redirect_url=/dashboard',
-      });
+      await signOut();
+      router.push('/login');
     } catch (error) {
       console.log(error);
     } finally {
