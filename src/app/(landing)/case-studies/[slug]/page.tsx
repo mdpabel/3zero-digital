@@ -4,8 +4,6 @@ import {
   fetchCaseStudyBySlug,
 } from '@/lib/wordpress/case-study';
 
-export const dynamic = 'force-static';
-
 import type { Metadata, ResolvingMetadata } from 'next';
 import Link from 'next/link';
 

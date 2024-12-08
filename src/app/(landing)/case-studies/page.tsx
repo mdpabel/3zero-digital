@@ -8,8 +8,6 @@ export const metadata = genMetaData({
   title: 'Case studies',
 });
 
-export const dynamic = 'force-static';
-
 const CaseStudyPage = async () => {
   const caseStudies = await fetchCaseStudies();
 

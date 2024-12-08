@@ -1,12 +1,9 @@
 import HeroSection from '@/components/comment/hero-section';
-import KeyBenefits from '@/components/comment/key-benefits';
 import Quiz from '@/components/comment/quiz';
-import { benefits, questions } from './data';
+import { questions } from './data';
 import { getServiceMetadata } from '@/app/seo';
 import DevelopmentServiceForm from '@/components/comment/development-service-form';
 import { FaNode } from 'react-icons/fa';
-
-export const dynamic = 'force-static';
 
 export const metadata = getServiceMetadata('mern-stack-app-development');
 

@@ -2,8 +2,6 @@ import React from 'react';
 import { getProduct } from '@/lib/product/get-product';
 import PricingTable from './pricing-table';
 
-export const dynamic = 'force-static';
-
 import { getServiceMetadata } from '@/app/seo';
 import HeroSection from '@/components/comment/hero-section';
 import Quiz from '@/components/comment/quiz';

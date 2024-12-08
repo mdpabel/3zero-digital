@@ -6,9 +6,7 @@ import HeroSection from '@/components/comment/hero-section';
 import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 
-export const metadata = getServiceMetadata('/website-migration');
-
-export const dynamic = 'force-static';
+export const metadata = getServiceMetadata('website-migration');
 
 const migrationSteps = [
   'Detailed site audit and planning',
@@ -25,7 +23,7 @@ const WebsiteMigration = async () => {
   const { origPrice, price, productId } = await getProduct('website-migration');
 
   return (
-    <div className='mx-auto max-w-6xl'>
+    <div className='mx-auto px-4 max-w-6xl'>
       <HeroSection
         title='Seamless Website Migration – Zero Downtime, 100% Reliability!'
         subtitle='Switch Hosts or domains Without Losing a Single Byte!'

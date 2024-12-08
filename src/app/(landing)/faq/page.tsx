@@ -11,8 +11,6 @@ export const metadata = genMetaData({
   title: 'Frequently asked questions',
 });
 
-export const dynamic = 'force-static';
-
 const faqs = [
   {
     question: 'What services does 3Zero Digital offer?',

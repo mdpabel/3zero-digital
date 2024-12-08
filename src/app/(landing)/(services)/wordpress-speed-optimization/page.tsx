@@ -5,9 +5,7 @@ import HeroSection from '@/components/comment/hero-section';
 import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 
-export const metadata = getServiceMetadata('/wordpress-speed-optimization');
-
-export const dynamic = 'force-static';
+export const metadata = getServiceMetadata('wordpress-speed-optimization');
 
 const services = [
   'Comprehensive website speed audit',

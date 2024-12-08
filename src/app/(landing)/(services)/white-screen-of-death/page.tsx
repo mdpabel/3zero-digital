@@ -1,8 +1,6 @@
 import { getServiceMetadata } from '@/app/seo';
 import Link from 'next/link';
 
-export const dynamic = 'force-static';
-
 export const metadata = getServiceMetadata('white-screen-of-death');
 
 export default function FixWSODService() {

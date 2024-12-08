@@ -8,8 +8,6 @@ export const metadata = genMetaData({
   title: 'Contact us',
 });
 
-export const dynamic = 'force-static';
-
 const ContactPage = () => {
   return (
     <div className='px-4 md:px-20 py-12 md:py-24'>

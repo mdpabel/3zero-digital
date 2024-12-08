@@ -5,8 +5,6 @@ export const metadata = genMetaData({
   title: 'Privacy Policy',
 });
 
-export const dynamic = 'force-static';
-
 const PrivacyPolicy = () => {
   return (
     <div className='px-6 py-12 md:py-20'>

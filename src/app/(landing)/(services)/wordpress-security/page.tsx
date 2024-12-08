@@ -8,8 +8,6 @@ import { questions } from './data';
 
 export const metadata = getServiceMetadata('/wordpress-security');
 
-export const dynamic = 'force-static';
-
 const services = [
   'Hardened file permissions for critical WordPress files',
   'Advanced firewall protection against DDoS and brute force attacks',

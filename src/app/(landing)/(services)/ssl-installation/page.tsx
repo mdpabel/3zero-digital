@@ -17,7 +17,6 @@ import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 
 export const metadata = getServiceMetadata('ssl-installation');
-export const dynamic = 'force-static';
 
 // Icons mapped to benefits
 const benefits = [

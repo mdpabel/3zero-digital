@@ -6,8 +6,6 @@ import { FaCogs } from 'react-icons/fa';
 import PerformanceComparison from './performance-comparison';
 import { questions } from './data';
 
-export const dynamic = 'force-static';
-
 export const metadata = getServiceMetadata('headless-wordpress-and-next.js');
 
 const HeadlessWordPressAndNextJs = () => {

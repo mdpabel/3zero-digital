@@ -12,8 +12,6 @@ export const metadata = genMetaData({
   title: 'Terms of Service',
 });
 
-export const dynamic = 'force-static';
-
 const TermsOfService = () => {
   return (
     <div className='px-6 py-12 md:py-20'>

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import Title from '../common/title';
 import { Button } from '../ui/button';
-import { FaRegFileAlt, FaShoppingCart } from 'react-icons/fa';
+import { FaRegFileAlt } from 'react-icons/fa';
 import Link from 'next/link';
 import IconRenderer from '../comment/icon-render';
 import { ServiceWithProducts } from '@/lib/product/get-product';
@@ -21,7 +21,7 @@ const ServicesClient = ({ services }: { services: ServiceWithProducts[] }) => {
       );
       const nextTab = services[(currentIndex + 1) % services.length].name;
       setActiveTab(nextTab);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [activeTab]);
 

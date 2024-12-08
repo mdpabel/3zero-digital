@@ -6,8 +6,6 @@ import { getServiceMetadata } from '@/app/seo';
 import DevelopmentServiceForm from '@/components/comment/development-service-form';
 import { FaReact } from 'react-icons/fa';
 
-export const dynamic = 'force-static';
-
 export const metadata = getServiceMetadata(
   'fullstack-next-js-applications-development',
 );

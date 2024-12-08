@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import { AlertTriangle } from 'lucide-react';
 
-export const dynamic = 'force-static';
-
 export default function Custom404() {
   return (
     <div className='flex justify-center items-center h-screen'>
@@ -19,7 +17,7 @@ export default function Custom404() {
         </p>
         <Link
           href='/'
-          className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-6 py-3 rounded-lg text-white hover:scale-105 transition-transform'>
+          className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-6 py-3 rounded-lg text-white transition-transform hover:scale-105'>
           Go Back Home
         </Link>
       </div>

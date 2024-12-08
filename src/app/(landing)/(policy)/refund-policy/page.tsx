@@ -6,7 +6,6 @@ export const metadata = genMetaData({
   title: 'Refund Policy',
 });
 
-export const dynamic = 'force-static';
 const RefundPolicy: React.FC = () => {
   return (
     <div className='px-6 py-12 md:py-20'>

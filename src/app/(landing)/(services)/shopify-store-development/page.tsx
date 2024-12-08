@@ -5,8 +5,6 @@ import { getServiceMetadata } from '@/app/seo';
 import DevelopmentServiceForm from '@/components/comment/development-service-form';
 import { FaShopify } from 'react-icons/fa';
 
-export const dynamic = 'force-static';
-
 export const metadata = getServiceMetadata('shopify-store-development');
 
 const ShopifyWebsiteDevelopment = () => {

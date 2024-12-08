@@ -5,8 +5,6 @@ export const metadata = genMetaData({
   title: 'Cookie Policy',
 });
 
-export const dynamic = 'force-static';
-
 const CookiePolicy = () => {
   return (
     <div className='px-6 py-12 md:py-20'>

@@ -7,8 +7,6 @@ import DevelopmentServiceForm from '@/components/comment/development-service-for
 import { FaWordpress } from 'react-icons/fa';
 import ProcessSteps from '@/components/comment/process-steps';
 
-export const dynamic = 'force-static';
-
 export const metadata = getServiceMetadata('wordpress-development');
 
 const WordPressDevelopment = () => {

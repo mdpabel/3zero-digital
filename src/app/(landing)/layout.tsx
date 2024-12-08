@@ -15,8 +15,8 @@ export default function RootLayout({
       <Header />
       <main className='relative'>{children}</main>
       <Footer />
-      <TawkChat />
-      <CookieYes />
+      {process.env.NODE_ENV === 'production' && <TawkChat />}
+      {process.env.NODE_ENV === 'production' && <CookieYes />}
     </div>
   );
 }

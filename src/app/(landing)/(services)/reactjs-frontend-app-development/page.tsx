@@ -6,7 +6,7 @@ import { getServiceMetadata } from '@/app/seo';
 import DevelopmentServiceForm from '@/components/comment/development-service-form';
 import { FaReact } from 'react-icons/fa'; // Import React icon for frontend services
 
-export const dynamic = 'force-static'; // Force static rendering for SEO and performance
+// Force static rendering for SEO and performance
 
 export const metadata = getServiceMetadata('reactjs-frontend-app-development'); // Set metadata for SEO (title, description)
 

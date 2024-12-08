@@ -8,10 +8,7 @@ import { siteMetadata } from './metadata';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.url),
-  title: {
-    default: `Custom Web Development & Security Agency | 3Zero Digital`,
-    template: '%s | ' + siteMetadata.title,
-  },
+  title: `Custom Web Development & Security Agency | 3Zero Digital`,
   description: siteMetadata.description,
   openGraph: {
     title: `Custom Web Development & Security Agency.`,
