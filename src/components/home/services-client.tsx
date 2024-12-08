@@ -87,9 +87,9 @@ const ServicesClient = ({ services }: { services: ServiceWithProducts[] }) => {
                             </div>
                           </div>
                           <div className='flex flex-col gap-4'>
-                            {/* {product.name !== 'Development' && (
-                              <PlaceOrder productId={product.id} /> 
-                            )} */}
+                            {product.name !== 'Development' && (
+                              <PlaceOrder productId={product.id} />
+                            )}
                             <Button asChild>
                               <Link href={product.slug}>
                                 <FaRegFileAlt className='mr-2' />
