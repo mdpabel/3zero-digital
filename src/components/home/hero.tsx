@@ -1,4 +1,3 @@
-import { poppins } from '@/app/layout';
 import { cn } from '@/lib/utils';
 
 const Hero = () => {
@@ -17,7 +16,6 @@ const Hero = () => {
             <p
               className={cn(
                 'mb-10 text-gray-600 text-md md:text-lg dark:text-gray-400',
-                poppins.className,
               )}>
               Offering top-tier custom web development and website security
               solutions with virtually zero vulnerabilities, zero downtime, and
@@ -36,7 +34,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className='relative flex justify-center items-center col-span-2'>
+          <div className='relative md:flex justify-center items-center hidden col-span-2'>
             <video
               className='dark:block hidden'
               width='320'
