@@ -86,7 +86,7 @@ const ServicesClient = ({ services }: { services: ServiceWithProducts[] }) => {
                               </p>
                             </div>
                           </div>
-                          <div className='flex flex-col gap-4'>
+                          <div className='flex md:flex-row flex-col gap-4'>
                             {product.name !== 'Development' && (
                               <PlaceOrder productId={product.id} />
                             )}

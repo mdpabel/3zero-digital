@@ -5,10 +5,11 @@ import { FaShoppingCart } from 'react-icons/fa';
 import { useRouter } from 'next/navigation';
 import { createStripeSession } from '@/actions/payment/create-checkout-session';
 import Spinner from '../common/spinner';
-import { SignedIn, SignedOut } from '@clerk/nextjs';
+import { useSession } from '@clerk/nextjs';
 import Link from 'next/link';
 
 const PlaceOrder = ({ productId }: { productId: string }) => {
+  const { isSignedIn } = useSession();
   const [pending, startTransition] = useTransition();
   const router = useRouter();
   const [state, action] = useActionState(createStripeSession, {
@@ -25,15 +26,15 @@ const PlaceOrder = ({ productId }: { productId: string }) => {
 
   return (
     <>
-      <SignedOut>
+      {!isSignedIn && (
         <Button asChild>
           <Link href={`/login?redirect_url=/`}>
             <FaShoppingCart className='mr-2' />
             Place order
           </Link>
         </Button>
-      </SignedOut>
-      <SignedIn>
+      )}
+      {isSignedIn && (
         <form
           action={() => {
             const formData = new FormData();
@@ -46,7 +47,7 @@ const PlaceOrder = ({ productId }: { productId: string }) => {
             Place order
           </Button>
         </form>
-      </SignedIn>
+      )}
     </>
   );
 };
