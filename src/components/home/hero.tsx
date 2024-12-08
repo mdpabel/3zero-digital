@@ -13,7 +13,7 @@ const Hero = () => {
               Empowering Digital Solutions with Zero Compromises
             </p>
             <p
-              className={`text-base md:text-lg mb-10 dark:text-gray-400 fd-swap text-gray-600`}>
+              className={`text-sm md:text-lg mb-10 dark:text-gray-400 fd-swap text-gray-600`}>
               Offering top-tier custom web development and website security
               solutions with virtually zero vulnerabilities, zero downtime, and
               zero errors. We ensure your business achieves optimal digital

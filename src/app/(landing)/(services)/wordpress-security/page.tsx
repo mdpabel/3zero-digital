@@ -6,7 +6,7 @@ import HeroSection from '@/components/comment/hero-section';
 import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 
-export const metadata = getServiceMetadata('/wordpress-security');
+export const metadata = getServiceMetadata('wordpress-security');
 
 const services = [
   'Hardened file permissions for critical WordPress files',
