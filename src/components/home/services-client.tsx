@@ -22,7 +22,7 @@ const ServicesClient = ({ services }: { services: ServiceWithProducts[] }) => {
       );
       const nextTab = services[(currentIndex + 1) % services.length].name;
       setActiveTab(nextTab);
-    }, 5000);
+    }, 8000);
     return () => clearInterval(interval);
   }, [activeTab]);
 
@@ -33,10 +33,7 @@ const ServicesClient = ({ services }: { services: ServiceWithProducts[] }) => {
         subTitle='Discover how we can help you grow and optimize your online presence.'
       />
 
-      <Tabs
-        defaultValue={activeTab}
-        value={activeTab}
-        onValueChange={setActiveTab}>
+      <Tabs defaultValue='Development'>
         <TabsList className='flex flex-wrap justify-center gap-2 sm:space-x-4 bg-transparent mb-6'>
           {services.map((services) => {
             return (

@@ -1,17 +1,15 @@
 'use server';
 
-import BackendSubmissionEmailTemplate from '@/components/email/development-service-form-email-template';
+import DevelopmentServiceFormTemplate from '@/components/email/development-service-form-email-template';
 import { verifyCfTurnstileToken } from '@/lib/security/cf-turnstile';
 import { sendEmail } from '@/lib/send-email';
-import { catchZodErrors } from '@/lib/utils';
-import { backendFormSchema } from '@/schema/services/development-service-form-schema';
-import { redirect } from 'next/navigation';
+import { DevelopmentServiceFormSchema } from '@/schema/services/development-service-form-schema';
 import { z } from 'zod';
 
-export const backendFormSubmission = async (formData: FormData) => {
-  let status = 'success' as 'success' | 'error';
-  let errors = '';
-
+export const developmentFormSubmissionAction = async (
+  _: any,
+  formData: FormData,
+) => {
   try {
     // Extract and validate form data
     const data = {
@@ -33,13 +31,15 @@ export const backendFormSubmission = async (formData: FormData) => {
       const res = await verifyCfTurnstileToken(token);
 
       if (!res) {
-        console.log('You are a robot!');
-        return;
+        return {
+          success: false,
+          message: 'Turnstile verification failed. Please try again.',
+        };
       }
     }
 
     // Validate form data with Zod schema
-    const validatedData = backendFormSchema.parse({
+    const validatedData = DevelopmentServiceFormSchema.parse({
       projectType: data.projectType,
       budget: data.budget,
       timeline: data.timeline,
@@ -55,21 +55,33 @@ export const backendFormSubmission = async (formData: FormData) => {
       to: process.env.EMAIL_TO!,
       replyTo: validatedData.email,
       subject: 'New Backend Form Submission',
-      react: BackendSubmissionEmailTemplate({
+      react: DevelopmentServiceFormTemplate({
         formData: validatedData,
       }),
       name: validatedData.name,
     });
 
-    status = 'success';
+    return {
+      success: true,
+      message:
+        'Your form has been successfully submitted. We will get back to you soon!',
+    };
   } catch (err) {
-    // If validation fails, handle the error
+    // Catch validation or any other errors and return appropriate message
     if (err instanceof z.ZodError) {
-      errors = catchZodErrors(err, backendFormSchema);
+      return {
+        success: false,
+        message: `Validation Error: ${err.errors
+          .map((e) => e.message)
+          .join(', ')}`,
+      };
     }
-    // Handle other errors (e.g., email sending failed)
-    status = 'error';
-  }
 
-  redirect(`/form-submission-result?status=${status}&errors=${errors}`);
+    console.error('Error submitting form:', err);
+    return {
+      success: false,
+      message:
+        'There was an error processing your submission. Please try again later.',
+    };
+  }
 };

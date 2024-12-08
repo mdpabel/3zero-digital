@@ -9,13 +9,13 @@ import {
   Heading,
 } from '@react-email/components';
 import { z } from 'zod';
-import { backendFormSchema } from '@/schema/services/backend-form-schema';
+import { DevelopmentServiceFormSchema } from '@/schema/services/development-service-form-schema';
 
 type BackendSubmissionEmailProps = {
-  formData: z.infer<typeof backendFormSchema>;
+  formData: z.infer<typeof DevelopmentServiceFormSchema>;
 };
 
-const BackendSubmissionEmailTemplate: React.FC<BackendSubmissionEmailProps> = ({
+const DevelopmentServiceFormTemplate: React.FC<BackendSubmissionEmailProps> = ({
   formData,
 }) => {
   const {
@@ -35,7 +35,7 @@ const BackendSubmissionEmailTemplate: React.FC<BackendSubmissionEmailProps> = ({
       <Body style={mainStyle}>
         <Container style={containerStyle}>
           {/* Header */}
-          <Heading style={headingStyle}>New Backend Project Submission</Heading>
+          <Heading style={headingStyle}>New Project Request</Heading>
 
           {/* Project Information */}
           <Text style={bodyTextStyle}>
@@ -119,4 +119,4 @@ const buttonStyle: React.CSSProperties = {
   marginTop: '20px',
 };
 
-export default BackendSubmissionEmailTemplate;
+export default DevelopmentServiceFormTemplate;

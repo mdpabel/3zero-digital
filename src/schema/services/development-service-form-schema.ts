@@ -1,10 +1,9 @@
 import { z } from 'zod';
 
-// Define the Zod schema for validation
-export const frontendFormSchema = z.object({
-  websiteType: z.string().nonempty('Website type is required'),
+// Define the Zod schema for form validation
+export const DevelopmentServiceFormSchema = z.object({
+  projectType: z.string().nonempty('Project type is required'),
   budget: z.string().nonempty('Budget is required'),
-  pages: z.string().nonempty('Number of pages is required'),
   timeline: z.string().nonempty('Timeline is required'),
   functionalities: z
     .array(z.string())

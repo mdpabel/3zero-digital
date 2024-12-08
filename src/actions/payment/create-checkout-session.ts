@@ -76,7 +76,6 @@ export const createStripeSession = async (_: any, formData: FormData) => {
         productId: product.id,
         quantity: parseInt(quantity),
         total: productPrice * parseInt(quantity),
-        metadata: parsedMetaData,
       },
     });
 

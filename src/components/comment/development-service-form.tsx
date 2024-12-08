@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useActionState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import {
@@ -23,8 +23,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { useForm } from 'react-hook-form';
-import { FaWordpress } from 'react-icons/fa';
-import { IconType } from 'react-icons';
+import { developmentFormSubmissionAction } from '@/actions/form/development-service-form';
 
 // Data Arrays
 const websiteTypes = ['Blog', 'E-Commerce', 'Portfolio', 'Business'];
@@ -62,16 +61,17 @@ type Props = {
 };
 
 const DevelopmentServiceForm = ({ Icon, title }: Props) => {
+  const [state, action] = useActionState(developmentFormSubmissionAction, {
+    success: true,
+    message: '',
+  });
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
       requiredFunctionalities: [],
     },
   });
-
-  const onSubmit = (data: any) => {
-    console.log('Form Data', data);
-  };
 
   return (
     <div className='mx-auto mt-10 max-w-4xl'>
@@ -96,7 +96,7 @@ const DevelopmentServiceForm = ({ Icon, title }: Props) => {
       </p>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
+          action={action}
           className='relative space-y-5 dark:bg-gray-900 shadow-xl p-6 md:p-10 rounded-lg'>
           <div className='-top-10 left-1/2 absolute flex justify-center items-center bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg rounded-full w-16 md:w-20 h-16 md:h-20 transform -translate-x-1/2'>
             {Icon}

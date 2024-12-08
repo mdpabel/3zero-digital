@@ -89,11 +89,11 @@ model Order {
   userId        String        @db.ObjectId
   quantity      Int
   total         Float
-  currency      String        @default("USD")
+  currency      String?       @default("USD")
   status        OrderStatus   @default(pending)
   paymentLink   String?
   paymentStatus PaymentStatus @default(unpaid)
-  transactionId String?       @unique
+  transactionId String?
   metadata      Json?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
