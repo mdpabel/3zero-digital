@@ -56,9 +56,7 @@ export default async function Image({
             padding: '20px',
             color: 'white', // Adjust text color for readability
             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.6)', // Optional: to improve text readability on image
-          }}>
-          {post.title.rendered}
-        </div>
+          }}></div>
       ),
       {
         ...size,
