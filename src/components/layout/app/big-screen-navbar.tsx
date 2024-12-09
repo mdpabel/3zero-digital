@@ -18,7 +18,7 @@ import { useSession } from 'next-auth/react';
 import { ServiceWithProducts } from '@/lib/product/get-product';
 
 const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
-  const { data, status } = useSession();
+  const { status } = useSession();
 
   return (
     <div className='lg:block z-50 hidden mx-auto px-4 max-w-6xl container'>

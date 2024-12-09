@@ -69,13 +69,13 @@ export async function generateMetadata({
       publishedTime: publishedTime,
       modifiedTime: post.modified,
       url: yoast_head_json?.og_url || post.link,
-      images: ogImage ? [ogImage] : [],
+      images: [ogImage],
     },
     twitter: {
       card: twitterCard,
       title: ogTitle,
       description: ogDescription,
-      images: ogImage ? [ogImage] : [],
+      images: [ogImage],
     },
     // schema: yoast_head_json?.schema, // Include schema if available
   };
