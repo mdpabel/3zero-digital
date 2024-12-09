@@ -136,7 +136,10 @@ export async function createProduct(_: any, formData: FormData) {
       price,
     );
 
-    const slug = slugify(name);
+    const slug = slugify(name, {
+      lower: true,
+      trim: true,
+    });
 
     const product = await prisma.product.create({
       data: {

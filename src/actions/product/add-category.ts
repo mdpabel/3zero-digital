@@ -21,7 +21,10 @@ export async function createCategory(_: any, formData: FormData) {
 
     const { name, description } = result.data;
 
-    const slug = slugify(name);
+    const slug = slugify(name, {
+      lower: true,
+      trim: true,
+    });
 
     await prisma.category.create({
       data: { name, description, slug },
