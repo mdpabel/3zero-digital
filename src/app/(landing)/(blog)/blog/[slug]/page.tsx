@@ -60,17 +60,7 @@ export async function generateMetadata({
       canonical,
     }, // Include canonical URL if available
     authors: [author],
-    // openGraph: {
-    //   title: ogTitle,
-    //   description: ogDescription,
-    //   siteName: yoast_head_json?.og_site_name || post.title.rendered,
-    //   locale: yoast_head_json?.og_locale || 'en_US',
-    //   type: yoast_head_json?.og_type || 'article',
-    //   publishedTime: publishedTime,
-    //   modifiedTime: post.modified,
-    //   url: yoast_head_json?.og_url || post.link,
-    //   images: [ogImage],
-    // },
+
     twitter: {
       card: twitterCard,
       title: ogTitle,
