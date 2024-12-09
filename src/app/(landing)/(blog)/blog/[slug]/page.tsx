@@ -61,13 +61,13 @@ export async function generateMetadata({
     }, // Include canonical URL if available
     authors: [author],
 
-    twitter: {
-      card: twitterCard,
-      title: ogTitle,
-      description: ogDescription,
-      images: [ogImage],
-    },
-    // schema: yoast_head_json?.schema, // Include schema if available
+    // twitter: {
+    //   card: twitterCard,
+    //   title: ogTitle,
+    //   description: ogDescription,
+    //   images: [ogImage],
+    // },
+    // // schema: yoast_head_json?.schema, // Include schema if available
   };
 }
 
