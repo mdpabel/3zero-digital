@@ -3,8 +3,8 @@ import Quiz from '@/components/comment/quiz';
 import { getServiceMetadata } from '@/app/seo';
 import DevelopmentServiceForm from '@/components/comment/development-service-form';
 import { FaCogs } from 'react-icons/fa';
-import PerformanceComparison from './performance-comparison';
 import { questions } from './data';
+import PerformanceComparison from './performance-comparison';
 
 export const metadata = getServiceMetadata('headless-wordpress-and-next.js');
 
@@ -30,10 +30,6 @@ const HeadlessWordPressAndNextJs = () => {
         title='Headless WordPress & NextJs'
       />
 
-      {/* <KeyBenefits
-        benefits={benefits}
-        title='Key Benefits of Headless WordPress & Next.js'
-      /> */}
       <Quiz questions={questions} />
     </div>
   );

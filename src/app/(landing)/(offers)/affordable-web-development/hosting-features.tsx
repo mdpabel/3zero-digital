@@ -19,10 +19,28 @@ const hostingFeatures = [
       'Get a custom domain for your business website at no additional cost.',
   },
   {
+    icon: <FaCloud className='mb-4 text-[#614385] text-4xl' />,
+    title: '20GB SSD Hosting',
+    description:
+      'Fast, secure hosting with SSD storage to ensure lightning-fast performance.',
+  },
+  {
     icon: <FaLock className='mb-4 text-[#614385] text-4xl' />,
     title: 'Free SSL Certificate',
     description:
       'Your site will be secured with SSL, boosting trust and SEO ranking.',
+  },
+  {
+    icon: <FaClipboardCheck className='mb-4 text-[#614385] text-4xl' />,
+    title: 'Backups Twice a Week',
+    description:
+      'Your website data is backed up twice a week for peace of mind.',
+  },
+  {
+    icon: <FaTools className='mb-4 text-[#614385] text-4xl' />,
+    title: 'cPanel Access',
+    description:
+      'Manage your website with cPanel, the most user-friendly control panel.',
   },
   {
     icon: <FaRegEnvelope className='mb-4 text-[#614385] text-4xl' />,
@@ -36,29 +54,12 @@ const hostingFeatures = [
     description:
       'Host multiple projects with up to 50 MySQL databases for your convenience.',
   },
-  {
-    icon: <FaCloud className='mb-4 text-[#614385] text-4xl' />,
-    title: '20GB SSD Hosting',
-    description:
-      'Fast, secure hosting with SSD storage to ensure lightning-fast performance.',
-  },
+
   {
     icon: <FaDatabaseIcon className='mb-4 text-[#614385] text-4xl' />,
     title: '30 Subdomains',
     description:
       'Create up to 30 subdomains to organize your projects or services.',
-  },
-  {
-    icon: <FaClipboardCheck className='mb-4 text-[#614385] text-4xl' />,
-    title: 'Backups Twice a Week',
-    description:
-      'Your website data is backed up twice a week for peace of mind.',
-  },
-  {
-    icon: <FaTools className='mb-4 text-[#614385] text-4xl' />,
-    title: 'cPanel Access',
-    description:
-      'Manage your website with cPanel, the most user-friendly control panel.',
   },
 ];
 
