@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
+import YouTubeBrowserFrame from './video';
 
 const Hero = () => {
   return (

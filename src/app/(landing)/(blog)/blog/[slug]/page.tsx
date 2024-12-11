@@ -60,14 +60,24 @@ export async function generateMetadata({
       canonical,
     }, // Include canonical URL if available
     authors: [author],
-
-    // twitter: {
-    //   card: twitterCard,
-    //   title: ogTitle,
-    //   description: ogDescription,
-    //   images: [ogImage],
-    // },
-    // // schema: yoast_head_json?.schema, // Include schema if available
+    openGraph: {
+      title: ogTitle,
+      description: ogDescription,
+      siteName: yoast_head_json?.og_site_name || post.title.rendered,
+      locale: yoast_head_json?.og_locale || 'en_US',
+      type: yoast_head_json?.og_type || 'article',
+      publishedTime: publishedTime,
+      modifiedTime: post.modified,
+      url: yoast_head_json?.og_url || post.link,
+      images: ogImage ? [ogImage] : [],
+    },
+    twitter: {
+      card: twitterCard,
+      title: ogTitle,
+      description: ogDescription,
+      images: ogImage ? [ogImage] : [],
+    },
+    // schema: yoast_head_json?.schema, // Include schema if available
   };
 }
 
