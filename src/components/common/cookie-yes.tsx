@@ -8,7 +8,6 @@ const CookieYes = () => {
       id='cookieyes'
       strategy='afterInteractive'
       type='text/javascript'
-      className='md:block hidden'
       src='https://cdn-cookieyes.com/client_data/5cdf576570b3e24a0a725fb2/script.js'></Script>
   );
 };

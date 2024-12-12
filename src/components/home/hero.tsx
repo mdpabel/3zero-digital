@@ -29,9 +29,7 @@ const Hero = () => {
                 <Link href='/signup'>Get started</Link>
               </Button>
               <Button asChild className='px-5 md:px-10 py-6 text-lg'>
-                <Link
-                  target='_blank'
-                  href='https://calendly.com/3zerodigital-info/30min'>
+                <Link prefetch={false} target='_blank' href='/book-a-call'>
                   Book a call
                 </Link>
               </Button>
