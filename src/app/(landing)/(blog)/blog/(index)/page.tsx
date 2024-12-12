@@ -4,6 +4,7 @@ import { genMetaData } from '@/app/seo';
 
 export const metadata = genMetaData({
   title: 'Blog',
+  url: 'https://www.3zerodigital.com/blog',
 });
 
 type Props = {

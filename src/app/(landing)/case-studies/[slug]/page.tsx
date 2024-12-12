@@ -23,6 +23,9 @@ export async function generateMetadata(
   return {
     title: caseStudy?.title,
     description: caseStudy?.description,
+    alternates: {
+      canonical: `https://www.3zerodigital.com/case-studies/${slug}`,
+    },
   };
 }
 

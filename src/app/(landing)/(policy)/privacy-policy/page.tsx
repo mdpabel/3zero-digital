@@ -3,6 +3,7 @@ import { genMetaData } from '@/app/seo';
 
 export const metadata = genMetaData({
   title: 'Privacy Policy',
+  url: 'https://www.3zerodigital.com/privacy-policy',
 });
 
 const PrivacyPolicy = () => {

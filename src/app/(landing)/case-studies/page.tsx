@@ -6,6 +6,7 @@ import { genMetaData } from '@/app/seo';
 
 export const metadata = genMetaData({
   title: 'Case studies',
+  url: 'https://www.3zerodigital.com/case-studies',
 });
 
 const CaseStudyPage = async () => {

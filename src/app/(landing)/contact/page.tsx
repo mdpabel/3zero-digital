@@ -6,6 +6,7 @@ const GoogleMap = lazy(() => import('./google-map'));
 
 export const metadata = genMetaData({
   title: 'Contact us',
+  url: 'https://www.3zerodigital.com/contact',
 });
 
 const ContactPage = () => {

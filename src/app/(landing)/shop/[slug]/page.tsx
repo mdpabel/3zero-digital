@@ -3,6 +3,26 @@ import prisma from '@/prisma/db';
 import ImageCarousel from './image-carousel';
 import { FaRegClock, FaRegFileAlt } from 'react-icons/fa'; // For "Recently Updated" and "Well Documented" icons
 import { Button } from '@/components/ui/button';
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const slug = (await params).slug;
+  const product = await prisma.template.findFirst({
+    where: { slug },
+  });
+
+  return {
+    title: product?.name,
+    description: product?.description,
+    alternates: {
+      canonical: `https://www.3zerodigital.com/case-studies/${slug}`,
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const products = await prisma.template.findMany();

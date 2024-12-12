@@ -9,6 +9,7 @@ import { genMetaData } from '@/app/seo';
 
 export const metadata = genMetaData({
   title: 'Frequently asked questions',
+  url: 'https://www.3zerodigital.com/faq',
 });
 
 const faqs = [

@@ -4,6 +4,7 @@ import { genMetaData } from '@/app/seo';
 
 export const metadata = genMetaData({
   title: 'Refund Policy',
+  url: 'https://www.3zerodigital.com/refund-policy',
 });
 
 const RefundPolicy: React.FC = () => {
