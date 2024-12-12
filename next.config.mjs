@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
+    dynamicIO: true,
     serverActions: {
       bodySizeLimit: '200mb',
     },

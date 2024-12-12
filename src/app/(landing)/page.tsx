@@ -1,3 +1,4 @@
+'use cache';
 import React, { Suspense } from 'react';
 import Hero from '@/components/home/hero';
 import Services from '@/components/home/services';

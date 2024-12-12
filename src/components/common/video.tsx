@@ -36,7 +36,7 @@ const Video: React.FC<VideoProps> = ({ videoId, pageSlug }) => {
         <div className='block md:hidden'>
           <YouTubeEmbed
             videoid={videoId}
-            style={`width: 100%; height: 100%; max-width: unset; background-image: url(https://i.ytimg.com/vi_webp/${videoId}/hqdefault.webp); background-position: center; background-size: cover; background-repeat: no-repeat; max-height: 550px`}
+            style={`width: 100%; height: 100%; max-width: unset; background-image: url(https://i.ytimg.com/vi_webp/${videoId}/mqdefault.webp); background-position: center; background-size: cover; background-repeat: no-repeat; max-height: 550px`}
           />
         </div>
 
