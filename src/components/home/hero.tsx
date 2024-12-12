@@ -44,7 +44,7 @@ const Hero = () => {
               loop
               muted
               playsInline
-              preload='auto'
+              preload='none'
               style={{
                 backgroundColor: '#030712',
                 border: 'none',
