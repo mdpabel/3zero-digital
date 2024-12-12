@@ -15,15 +15,14 @@ const Hero = () => {
             <p className='mb-8 text-gray-600 text-xl md:text-2xl dark:text-gray-400'>
               Empowering Digital Solutions with Zero Compromises
             </p>
-            <p
-              className={cn(
-                'mb-10 text-gray-600 text-md md:text-lg dark:text-gray-400',
-              )}>
-              Offering top-tier custom web development and website security
-              solutions with virtually zero vulnerabilities, zero downtime, and
-              zero errors. We ensure your business achieves optimal digital
-              performance.
-            </p>
+            <div>
+              <p className='mb-10 text-gray-600 text-md md:text-lg dark:text-gray-400'>
+                Offering top-tier custom web development and website security
+                solutions with virtually zero vulnerabilities, zero downtime,
+                and zero errors. We ensure your business achieves optimal
+                digital performance.
+              </p>
+            </div>
             <div className='space-x-4'>
               <Button asChild className='px-5 md:px-10 py-6 text-lg'>
                 <Link href='/signup'>Get started</Link>

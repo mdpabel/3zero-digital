@@ -16,6 +16,7 @@ const quickLinks = [
   { name: 'About Us', href: '/about' },
   { name: 'Contact', href: '/contact' },
   { name: 'Blog', href: '/blog' },
+  { name: 'Book a call', href: '/book-a-call' },
 ];
 
 const servicesLinks = [

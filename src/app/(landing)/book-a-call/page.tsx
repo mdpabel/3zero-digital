@@ -1,5 +1,10 @@
+import { genMetaData } from '@/app/seo';
 import Title from '@/components/common/title';
-import React from 'react';
+
+export const metadata = genMetaData({
+  title: 'Book a call',
+  url: 'https://www.3zerodigital.com/book-a-call',
+});
 
 const BookACall: React.FC = () => {
   return (
