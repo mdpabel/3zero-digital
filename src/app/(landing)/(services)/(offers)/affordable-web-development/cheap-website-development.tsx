@@ -1,8 +1,8 @@
 import HostingFeatures from './hosting-features';
 import ServicesProvided from './service-provided';
 import FAQ from './FAQ';
-import Video from '@/components/comment/video';
-import Hero from '@/components/comment/Hero';
+import Video from '@/components/common/video';
+import Hero from '@/components/common/Hero';
 
 const CheapWebsiteDevelopment = () => {
   return (

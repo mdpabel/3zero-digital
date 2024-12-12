@@ -5,8 +5,8 @@ import { benefits, questions } from './data';
 import { getServiceMetadata } from '@/app/seo';
 import DevelopmentServiceForm from '@/components/comment/development-service-form';
 import { FaReact } from 'react-icons/fa'; // Import React icon for frontend services
-import Video from '@/components/comment/video';
-import Hero from '@/components/comment/Hero';
+import Video from '@/components/common/video';
+import Hero from '@/components/common/Hero';
 
 // Force static rendering for SEO and performance
 

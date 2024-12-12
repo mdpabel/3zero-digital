@@ -5,8 +5,8 @@ import { getServiceMetadata } from '@/app/seo';
 import HeroSection from '@/components/comment/hero-section';
 import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
-import Video from '@/components/comment/video';
-import Hero from '@/components/comment/Hero';
+import Video from '@/components/common/video';
+import Hero from '@/components/common/Hero';
 
 export const metadata = getServiceMetadata('blacklist-removal');
 

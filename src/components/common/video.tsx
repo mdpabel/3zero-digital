@@ -32,10 +32,21 @@ const Video: React.FC<VideoProps> = ({ videoId, pageSlug }) => {
 
       {/* YouTube Video Embed */}
       <div className='rounded-b-lg w-full h-full overflow-hidden'>
-        <YouTubeEmbed
-          videoid={videoId}
-          style={`width: 100%; height: 100%; max-width: unset; background-image: url(https://i.ytimg.com/vi_webp/${videoId}/maxresdefault.webp); background-position: center; background-size: cover; background-repeat: no-repeat; max-height: 550px`}
-        />
+        {/* Mobile: Small Screen */}
+        <div className='block md:hidden'>
+          <YouTubeEmbed
+            videoid={videoId}
+            style={`width: 100%; height: 100%; max-width: unset; background-image: url(https://i.ytimg.com/vi_webp/${videoId}/hqdefault.webp); background-position: center; background-size: cover; background-repeat: no-repeat; max-height: 550px`}
+          />
+        </div>
+
+        {/* Desktop: Large Screen */}
+        <div className='md:block hidden'>
+          <YouTubeEmbed
+            videoid={videoId}
+            style={`width: 100%; height: 100%; max-width: unset; background-image: url(https://i.ytimg.com/vi_webp/${videoId}/maxresdefault.webp); background-position: center; background-size: cover; background-repeat: no-repeat; max-height: 550px`}
+          />
+        </div>
         {/* <iframe
           className='border-none w-full h-full'
           src={videoUrl}

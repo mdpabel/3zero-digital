@@ -13,8 +13,8 @@ import { getProduct } from '@/lib/product/get-product';
 import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 import { getServiceMetadata } from '@/app/seo';
-import Video from '@/components/comment/video';
-import Hero from '@/components/comment/Hero';
+import Video from '@/components/common/video';
+import Hero from '@/components/common/Hero';
 
 export const metadata = getServiceMetadata('ongoing-wordpress-maintenance');
 

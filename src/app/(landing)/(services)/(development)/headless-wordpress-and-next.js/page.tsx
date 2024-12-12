@@ -5,8 +5,8 @@ import DevelopmentServiceForm from '@/components/comment/development-service-for
 import { FaCogs } from 'react-icons/fa';
 import { questions } from './data';
 import PerformanceComparison from './performance-comparison';
-import Hero from '@/components/comment/Hero';
-import Video from '@/components/comment/video';
+import Hero from '@/components/common/Hero';
+import Video from '@/components/common/video';
 
 export const metadata = getServiceMetadata('headless-wordpress-and-next.js');
 

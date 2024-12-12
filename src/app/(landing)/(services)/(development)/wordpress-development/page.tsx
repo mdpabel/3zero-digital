@@ -4,8 +4,8 @@ import { getServiceMetadata } from '@/app/seo';
 import DevelopmentServiceForm from '@/components/comment/development-service-form';
 import { FaWordpress } from 'react-icons/fa';
 import ProcessSteps from '@/components/comment/process-steps';
-import Hero from '@/components/comment/Hero';
-import Video from '@/components/comment/video';
+import Hero from '@/components/common/Hero';
+import Video from '@/components/common/video';
 
 export const metadata = getServiceMetadata('wordpress-development');
 
