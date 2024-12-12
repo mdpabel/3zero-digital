@@ -1,4 +1,6 @@
 import { cn } from '@/lib/utils';
+import { Button } from '../ui/button';
+import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -23,14 +25,16 @@ const Hero = () => {
               performance.
             </p>
             <div className='space-x-4'>
-              <button
-                className={`px-4 py-2.5 bg-gradient-to-r from-[#614385] to-[#516395] text-white font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105`}>
-                Services
-              </button>
-              <button
-                className={`px-4 py-2.5 bg-gradient-to-r from-[#614385] to-[#516395] text-white font-semibold rounded-lg shadow-lg transition-transform transform hover:scale-105`}>
-                Plans & Pricing
-              </button>
+              <Button asChild className='px-5 md:px-10 py-6 text-lg'>
+                <Link href='/signup'>Get started</Link>
+              </Button>
+              <Button asChild className='px-5 md:px-10 py-6 text-lg'>
+                <Link
+                  target='_blank'
+                  href='https://calendly.com/3zerodigital-info/30min'>
+                  Book a call
+                </Link>
+              </Button>
             </div>
           </div>
 

@@ -34,6 +34,9 @@ export function genMetaData({
       card: 'summary_large_image',
       images: image ? [image] : [siteMetadata.socialBanner],
     },
+    alternates: {
+      canonical: url,
+    },
     ...rest,
   };
 }

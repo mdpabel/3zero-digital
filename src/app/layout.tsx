@@ -57,7 +57,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='en' className='scroll-smooth' suppressHydrationWarning>
       <body className={poppins.className}>
         <Providers>{children}</Providers>
         <GoogleTagManager gtmId='GTM-T7DTDMX7' />

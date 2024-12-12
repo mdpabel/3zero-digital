@@ -74,7 +74,7 @@ const DevelopmentServiceForm = ({ Icon, title }: Props) => {
   });
 
   return (
-    <div className='mx-auto mt-10 max-w-4xl'>
+    <div id='getStarted' className='mx-auto mt-32 max-w-4xl'>
       <h2 className='mb-6 font-bold text-3xl text-center text-zinc-800 md:text-4xl dark:text-zinc-200'>
         {title}
       </h2>
