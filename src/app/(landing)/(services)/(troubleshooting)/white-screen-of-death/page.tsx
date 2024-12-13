@@ -1,33 +1,29 @@
 import { getServiceMetadata } from '@/app/seo';
-import Link from 'next/link';
+import { getProduct } from '@/lib/product/get-product';
+import Hero from '@/components/common/Hero';
+import PricingTable from '../pricing-table';
 
 export const metadata = getServiceMetadata('white-screen-of-death');
 
-export default function FixWSODService() {
+export default async function FixWSODService() {
+  const { origPrice, price, productId } = await getProduct(
+    'white-screen-of-death',
+  );
+
   return (
     <div className='flex flex-col justify-center items-center p-6 min-h-[100dvh]'>
-      <div className='shadow-lg p-8 rounded-lg w-full max-w-4xl'>
-        <h1 className='mb-8 font-bold text-4xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
-          Fix White Screen of Death (WSOD)
-        </h1>
+      <Hero
+        description='Is your WordPress site showing a blank white screen? Our team can quickly diagnose and fix the issue, restoring your site to full functionality.'
+        headline='Fix White Screen of Death (WSOD)'
+        subHeadline='Bring your WordPress site back to life with expert solutions.'
+      />
 
-        <p className='mb-8 text-center text-lg text-zinc-600 md:text-xl dark:text-zinc-400'>
-          Is your WordPress site showing a blank white screen? Our team can
-          quickly diagnose and fix the issue, restoring your site to full
-          functionality.
-        </p>
-
-        <div className='flex md:flex-row flex-col justify-between items-center bg-gradient-to-r from-[#614385] to-[#516395] shadow-md p-6 rounded-lg text-white'>
-          <div className='flex-1 mb-6 md:mb-0 text-center md:text-left'>
-            <h2 className='font-bold text-3xl'>WSOD Error Fix</h2>
-            <p className='mt-2 text-lg'>Only $30</p>
-          </div>
-          <Link
-            href='/checkout'
-            className='bg-white shadow-lg px-8 py-3 rounded-lg font-semibold text-[#614385] transform transition-transform hover:scale-105'>
-            Purchase Now
-          </Link>
-        </div>
+      <div className='p-8 w-full max-w-5xl'>
+        <PricingTable
+          origPrice={origPrice}
+          price={price}
+          productId={productId}
+        />
 
         <div className='gap-6 grid grid-cols-1 md:grid-cols-2 mt-12'>
           <div className='bg-gray-300 dark:bg-gray-900 shadow-xl p-6 rounded-lg'>
