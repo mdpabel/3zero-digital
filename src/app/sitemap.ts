@@ -99,7 +99,7 @@ export const generateBlogSitemap = async () => {
     priority: 0.4,
   }));
 
-  return [...blogUrls, ...categoryUrls, ...tagUrls];
+  return [...blogUrls, ...categoryUrls];
 };
 
 export default async function sitemap() {

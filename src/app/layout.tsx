@@ -44,10 +44,10 @@ export const metadata: Metadata = {
   },
 };
 
-export const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-});
+// export const poppins = Poppins({
+//   subsets: ['latin'],
+//   weight: ['400', '700'],
+// });
 
 export default function RootLayout({
   children,
@@ -56,7 +56,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className='scroll-smooth' suppressHydrationWarning>
-      <body className={poppins.className}>
+      <body>
         <Providers>{children}</Providers>
         <GoogleTagManager gtmId='GTM-T7DTDMX7' />
       </body>

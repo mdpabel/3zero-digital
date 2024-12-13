@@ -1,6 +1,5 @@
 import { getServiceMetadata } from '@/app/seo';
 import { getProduct } from '@/lib/product/get-product';
-import Link from 'next/link';
 import { AiOutlineCheck } from 'react-icons/ai';
 import PricingTable from '../pricing-table';
 import Hero from '@/components/common/Hero';

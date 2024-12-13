@@ -70,7 +70,7 @@ const ServicesClient = ({ services }: { services: ServiceWithProducts[] }) => {
                       return (
                         <li
                           key={i}
-                          className='flex lg:flex-row flex-col lg:justify-between lg:items-center gap-4'>
+                          className='flex lg:flex-row flex-col lg:justify-between lg:items-center gap-4 !mb-12 md:!mb-0'>
                           <div className='flex items-center space-x-4'>
                             <span className='text-indigo-500 text-xl sm:text-2xl'>
                               <IconRenderer iconName={product.icon!} />
