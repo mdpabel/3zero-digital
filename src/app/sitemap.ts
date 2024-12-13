@@ -13,7 +13,7 @@ const generateServicesSitemap = () => {
     if (service.serviceCategories.length > 0) {
       service.serviceCategories.forEach((subService) => {
         urls.push({
-          url: `https://3zerodigital.com${subService.href}`,
+          url: `https://www.3zerodigital.com${subService.href}`,
           lastModified: new Date(),
           changeFrequency: 'monthly',
           priority: 0.7,
@@ -21,7 +21,7 @@ const generateServicesSitemap = () => {
       });
     } else {
       urls.push({
-        url: `https://3zerodigital.com${service.href}`,
+        url: `https://www.3zerodigital.com${service.href}`,
         lastModified: new Date(),
         changeFrequency: 'monthly',
         priority: 0.8,
@@ -38,7 +38,7 @@ const generateStaticSitemap = () => {
 
   staticPages.forEach((page) => {
     urls.push({
-      url: `https://3zerodigital.com${page}`,
+      url: `https://www.3zerodigital.com${page}`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 1.0,
@@ -52,7 +52,7 @@ export const generateCaseStudiesSitemap = async () => {
   const caseStudies = await fetchCaseStudies();
 
   const caseStudySitemap = caseStudies.map((caseStudy) => ({
-    url: `https://3zerodigital.com/case-studies/${caseStudy.slug}`,
+    url: `https://www.3zerodigital.com/case-studies/${caseStudy.slug}`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.7,
