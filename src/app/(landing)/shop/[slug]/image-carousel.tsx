@@ -11,12 +11,12 @@ const ImageCarousel = ({ images }: { images: TemplateImage[] }) => {
   // React Slick Settings
   const sliderSettings = {
     dots: true,
-    infinite: true,
+    infinite: images.length > 1, // Disable infinite mode if there's only one image
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true,
+    autoplay: images.length > 1, // Disable autoplay if there's only one image
     autoplaySpeed: 3000,
   };
 
