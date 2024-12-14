@@ -21,8 +21,8 @@ const TopBar = () => {
             <Link
               href='/affordable-web-development'
               className='max-w-fit typewriter'>
-              🎉 Build Your Business Website Today: Design, Hosting, SSL, and
-              More for Just $79!
+              🎉 Build Your Business Website Today: Design, Domain, Hosting,
+              SSL, and More for Just $79!
             </Link>
           </div>
           <div className='block lg:hidden'>

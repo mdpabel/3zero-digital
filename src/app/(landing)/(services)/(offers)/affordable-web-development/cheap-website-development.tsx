@@ -3,6 +3,7 @@ import ServicesProvided from './service-provided';
 import FAQ from './FAQ';
 import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
+import PricingTable from './pricing-table';
 
 const CheapWebsiteDevelopment = () => {
   return (
@@ -16,6 +17,7 @@ const CheapWebsiteDevelopment = () => {
         , and more—at a price that won’t break the bank."
       />
       <Video videoId='na2iB6nBzIc' pageSlug='affordable-web-development' />
+      <PricingTable />
       <HostingFeatures />
       <ServicesProvided />
       <FAQ />
