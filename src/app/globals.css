@@ -317,3 +317,38 @@ html {
 .fd-swap {
   font-display: swap;
 }
+
+/* type writer start */
+/* Keyframes for the typewriter effect */
+@keyframes typewriter {
+  0% {
+    width: 0;
+  }
+  60% {
+    width: 100%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Keyframes for the blinking cursor */
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+/* Apply the typewriter animation */
+.typewriter {
+  display: inline-block;
+  overflow: hidden; /* Hide extra text */
+  white-space: nowrap; /* Keep text in one line */
+  border-right: 3px solid white; /* Cursor effect */
+  width: 0;
+  animation: typewriter 6s steps(40) 1s infinite,
+    /* Typewriter effect with 1s delay and stops after finishing */ blink 0.75s
+      step-end infinite; /* Cursor blinking */
+}
+
+/* type writer end */

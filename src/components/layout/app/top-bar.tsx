@@ -18,11 +18,17 @@ const TopBar = () => {
       <div className='mx-auto px-4 max-w-6xl container'>
         <div className='flex justify-between items-center font-medium text-sm'>
           <div className='lg:block hidden'>
-            0 Vulnerability, 0 Downtime, 0 Error. Built for perfection.
+            <Link href='/' className='max-w-fit typewriter'>
+              🎉 Build Your Business Website Today: Design, Hosting, SSL, and
+              More for Just $79!
+            </Link>
           </div>
-          <div className='block lg:hidden text-center'>
-            0 Vulnerability, 0 Downtime, 0 Error
+          <div className='block lg:hidden'>
+            <Link href='/' className='max-w-fit typewriter'>
+              🎉 Build Website: Hosting, SSL & More for just $79!
+            </Link>
           </div>
+
           <nav className='lg:block hidden'>
             <ul className='flex justify-between items-center space-x-4'>
               {navItems.map((item) => (
