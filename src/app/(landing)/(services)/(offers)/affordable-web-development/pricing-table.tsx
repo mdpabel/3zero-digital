@@ -58,7 +58,7 @@ const PricingTable = async () => {
               ))}
             </ul>
 
-            <div className='pt-10'>
+            <div className='pt-10 w-full'>
               <Checkout
                 productId={productId}
                 paymentMode='payment'
