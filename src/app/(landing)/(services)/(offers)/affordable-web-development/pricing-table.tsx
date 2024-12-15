@@ -1,9 +1,17 @@
+import Checkout from '@/components/payment/checkout';
+import { getProduct } from '@/lib/product/get-product';
 import React from 'react';
 import { FaCheck } from 'react-icons/fa';
 
-const PricingTable = () => {
+const PricingTable = async () => {
+  const { origPrice, price, productId } = await getProduct(
+    'affordable-web-development',
+  );
+
   return (
-    <div className='bg-gray-50 dark:bg-gray-900 mt-32 py-16 text-center'>
+    <div
+      id='getStarted'
+      className='bg-gray-50 dark:bg-gray-900 mt-32 py-16 text-center'>
       <h2 className='mb-6 font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
         🚀 Simple, Transparent Pricing
       </h2>
@@ -50,9 +58,14 @@ const PricingTable = () => {
               ))}
             </ul>
 
-            <button className='bg-[#614385] hover:bg-[#4e3272] mt-8 py-4 rounded-lg w-full font-bold text-lg text-white transition-all duration-300'>
-              Get Started Now
-            </button>
+            <div className='pt-10'>
+              <Checkout
+                productId={productId}
+                paymentMode='payment'
+                quantity={1}
+                className='w-full'
+              />
+            </div>
           </div>
         </div>
       </div>
