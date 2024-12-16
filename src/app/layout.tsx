@@ -4,6 +4,7 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import './globals.css';
 import Providers from './providers';
 import { siteMetadata } from './metadata';
+import { cn } from '@/lib/utils';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.url),
@@ -44,10 +45,11 @@ export const metadata: Metadata = {
   },
 };
 
-// export const poppins = Poppins({
-//   subsets: ['latin'],
-//   weight: ['400', '700'],
-// });
+export const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  display: 'swap',
+});
 
 export default function RootLayout({
   children,
@@ -55,7 +57,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className='scroll-smooth' suppressHydrationWarning>
+    <html
+      lang='en'
+      className={cn('scroll-smooth', poppins.className)}
+      suppressHydrationWarning>
       <body>
         <Providers>{children}</Providers>
         <GoogleTagManager gtmId='GTM-T7DTDMX7' />

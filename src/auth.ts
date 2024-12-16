@@ -12,7 +12,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers: [
     Resend({
       apiKey: process.env.RESEND_API_KEY,
-      from: 'Acme <onboarding@resend.dev>',
+      from: 'info@3zerodigital.com',
     }),
   ],
 });

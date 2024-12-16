@@ -21,15 +21,15 @@ export async function sendEmail({
         subject,
         react,
       },
-      {
-        from: process.env.EMAIL_TO!,
-        replyTo: process.env.EMAIL_TO!,
-        to: replyTo!,
-        subject: 'We have received your message!',
-        react: UserConfirmationEmail({
-          name,
-        }),
-      },
+      // {
+      //   from: process.env.EMAIL_TO!,
+      //   replyTo: process.env.EMAIL_TO!,
+      //   to: replyTo!,
+      //   subject: 'We have received your message!',
+      //   react: UserConfirmationEmail({
+      //     name,
+      //   }),
+      // },
     ]);
 
     console.log('Email sent successfully:', response);
