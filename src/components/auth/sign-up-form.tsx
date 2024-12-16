@@ -64,7 +64,7 @@ const SignUpForm = () => {
             }
           }}
           className='space-y-4'>
-          <CardContent className='gap-4 grid pb-0'>
+          <CardContent className='gap-4 grid pb-4'>
             {message && (
               <Message type={success ? 'success' : 'error'} message={message} />
             )}
@@ -121,14 +121,6 @@ const SignUpForm = () => {
                 </FormItem>
               )}
             />
-
-            <div className='text-right'>
-              <Link
-                href='/forgot-password'
-                className='text-muted-foreground text-sm hover:underline'>
-                Forgot password?
-              </Link>
-            </div>
           </CardContent>
           <CardFooter className='flex flex-col gap-2'>
             <Button className='w-full' type='submit'>
