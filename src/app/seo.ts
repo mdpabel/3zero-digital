@@ -53,7 +53,7 @@ export async function getServiceMetadata(serviceHref: string) {
     return genMetaData({
       title: service.metaTitle!,
       description: service.metaDescription!,
-      url: `https://3zerodigital.com/${service.slug}`,
+      url: `https://www.3zerodigital.com/${service.slug}`,
     });
   }
 
@@ -61,6 +61,6 @@ export async function getServiceMetadata(serviceHref: string) {
   return genMetaData({
     title: '3Zero Digital | Services',
     description: 'Explore our wide range of services.',
-    url: 'https://3zerodigital.com/services',
+    url: 'https://www.3zerodigital.com/services',
   });
 }
