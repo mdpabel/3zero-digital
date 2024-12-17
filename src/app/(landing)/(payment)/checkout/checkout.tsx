@@ -30,6 +30,7 @@ import { checkoutSchema } from '@/schema/payment/checkout-schema';
 import { signUpAction as SignUp } from '@/actions/auth/signup';
 import Spinner from '@/components/common/spinner';
 import { useToast } from 'react-toastify';
+import Message from '@/components/auth/message';
 
 // Extended Product type to include prices
 type ExtendedProduct = Product & { prices: Price[] };
@@ -149,6 +150,7 @@ const Checkout = () => {
                     signUpFormData.append('email', values.email);
 
                     const checkoutSessionFormData = new FormData();
+                    checkoutSessionFormData.append('email', values.email);
                     checkoutSessionFormData.append('productId', product.id);
                     checkoutSessionFormData.append(
                       'quantity',
@@ -258,11 +260,26 @@ const Checkout = () => {
                 )}
               />
 
-              <Button
-                type='submit'
-                className='flex items-center gap-2 py-6 w-full text-lg'>
-                Complete Checkout {pending && <Spinner />}
-              </Button>
+              <div>
+                <Button
+                  type='submit'
+                  className='flex items-center gap-2 mb-6 py-6 w-full text-lg'>
+                  Complete Checkout {pending && <Spinner />}
+                </Button>
+                {signUpState.message && (
+                  <Message
+                    message={signUpState.message}
+                    type={signUpState.success ? 'success' : 'error'}
+                  />
+                )}
+
+                {stripeSessionState.message && (
+                  <Message
+                    message={stripeSessionState.message}
+                    type={stripeSessionState.success ? 'success' : 'error'}
+                  />
+                )}
+              </div>
             </form>
           </Form>
         </div>

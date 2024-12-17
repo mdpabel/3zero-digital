@@ -56,26 +56,26 @@ export const signUpAction = async (_: any, formData: FormData) => {
     });
 
     // Step 4: Generate the JWT token for email verification
-    const token = await generateToken({ email });
+    // const token = await generateToken({ email });
 
     // Step 5: Construct the email verification link with the token
-    const verificationLink = `${process.env.FRONTEND_URL}/verify-email?token=${token}`;
+    // const verificationLink = `${process.env.FRONTEND_URL}/verify-email?token=${token}`;
 
-    // Step 6: Send the email with the verification link
-    await sendEmail({
-      name: `${firstName} ${lastName}`,
-      subject: 'Email Verification',
-      to: email,
-      replyTo: 'noreply@3zerodigital.com',
-      react: EmailVerificationEmailTemplate({
-        verificationLink,
-      }),
-    });
+    // // Step 6: Send the email with the verification link
+    // await sendEmail({
+    //   name: `${firstName} ${lastName}`,
+    //   subject: 'Email Verification',
+    //   to: email,
+    //   replyTo: 'noreply@3zerodigital.com',
+    //   react: EmailVerificationEmailTemplate({
+    //     verificationLink,
+    //   }),
+    // });
 
     // Return success message
     return {
       success: true,
-      message: 'User created successfully. A verification email has been sent.',
+      message: 'User created successfully. Please login.',
     };
   } catch (error) {
     console.error('Error during sign-up process:', error);

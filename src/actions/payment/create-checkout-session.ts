@@ -8,42 +8,37 @@ import { z } from 'zod';
 
 export const createStripeSession = async (_: any, formData: FormData) => {
   try {
-    const { productId, quantity, paymentMode, metaData } =
+    const { productId, quantity, paymentMode, metaData, email } =
       paymentIntentSchema.parse(Object.fromEntries(formData.entries()));
 
-    // Authenticate user
+    // Authenticate user (optional)
     const session = await auth();
+    let user = null;
 
-    if (!session || !session.user) {
-      return { success: false, message: 'You are not authorized' };
+    // Use session if available
+    if (session?.user) {
+      user = await prisma.user.findUnique({
+        where: { email: session.user.email! },
+      });
+    } else {
+      // For unauthenticated users, use the provided email
+      if (!email) {
+        return { success: false, message: 'Email is required for checkout' };
+      }
+
+      user = await prisma.user.findUnique({ where: { email } });
     }
 
-    // Check session expiration
-    if (session.expires && new Date(session.expires) < new Date()) {
+    if (!user) {
       return {
         success: false,
-        message: 'Your session has expired. Please log in again.',
+        message: 'User not found or could not be created',
       };
     }
 
+    // Validate quantity
     if (parseInt(quantity) <= 0) {
       return { success: false, message: 'Quantity must be greater than zero' };
-    }
-
-    const userId = session.user.id;
-    const email = session.user.email;
-
-    if (!email) {
-      return { success: false, message: 'Email must be provided' };
-    }
-
-    // Find user by email
-    const user = await prisma.user.findUnique({
-      where: { email },
-    });
-
-    if (!user) {
-      return { success: false, message: 'User not found' };
     }
 
     // Fetch product and ensure it has prices
@@ -56,10 +51,9 @@ export const createStripeSession = async (_: any, formData: FormData) => {
       return { success: false, message: 'Product not found or has no price' };
     }
 
-    // Extract product price
     const productPrice = product.prices[0].unitAmount;
-
     const parsedMetaData = metaData ? JSON.parse(metaData) : {};
+
     // Create the order in the database
     const order = await prisma.order.create({
       data: {
@@ -93,12 +87,8 @@ export const createStripeSession = async (_: any, formData: FormData) => {
 
     // Update the order with the Stripe session URL
     await prisma.order.update({
-      where: {
-        id: order.id,
-      },
-      data: {
-        paymentLink: stripeSession.url,
-      },
+      where: { id: order.id },
+      data: { paymentLink: stripeSession.url },
     });
 
     return {
