@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import Checkout from './checkout';
 import { useSearchParams } from 'next/navigation';
 import { Price, Product } from '@prisma/client';
@@ -113,7 +113,9 @@ const Page = () => {
 
   return (
     <div key={productId} className='mx-auto p-6 max-w-7xl'>
-      <Checkout product={product} quantity={quantity} metaData={metaData} />
+      <Suspense>
+        <Checkout product={product} quantity={quantity} metaData={metaData} />
+      </Suspense>
     </div>
   );
 };
