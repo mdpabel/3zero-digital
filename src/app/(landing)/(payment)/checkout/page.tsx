@@ -1,10 +1,10 @@
 import { Suspense } from 'react';
-import FetchProductComponent from './fetch-product-component';
+import Checkout from './checkout';
 
 const page = () => {
   return (
     <Suspense fallback='loading...'>
-      <FetchProductComponent />
+      <Checkout />
     </Suspense>
   );
 };

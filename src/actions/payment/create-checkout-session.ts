@@ -59,15 +59,6 @@ export const createStripeSession = async (_: any, formData: FormData) => {
     // Extract product price
     const productPrice = product.prices[0].unitAmount;
 
-    // Log order data for debugging
-    console.log('Creating Order:', {
-      userId: user.id,
-      productId: product.id,
-      quantity: parseInt(quantity),
-      total: productPrice * parseInt(quantity),
-      metadata: metaData || '{}',
-    });
-
     const parsedMetaData = metaData ? JSON.parse(metaData) : {};
     // Create the order in the database
     const order = await prisma.order.create({
@@ -76,6 +67,7 @@ export const createStripeSession = async (_: any, formData: FormData) => {
         productId: product.id,
         quantity: parseInt(quantity),
         total: productPrice * parseInt(quantity),
+        metadata: parsedMetaData,
       },
     });
 
