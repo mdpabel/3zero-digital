@@ -57,8 +57,8 @@ const Hero = () => {
 
             <video
               className='block dark:hidden'
-              width='400'
-              height='300'
+              width='320'
+              height='240'
               autoPlay
               loop
               muted

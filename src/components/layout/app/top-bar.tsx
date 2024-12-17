@@ -4,9 +4,9 @@ import { cn } from '@/lib/utils';
 // Define the navigation items in an array
 const navItems = [
   { href: '/case-studies', label: 'Case Studies' },
-  { href: '/faq', label: 'FAQ' },
   { href: '/contact', label: 'Contact' },
   { href: '/blog', label: 'Blog' },
+  { href: '/checkout', label: 'Checkout' },
 ];
 
 const TopBar = () => {

@@ -51,7 +51,7 @@ const ContactUsEmailTemplate: React.FC<ContactUsEmailProps> = ({
           {/* CTA */}
           <Button
             style={buttonStyle}
-            href='https://3zerodigital.com/admin-dashboard'>
+            href='https://www.3zerodigital.com/admin-dashboard'>
             View Full Submission
           </Button>
         </Container>

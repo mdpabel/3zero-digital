@@ -5,6 +5,8 @@ import { usePricing } from '@/hooks/usePricing';
 import { formatCurrency } from '@/lib/utils';
 import Spinner from '@/components/common/spinner';
 import Checkout from '@/components/payment/checkout';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 const BlacklistRemovalVendors = ({
   price,
@@ -77,11 +79,12 @@ const BlacklistRemovalVendors = ({
           </p>
         </div>
         <div className='text-center'>
-          <Checkout
-            productId={productId}
-            metaData={selectedBlacklists}
-            quantity={quantity}
-          />
+          <Button asChild className='py-6 w-full min-w-64'>
+            <Link
+              href={`/checkout?quantity=${quantity}&productId=${productId}&metaData=${selectedBlacklists}`}>
+              Checkout
+            </Link>
+          </Button>
         </div>
       </div>
 
