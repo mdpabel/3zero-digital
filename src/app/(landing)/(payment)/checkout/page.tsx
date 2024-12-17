@@ -3,7 +3,7 @@ import FetchProductComponent from './fetch-product-component';
 
 const page = () => {
   return (
-    <Suspense>
+    <Suspense fallback='loading...'>
       <FetchProductComponent />
     </Suspense>
   );

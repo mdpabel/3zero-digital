@@ -13,7 +13,6 @@ type ExtendedProduct = Product & {
 const FetchProductComponent = () => {
   const { isLocalStorageLoading } = useCheckout();
   const searchParams = useSearchParams();
-  const [isRendering, setIsRendering] = useState(false);
 
   const productId = searchParams.get('productId');
   const quantityParam = searchParams.get('quantity') || '1';
@@ -25,10 +24,6 @@ const FetchProductComponent = () => {
 
   const [quantity, setQuantity] = useState<number>(1);
   const [metaData, setMetaData] = useState<string[]>([]);
-
-  useEffect(() => {
-    setIsRendering(true);
-  }, []);
 
   useEffect(() => {
     if (!productId) {
@@ -74,10 +69,6 @@ const FetchProductComponent = () => {
 
     fetchProduct();
   }, [searchParams, isLocalStorageLoading]);
-
-  if (isLocalStorageLoading || isRendering) {
-    return 'Loading...';
-  }
 
   if (!productId) {
     return (
