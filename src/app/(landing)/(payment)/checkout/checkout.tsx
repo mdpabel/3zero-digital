@@ -28,6 +28,8 @@ import CheckoutSkeleton from './checkout-skeleton';
 import { createStripeSession } from '@/actions/payment/create-checkout-session';
 import { checkoutSchema } from '@/schema/payment/checkout-schema';
 import { signUpAction as SignUp } from '@/actions/auth/signup';
+import Spinner from '@/components/common/spinner';
+import { useToast } from 'react-toastify';
 
 // Extended Product type to include prices
 type ExtendedProduct = Product & { prices: Price[] };
@@ -53,6 +55,7 @@ const Checkout = () => {
   const productId = searchParams.get('productId');
   const quantityParam = searchParams.get('quantity') || '1';
   const metaDataParam = searchParams.get('metaData') || '';
+  const paymentMode = searchParams.get('paymentMode') || 'payment';
 
   const [product, setProduct] = useState<ExtendedProduct | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -144,7 +147,7 @@ const Checkout = () => {
                       'quantity',
                       quantity.toString(),
                     );
-                    checkoutSessionFormData.append('paymentMode', 'payment');
+                    checkoutSessionFormData.append('paymentMode', paymentMode);
                     if (metaData) {
                       checkoutSessionFormData.append(
                         'metaData',
@@ -248,8 +251,10 @@ const Checkout = () => {
                 )}
               />
 
-              <Button type='submit' className='py-6 w-full text-lg'>
-                Complete Checkout
+              <Button
+                type='submit'
+                className='flex items-center gap-2 py-6 w-full text-lg'>
+                Complete Checkout {pending && <Spinner />}
               </Button>
             </form>
           </Form>

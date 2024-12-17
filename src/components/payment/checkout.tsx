@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useActionState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { cn } from '@/lib/utils';
+import { Button } from '../ui/button';
 
 const Checkout = ({
   productId,
@@ -22,35 +23,13 @@ const Checkout = ({
   paymentMode?: 'subscription' | 'payment';
   className?: string;
 }) => {
-  const router = useRouter();
-  const [state, action] = useActionState(createStripeSession, {
-    success: false,
-    message: '',
-    sessionUrl: '',
-  });
-
-  useEffect(() => {
-    if (state.sessionUrl) {
-      router.push(state.sessionUrl);
-    }
-  }, [router, state.sessionUrl]);
-
   return (
-    <form
-      action={() => {
-        const formData = new FormData();
-        formData.append('productId', productId);
-        formData.append('paymentMode', paymentMode);
-        if (quantity) {
-          formData.append('quantity', quantity.toString());
-        }
-        if (metaData) {
-          formData.append('metaData', JSON.stringify(metaData));
-        }
-        action(formData);
-      }}>
-      <CheckoutButton className={className} />
-    </form>
+    <Button asChild className='py-6 w-full min-w-64'>
+      <Link
+        href={`/checkout?quantity=${quantity}&productId=${productId}&metaData=${metaData}&paymentMode=${paymentMode}`}>
+        Checkout
+      </Link>
+    </Button>
   );
 };
 

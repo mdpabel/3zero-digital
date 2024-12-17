@@ -79,12 +79,12 @@ const BlacklistRemovalVendors = ({
           </p>
         </div>
         <div className='text-center'>
-          <Button asChild className='py-6 w-full min-w-64'>
-            <Link
-              href={`/checkout?quantity=${quantity}&productId=${productId}&metaData=${selectedBlacklists}`}>
-              Checkout
-            </Link>
-          </Button>
+          <Checkout
+            productId={productId}
+            metaData={selectedBlacklists}
+            paymentMode='payment'
+            quantity={quantity}
+          />
         </div>
       </div>
 
