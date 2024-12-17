@@ -33,7 +33,9 @@ export const useCheckout = () => {
         10,
       ) || 1;
     const metaDataRaw =
-      searchParams.get('metaData') || localStorage.getItem('metaData') || '';
+      searchParams.get('metaData') ||
+      localStorage.getItem('metaData') ||
+      'There is not metadata';
     const paymentMode = (searchParams.get('paymentMode') ||
       localStorage.getItem('paymentMode')) as 'subscription' | 'payment' | null;
 
@@ -48,11 +50,6 @@ export const useCheckout = () => {
   // Sync data to localStorage and URL
   const syncData = (data: CheckoutData) => {
     const { productId, quantity, metaData, paymentMode } = data;
-    // Clear localStorage
-    localStorage.removeItem('productId');
-    localStorage.removeItem('quantity');
-    localStorage.removeItem('metaData');
-    localStorage.removeItem('paymentMode');
 
     // Update localStorage
     if (productId) localStorage.setItem('productId', productId);
