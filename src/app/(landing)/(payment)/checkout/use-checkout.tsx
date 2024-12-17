@@ -48,6 +48,11 @@ export const useCheckout = () => {
   // Sync data to localStorage and URL
   const syncData = (data: CheckoutData) => {
     const { productId, quantity, metaData, paymentMode } = data;
+    // Clear localStorage
+    localStorage.removeItem('productId');
+    localStorage.removeItem('quantity');
+    localStorage.removeItem('metaData');
+    localStorage.removeItem('paymentMode');
 
     // Update localStorage
     if (productId) localStorage.setItem('productId', productId);
