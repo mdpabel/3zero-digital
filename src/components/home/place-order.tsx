@@ -25,30 +25,13 @@ const PlaceOrder = ({ productId }: { productId: string }) => {
   }, [router, state.sessionUrl]);
 
   return (
-    <>
-      {status === 'unauthenticated' && (
-        <Button className='w-full' asChild>
-          <Link href={`/login?redirect_url=/`}>
-            <FaShoppingCart className='mr-2' />
-            Place order
-          </Link>
-        </Button>
-      )}
-      {status == 'authenticated' && (
-        <form
-          action={() => {
-            const formData = new FormData();
-            formData.append('productId', productId);
-            formData.append('paymentMode', 'payment');
-            startTransition(() => action(formData));
-          }}>
-          <Button className='w-full'>
-            {pending ? <Spinner /> : <FaShoppingCart className='mr-2' />}
-            Place order
-          </Button>
-        </form>
-      )}
-    </>
+    <Button className='w-full' asChild>
+      <Link
+        href={`/checkout?quantity=1&productId=${productId}&metaData=${'No metadata'}&paymentMode=payment`}>
+        <FaShoppingCart className='mr-2' />
+        Place order
+      </Link>
+    </Button>
   );
 };
 

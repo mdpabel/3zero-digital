@@ -166,6 +166,10 @@ const Checkout = () => {
 
                     signUpAction(signUpFormData);
                     createStripeSessionAction(checkoutSessionFormData);
+                    localStorage.removeItem('productId');
+                    localStorage.removeItem('quantity');
+                    localStorage.removeItem('metaData');
+                    localStorage.removeItem('paymentMode');
                   });
                 }
               }}
