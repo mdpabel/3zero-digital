@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useCheckout } from './use-checkout';
 import { Price, Product } from '@prisma/client';
@@ -35,6 +35,7 @@ import { useToast } from 'react-toastify';
 type ExtendedProduct = Product & { prices: Price[] };
 
 const Checkout = () => {
+  const router = useRouter();
   const [pending, startTransition] = useTransition();
   const [stripeSessionState, createStripeSessionAction] = useActionState(
     createStripeSession,
@@ -76,6 +77,12 @@ const Checkout = () => {
     },
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    if (stripeSessionState.sessionUrl) {
+      router.push(stripeSessionState.sessionUrl);
+    }
+  }, [stripeSessionState.sessionUrl, router]);
 
   useEffect(() => {
     if (isLocalStorageLoading || !productId) return;
