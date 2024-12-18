@@ -60,7 +60,9 @@ const PricingTable = ({
       </div>
 
       {/* Checkout Button */}
-      <Checkout productId={productId} quantity={quantity} />
+      <div>
+        <Checkout productId={productId} quantity={quantity} />
+      </div>
     </div>
   );
 };

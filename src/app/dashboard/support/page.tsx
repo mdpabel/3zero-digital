@@ -80,12 +80,12 @@ const Support = () => {
   return (
     <div className='md:px-10 py-5'>
       <div className='mx-auto max-w-6xl container'>
-        <h1 className='mb-6 font-bold text-3xl text-zinc-800 dark:text-zinc-200'>
+        <h1 className='font-bold text-3xl text-zinc-800 dark:text-zinc-200'>
           Chat with us
         </h1>
         <div
           id='tawk_66eac2884cbc4814f7da18fb'
-          className='mx-auto p-4 max-w-3xl'
+          className='mx-auto max-w-3xl'
           style={{ width: '100%', height: '500px' }}></div>
       </div>
     </div>
