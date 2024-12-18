@@ -175,11 +175,18 @@ const Checkout = () => {
               }}
               className='space-y-6'>
               <div className='space-y-4 pb-8 border-b'>
-                <h2 className='font-semibold text-xl'>Contact Information</h2>
-                <p className='text-gray-600 text-sm'>
-                  We'll use this information to process your order and keep you
-                  updated.
-                </p>
+                <div className='flex justify-between items-center gap-4'>
+                  <h2 className='font-semibold text-xl'>Contact Information</h2>
+                  <p className='text-gray-600 text-sm'>
+                    We'll use this information to process your order and keep
+                    you updated.
+                  </p>
+                  <div>
+                    <Link href='/login'>
+                      Already have an account? Please login
+                    </Link>
+                  </div>
+                </div>
 
                 <div className='flex md:flex-row flex-col gap-4'>
                   <FormField

@@ -31,12 +31,12 @@ export const customerDashboardSidebarItems = [
     icon: <FaLifeRing />,
     roles: ['customer'],
   },
-  {
-    label: 'Profile',
-    href: '/dashboard/profile',
-    icon: <FaUser />,
-    roles: ['customer'],
-  },
+  // {
+  //   label: 'Profile',
+  //   href: '/dashboard/profile',
+  //   icon: <FaUser />,
+  //   roles: ['customer'],
+  // },
   {
     label: 'Admin',
     href: '/admin',

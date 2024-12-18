@@ -21,7 +21,7 @@ export function NavUser({
           });
           revalidatePath('/login');
         }}>
-        <button type='submit' className='flex items-center gap-2'>
+        <button type='submit' className='flex items-center gap-2 text-white'>
           <LogOut />
           Log out
         </button>
