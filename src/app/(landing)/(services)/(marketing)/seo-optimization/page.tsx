@@ -3,8 +3,8 @@ import { getServiceMetadata } from '@/app/seo';
 
 export const metadata = getServiceMetadata('seo-optimization');
 
-const SeoOPtimization = () => {
+const page = () => {
   return <UnderDevelopment />;
 };
 
-export default SeoOPtimization;
+export default page;
