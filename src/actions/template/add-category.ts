@@ -21,7 +21,10 @@ export async function addCategory(_: any, formData: FormData) {
       return { success: false, message: 'Category already exists.' };
     }
 
-    const slug = slugify(name);
+    const slug = slugify(name, {
+      lower: true,
+      trim: true,
+    });
 
     // Create the category
     await prisma.templateCategory.create({

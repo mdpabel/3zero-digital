@@ -33,7 +33,7 @@ const Checkout = ({
   );
 };
 
-const CheckoutButton = ({ className = '' }: { className?: string }) => {
+export const CheckoutButton = ({ className = '' }: { className?: string }) => {
   const { pending } = useFormStatus();
   const { status } = useSession();
 

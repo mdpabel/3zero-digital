@@ -17,31 +17,31 @@ export const customerDashboardSidebarItems = [
     label: 'Dashboard',
     href: '/dashboard',
     icon: <FaTachometerAlt />,
-    roles: ['customer'],
+    roles: ['CUSTOMER'],
   },
   {
     label: 'Orders',
     href: '/dashboard/orders',
     icon: <FaListAlt />,
-    roles: ['customer'],
+    roles: ['CUSTOMER'],
   },
   {
     label: 'Support',
     href: '/dashboard/support',
     icon: <FaLifeRing />,
-    roles: ['customer'],
+    roles: ['CUSTOMER'],
   },
   // {
   //   label: 'Profile',
   //   href: '/dashboard/profile',
   //   icon: <FaUser />,
-  //   roles: ['customer'],
+  //   roles: ['CUSTOMER'],
   // },
   {
     label: 'Admin',
     href: '/admin',
     icon: <FaCogs />,
-    roles: ['customer', 'admin'],
+    roles: ['ADMIN'],
   },
 ];
 
@@ -50,13 +50,13 @@ export const adminDashboardSidebarItems = [
     label: 'Dashboard',
     href: '/admin',
     icon: <FaTachometerAlt />,
-    roles: ['admin'],
+    roles: ['ADMIN'],
   },
   {
     label: 'Products',
     href: '#',
     icon: <FaBox />,
-    roles: ['admin'],
+    roles: ['ADMIN'],
     isOpen: true,
     subItems: [
       {
@@ -85,7 +85,7 @@ export const adminDashboardSidebarItems = [
     label: 'Templates',
     icon: <FaBox />,
     href: '#',
-    roles: ['admin'],
+    roles: ['ADMIN'],
     subItems: [
       {
         label: 'All Templates',
@@ -113,7 +113,7 @@ export const adminDashboardSidebarItems = [
     label: 'Orders',
     icon: <FaListAlt />,
     href: '#',
-    roles: ['admin'],
+    roles: ['ADMIN'],
     subItems: [
       {
         label: 'All Orders',
@@ -131,13 +131,13 @@ export const adminDashboardSidebarItems = [
     label: 'Users',
     href: '/admin/users',
     icon: <FaUsers />,
-    roles: ['admin'],
+    roles: ['ADMIN'],
   },
   {
     label: 'Analytics',
     href: '/admin/analytics',
     icon: <FaChartBar />,
-    roles: ['admin'],
+    roles: ['ADMIN'],
   },
   {
     label: 'Support',
@@ -149,7 +149,7 @@ export const adminDashboardSidebarItems = [
     label: 'Profile',
     href: '/admin/profile',
     icon: <FaUser />,
-    roles: ['admin'],
+    roles: ['ADMIN'],
   },
 ];
 

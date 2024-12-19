@@ -5,9 +5,6 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { NavUser } from './nav-user';
 import { SidebarNavMain } from './sidebar-nav-main';

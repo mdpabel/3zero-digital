@@ -2,29 +2,22 @@ import { NextResponse } from 'next/server';
 import { auth } from './auth';
 
 const authRoutes = ['/login', '/register'];
-const adminRoutes = ['/admin(*)'];
-const dashboardRoutes = ['/dashboard(*)'];
+const adminRoutes = /^\/admin(\/.*)?$/; // Matches /admin and any sub-paths like /admin/product
+const dashboardRoutes = /^\/dashboard(\/.*)?$/; // Matches /dashboard and any sub-paths like /dashboard/order
 const DEFAULT_LOGIN_REDIRECT = '/dashboard';
 
 export default auth((req) => {
   const { nextUrl } = req;
   const isLoggedIn = !!req.auth;
+  const role = req.auth?.user?.role ?? 'CUSTOMER';
 
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
-  const isAdminRoute = adminRoutes.includes(nextUrl.pathname);
-  const isDashboardRoute = dashboardRoutes.includes(nextUrl.pathname);
-
-  console.log({
-    isLoggedIn,
-    pathname: nextUrl.pathname,
-    isDashboardRoute,
-    isAdminRoute,
-    isAuthRoute,
-  });
+  const isAdminRoute = adminRoutes.test(nextUrl.pathname); // Test the path against the admin regex
+  const isDashboardRoute = dashboardRoutes.test(nextUrl.pathname); // Test the path against the dashboard regex
 
   if (isAuthRoute) {
     if (isLoggedIn) {
-      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
+      return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl));
     } else {
       return NextResponse.next();
     }
@@ -41,6 +34,10 @@ export default auth((req) => {
     return NextResponse.redirect(
       new URL(`/login?callbackUrl=${encodedCallbackUrl}`, nextUrl),
     );
+  }
+
+  if (isAdminRoute && role !== 'ADMIN') {
+    return NextResponse.redirect(new URL(`/dashboard`, nextUrl));
   }
 
   return NextResponse.next();

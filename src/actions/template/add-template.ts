@@ -31,7 +31,10 @@ export async function addTemplate(_: unknown, formData: FormData) {
       ? imageUrls.split(',').map((url) => url.trim())
       : [];
 
-    const slug = slugify(name);
+    const slug = slugify(name, {
+      lower: true,
+      trim: true,
+    });
 
     // Check if all categories exist
     const categories = await prisma.templateCategory.findMany({
