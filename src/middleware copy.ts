@@ -1,10 +1,13 @@
 import { NextResponse } from 'next/server';
-import { auth } from './auth';
+import authConfig from './auth.config';
+import NextAuth from 'next-auth';
 
 const authRoutes = ['/login', '/register'];
 const adminRoutes = ['/admin(*)'];
 const dashboardRoutes = ['/dashboard(*)'];
 const DEFAULT_LOGIN_REDIRECT = '/dashboard';
+
+const { auth } = NextAuth(authConfig);
 
 export default auth((req) => {
   const { nextUrl } = req;
@@ -13,14 +16,6 @@ export default auth((req) => {
   const isAuthRoute = authRoutes.includes(nextUrl.pathname);
   const isAdminRoute = adminRoutes.includes(nextUrl.pathname);
   const isDashboardRoute = dashboardRoutes.includes(nextUrl.pathname);
-
-  console.log({
-    isLoggedIn,
-    pathname: nextUrl.pathname,
-    isDashboardRoute,
-    isAdminRoute,
-    isAuthRoute,
-  });
 
   if (isAuthRoute) {
     if (isLoggedIn) {

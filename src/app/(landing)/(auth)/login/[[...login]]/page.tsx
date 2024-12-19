@@ -6,7 +6,7 @@ export const metadata = genMetaData({
   url: 'https://www.3zerodigital.com/login',
 });
 
-const Login = () => {
+const Login = async () => {
   return <LoginForm />;
 };
 

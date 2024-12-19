@@ -126,7 +126,7 @@ const RefundPolicy: React.FC = () => {
           <section>
             <h2 className='flex items-center font-semibold text-2xl text-gray-800 dark:text-gray-200'>
               <FaRegCheckCircle className='mr-2 text-green-500' />
-              Products (e.g., $10 Campaign or Digital Downloads)
+              Products (e.g., Templates or Digital Downloads)
             </h2>
             <p className='mt-4 text-gray-700 dark:text-gray-300'>
               Refunds for digital products or campaigns are restricted once

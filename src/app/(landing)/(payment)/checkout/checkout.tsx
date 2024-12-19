@@ -31,11 +31,13 @@ import { signUpAction as SignUp } from '@/actions/auth/signup';
 import Spinner from '@/components/common/spinner';
 import { useToast } from 'react-toastify';
 import Message from '@/components/auth/message';
+import { useSession } from 'next-auth/react';
 
 // Extended Product type to include prices
 type ExtendedProduct = Product & { prices: Price[] };
 
 const Checkout = () => {
+  const { data, status } = useSession();
   const router = useRouter();
   const [pending, startTransition] = useTransition();
   const [stripeSessionState, createStripeSessionAction] = useActionState(
@@ -175,17 +177,19 @@ const Checkout = () => {
               }}
               className='space-y-6'>
               <div className='space-y-4 pb-8 border-b'>
-                <div className='flex justify-between items-center gap-4'>
+                <div className='flex flex-col justify-between gap-4'>
                   <h2 className='font-semibold text-xl'>Contact Information</h2>
                   <p className='text-gray-600 text-sm'>
                     We'll use this information to process your order and keep
                     you updated.
                   </p>
-                  <div>
-                    <Link href='/login'>
-                      Already have an account? Please login
-                    </Link>
-                  </div>
+                  {status === 'unauthenticated' && (
+                    <div>
+                      <Link href='/login'>
+                        Already have an account? Please login
+                      </Link>
+                    </div>
+                  )}
                 </div>
 
                 <div className='flex md:flex-row flex-col gap-4'>
