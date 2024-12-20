@@ -11,7 +11,7 @@ const PerformanceComparison: React.FC = () => {
       {/* Engaging Title and Subtitle with more detail */}
       <div className='mx-auto mb-8 max-w-4xl text-center'>
         <h2 className='mb-6 font-bold text-3xl text-center text-zinc-800 md:text-4xl dark:text-zinc-200'>
-          How We Boosted Page Speed by 300% — See the Stunning Results!
+          How We Boosted Page Speed by 66% — See the Stunning Results!
         </h2>
         <p className='mt-4 text-lg text-zinc-800 dark:text-zinc-200'>
           Faster load times mean happier users, better engagement, and more

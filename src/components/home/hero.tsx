@@ -25,7 +25,7 @@ const Hero = () => {
             </div>
             <div className='space-x-4'>
               <Button asChild className='px-5 md:px-10 py-6 text-lg'>
-                <Link href='/signup'>Get started</Link>
+                <Link href='#getStarted'>Get started</Link>
               </Button>
               <Button asChild className='px-5 md:px-10 py-6 text-lg'>
                 <Link prefetch={false} target='_blank' href='/book-a-call'>

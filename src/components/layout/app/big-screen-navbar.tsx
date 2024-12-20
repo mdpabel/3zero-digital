@@ -35,9 +35,9 @@ const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className='gap-3 grid md:grid-cols-2 p-4 w-[400px] md:w-[500px] lg:w-[600px]'>
-                        {products?.map(({ description, slug, name }) => (
+                        {products?.map(({ description, slug, name, id }) => (
                           <ListItem
-                            key={name}
+                            key={id}
                             title={name}
                             href={slug}
                             className='text-zinc-800 dark:text-zinc-200'>

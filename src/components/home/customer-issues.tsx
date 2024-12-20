@@ -2,6 +2,9 @@ import React from 'react';
 import Image1 from '@/../public/images/1.png';
 import Image2 from '@/../public/images/2.png';
 import Image3 from '@/../public/images/3.png';
+import buyer1 from '@/../public/images/buyers/1.jpeg';
+import buyer2 from '@/../public/images/buyers/2.jpeg';
+import buyer3 from '@/../public/images/buyers/3.jpeg';
 import Image from 'next/image';
 import { Button } from '../ui/button';
 import Link from 'next/link';
@@ -10,7 +13,7 @@ import WhySvg from './why-svg';
 const messages = [
   {
     name: 'Liam Chen',
-    image: 'https://via.placeholder.com/150',
+    image: buyer1,
     message:
       "My WooCommerce checkout page has been compromised. Users' payment data is being stolen. Can you help?",
     reply:
@@ -18,7 +21,7 @@ const messages = [
   },
   {
     name: 'Alex Turner',
-    image: 'https://via.placeholder.com/150',
+    image: buyer2,
     message:
       'I have a dedicated server with 64GB RAM, but my site is still slow. What could be the issue? It’s frustrating and driving my customers away.',
     reply:
@@ -26,7 +29,7 @@ const messages = [
   },
   {
     name: 'Noah Jones',
-    image: 'https://via.placeholder.com/150',
+    image: buyer3,
     message: `"We're not getting much traffic or sales on our website. Can you help us figure out what's wrong?"`,
     reply:
       'We analyzed your site and found potential issues affecting traffic and conversions, such as poor SEO, slow loading speeds, and unclear CTAs. We can optimize your site to drive more traffic and boost sales.',
@@ -54,7 +57,7 @@ const CustomerIssues = () => {
               {index === 1 && <WhySvg />}
               <div className='flex flex-col border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 shadow-md hover:shadow-lg p-6 border rounded-lg transform transition-transform hover:scale-105'>
                 <div className='flex items-center gap-4 mb-4'>
-                  <img
+                  <Image
                     src={message.image}
                     alt={message.name}
                     className='border-gray-300 dark:border-gray-600 border rounded-full w-14 h-14'
