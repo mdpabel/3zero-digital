@@ -8,6 +8,8 @@ import {
   OrganizationSchema,
   ProductSchema,
 } from './schema';
+import CustomerIssues from '@/components/home/customer-issues';
+import CompaniesLogo from '@/components/home/company-logos';
 
 export const dynamic = 'force-static';
 
@@ -15,7 +17,9 @@ const Home = () => {
   return (
     <div>
       <Hero />
+      <CustomerIssues />
       <Services />
+      <CompaniesLogo />
       <Suspense fallback='loading...'>
         <Templates featured />
       </Suspense>

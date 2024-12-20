@@ -21,7 +21,7 @@ const CompaniesLogo = () => {
 
   return (
     <div
-      className='py-2'
+      className='mx-auto p-4 max-w-6xl'
       style={{
         maskImage:
           'linear-gradient(to right, rgba(0,0,0,0),rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0))',

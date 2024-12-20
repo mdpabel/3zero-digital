@@ -27,7 +27,7 @@ const ServicesClient = ({ services }: { services: ServiceWithProducts[] }) => {
   }, [activeTab]);
 
   return (
-    <div className='mx-auto px-4 py-10 sm:py-16 max-w-6xl'>
+    <div id='getStarted' className='mx-auto px-4 py-10 sm:py-16 max-w-6xl'>
       <Title
         title='Explore Our Services'
         subTitle='Discover how we can help you grow and optimize your online presence.'
