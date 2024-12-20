@@ -42,7 +42,7 @@ export async function generateMetadata({
   const ogImage =
     yoast_head_json?.og_image ||
     (await getMediaById(post.featured_media!))?.source_url;
-  const canonical = 'https://www.3zerodigital.com/' + post.slug;
+  const canonical = 'https://www.3zerodigital.com/blog/' + post.slug;
   const robots = yoast_head_json?.robots || {
     index: 'index',
     follow: 'follow',
