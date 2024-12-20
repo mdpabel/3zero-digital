@@ -1,5 +1,11 @@
+import { genMetaData } from '@/app/seo';
 import DevelopmentServiceForm from '@/components/comment/development-service-form';
 import React from 'react';
+
+export const metadata = genMetaData({
+  title: 'Get a quote',
+  url: '/get-a-quote',
+});
 
 const GetAQuota = () => {
   return (

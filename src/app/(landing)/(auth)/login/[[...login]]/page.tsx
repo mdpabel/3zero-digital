@@ -3,7 +3,7 @@ import { genMetaData } from '@/app/seo';
 
 export const metadata = genMetaData({
   title: 'Login',
-  url: 'https://www.3zerodigital.com/login',
+  url: '/login',
 });
 
 const Login = async () => {

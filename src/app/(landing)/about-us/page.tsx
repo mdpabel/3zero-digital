@@ -1,13 +1,16 @@
 import Hero from '@/components/common/Hero';
-import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import Link from 'next/link';
 import ThreeZeroLight from '@/../public/images/3zer-light.png';
 import ThreeZeroDark from '@/../public/images/3zero-dark.png';
 import Services from '@/components/home/services';
-
 import why3Zero2 from '@/../public/images/why-3zero-2.png';
 import why3Zero from '@/../public/images/why-3zero.png';
+import { genMetaData } from '@/app/seo';
+
+export const metadata = genMetaData({
+  title: 'About us',
+  url: '/about-us',
+});
 
 const AboutUs = () => {
   return (

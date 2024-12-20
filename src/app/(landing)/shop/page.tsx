@@ -4,7 +4,7 @@ import Templates from '@/components/shop/templates';
 
 export const metadata = genMetaData({
   title: 'Shop',
-  url: 'https://www.3zerodigital.com/shop',
+  url: '/shop',
 });
 
 const ShopPage = async () => {

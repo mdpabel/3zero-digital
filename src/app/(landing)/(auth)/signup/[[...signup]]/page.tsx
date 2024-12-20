@@ -3,7 +3,7 @@ import { genMetaData } from '@/app/seo';
 
 export const metadata = genMetaData({
   title: 'Signup',
-  url: 'https://www.3zerodigital.com/signup',
+  url: '/signup',
 });
 
 const Signup = () => {

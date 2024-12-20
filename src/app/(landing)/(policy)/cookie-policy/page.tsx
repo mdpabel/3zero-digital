@@ -3,7 +3,7 @@ import { genMetaData } from '@/app/seo';
 
 export const metadata = genMetaData({
   title: 'Cookie Policy',
-  url: 'https://www.3zerodigital.com/cookie-policy',
+  url: '/cookie-policy',
 });
 
 const CookiePolicy = () => {

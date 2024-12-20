@@ -2,6 +2,7 @@ import { genMetaData } from '@/app/seo';
 
 export const metadata = genMetaData({
   title: 'Payment cancel',
+  url: '/cancel',
 });
 
 const PaymentCancel = () => {

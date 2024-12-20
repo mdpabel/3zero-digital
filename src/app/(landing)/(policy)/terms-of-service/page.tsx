@@ -10,7 +10,7 @@ import { genMetaData } from '@/app/seo';
 
 export const metadata = genMetaData({
   title: 'Terms of Service',
-  url: 'https://www.3zerodigital.com/terms-of-service',
+  url: '/terms-of-service',
 });
 
 const TermsOfService = () => {

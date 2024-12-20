@@ -5,6 +5,7 @@ import { genMetaData } from '@/app/seo';
 
 export const metadata = genMetaData({
   title: 'Form submission result',
+  url: '/form-submission-result',
 });
 
 type Props = {

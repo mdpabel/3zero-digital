@@ -5,6 +5,7 @@ import { auth } from '@/auth';
 
 export const metadata = genMetaData({
   title: 'Payment success',
+  url: '/success',
 });
 
 type Props = {

@@ -3,7 +3,7 @@ import Title from '@/components/common/title';
 
 export const metadata = genMetaData({
   title: 'Book a call',
-  url: 'https://www.3zerodigital.com/book-a-call',
+  url: '/book-a-call',
 });
 
 const BookACall: React.FC = () => {

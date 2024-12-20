@@ -3,7 +3,7 @@ import UnderDevelopment from '@/components/common/under-development';
 
 export const metadata = genMetaData({
   title: 'Login',
-  url: 'https://www.3zerodigital.com/resend-verification',
+  url: '/resend-verification',
 });
 
 const ResendVerificationLink = () => {

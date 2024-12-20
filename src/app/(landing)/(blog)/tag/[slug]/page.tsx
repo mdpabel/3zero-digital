@@ -11,6 +11,9 @@ export async function generateMetadata({
 
   return {
     title: generateTitleFromSlug(slug),
+    alternates: {
+      canonical: `/tag/${slug}`,
+    },
   };
 }
 

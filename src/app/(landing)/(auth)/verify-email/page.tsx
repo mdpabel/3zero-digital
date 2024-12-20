@@ -7,7 +7,7 @@ import { CheckCircle, XCircle } from 'lucide-react';
 
 export const metadata = genMetaData({
   title: 'Verify email',
-  url: 'https://www.3zerodigital.com/verify-email',
+  url: '/verify-email',
 });
 
 type Props = {
