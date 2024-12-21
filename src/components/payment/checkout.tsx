@@ -16,18 +16,20 @@ const Checkout = ({
   quantity,
   paymentMode = 'payment',
   className = '',
+  label = 'Checkout',
 }: {
   productId: string;
   metaData?: string[];
   quantity?: number;
   paymentMode?: 'subscription' | 'payment';
   className?: string;
+  label?: string;
 }) => {
   return (
     <Button asChild className='py-6 w-full min-w-64'>
       <Link
         href={`/checkout?quantity=${quantity}&productId=${productId}&metaData=${metaData}&paymentMode=${paymentMode}`}>
-        Checkout
+        {label}
       </Link>
     </Button>
   );
