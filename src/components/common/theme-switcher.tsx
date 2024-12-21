@@ -20,7 +20,7 @@ const ThemeSwitcher = ({ className = '' }: { className?: string }) => {
 
   return (
     <div className={cn('flex justify-center items-center', className)}>
-      <form className='flex justify-center items-center'>
+      <div className='flex justify-center items-center'>
         {dark ? (
           <button
             onClick={() => setTheme('light')}
@@ -40,7 +40,7 @@ const ThemeSwitcher = ({ className = '' }: { className?: string }) => {
             <SunIcon />
           </button>
         )}
-      </form>
+      </div>
     </div>
   );
 };
