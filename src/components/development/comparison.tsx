@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { MdCheck, MdClose } from 'react-icons/md';
+import { Button } from '../ui/button';
+import Link from 'next/link';
 
 const with3ZeroItems = [
   'Virtually Zero Vulnerability',
@@ -37,7 +39,8 @@ const Comparison = () => {
         {/* Card 1: With 3Zero */}
         <div className='bg-gray-50 dark:bg-gray-950 shadow-lg p-6 border rounded-lg'>
           <h4 className='pb-5 font-semibold text-2xl text-black text-center dark:text-white'>
-            Websites with 3 Zero
+            Websites{' '}
+            <span className='bg-green-600 px-2 rounded-[2px]'>with 3 Zero</span>
           </h4>
           <ul className='pl-8 text-gray-700 list-none'>
             {with3ZeroItems.map((item, index) => (
@@ -52,7 +55,10 @@ const Comparison = () => {
         {/* Card 2: Without 3Zero */}
         <div className='bg-gray-50 dark:bg-gray-950 shadow-lg p-6 border rounded-lg'>
           <h4 className='pb-5 font-semibold text-2xl text-black text-center dark:text-white'>
-            Websites without 3 Zero
+            Websites{' '}
+            <span className='bg-red-600 px-2 rounded-[2px]'>
+              without 3 Zero
+            </span>
           </h4>
           <ul className='pl-8 text-gray-700 list-none'>
             {without3ZeroItems.map((item, index) => (
@@ -63,6 +69,12 @@ const Comparison = () => {
             ))}
           </ul>
         </div>
+      </div>
+
+      <div className='flex justify-center mt-10'>
+        <Button className='p-6 w-40'>
+          <Link href='#getStarted'>Get Started</Link>
+        </Button>
       </div>
     </div>
   );
