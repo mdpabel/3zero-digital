@@ -11,6 +11,7 @@ import {
 import CustomerIssues from '@/components/home/customer-issues';
 import CompaniesLogo from '@/components/home/company-logos';
 import AffordableWebDevelopment from '@/components/home/affordable-web-development';
+import Comparison from '@/components/development/comparison';
 
 export const dynamic = 'force-static';
 
@@ -21,10 +22,11 @@ const Home = () => {
       <CustomerIssues />
       <Services />
       <CompaniesLogo />
+      <Comparison />
+      <AffordableWebDevelopment />
       <Suspense fallback='loading...'>
         <Templates featured />
       </Suspense>
-      <AffordableWebDevelopment />
       <Suspense fallback='loading...'>
         <CaseStudies />
       </Suspense>
