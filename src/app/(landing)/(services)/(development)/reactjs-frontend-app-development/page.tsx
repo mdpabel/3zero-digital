@@ -1,12 +1,14 @@
 import HeroSection from '@/components/comment/hero-section';
 import KeyBenefits from '@/components/comment/key-benefits';
 import Quiz from '@/components/comment/quiz';
-import { benefits, questions } from './data';
+import { benefits, processes, questions } from './data';
 import { getServiceMetadata } from '@/app/seo';
 import DevelopmentServiceForm from '@/components/comment/development-service-form';
 import { FaReact } from 'react-icons/fa'; // Import React icon for frontend services
 import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
+import ProcessSteps from '@/components/comment/process-steps';
+import Comparison from '@/components/development/comparison';
 
 // Force static rendering for SEO and performance
 
@@ -34,6 +36,13 @@ const FrontendDevelopment = () => {
       <DevelopmentServiceForm
         Icon={<FaReact className='text-2xl text-white md:text-3xl' />}
         title='Transform Your User Experience with Expert Frontend Development'
+      />
+
+      <Comparison />
+
+      <ProcessSteps
+        title='How We Build Your Dream React App'
+        processes={processes}
       />
 
       {/* Interactive Quiz */}

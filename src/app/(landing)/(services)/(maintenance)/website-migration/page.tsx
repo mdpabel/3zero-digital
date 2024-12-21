@@ -74,6 +74,7 @@ const WebsiteMigration = async () => {
           </div>
         ))}
       </div>
+
       <Quiz questions={questions} />
     </div>
   );

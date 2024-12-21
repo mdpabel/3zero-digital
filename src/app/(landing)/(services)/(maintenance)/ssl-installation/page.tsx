@@ -17,6 +17,7 @@ import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
+import Comparison from '@/components/development/comparison';
 
 export const metadata = getServiceMetadata('ssl-installation');
 
@@ -106,6 +107,8 @@ const SSLInstallation = async () => {
           </ul>
         </div>
       </div>
+
+      <Comparison />
 
       <Quiz questions={questions} />
     </div>

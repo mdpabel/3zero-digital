@@ -5,7 +5,23 @@ import Link from 'next/link';
 import CardImage from './images';
 import { Button } from '../ui/button';
 
-const Templates = async ({ featured = false }: { featured?: boolean }) => {
+const Templates = async ({
+  featured = false,
+  filterOptions = true,
+  limit = 6,
+  sortBy,
+  title = 'Explore Premium Templates for Your Business',
+  subTitle = `Browse our collection of professionally designed templates, tailored
+          to meet the needs of your business. Get started today and elevate your
+          online presence.`,
+}: {
+  featured?: boolean;
+  filterOptions?: boolean;
+  title?: string;
+  subTitle?: string;
+  limit?: number;
+  sortBy?: string;
+}) => {
   const categories = await prisma.templateCategory.findMany();
 
   const products = await prisma.template.findMany({
@@ -22,30 +38,31 @@ const Templates = async ({ featured = false }: { featured?: boolean }) => {
       {/* Header Section */}
       <div className='mb-10 text-center'>
         <h2 className='font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
-          Explore Premium Templates for Your Business
+          {title}
         </h2>
         <p className='mt-2 text-gray-600 text-lg dark:text-gray-400'>
-          Browse our collection of professionally designed templates, tailored
-          to meet the needs of your business. Get started today and elevate your
-          online presence.
+          {subTitle}
         </p>
       </div>
 
       {/* Categories Section */}
-      <section className='mb-10'>
-        <h2 className='mb-4 font-semibold text-2xl text-zinc-800 dark:text-zinc-200'>
-          Categories
-        </h2>
-        <div className='flex flex-wrap gap-4'>
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              className='bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800 shadow-md px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200'>
-              {category.name}
-            </button>
-          ))}
-        </div>
-      </section>
+
+      {filterOptions && (
+        <section className='mb-10'>
+          <h2 className='mb-4 font-semibold text-2xl text-zinc-800 dark:text-zinc-200'>
+            Categories
+          </h2>
+          <div className='flex flex-wrap gap-4'>
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                className='bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800 shadow-md px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200'>
+                {category.name}
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Product Cards Section */}
       <section className='mb-10'>
@@ -54,11 +71,9 @@ const Templates = async ({ featured = false }: { featured?: boolean }) => {
         </h2>
         <div className='gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
           {products.map((product, index) => (
-            <div>
+            <div key={index}>
               <Link href={`/shop/${product.slug}`}>
-                <div
-                  key={index}
-                  className='bg-white dark:bg-gray-900 shadow-md p-6 rounded-lg'>
+                <div className='bg-white dark:bg-gray-900 shadow-md p-6 rounded-lg'>
                   {/* Image Slider */}
                   <CardImage images={product.images} />
 

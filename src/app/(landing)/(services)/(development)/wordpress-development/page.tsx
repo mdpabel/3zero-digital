@@ -6,6 +6,8 @@ import { FaWordpress } from 'react-icons/fa';
 import ProcessSteps from '@/components/comment/process-steps';
 import Hero from '@/components/common/Hero';
 import Video from '@/components/common/video';
+import Templates from '@/components/shop/templates';
+import Comparison from '@/components/development/comparison';
 
 export const metadata = getServiceMetadata('wordpress-development');
 
@@ -26,11 +28,24 @@ const WordPressDevelopment = () => {
         Icon={<FaWordpress className='text-2xl text-white md:text-3xl' />}
         title='Custom WordPress Solutions for Seamless Performance & Growth'
       />
-      <Quiz questions={questions} />
+
+      <Comparison />
+
+      <Templates
+        filterOptions={false}
+        title='7,000+ Websites Built to Perfection – Yours Could Be Next!'
+        subTitle='Wether your business is new or established, whether you need a blog site or newspaper or ecommerce or personal, we can served you'
+        featured={true}
+        limit={6}
+        sortBy='shopify'
+      />
+
       <ProcessSteps
         title='How We Build Your Dream WordPress Site'
         processes={processes}
       />
+
+      <Quiz questions={questions} />
     </div>
   );
 };
