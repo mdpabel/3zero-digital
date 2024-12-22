@@ -40,11 +40,6 @@ const Home = () => {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
       />
-
-      <Script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(ratingSchema) }}
-      />
     </div>
   );
 };
