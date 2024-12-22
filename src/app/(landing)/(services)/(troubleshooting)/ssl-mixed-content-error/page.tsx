@@ -2,13 +2,17 @@ import { getServiceMetadata } from '@/app/seo';
 import { getProduct } from '@/lib/product/get-product';
 import Hero from '@/components/common/Hero';
 import PricingTable from '../pricing-table';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('ssl-mixed-content-error');
+const slug = 'ssl-mixed-content-error';
+
+export const metadata = getServiceMetadata(slug);
 
 export default async function FixMixedContentErrorService() {
-  const { origPrice, price, productId } = await getProduct(
-    'ssl-mixed-content-error',
-  );
+  const { origPrice, price, productId } = await getProduct(slug);
+
+  const jsonLd = generateSchemaMarkup(slug);
 
   return (
     <div className='flex flex-col justify-center items-center p-6 min-h-[100dvh]'>
@@ -93,6 +97,11 @@ export default async function FixMixedContentErrorService() {
           </div>
         </div>
       </div>
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 }

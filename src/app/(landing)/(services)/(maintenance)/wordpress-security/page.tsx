@@ -7,8 +7,12 @@ import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('wordpress-security');
+const slug = 'wordpress-security';
+
+export const metadata = getServiceMetadata(slug);
 
 const services = [
   'Hardened file permissions for critical WordPress files',
@@ -23,9 +27,8 @@ const services = [
 ];
 
 const WordPressSecurity = async () => {
-  const { origPrice, price, productId } = await getProduct(
-    'wordpress-security',
-  );
+  const { origPrice, price, productId } = await getProduct(slug);
+  const jsonLd = generateSchemaMarkup(slug);
 
   return (
     <div className='mx-auto p-4 max-w-6xl'>
@@ -37,7 +40,7 @@ const WordPressSecurity = async () => {
   </strong>—24/7 monitoring, threat prevention, and guaranteed peace of mind. A single security breach can cost your business thousands."
       />
 
-      <Video videoId='na2iB6nBzIc' pageSlug='wordpress-speed-optimization' />
+      <Video videoId='na2iB6nBzIc' pageSlug={slug} />
 
       <div className='mx-auto mt-32 rounded-lg max-w-5xl'>
         <h2 className='mb-6 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
@@ -79,6 +82,11 @@ const WordPressSecurity = async () => {
       </div>
 
       <Quiz questions={questions} />
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 };

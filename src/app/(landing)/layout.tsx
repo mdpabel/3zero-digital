@@ -1,6 +1,8 @@
 import dynamic from 'next/dynamic';
 import Header from '@/components/layout/app/header';
 import Footer from '@/components/layout/app/footer';
+import Script from 'next/script';
+import { ratingSchema } from './schema-markup';
 
 const TawkChat = dynamic(() => import('@/components/common/tawk-chat'));
 // const CookieYes = dynamic(() => import('@/components/common/cookie-yes'));
@@ -17,6 +19,10 @@ export default function RootLayout({
       <Footer />
       {process.env.NODE_ENV === 'production' && <TawkChat />}
       {/* {process.env.NODE_ENV === 'production' && <CookieYes />} */}
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(ratingSchema) }}
+      />
     </div>
   );
 }

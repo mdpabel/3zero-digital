@@ -15,13 +15,17 @@ import { questions } from './data';
 import { getServiceMetadata } from '@/app/seo';
 import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('ongoing-wordpress-maintenance');
+const slug = 'ongoing-wordpress-maintenance';
+
+export const metadata = getServiceMetadata(slug);
 
 const WordPressMaintenance = async () => {
-  const { origPrice, price, productId } = await getProduct(
-    'ongoing-wordpress-maintenance',
-  );
+  const { origPrice, price, productId } = await getProduct(slug);
+
+  const jsonLd = generateSchemaMarkup(slug);
 
   const services = [
     {
@@ -78,7 +82,7 @@ const WordPressMaintenance = async () => {
   </strong>. Did you know? One study found that in 2018, over 90% of hacked sites were WordPress. Regular scans, malware removal, and zero downtime – guaranteed."
       />
 
-      <Video videoId='na2iB6nBzIc' pageSlug='ongoing-wordpress-maintenance' />
+      <Video videoId='na2iB6nBzIc' pageSlug={slug} />
 
       <div className='mt-32'>
         <div className='mx-auto max-w-4xl'>
@@ -121,6 +125,11 @@ const WordPressMaintenance = async () => {
         </div>
 
         <Quiz questions={questions} />
+
+        <Script
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </div>
     </div>
   );

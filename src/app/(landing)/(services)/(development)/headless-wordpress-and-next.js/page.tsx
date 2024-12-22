@@ -10,10 +10,16 @@ import Video from '@/components/common/video';
 import Templates from '@/components/shop/templates';
 import ProcessSteps from '@/components/comment/process-steps';
 import Comparison from '@/components/development/comparison';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('headless-wordpress-and-next.js');
+const slug = 'headless-wordpress-and-next.js';
+
+export const metadata = getServiceMetadata(slug);
 
 const HeadlessWordPressAndNextJs = () => {
+  const jsonLd = generateSchemaMarkup(slug);
+
   return (
     <div className='mx-auto px-4 w-full max-w-6xl container'>
       <Hero
@@ -51,6 +57,11 @@ const HeadlessWordPressAndNextJs = () => {
       />
 
       <Quiz questions={questions} />
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 };

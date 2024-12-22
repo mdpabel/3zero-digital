@@ -9,10 +9,16 @@ import Hero from '@/components/common/Hero';
 import Templates from '@/components/shop/templates';
 import ProcessSteps from '@/components/comment/process-steps';
 import Comparison from '@/components/development/comparison';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('mern-stack-app-development');
+const slug = 'mern-stack-app-development';
+
+export const metadata = getServiceMetadata(slug);
 
 const MernStack = () => {
+  const jsonLd = generateSchemaMarkup(slug);
+
   return (
     <div className='mx-auto px-4 w-full max-w-6xl container'>
       <Hero
@@ -48,6 +54,11 @@ const MernStack = () => {
       />
 
       <Quiz questions={questions} />
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 };

@@ -10,12 +10,16 @@ import Hero from '@/components/common/Hero';
 import Templates from '@/components/shop/templates';
 import ProcessSteps from '@/components/comment/process-steps';
 import Comparison from '@/components/development/comparison';
+import Script from 'next/script';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 
-export const metadata = getServiceMetadata(
-  'fullstack-next-js-applications-development',
-);
+const slug = 'fullstack-next-js-applications-development';
+
+export const metadata = getServiceMetadata(slug);
 
 const NextJsFullStack = () => {
+  const jsonLd = generateSchemaMarkup(slug);
+
   return (
     <div className='mx-auto px-4 w-full max-w-6xl container'>
       <Hero
@@ -54,6 +58,11 @@ const NextJsFullStack = () => {
       />
 
       <Quiz questions={questions} />
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 };

@@ -8,10 +8,16 @@ import Hero from '@/components/common/Hero';
 import Video from '@/components/common/video';
 import Templates from '@/components/shop/templates';
 import Comparison from '@/components/development/comparison';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('wordpress-development');
+const slug = 'wordpress-development';
+
+export const metadata = getServiceMetadata(slug);
 
 const WordPressDevelopment = () => {
+  const jsonLd = generateSchemaMarkup(slug);
+
   return (
     <div className='mx-auto px-4 w-full max-w-6xl container'>
       <Hero
@@ -46,6 +52,11 @@ const WordPressDevelopment = () => {
       />
 
       <Quiz questions={questions} />
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 };

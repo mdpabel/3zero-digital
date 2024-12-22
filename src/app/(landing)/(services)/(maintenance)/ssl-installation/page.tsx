@@ -18,8 +18,12 @@ import { questions } from './data';
 import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
 import Comparison from '@/components/development/comparison';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('ssl-installation');
+const slug = 'ssl-installation';
+
+export const metadata = getServiceMetadata(slug);
 
 // Icons mapped to benefits
 const benefits = [
@@ -52,7 +56,8 @@ const benefits = [
 ];
 
 const SSLInstallation = async () => {
-  const { origPrice, price, productId } = await getProduct('ssl-installation');
+  const { origPrice, price, productId } = await getProduct(slug);
+  const jsonLd = generateSchemaMarkup(slug);
 
   return (
     <div className='mx-auto p-4 max-w-6xl'>
@@ -64,7 +69,7 @@ const SSLInstallation = async () => {
   </strong>. An SSL certificate is no longer optional—it’s a necessity. With over 500+ SSL installations, we ensure your website stays secure and credible."
       />
 
-      <Video videoId='na2iB6nBzIc' pageSlug='ssl-installation' />
+      <Video videoId='na2iB6nBzIc' pageSlug={slug} />
 
       <div className='mx-auto mt-32 px-6 lg:px-8 max-w-7xl'>
         {/* Hero Section */}
@@ -111,6 +116,11 @@ const SSLInstallation = async () => {
       <Comparison />
 
       <Quiz questions={questions} />
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 };

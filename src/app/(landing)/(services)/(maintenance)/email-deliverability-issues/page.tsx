@@ -8,8 +8,12 @@ import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('email-deliverability-issues');
+const slug = 'email-deliverability-issues';
+
+export const metadata = getServiceMetadata(slug);
 
 const issues = [
   'Blacklisted IP addresses',
@@ -23,9 +27,8 @@ const issues = [
 ];
 
 const EmailDeliverabilityIssues = async () => {
-  const { origPrice, price, productId } = await getProduct(
-    'email-deliverability-issues',
-  );
+  const { origPrice, price, productId } = await getProduct(slug);
+  const jsonLd = generateSchemaMarkup(slug);
 
   return (
     <div className='mx-auto p-4 max-w-6xl'>
@@ -37,7 +40,7 @@ const EmailDeliverabilityIssues = async () => {
   </strong>, ensuring your messages reach your audience effectively. Did you know that 53% of users abandon a site that takes more than 3 seconds to load? Similarly, emails that don't land in the inbox can cost you valuable engagement."
       />
 
-      <Video videoId='na2iB6nBzIc' pageSlug='email-deliverability-issues' />
+      <Video videoId='na2iB6nBzIc' pageSlug={slug} />
 
       <h2 className='mt-32 mb-8 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
         Email Deliverability Solutions
@@ -74,6 +77,11 @@ const EmailDeliverabilityIssues = async () => {
       </div>
 
       <Quiz questions={questions} />
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 };

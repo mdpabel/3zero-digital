@@ -39,14 +39,12 @@ const AffordableWebDevelopment = async () => {
             src={websitePrototype}
             alt='Website prototype'
             className='block dark:hidden shadow-md rounded-lg'
-            layout='responsive'
           />
           {/* Dark Theme Image */}
           <Image
             src={websitePrototypeDark}
             alt='Website prototype (dark)'
             className='dark:block hidden shadow-md rounded-lg'
-            layout='responsive'
           />
         </div>
       </div>

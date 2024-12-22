@@ -10,10 +10,16 @@ import Templates from '@/components/shop/templates';
 import React from 'react';
 import { getServiceMetadata } from '@/app/seo';
 import Comparison from '@/components/development/comparison';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('affordable-web-development');
+const slug = 'affordable-web-development';
+
+export const metadata = getServiceMetadata(slug);
 
 const page = () => {
+  const jsonLd = generateSchemaMarkup(slug);
+
   return (
     <div className='mx-auto px-4 max-w-6xl'>
       <Hero
@@ -24,7 +30,7 @@ const page = () => {
         </strong>
         , and more—at a price that won’t break the bank."
       />
-      <Video videoId='na2iB6nBzIc' pageSlug='affordable-web-development' />
+      <Video videoId='na2iB6nBzIc' pageSlug={slug} />
       <PricingTable />
       <HostingFeatures />
       <ServicesProvided />
@@ -42,6 +48,11 @@ const page = () => {
         processes={processes}
       />
       <FAQ />
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 };

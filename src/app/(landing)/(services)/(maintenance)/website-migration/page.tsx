@@ -7,8 +7,12 @@ import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('website-migration');
+const slug = 'website-migration';
+
+export const metadata = getServiceMetadata(slug);
 
 const migrationSteps = [
   'Detailed site audit and planning',
@@ -22,7 +26,8 @@ const migrationSteps = [
 ];
 
 const WebsiteMigration = async () => {
-  const { origPrice, price, productId } = await getProduct('website-migration');
+  const { origPrice, price, productId } = await getProduct(slug);
+  const jsonLd = generateSchemaMarkup(slug);
 
   return (
     <div className='mx-auto px-4 max-w-6xl'>
@@ -34,7 +39,7 @@ const WebsiteMigration = async () => {
   </strong> to ensure your site runs smoothly on its new home. Over 500+ websites successfully migrated! Planning to migrate your website but worried about data loss, downtime, or SEO impact?"
       />
 
-      <Video videoId='na2iB6nBzIc' pageSlug='website-migration' />
+      <Video videoId='na2iB6nBzIc' pageSlug={slug} />
 
       <h2 className='mt-32 mb-8 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
         Website Migration Services
@@ -76,6 +81,11 @@ const WebsiteMigration = async () => {
       </div>
 
       <Quiz questions={questions} />
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 };

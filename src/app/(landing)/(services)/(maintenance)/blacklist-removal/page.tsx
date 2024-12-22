@@ -7,11 +7,17 @@ import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('blacklist-removal');
+const slug = 'blacklist-removal';
+
+export const metadata = getServiceMetadata(slug);
 
 const page = async () => {
-  const { origPrice, price, productId } = await getProduct('blacklist-removal');
+  const { origPrice, price, productId } = await getProduct(slug);
+
+  const jsonLd = generateSchemaMarkup(slug);
 
   return (
     <div className='mx-auto p-4 max-w-6xl'>
@@ -32,6 +38,11 @@ const page = async () => {
       />
 
       <Quiz questions={questions} />
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 };

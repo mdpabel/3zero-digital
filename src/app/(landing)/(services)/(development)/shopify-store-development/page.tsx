@@ -9,10 +9,16 @@ import Hero from '@/components/common/Hero';
 import Templates from '@/components/shop/templates';
 import ProcessSteps from '@/components/comment/process-steps';
 import Comparison from '@/components/development/comparison';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('shopify-store-development');
+const slug = 'shopify-store-development';
+
+export const metadata = getServiceMetadata(slug);
 
 const ShopifyWebsiteDevelopment = () => {
+  const jsonLd = generateSchemaMarkup(slug);
+
   return (
     <div className='mx-auto px-4 w-full max-w-6xl container'>
       <Hero
@@ -48,6 +54,10 @@ const ShopifyWebsiteDevelopment = () => {
       />
 
       <Quiz questions={questions} />
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 };

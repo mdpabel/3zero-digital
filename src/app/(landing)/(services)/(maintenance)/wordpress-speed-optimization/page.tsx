@@ -6,8 +6,12 @@ import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('wordpress-speed-optimization');
+const slug = 'wordpress-speed-optimization';
+
+export const metadata = getServiceMetadata(slug);
 
 const services = [
   'Comprehensive website speed audit',
@@ -21,9 +25,9 @@ const services = [
 ];
 
 const WordPressSpeedOptimization = async () => {
-  const { origPrice, price, productId } = await getProduct(
-    'wordpress-speed-optimization',
-  );
+  const { origPrice, price, productId } = await getProduct(slug);
+
+  const jsonLd = generateSchemaMarkup(slug);
 
   return (
     <div className='mx-auto p-4 max-w-6xl'>
@@ -35,7 +39,7 @@ const WordPressSpeedOptimization = async () => {
   </strong>—faster loading, higher conversions, and better rankings, guaranteed. Did you know? 53% of users leave a site that takes more than 3 seconds to load."
       />
 
-      <Video videoId='na2iB6nBzIc' pageSlug='wordpress-speed-optimization' />
+      <Video videoId='na2iB6nBzIc' pageSlug={slug} />
 
       <div className='mx-auto mt-32 max-w-5xl'>
         <h2 className='mb-6 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
@@ -77,6 +81,11 @@ const WordPressSpeedOptimization = async () => {
       </div>
 
       <Quiz questions={questions} />
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 };

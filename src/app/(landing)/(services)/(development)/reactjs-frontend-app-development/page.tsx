@@ -9,12 +9,16 @@ import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
 import ProcessSteps from '@/components/comment/process-steps';
 import Comparison from '@/components/development/comparison';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-// Force static rendering for SEO and performance
+const slug = 'reactjs-frontend-app-development';
 
-export const metadata = getServiceMetadata('reactjs-frontend-app-development'); // Set metadata for SEO (title, description)
+export const metadata = getServiceMetadata(slug); // Set metadata for SEO (title, description)
 
 const FrontendDevelopment = () => {
+  const jsonLd = generateSchemaMarkup(slug);
+
   return (
     <div className='mx-auto px-4 w-full max-w-6xl container'>
       {/* Hero Section with a YouTube Video */}
@@ -47,6 +51,11 @@ const FrontendDevelopment = () => {
 
       {/* Interactive Quiz */}
       <Quiz questions={questions} />
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 };

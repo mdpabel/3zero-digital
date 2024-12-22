@@ -2,13 +2,17 @@ import { getServiceMetadata } from '@/app/seo';
 import { getProduct } from '@/lib/product/get-product';
 import Hero from '@/components/common/Hero';
 import PricingTable from '../pricing-table';
+import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import Script from 'next/script';
 
-export const metadata = getServiceMetadata('http-500-internal-server-error');
+const slug = 'http-500-internal-server-error';
+
+export const metadata = getServiceMetadata(slug);
 
 export default async function Fix500ErrorService() {
-  const { origPrice, price, productId } = await getProduct(
-    'http-500-internal-server-error',
-  );
+  const { origPrice, price, productId } = await getProduct(slug);
+
+  const jsonLd = generateSchemaMarkup(slug);
 
   return (
     <div className='flex flex-col justify-center items-center p-6 min-h-[100dvh]'>
@@ -92,6 +96,11 @@ export default async function Fix500ErrorService() {
           </div>
         </div>
       </div>
+
+      <Script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </div>
   );
 }
