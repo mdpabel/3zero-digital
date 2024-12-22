@@ -13,6 +13,8 @@ import Comparison from '@/components/development/comparison';
 import Script from 'next/script';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 
+export const dynamic = 'force-static';
+
 const slug = 'fullstack-next-js-applications-development';
 
 export const metadata = getServiceMetadata(slug);

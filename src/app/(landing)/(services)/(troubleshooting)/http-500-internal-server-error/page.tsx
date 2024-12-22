@@ -5,6 +5,8 @@ import PricingTable from '../pricing-table';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
 
+export const dynamic = 'force-static';
+
 const slug = 'http-500-internal-server-error';
 
 export const metadata = getServiceMetadata(slug);

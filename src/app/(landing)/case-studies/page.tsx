@@ -4,6 +4,8 @@ import { fetchCaseStudies } from '@/lib/wordpress/case-study';
 import { Button } from '@/components/ui/button';
 import { genMetaData } from '@/app/seo';
 
+export const dynamic = 'force-static';
+
 export const metadata = genMetaData({
   title: 'Case studies',
   url: '/case-studies',

@@ -7,6 +7,8 @@ import why3Zero2 from '@/../public/images/why-3zero-2.png';
 import why3Zero from '@/../public/images/why-3zero.png';
 import { genMetaData } from '@/app/seo';
 
+export const dynamic = 'force-static';
+
 export const metadata = genMetaData({
   title: 'About us',
   url: '/about-us',

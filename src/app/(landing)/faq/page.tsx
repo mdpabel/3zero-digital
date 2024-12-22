@@ -7,6 +7,8 @@ import {
 } from '@/components/ui/accordion';
 import { genMetaData } from '@/app/seo';
 
+export const dynamic = 'force-static';
+
 export const metadata = genMetaData({
   title: 'Frequently asked questions',
   url: '/faq',

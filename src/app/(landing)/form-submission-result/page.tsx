@@ -3,6 +3,8 @@ import React from 'react';
 import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { genMetaData } from '@/app/seo';
 
+export const dynamic = 'force-static';
+
 export const metadata = genMetaData({
   title: 'Form submission result',
   url: '/form-submission-result',

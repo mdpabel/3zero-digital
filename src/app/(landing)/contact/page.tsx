@@ -2,7 +2,7 @@ import ContactForm from './contact-form';
 import { genMetaData } from '@/app/seo';
 import lazy from 'next/dynamic';
 
-const GoogleMap = lazy(() => import('./google-map'));
+export const dynamic = 'force-static';
 
 export const metadata = genMetaData({
   title: 'Contact us',
@@ -53,10 +53,7 @@ const ContactPage = () => {
           </div>
         </div>
 
-        <div className='gap-10 grid lg:grid-cols-2'>
-          <ContactForm />
-          <GoogleMap />
-        </div>
+        <ContactForm />
       </div>
     </div>
   );

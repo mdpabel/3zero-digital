@@ -18,6 +18,8 @@ import Hero from '@/components/common/Hero';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
 
+export const dynamic = 'force-static';
+
 const slug = 'ongoing-wordpress-maintenance';
 
 export const metadata = getServiceMetadata(slug);

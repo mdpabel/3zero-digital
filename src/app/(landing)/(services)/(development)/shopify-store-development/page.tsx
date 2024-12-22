@@ -12,6 +12,8 @@ import Comparison from '@/components/development/comparison';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
 
+export const dynamic = 'force-static';
+
 const slug = 'shopify-store-development';
 
 export const metadata = getServiceMetadata(slug);

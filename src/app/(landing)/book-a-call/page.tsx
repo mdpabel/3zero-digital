@@ -1,6 +1,8 @@
 import { genMetaData } from '@/app/seo';
 import Title from '@/components/common/title';
 
+export const dynamic = 'force-static';
+
 export const metadata = genMetaData({
   title: 'Book a call',
   url: '/book-a-call',

@@ -5,6 +5,8 @@ import PricingTable from '../pricing-table';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
 
+export const dynamic = 'force-static';
+
 const slug = 'white-screen-of-death';
 
 export const metadata = getServiceMetadata(slug);
