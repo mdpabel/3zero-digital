@@ -85,10 +85,10 @@ const steps = [
 const ProjectSteps = () => {
   return (
     <div className='bg-gradient-to-r py-16 text-white'>
-      <h2 className='mb-6 font-bold text-4xl text-center'>
+      <h2 className='mb-6 font-bold text-4xl text-black text-center dark:text-white'>
         🚀 Our Workflow to Build Your Dream Website
       </h2>
-      <p className='mx-auto mb-12 max-w-2xl text-center text-lg'>
+      <p className='mx-auto mb-12 max-w-2xl text-black text-center text-lg dark:text-white'>
         Here’s how our company ensures a smooth and professional process for
         creating your website.
       </p>
@@ -104,8 +104,12 @@ const ProjectSteps = () => {
               </div>
 
               {/* Step Content */}
-              <h3 className='mb-2 font-semibold text-xl'>{step.title}</h3>
-              <p className='text-base text-white/80'>{step.description}</p>
+              <h3 className='mb-2 font-semibold text-black text-xl dark:text-white'>
+                {step.title}
+              </h3>
+              <p className='text-base text-black dark:text-white'>
+                {step.description}
+              </p>
             </div>
           ))}
         </div>
