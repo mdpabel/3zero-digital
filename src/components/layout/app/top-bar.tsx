@@ -29,7 +29,7 @@ const TopBar = () => {
             <Link
               href='/affordable-web-development'
               className='max-w-fit typewriter'>
-              🎉 Build Website: Hosting, SSL & More for just $79!
+              🎉 Website, Domain, Hosting & More for just $79!
             </Link>
           </div>
 

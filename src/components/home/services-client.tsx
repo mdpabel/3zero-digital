@@ -10,22 +10,16 @@ import Link from 'next/link';
 import IconRenderer from '../comment/icon-render';
 import { ServiceWithProducts } from '@/lib/product/get-product';
 import dynamic from 'next/dynamic';
+import { Active } from './services';
 const PlaceOrder = dynamic(() => import('./place-order'));
 
-const ServicesClient = ({ services }: { services: ServiceWithProducts[] }) => {
-  const [activeTab, setActiveTab] = useState('Development');
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const currentIndex = services.findIndex(
-        (service) => service.name === activeTab,
-      );
-      const nextTab = services[(currentIndex + 1) % services.length].name;
-      setActiveTab(nextTab);
-    }, 8000);
-    return () => clearInterval(interval);
-  }, [activeTab]);
-
+const ServicesClient = ({
+  services,
+  active,
+}: {
+  services: ServiceWithProducts[];
+  active?: Active;
+}) => {
   return (
     <div id='getStarted' className='mx-auto px-4 py-10 sm:py-16 max-w-6xl'>
       <Title
@@ -33,7 +27,7 @@ const ServicesClient = ({ services }: { services: ServiceWithProducts[] }) => {
         subTitle='Discover how we can help you grow and optimize your online presence.'
       />
 
-      <Tabs defaultValue='Development'>
+      <Tabs defaultValue={active}>
         <TabsList className='flex flex-wrap justify-center gap-2 sm:space-x-4 bg-transparent mb-6'>
           {services.map((services) => {
             return (

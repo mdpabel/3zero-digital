@@ -36,10 +36,6 @@ const Home = () => {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
-      <Script
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
-      />
     </div>
   );
 };

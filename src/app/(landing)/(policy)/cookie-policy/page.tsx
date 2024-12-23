@@ -1,6 +1,8 @@
 import { FaCookieBite, FaShieldAlt } from 'react-icons/fa';
 import { genMetaData } from '@/app/seo';
 
+export const dynamic = 'force-static';
+
 export const metadata = genMetaData({
   title: 'Cookie Policy',
   url: '/cookie-policy',
