@@ -12,6 +12,7 @@ import { getServiceMetadata } from '@/app/seo';
 import Comparison from '@/components/development/comparison';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
+import ProjectSteps from './project-steps';
 
 export const dynamic = 'force-static';
 
@@ -34,9 +35,10 @@ const page = () => {
       />
       <Video videoId='na2iB6nBzIc' pageSlug={slug} />
       <PricingTable />
+      <ProjectSteps />
+      <Comparison />
       <HostingFeatures />
       <ServicesProvided />
-      <Comparison />
       <Templates
         filterOptions={false}
         title='7,000+ Websites Built to Perfection – Yours Could Be Next!'
