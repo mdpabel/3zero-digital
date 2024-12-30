@@ -95,7 +95,7 @@ const ProjectSteps = () => {
 
       <div className='relative mx-auto max-w-4xl'>
         {/* Vertical Timeline */}
-        <div className='border-white border-l-4'>
+        <div className='border-[#614385] dark:border-white border-l-4'>
           {steps.map((step, index) => (
             <div key={index} className='relative mb-10 pl-8'>
               {/* Step Circle */}
