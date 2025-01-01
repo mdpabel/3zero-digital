@@ -72,40 +72,39 @@ const Templates = async ({
         <div className='gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
           {products.map((product, index) => (
             <div key={index}>
-              <Link href={`/shop/${product.slug}`}>
-                <div className='bg-white dark:bg-gray-900 shadow-md p-6 rounded-lg'>
-                  {/* Image Slider */}
+              <div className='bg-white dark:bg-gray-900 shadow-md p-6 rounded-lg'>
+                {/* Image Slider */}
+                <Link href={`/shop/${product.slug}`}>
                   <CardImage images={product.images} />
-
-                  {/* Product Info */}
-                  <h3 className='mb-2 font-bold text-lg text-zinc-800 dark:text-zinc-200'>
-                    <Link href={`/shop/${product.slug}`}>{product.name}</Link>
-                  </h3>
-                  <div className='flex justify-between items-center text-gray-600 dark:text-gray-400'>
-                    <div className='flex flex-col'>
-                      <span className='line-through'>${product.price}</span>
-                      <span className='font-bold text-red-500 text-xl'>
-                        ${product.salePrice}
-                      </span>
-                    </div>
-                    <div className='flex items-center space-x-2'>
-                      <Link
-                        href={product.liveUrl}
-                        target='_blank'
-                        className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-md px-4 py-1.5 rounded-lg font-semibold text-white'>
-                        Live Preview
-                      </Link>
-                      <form action=''>
-                        <button className='bg-gray-100 dark:bg-gray-800 shadow-md px-4 py-2 rounded-full'>
-                          <span role='img' aria-label='cart'>
-                            <FaCartShopping />
-                          </span>
-                        </button>
-                      </form>
-                    </div>
+                </Link>
+                {/* Product Info */}
+                <h3 className='mb-2 font-bold text-lg text-zinc-800 dark:text-zinc-200'>
+                  <Link href={`/shop/${product.slug}`}>{product.name}</Link>
+                </h3>
+                <div className='flex justify-between items-center text-gray-600 dark:text-gray-400'>
+                  <div className='flex flex-col'>
+                    <span className='line-through'>${product.price}</span>
+                    <span className='font-bold text-red-500 text-xl'>
+                      ${product.salePrice}
+                    </span>
+                  </div>
+                  <div className='flex items-center space-x-2'>
+                    <Link
+                      href={product.liveUrl}
+                      target='_blank'
+                      className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-md px-4 py-1.5 rounded-lg font-semibold text-white'>
+                      Live Preview
+                    </Link>
+                    <form action=''>
+                      <button className='bg-gray-100 dark:bg-gray-800 shadow-md px-4 py-2 rounded-full'>
+                        <span role='img' aria-label='cart'>
+                          <FaCartShopping />
+                        </span>
+                      </button>
+                    </form>
                   </div>
                 </div>
-              </Link>
+              </div>
             </div>
           ))}
         </div>

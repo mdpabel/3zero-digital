@@ -26,10 +26,12 @@ import Message from './message';
 import Spinner from '../common/spinner';
 import { loginAction } from '@/actions/auth/login';
 import { LoginSchema } from '@/schema/auth/login-schmea';
+import { useSearchParams } from 'next/navigation';
 
 type LoginFormSchema = z.infer<typeof LoginSchema>;
 
 const LoginForm = () => {
+  const searchParams = useSearchParams();
   const [{ message, success }, action] = useActionState(loginAction, {
     success: false,
     message: '',
@@ -42,6 +44,8 @@ const LoginForm = () => {
       email: '',
     },
   });
+
+  const callbackUrl = searchParams.get('callbackUrl') ?? '/';
 
   return (
     <Card className='mx-auto my-10 max-w-md text-zinc-800 dark:text-zinc-200'>
@@ -60,6 +64,7 @@ const LoginForm = () => {
             }
           }}
           className='space-y-4'>
+          <input type='hidden' name='callbackUrl' value={callbackUrl} />
           <CardContent className='gap-4 grid pb-4'>
             {message && (
               <Message type={success ? 'success' : 'error'} message={message} />

@@ -59,7 +59,7 @@ const ProductType = () => {
                 name='price'
                 value={prices.price}
                 onChange={handlePriceChange}
-                min={1}
+                min={0}
                 step='1'
                 placeholder='Product Price'
                 className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
@@ -78,7 +78,7 @@ const ProductType = () => {
                 name='origPrice'
                 value={prices.origPrice}
                 onChange={handlePriceChange}
-                min={1}
+                min={0}
                 step='1'
                 placeholder='Product Original Price'
                 className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'

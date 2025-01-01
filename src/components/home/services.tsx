@@ -10,7 +10,6 @@ export type Active =
 const Services = async ({ active = 'Development' }: { active?: Active }) => {
   const services = await getProductWithServices();
 
-  console.log({ services });
   return <ServicesClient services={services} active={active} />;
 };
 

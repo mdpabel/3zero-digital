@@ -21,8 +21,8 @@ export const productFormSchema = z
     }),
     price: z.coerce
       .number()
-      .min(0.01, {
-        message: 'Price must be greater than 0.',
+      .min(0, {
+        message: 'Price must be positive.',
       })
       .optional(), // Price is optional because subscriptions can have multiple prices
 

@@ -22,6 +22,9 @@ const Products = async ({ searchParams }: { searchParams: SearchParams }) => {
     },
     take: PAGE_SIZE,
     skip: PAGE_SIZE * (parseInt(page ?? '1', 10) - 1),
+    orderBy: {
+      createdAt: 'desc',
+    },
   });
 
   return (

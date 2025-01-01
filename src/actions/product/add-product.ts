@@ -7,7 +7,7 @@ import { revalidatePath } from 'next/cache';
 import slugify from 'slugify';
 
 // Main function to handle the product creation
-export async function createProduct(_: any, formData: FormData) {
+export async function createProduct(formData: FormData) {
   try {
     const formDataObj = Object.fromEntries(formData.entries());
 

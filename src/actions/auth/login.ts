@@ -10,6 +10,8 @@ export const loginAction = async (_: any, formData: FormData) => {
     Object.fromEntries(formData.entries()),
   );
 
+  const callbackUrl = formData.get('callbackUrl') as string;
+
   if (!parsedResult.success) {
     // Handle validation error
     return {
@@ -38,7 +40,7 @@ export const loginAction = async (_: any, formData: FormData) => {
     const result = await signIn('resend', {
       email: parsedResult.data.email,
       redirect: false, // We are handling the redirection manually
-      redirectTo: '/dashboard', // Specify the desired redirect
+      redirectTo: callbackUrl ? callbackUrl : '/dashboard', // Specify the desired redirect
     });
 
     return {

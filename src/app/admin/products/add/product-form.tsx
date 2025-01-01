@@ -7,32 +7,24 @@ import { Category } from '@prisma/client';
 import { toast } from 'react-toastify';
 
 const ProductForm = ({ categories }: { categories: Category[] }) => {
-  const [state, action] = useActionState(createProduct, {
-    message: '',
-    success: false,
-    errors: {},
-  });
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    const { message, success, errors } = await createProduct(formData);
 
-  useEffect(() => {
-    if (!state.message) return;
-
-    const toastMessage = state.success ? toast.success : toast.error;
-
-    const message = state.errors
-      ? Object.values(state.errors).join(', ')
-      : state.message;
-
-    if (message) {
-      toastMessage(message);
+    if (success && message) {
+      toast.success(message);
+    } else if (!success && message) {
+      toast.error(message);
     }
-  }, [state.message, state.errors, state.success]);
+  };
 
   return (
     <div className='bg-white dark:bg-gray-900 shadow-md mx-auto p-8 rounded-md max-w-3xl'>
       <h2 className='mb-6 font-semibold text-2xl text-gray-800 dark:text-gray-100'>
         Add New Product
       </h2>
-      <form action={action} className='space-y-8'>
+      <form onSubmit={handleSubmit} className='space-y-8'>
         {/* Product Name */}
         <div>
           <label

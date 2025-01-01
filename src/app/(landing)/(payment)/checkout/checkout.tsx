@@ -12,7 +12,6 @@ import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -25,31 +24,23 @@ import Link from 'next/link';
 import { useCheckout } from './use-checkout';
 import { Price, Product } from '@prisma/client';
 import CheckoutSkeleton from './checkout-skeleton';
-import { createStripeSession } from '@/actions/payment/create-checkout-session';
 import { checkoutSchema } from '@/schema/payment/checkout-schema';
-import { signUpAction as SignUp } from '@/actions/auth/signup';
 import Spinner from '@/components/common/spinner';
-import { useToast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import Message from '@/components/auth/message';
-import { useSession } from 'next-auth/react';
+import { Session } from 'next-auth';
+import { createOrder } from '@/actions/order/create-order';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
 
 // Extended Product type to include prices
 type ExtendedProduct = Product & { prices: Price[] };
 
-const Checkout = () => {
-  const { data, status } = useSession();
+const Checkout = ({ session }: { session: Session | null }) => {
   const router = useRouter();
   const [pending, startTransition] = useTransition();
-  const [stripeSessionState, createStripeSessionAction] = useActionState(
-    createStripeSession,
-    {
-      success: true,
-      message: '',
-      sessionUrl: '',
-    },
-  );
-  const [signUpState, signUpAction] = useActionState(SignUp, {
-    success: true,
+  const [orderState, orderAction] = useActionState(createOrder, {
+    success: false,
     message: '',
   });
 
@@ -72,20 +63,15 @@ const Checkout = () => {
   const form = useForm<z.infer<typeof checkoutSchema>>({
     resolver: zodResolver(checkoutSchema),
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
+      firstName: session?.user?.name?.split(' ')[0] || '',
+      lastName: session?.user?.name?.split(' ')[1] || '',
+      email: session?.user?.email || '',
       websites: '',
       note: '',
+      paymentType: 'manual',
     },
     mode: 'onChange',
   });
-
-  useEffect(() => {
-    if (stripeSessionState.sessionUrl) {
-      router.push(stripeSessionState.sessionUrl);
-    }
-  }, [stripeSessionState.sessionUrl, router]);
 
   useEffect(() => {
     if (isLocalStorageLoading || !productId) return;
@@ -145,11 +131,13 @@ const Checkout = () => {
                 const isValid = await form.trigger();
                 if (isValid) {
                   startTransition(() => {
-                    const signUpFormData = new FormData();
                     const values = form.getValues();
-                    signUpFormData.append('firstName', values.firstName);
-                    signUpFormData.append('lastName', values.lastName);
-                    signUpFormData.append('email', values.email);
+
+                    if (values.paymentType !== 'manual') {
+                      toast.warn(
+                        'Only manual payment is available at the moment.',
+                      );
+                    }
 
                     const checkoutSessionFormData = new FormData();
                     checkoutSessionFormData.append('email', values.email);
@@ -166,8 +154,14 @@ const Checkout = () => {
                       );
                     }
 
-                    signUpAction(signUpFormData);
-                    createStripeSessionAction(checkoutSessionFormData);
+                    orderAction({
+                      productId: product.id,
+                      quantity: quantity.toString(),
+                      metaData: JSON.stringify(metaData),
+                      email: values.email,
+                      paymentMode: paymentMode as 'payment' | 'subscription',
+                    });
+
                     localStorage.removeItem('productId');
                     localStorage.removeItem('quantity');
                     localStorage.removeItem('metaData');
@@ -244,7 +238,7 @@ const Checkout = () => {
                   name='websites'
                   render={({ field }) => (
                     <FormItem className='w-full'>
-                      <FormLabel>Website URLs</FormLabel>
+                      <FormLabel>Website URLs Or Template Name/URL</FormLabel>
                       <FormControl>
                         <Textarea
                           placeholder='https://example.com'
@@ -275,23 +269,54 @@ const Checkout = () => {
                 )}
               />
 
+              {/* Payment Method Section */}
+              <FormField
+                control={form.control}
+                name='paymentType'
+                render={({ field }) => (
+                  <FormItem className='w-full'>
+                    <FormLabel>Payment Mode</FormLabel>
+                    <FormControl>
+                      <RadioGroup
+                        value={field.value}
+                        onValueChange={(value) => {
+                          field.onChange(value); // Update the form state
+                        }}
+                        className='flex flex-col gap-2'>
+                        <div className='flex items-center gap-4'>
+                          <RadioGroupItem value='paypal' id='paypal' />
+                          <Label htmlFor='paypal'>PayPal</Label>
+                        </div>
+                        <div className='flex items-center gap-4'>
+                          <RadioGroupItem value='stripe' id='stripe' />
+                          <Label htmlFor='stripe'>Stripe</Label>
+                        </div>
+                        <div className='flex items-center gap-4'>
+                          <RadioGroupItem value='manual' id='manual' />
+                          <Label htmlFor='manual'>Manual Payment</Label>
+                        </div>
+                      </RadioGroup>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <div>
                 <Button
+                  disabled={form.getValues('paymentType') !== 'manual'}
                   type='submit'
                   className='flex items-center gap-2 mb-6 py-6 w-full text-lg'>
-                  Complete Checkout {pending && <Spinner />}
+                  {form.getValues('paymentType') !== 'manual'
+                    ? 'Not Available'
+                    : 'Complete Checkout'}{' '}
+                  {pending && <Spinner />}
                 </Button>
-                {signUpState.message && (
-                  <Message
-                    message={signUpState.message}
-                    type={signUpState.success ? 'success' : 'error'}
-                  />
-                )}
 
-                {stripeSessionState.message && (
+                {orderState.message && (
                   <Message
-                    message={stripeSessionState.message}
-                    type={stripeSessionState.success ? 'success' : 'error'}
+                    message={orderState.message}
+                    type={orderState.success ? 'success' : 'error'}
                   />
                 )}
               </div>

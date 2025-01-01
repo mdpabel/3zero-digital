@@ -15,12 +15,6 @@ export default auth((req) => {
   const isAdminRoute = adminRoutes.test(nextUrl.pathname); // Test the path against the admin regex
   const isDashboardRoute = dashboardRoutes.test(nextUrl.pathname); // Test the path against the dashboard regex
 
-  console.log({
-    isAdminRoute,
-    isLoggedIn,
-    role,
-  });
-
   if (isDashboardRoute && isLoggedIn && role === 'ADMIN') {
     return NextResponse.redirect(new URL('/admin', nextUrl));
   }

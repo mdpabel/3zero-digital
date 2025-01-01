@@ -26,43 +26,48 @@ const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
         <Logo />
         <NavigationMenu>
           <NavigationMenuList>
-            {services.map(({ slug, name, products, id }) => (
-              <NavigationMenuItem asChild key={id}>
-                {products.length > 0 ? (
-                  <li>
-                    <NavigationMenuTrigger className='text-zinc-800 dark:text-zinc-200'>
-                      {name}
-                    </NavigationMenuTrigger>
-                    <NavigationMenuContent>
-                      <ul className='gap-3 grid md:grid-cols-2 p-4 w-[400px] md:w-[500px] lg:w-[600px]'>
-                        {products?.map(({ description, slug, name, id }) => (
-                          <ListItem
-                            key={id}
-                            title={name}
-                            href={slug}
-                            className='text-zinc-800 dark:text-zinc-200'>
-                            {description}
-                          </ListItem>
-                        ))}
-                      </ul>
-                    </NavigationMenuContent>
-                  </li>
-                ) : (
-                  <li>
-                    <NavigationMenuLink
-                      asChild
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        'text-zinc-800 dark:text-zinc-200',
-                      )}>
-                      <Link prefetch={true} href={slug!}>
-                        {name}{' '}
-                      </Link>
-                    </NavigationMenuLink>
-                  </li>
-                )}
-              </NavigationMenuItem>
-            ))}
+            {services.map(
+              ({ slug, name, products, id }) =>
+                name !== 'Exclusive' && (
+                  <NavigationMenuItem asChild key={id}>
+                    {products.length > 0 ? (
+                      <li>
+                        <NavigationMenuTrigger className='text-zinc-800 dark:text-zinc-200'>
+                          {name}
+                        </NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                          <ul className='gap-3 grid md:grid-cols-2 p-4 w-[400px] md:w-[500px] lg:w-[600px]'>
+                            {products?.map(
+                              ({ description, slug, name, id }) => (
+                                <ListItem
+                                  key={id}
+                                  title={name}
+                                  href={slug}
+                                  className='text-zinc-800 dark:text-zinc-200'>
+                                  {description}
+                                </ListItem>
+                              ),
+                            )}
+                          </ul>
+                        </NavigationMenuContent>
+                      </li>
+                    ) : (
+                      <li>
+                        <NavigationMenuLink
+                          asChild
+                          className={cn(
+                            navigationMenuTriggerStyle(),
+                            'text-zinc-800 dark:text-zinc-200',
+                          )}>
+                          <Link prefetch={true} href={slug!}>
+                            {name}{' '}
+                          </Link>
+                        </NavigationMenuLink>
+                      </li>
+                    )}
+                  </NavigationMenuItem>
+                ),
+            )}
             <li>
               <NavigationMenuLink
                 asChild
