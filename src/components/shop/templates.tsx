@@ -8,7 +8,7 @@ import { Button } from '../ui/button';
 const Templates = async ({
   featured = false,
   filterOptions = true,
-  limit = 6,
+  limit,
   sortBy,
   title = 'Explore Premium Templates for Your Business',
   subTitle = `Browse our collection of professionally designed templates, tailored
@@ -31,6 +31,7 @@ const Templates = async ({
     include: {
       images: true,
     },
+    take: limit,
   });
 
   return (

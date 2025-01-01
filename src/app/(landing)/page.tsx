@@ -26,7 +26,7 @@ const Home = () => {
       <Comparison />
       <AffordableWebDevelopment />
       <Suspense fallback='loading...'>
-        <Templates featured />
+        <Templates featured limit={6} />
       </Suspense>
       <Suspense fallback='loading...'>
         <CaseStudies />
