@@ -15,20 +15,15 @@ export const contactUsSubmission = async (_: any, formData: FormData) => {
       name: formData.get('name'),
       email: formData.get('email'),
       message: formData.get('message'),
-      token: formData.get('cf-token'),
+      honeypot: formData.get('honeypot'),
     };
 
-    // Verify Turnstile token
-    const token = data.token as string;
-    if (token) {
-      const res = await verifyCfTurnstileToken(token);
-      if (!res) {
-        return {
-          status: false,
-          message:
-            'CAPTCHA verification failed. Please verify you are not a robot.',
-        };
-      }
+    if (data.honeypot) {
+      // If the honeypot field is filled, it's likely a bot
+      return {
+        status: false,
+        message: 'An unexpected error occurred. Please try again later.',
+      };
     }
 
     // Validate form data using Zod schema

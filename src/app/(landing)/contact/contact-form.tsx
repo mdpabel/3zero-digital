@@ -1,6 +1,5 @@
 'use client';
 import { contactUsSubmission } from '@/actions/contact-us';
-import CFTurnstile from '@/components/common/cf-turnstile';
 import FormButton from '@/components/common/form-button';
 import Input from '@/components/development/input';
 import SelectInput from '@/components/development/select';
@@ -56,7 +55,8 @@ const ContactForm = () => {
           placeholder='Provide any additional details about your project'
         />
 
-        <CFTurnstile />
+        <input type='hidden' name='honeypot' />
+
         <FormButton />
 
         {/* Display feedback */}

@@ -46,12 +46,12 @@ const menuItems = [
     shortcut: '⇧⌘P',
     href: '/me/profile',
   },
-  {
-    label: 'Settings',
-    icon: <Settings />,
-    shortcut: '⌘S',
-    href: '/me/settings',
-  },
+  // {
+  //   label: 'Settings',
+  //   icon: <Settings />,
+  //   shortcut: '⌘S',
+  //   href: '/me/settings',
+  // },
 ];
 
 const UserButton = () => {

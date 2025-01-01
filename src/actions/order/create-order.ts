@@ -1,6 +1,8 @@
 'use server';
 
 import { auth } from '@/auth';
+import OrderConfirmationEmailTemplate from '@/components/email/order-confirmation-email-template';
+import { sendEmail } from '@/lib/send-email';
 import { stripe } from '@/lib/stripe/stripe';
 import prisma from '@/prisma/db';
 import { paymentIntentSchema } from '@/schema/payment/payment-intent-schema';
@@ -82,6 +84,7 @@ export const createOrder = async (
     }
 
     let price: number; // Default value for price
+    let productName: string;
 
     if (productType === 'template') {
       const fetchedTemplate = await prisma.template.findUnique({
@@ -95,6 +98,7 @@ export const createOrder = async (
       }
 
       price = fetchedTemplate.price;
+      productName = fetchedTemplate.name;
     } else {
       const fetchedProduct = await prisma.product.findUnique({
         where: {
@@ -111,6 +115,7 @@ export const createOrder = async (
 
       if (fetchedProduct.type === 'STANDARD') {
         price = fetchedProduct.prices[0]?.unitAmount; // Default to 0 if no price is found
+        productName = fetchedProduct.name;
       } else {
         // Handle other product types if necessary
         throw new Error('Not implemented yet');
@@ -138,6 +143,22 @@ export const createOrder = async (
         websiteDetails: websites,
       },
     });
+
+    try {
+      await sendEmail({
+        name: `${firstName} ${lastName}`,
+        subject: 'Order Confirmation',
+        to: email,
+        react: OrderConfirmationEmailTemplate({
+          customerName: `${firstName} ${lastName}`,
+          orderId: order.id,
+          productName: productName,
+          productPrice: `$${price}`,
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
 
     return {
       success: true,

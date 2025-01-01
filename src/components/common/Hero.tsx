@@ -7,9 +7,17 @@ interface HeroProps {
   headline: string;
   subHeadline: string;
   description: string;
+  secondBtnText?: string;
+  secondBtnLink?: string;
 }
 
-const Hero: React.FC<HeroProps> = ({ headline, subHeadline, description }) => {
+const Hero: React.FC<HeroProps> = ({
+  headline,
+  subHeadline,
+  description,
+  secondBtnText,
+  secondBtnLink,
+}) => {
   return (
     <div className='mx-auto py-14 lg:py-20 max-w-5xl text-center'>
       <p className='mb-2 text-gray-800 text-xl dark:text-gray-300'>
@@ -33,8 +41,11 @@ const Hero: React.FC<HeroProps> = ({ headline, subHeadline, description }) => {
           <Link href='#getStarted'>Get Started</Link>
         </Button>
         <Button asChild className='px-5 md:px-10 py-6 text-lg'>
-          <Link prefetch={false} target='_blank' href='/book-a-call'>
-            Book a call
+          <Link
+            prefetch={false}
+            target='_blank'
+            href={secondBtnLink ? secondBtnLink : '/book-a-call'}>
+            {secondBtnText ? secondBtnText : 'Book a call'}
           </Link>
         </Button>
       </div>

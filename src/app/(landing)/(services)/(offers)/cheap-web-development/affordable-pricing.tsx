@@ -6,17 +6,17 @@ const AffordablePricing = () => {
     {
       title: 'Affordable Domain Prices',
       description:
-        'We purchase domains from Namecheap, ensuring the best rates without compromising on quality.',
+        'We source domains from trusted providers at competitive rates, ensuring affordability without compromising quality.',
     },
     {
       title: 'Cost-Effective Hosting',
       description:
-        'Our hosting is powered by UmmahHostBD, offering reliable and budget-friendly solutions.',
+        'Our hosting solutions are selected for their reliability and cost-effectiveness, tailored to meet your needs.',
     },
     {
       title: 'In-House Template Designs',
       description:
-        'All website templates are crafted by our dedicated design team, eliminating third-party costs.',
+        'All website templates are crafted by our dedicated design team, eliminating the need for third-party services.',
     },
   ];
 
