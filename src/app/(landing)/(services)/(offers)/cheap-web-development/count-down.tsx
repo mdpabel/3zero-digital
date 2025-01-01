@@ -35,11 +35,11 @@ const Countdown = ({ targetDate }: { targetDate: string }) => {
   }
 
   return (
-    <div className='px-6 py-16 text-center'>
+    <div className='md:block hidden px-6 py-16 text-center'>
       <h2 className='mb-4 font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
         🕒 Countdown to Offer End
       </h2>
-      <div className='md:flex justify-center gap-6 hidden'>
+      <div className='justify-center gap-6 lex'>
         {Object.entries(timeLeft).map(([unit, value]) => (
           <div
             key={unit}
