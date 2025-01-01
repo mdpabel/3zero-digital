@@ -3,8 +3,8 @@ import { auth } from './auth';
 
 const authRoutes = ['/login', '/register'];
 const adminRoutes = /^\/admin(\/.*)?$/; // Matches /admin and any sub-paths like /admin/product
-const dashboardRoutes = /^\/dashboard(\/.*)?$/; // Matches /dashboard and any sub-paths like /dashboard/order
-const DEFAULT_LOGIN_REDIRECT = '/dashboard';
+const dashboardRoutes = /^\/me(\/.*)?$/; // Matches /dashboard and any sub-paths like /dashboard/order
+const DEFAULT_LOGIN_REDIRECT = '/';
 
 export default auth((req) => {
   const { nextUrl } = req;
@@ -15,9 +15,9 @@ export default auth((req) => {
   const isAdminRoute = adminRoutes.test(nextUrl.pathname); // Test the path against the admin regex
   const isDashboardRoute = dashboardRoutes.test(nextUrl.pathname); // Test the path against the dashboard regex
 
-  if (isDashboardRoute && isLoggedIn && role === 'ADMIN') {
-    return NextResponse.redirect(new URL('/admin', nextUrl));
-  }
+  // if (isDashboardRoute && isLoggedIn && role === 'ADMIN') {
+  //   return NextResponse.redirect(new URL('/admin', nextUrl));
+  // }
 
   if (isAuthRoute) {
     if (isLoggedIn) {

@@ -6,8 +6,6 @@ import UnPaidOrdersSkeleton from './_components/unpaid-orders-skeleton';
 import OverView from './_components/overview';
 import OverViewSkeleton from './_components/overview-skeleton';
 import QuickActions from './_components/quick-actions';
-import { auth } from '@/auth';
-import { redirect } from 'next/navigation';
 
 const Dashboard = async () => {
   return (
@@ -22,7 +20,7 @@ const Dashboard = async () => {
 
       <div className='gap-8 grid grid-cols-1 lg:grid-cols-2 mt-10'>
         <Suspense fallback={<UnPaidOrdersSkeleton />}>
-          <UnPaidOrders />
+          {/* <UnPaidOrders /> */}
         </Suspense>
         <QuickActions />
       </div>

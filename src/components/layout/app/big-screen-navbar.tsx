@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import Logo from './logo';
 import Link from 'next/link';
@@ -14,12 +13,10 @@ import {
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
 import ThemeSwitcher from '@/components/common/theme-switcher';
-import { useSession } from 'next-auth/react';
 import { ServiceWithProducts } from '@/lib/product/get-product';
+import UserButton from './user-button';
 
 const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
-  const { status } = useSession();
-
   return (
     <div className='lg:block z-50 hidden mx-auto px-4 max-w-6xl container'>
       <div className='flex justify-between items-center h-16'>
@@ -87,20 +84,7 @@ const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
           <ThemeSwitcher />
 
           {/* Conditionally show based on login status */}
-          <Button
-            asChild
-            variant='outline'
-            className='border-zinc-800 dark:border-zinc-200 px-4 py-2 border text-base'>
-            {status === 'authenticated' ? (
-              <Link prefetch={true} href='/dashboard'>
-                Dashboard
-              </Link>
-            ) : (
-              <Link prefetch={true} href='/login'>
-                Get Started
-              </Link>
-            )}
-          </Button>
+          <UserButton />
         </div>
       </div>
     </div>
