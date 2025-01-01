@@ -107,6 +107,9 @@ model Order {
   templateId String?   @db.ObjectId
   template   Template? @relation(fields: [templateId], references: [id])
   user       User      @relation(fields: [userId], references: [id])
+
+  note           String?
+  websiteDetails String?
 }
 
 model Coupon {

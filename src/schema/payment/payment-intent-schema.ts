@@ -13,5 +13,9 @@ export const paymentIntentSchema = z.object({
     .default('payment'),
   metaData: z.string().optional(),
   email: z.string().email(),
+  firstName: z.string().min(1),
+  lastName: z.string().min(1),
+  websites: z.string().optional(),
+  note: z.string().optional(),
   productType: z.enum(['product', 'template']).default('product').optional(),
 });

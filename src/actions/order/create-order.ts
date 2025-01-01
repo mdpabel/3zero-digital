@@ -11,8 +11,18 @@ export const createOrder = async (
   payload: z.infer<typeof paymentIntentSchema>,
 ) => {
   try {
-    const { productId, quantity, paymentMode, metaData, email, productType } =
-      paymentIntentSchema.parse(payload);
+    const {
+      productId,
+      quantity,
+      paymentMode,
+      metaData,
+      email,
+      productType,
+      firstName,
+      lastName,
+      note,
+      websites,
+    } = paymentIntentSchema.parse(payload);
 
     // Check if there is an active session
     const session = await auth();
@@ -43,14 +53,14 @@ export const createOrder = async (
         // Step 1: Create a Stripe customer
         const stripeCustomer = await stripe.customers.create({
           email: email,
-          name: `Guest`,
+          name: `${firstName} ${lastName}`,
         });
 
         // Step 2: Create the new user in the database
         const newUser = await prisma.user.create({
           data: {
             email,
-            name: `Guest`,
+            name: `${firstName} ${lastName}`,
             stripeCustomerId: stripeCustomer.id,
           },
         });
@@ -124,6 +134,8 @@ export const createOrder = async (
         total: price * parseInt(quantity),
         metadata: parsedMetaData,
         templateId,
+        note,
+        websiteDetails: websites,
       },
     });
 

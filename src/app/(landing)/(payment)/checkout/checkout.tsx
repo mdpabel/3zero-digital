@@ -139,27 +139,14 @@ const Checkout = ({ session }: { session: Session | null }) => {
                       );
                     }
 
-                    const checkoutSessionFormData = new FormData();
-                    checkoutSessionFormData.append('email', values.email);
-                    checkoutSessionFormData.append('productId', product.id);
-                    checkoutSessionFormData.append(
-                      'quantity',
-                      quantity.toString(),
-                    );
-                    checkoutSessionFormData.append('paymentMode', paymentMode);
-                    if (metaData) {
-                      checkoutSessionFormData.append(
-                        'metaData',
-                        JSON.stringify(metaData),
-                      );
-                    }
-
                     orderAction({
                       productId: product.id,
                       quantity: quantity.toString(),
                       metaData: JSON.stringify(metaData),
                       email: values.email,
                       paymentMode: paymentMode as 'payment' | 'subscription',
+                      firstName: values.firstName,
+                      lastName: values.lastName,
                     });
 
                     localStorage.removeItem('productId');
