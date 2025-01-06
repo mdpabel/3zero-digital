@@ -63,10 +63,12 @@ const prioritizedFeatures: (keyof Features)[] = [
 ];
 
 const PricingTable = async () => {
-  const premium = await getProduct('complete-suite-website');
+  const premium = await getProduct('affordable-personal-website-development');
   plans[1].productId = premium.productId;
 
-  const basic = await getProduct('basic-essentials-website');
+  const basic = await getProduct(
+    'affordable-personal-website-development-lite',
+  );
   plans[0].productId = basic.productId;
 
   return (

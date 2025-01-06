@@ -19,7 +19,7 @@ const NewYearOffer = () => {
         secondBtnText='Contact Us'
         secondBtnLink='https://wa.me/+447878798374'
       />
-      <Countdown targetDate='2025-01-07T00:00:00' />
+      {/* <Countdown targetDate='2025-01-07T00:00:00' /> */}
       <PricingTable />
       <ContactUs />
       <DeliveryTime />
