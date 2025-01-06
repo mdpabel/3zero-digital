@@ -14,9 +14,7 @@ const CheckboxGroup: React.FC<CheckboxGroupProps> = ({
   options,
 }) => (
   <div className='mb-6 md:mb-8'>
-    <label className='block mb-2 font-semibold text-lg text-zinc-800 dark:text-zinc-200'>
-      {label}
-    </label>
+    <label className='block mb-2 font-semibold text-lg'>{label}</label>
     <div className='gap-x-4 gap-y-3 grid grid-cols-1 md:grid-cols-2'>
       {options.map((option, index) => (
         <div key={index} className='flex items-center'>

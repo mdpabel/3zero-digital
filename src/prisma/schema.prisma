@@ -84,20 +84,32 @@ enum PaymentStatus {
   failed
 }
 
-model Order {
+model Payment {
   id            String        @id @default(auto()) @map("_id") @db.ObjectId
-  userId        String        @db.ObjectId
-  quantity      Int
-  total         Float
+  orderId       String        @db.ObjectId
+  gateway       String // e.g., 'PayPal', 'Stripe'
+  transactionId String? // Gateway-specific transaction ID
+  amount        Float // Payment amount
   currency      String?       @default("USD")
-  status        OrderStatus   @default(pending)
-  paymentLink   String?
-  paymentStatus PaymentStatus @default(unpaid)
-  transactionId String?
-  metadata      Json?
+  status        PaymentStatus @default(unpaid) // 'unpaid', 'paid', 'failed', etc.
+  metadata      Json? // Gateway-specific data
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 
+  order Order @relation(fields: [orderId], references: [id])
+}
+
+model Order {
+  id        String      @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String      @db.ObjectId
+  quantity  Int
+  total     Float
+  currency  String?     @default("USD")
+  status    OrderStatus @default(pending)
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  // Relationships
   productId String  @db.ObjectId
   product   Product @relation(fields: [productId], references: [id])
 
@@ -108,8 +120,13 @@ model Order {
   template   Template? @relation(fields: [templateId], references: [id])
   user       User      @relation(fields: [userId], references: [id])
 
+  // Additional fields
   note           String?
   websiteDetails String?
+  metadata       Json? // order-specific data
+
+  // Payments
+  Payment Payment[]
 }
 
 model Coupon {

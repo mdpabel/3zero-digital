@@ -8,19 +8,28 @@ const Hero = () => {
       <div className='mx-auto w-full max-w-6xl container'>
         <div className='gap-8 grid grid-cols-1 md:grid-cols-5'>
           <div className='flex flex-col justify-center col-span-3'>
-            <h1
-              className={`text-3xl md:text-5xl font-bold mb-4 text-zinc-800 dark:text-zinc-200`}>
+            <h1 className={`text-3xl md:text-5xl font-bold mb-4`}>
               3Zero Digital
             </h1>
-            <p className='mb-8 text-gray-600 text-xl md:text-2xl dark:text-gray-400'>
+            <p className='mb-8 text-xl md:text-2xl'>
               Empowering Digital Solutions with Zero Compromises
             </p>
             <div>
-              <p className='mb-10 text-gray-600 text-md md:text-lg dark:text-gray-400'>
+              <p className='mb-10 text-md md:text-lg'>
                 Offering top-tier custom web development and website security
-                solutions with virtually zero vulnerabilities, zero downtime,
-                and zero errors. We ensure your business achieves optimal
-                digital performance.
+                solutions with virtually{' '}
+                <span className='inline-block relative font-semibold text-primary-500'>
+                  zero vulnerabilities
+                </span>
+                ,{' '}
+                <span className='inline-block relative font-semibold text-primary-600'>
+                  zero downtime
+                </span>
+                , and{' '}
+                <span className='inline-block relative font-semibold text-primary-700'>
+                  zero errors
+                </span>
+                . We ensure your business achieves optimal digital performance.
               </p>
             </div>
             <div className='space-x-4'>

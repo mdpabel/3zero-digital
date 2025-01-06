@@ -48,10 +48,10 @@ const SignUpForm = () => {
   });
 
   return (
-    <Card className='mx-auto my-10 max-w-md text-zinc-800 dark:text-zinc-200'>
+    <Card className='mx-auto my-10 max-w-md'>
       <CardHeader className='space-y-1'>
         <CardTitle className='text-2xl'>Create a new account</CardTitle>
-        <CardDescription className='text-zinc-800 dark:text-zinc-200'>
+        <CardDescription className=''>
           Enter your details below to create your account
         </CardDescription>
       </CardHeader>

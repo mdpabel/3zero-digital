@@ -18,4 +18,5 @@ export const paymentIntentSchema = z.object({
   websites: z.string().optional(),
   note: z.string().optional(),
   productType: z.enum(['product', 'template']).default('product').optional(),
+  paymentType: z.enum(['paypal', 'stripe', 'manual']),
 });

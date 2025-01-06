@@ -40,9 +40,7 @@ const CustomerIssues = () => {
   return (
     <div className='lg:block hidden mx-auto px-4 py-10 max-w-6xl'>
       <div className='mb-8 text-center'>
-        <p className='mb-2 text-gray-800 text-xl dark:text-gray-400'>
-          Did you know?
-        </p>
+        <p className='mb-2 text-xl'>Did you know?</p>
         <h2 className='mx-auto mb-4 max-w-4xl font-medium text-xl text-zinc-800 md:text-2xl dark:text-zinc-200'>
           30,000 websites are hacked every day globally, out of which{' '}
           <span className='font-bold'>43%</span> are targeted at small
@@ -66,9 +64,7 @@ const CustomerIssues = () => {
                     {message.name}
                   </h3>
                 </div>
-                <p className='mb-4 text-gray-600 text-sm dark:text-gray-400 italic'>
-                  "{message.message}"
-                </p>
+                <p className='mb-4 text-sm italic'>"{message.message}"</p>
                 <div className='mt-auto'>
                   <p className='flex items-center gap-2 font-medium text-gray-700 text-sm dark:text-gray-300'>
                     <span role='img' aria-label='reply'>
@@ -95,7 +91,7 @@ const CustomerIssues = () => {
             className='mb-4 font-bold text-3xl text-zinc-800 md:text-5xl dark:text-zinc-200'>
             Thankfully, there is 3Zerodigital
           </h3>
-          <p className='mt-2 text-gray-600 dark:text-gray-400'>
+          <p className='mt-2'>
             The truly affordable done-for-you website solution. Achieving
             perfection with 0 Vulnerability, 0 Downtime, 0 Error.
           </p>

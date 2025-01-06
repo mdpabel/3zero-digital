@@ -56,10 +56,10 @@ const services = [
 const ServicesProvided = () => {
   return (
     <div className='py-16 text-center'>
-      <h2 className='mb-6 font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
+      <h2 className='mb-6 font-bold text-4xl'>
         🚀 What You’ll Get With Your Website Package
       </h2>
-      <p className='mb-8 text-gray-600 text-xl dark:text-gray-400'>
+      <p className='mb-8 text-xl'>
         We provide everything you need to launch and grow your website. Check
         out the list of tools and services included in our plan.
       </p>
@@ -71,12 +71,8 @@ const ServicesProvided = () => {
             className='flex items-start gap-4 bg-white hover:bg-gray-100 dark:hover:bg-gray-800 dark:bg-gray-900 shadow-lg p-6 rounded-lg transition-all duration-300'>
             {service.icon}
             <div>
-              <h3 className='mb-2 font-semibold text-xl text-zinc-800 dark:text-zinc-200'>
-                {service.title}
-              </h3>
-              <p className='text-gray-600 dark:text-gray-400'>
-                {service.description}
-              </p>
+              <h3 className='mb-2 font-semibold text-xl'>{service.title}</h3>
+              <p className=''>{service.description}</p>
             </div>
           </li>
         ))}

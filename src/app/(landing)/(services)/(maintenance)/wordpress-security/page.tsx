@@ -58,7 +58,7 @@ const WordPressSecurity = async () => {
         <div className='gap-8 grid grid-cols-1 md:grid-cols-2'>
           {/* Services List */}
           <div>
-            <h3 className='mb-4 font-semibold text-xl text-zinc-800 dark:text-zinc-200'>
+            <h3 className='mb-4 font-semibold text-xl'>
               Key Security Features
             </h3>
             <ul className='space-y-4'>

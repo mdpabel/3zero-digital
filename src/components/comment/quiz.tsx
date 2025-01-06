@@ -38,14 +38,14 @@ const Quiz = ({ questions }: { questions: Question[] }) => {
   return (
     <section className='py-16'>
       <div className='mx-auto px-4 container-xl'>
-        <h2 className='mb-8 font-semibold text-3xl text-center text-zinc-800 dark:text-zinc-200'>
+        <h2 className='mb-8 font-semibold text-3xl text-center'>
           Is Your Website Ready for {year}? Take Our 30-Second Quiz!
         </h2>
 
         {!completed ? (
           <div className='flex flex-col items-center gap-8'>
             <div className='bg-white dark:bg-gray-900 shadow-lg px-8 py-12 rounded-lg w-full md:max-w-xl'>
-              <h3 className='font-semibold text-xl text-zinc-800 dark:text-zinc-200'>
+              <h3 className='font-semibold text-xl'>
                 {questions[currentQuestionIndex].question}
               </h3>
               <div className='flex justify-around mt-4'>
@@ -64,7 +64,7 @@ const Quiz = ({ questions }: { questions: Question[] }) => {
           </div>
         ) : (
           <div className='text-center'>
-            <h3 className='font-semibold text-2xl text-zinc-800 dark:text-zinc-200'>
+            <h3 className='font-semibold text-2xl'>
               Your Score: {score} / {questions.length}
             </h3>
             <p className='mt-4 text-zinc-600 dark:text-zinc-300'>

@@ -22,9 +22,7 @@ const ContactPage = () => {
         </p>
         <div className='gap-6 grid grid-cols-1 md:grid-cols-3 mt-12'>
           <div className='flex flex-col items-center text-center'>
-            <span className='font-bold text-xl text-zinc-800 dark:text-zinc-200'>
-              Email
-            </span>
+            <span className='font-bold text-xl'>Email</span>
             <a
               href='mailto:support@3zerodigital.com'
               className='text-zinc-600 dark:text-zinc-400 hover:underline'>
@@ -32,9 +30,7 @@ const ContactPage = () => {
             </a>
           </div>
           <div className='flex flex-col items-center text-center'>
-            <span className='font-bold text-xl text-zinc-800 dark:text-zinc-200'>
-              Phone
-            </span>
+            <span className='font-bold text-xl'>Phone</span>
             <a
               href='tel:+447878798374'
               className='text-zinc-600 dark:text-zinc-400 hover:underline'>
@@ -42,9 +38,7 @@ const ContactPage = () => {
             </a>
           </div>
           <div className='flex flex-col items-center text-center'>
-            <span className='font-bold text-xl text-zinc-800 dark:text-zinc-200'>
-              Address
-            </span>
+            <span className='font-bold text-xl'>Address</span>
             <p className='text-zinc-600 dark:text-zinc-400'>
               Suite A 82 James Carter Road, <br />
               Mildenhall, Bury St. Edmunds, <br />

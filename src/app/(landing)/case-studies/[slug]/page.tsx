@@ -58,10 +58,8 @@ const CaseStudy = async ({ params }: Props) => {
       {/* Outcomes Section */}
       <section>
         <div className='shadow p-8 rounded-lg'>
-          <h2 className='mb-4 font-bold text-2xl text-center text-zinc-800 dark:text-zinc-200'>
-            The Outcome
-          </h2>
-          <p className='text-center text-gray-600 dark:text-gray-400'>
+          <h2 className='mb-4 font-bold text-2xl text-center'>The Outcome</h2>
+          <p className='text-center'>
             {caseStudy.outcome ||
               'Through our expert services, we delivered outstanding results that exceeded the client’s expectations.'}
           </p>

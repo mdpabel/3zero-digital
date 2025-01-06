@@ -13,11 +13,11 @@ const PaymentCancel = () => {
           ❌ Payment Cancelled
         </h1>
 
-        <p className='mb-6 text-gray-600 text-lg md:text-xl dark:text-gray-400'>
+        <p className='mb-6 text-lg md:text-xl'>
           It looks like you cancelled the payment process. No charges were made.
         </p>
 
-        <p className='text-gray-600 text-md md:text-lg dark:text-gray-400'>
+        <p className='text-md md:text-lg'>
           If you encountered any issues, feel free to contact our support team.
           Otherwise, you can try again or continue shopping.
         </p>

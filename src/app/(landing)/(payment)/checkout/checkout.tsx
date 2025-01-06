@@ -160,7 +160,7 @@ const Checkout = ({ session }: { session: Session | null }) => {
               <div className='space-y-4 pb-8 border-b'>
                 <div className='flex flex-col justify-between gap-4'>
                   <h2 className='font-semibold text-xl'>Contact Information</h2>
-                  <p className='text-gray-600 text-sm'>
+                  <p className='text-sm'>
                     We'll use this information to process your order and keep
                     you updated.
                   </p>
@@ -332,7 +332,7 @@ const Checkout = ({ session }: { session: Session | null }) => {
             {metaData && metaData.length > 0 && (
               <div className='mt-6'>
                 <h4 className='font-medium'>Additional Metadata</h4>
-                <ul className='text-gray-600 list-disc list-inside'>
+                <ul className='list-disc list-inside'>
                   {metaData.map((data, index) => (
                     <li key={index}>{data}</li>
                   ))}

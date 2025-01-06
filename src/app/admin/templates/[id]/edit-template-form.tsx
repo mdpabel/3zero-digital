@@ -59,12 +59,8 @@ const EditTemplateForm = ({
   return (
     <div className='px-10 py-10'>
       <header className='mb-10 text-center'>
-        <h1 className='font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
-          Edit Template
-        </h1>
-        <p className='mt-2 text-gray-600 dark:text-gray-400'>
-          Edit the details below to update this template.
-        </p>
+        <h1 className='font-bold text-4xl'>Edit Template</h1>
+        <p className='mt-2'>Edit the details below to update this template.</p>
       </header>
 
       <form

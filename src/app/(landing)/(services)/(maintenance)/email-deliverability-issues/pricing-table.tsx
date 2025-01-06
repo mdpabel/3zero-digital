@@ -36,9 +36,7 @@ const PricingTable = ({
       id='getStarted'
       className='flex md:flex-row flex-col justify-between items-center my-12'>
       <div className='mb-8 md:mb-0 text-center md:text-left'>
-        <h3 className='font-bold text-2xl text-zinc-800 dark:text-zinc-200'>
-          Complete Email Audit Service
-        </h3>
+        <h3 className='font-bold text-2xl'>Complete Email Audit Service</h3>
         <p className='text-lg text-zinc-600 dark:text-zinc-400'>
           Starting at just{' '}
           {origPrice > price && (
@@ -46,9 +44,7 @@ const PricingTable = ({
               {formatCurrency({ amount: origPrice })}
             </span>
           )}
-          <span className='font-bold text-zinc-800 dark:text-zinc-200'>
-            {formatCurrency({ amount: price })}
-          </span>
+          <span className='font-bold'>{formatCurrency({ amount: price })}</span>
         </p>
 
         {/* Quantity Selector */}

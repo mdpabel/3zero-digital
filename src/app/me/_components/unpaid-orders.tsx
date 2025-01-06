@@ -41,11 +41,11 @@ const UnPaidOrders = async () => {
               <p className='font-medium text-gray-800 dark:text-white'>
                 <span className='font-bold'>Order ID:</span> {order.id}
               </p>
-              <p className='text-gray-600 dark:text-gray-300'>
+              <p className='dark:text-gray-300'>
                 <span className='font-bold'>Amount:</span> $
                 {order.total.toFixed(2)}
               </p>
-              <p className='text-gray-600 dark:text-gray-300'>
+              <p className='dark:text-gray-300'>
                 <span className='font-bold'>Date:</span>{' '}
                 {new Date(order.createdAt).toLocaleDateString()}
               </p>
@@ -58,9 +58,7 @@ const UnPaidOrders = async () => {
           ))}
         </div>
       ) : (
-        <p className='text-gray-600 dark:text-gray-300'>
-          No pending orders found.
-        </p>
+        <p className='dark:text-gray-300'>No pending orders found.</p>
       )}
       {orders.length > 0 && (
         <div className='mt-4'>

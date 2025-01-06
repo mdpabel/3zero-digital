@@ -36,18 +36,14 @@ const Countdown = ({ targetDate }: { targetDate: string }) => {
 
   return (
     <div className='md:block hidden px-6 py-16 text-center'>
-      <h2 className='mb-4 font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
-        🕒 Countdown to Offer End
-      </h2>
+      <h2 className='mb-4 font-bold text-4xl'>🕒 Countdown to Offer End</h2>
       <div className='justify-center gap-6 lex'>
         {Object.entries(timeLeft).map(([unit, value]) => (
           <div
             key={unit}
             className='flex flex-col items-center bg-white dark:bg-gray-800 shadow-lg p-4 rounded-lg'>
-            <p className='font-semibold text-4xl text-zinc-800 dark:text-zinc-200'>
-              {value}
-            </p>
-            <span className='text-gray-600 text-sm dark:text-gray-400'>
+            <p className='font-semibold text-4xl'>{value}</p>
+            <span className='text-sm'>
               {unit.charAt(0).toUpperCase() + unit.slice(1)}
             </span>
           </div>

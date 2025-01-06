@@ -128,7 +128,7 @@ const BlogPost = () => {
         </p>
 
         <hr className='border-gray-200 dark:border-gray-700 my-6' />
-        <p className='text-gray-500 text-sm dark:text-gray-400'>
+        <p className='text-gray-500 text-sm'>
           Disclaimer: This blog post is not affiliated with or endorsed by
           Wordfence. All trademarks and brand names are the property of their
           respective owners.

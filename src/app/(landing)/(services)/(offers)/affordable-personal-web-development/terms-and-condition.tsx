@@ -27,10 +27,10 @@ const TermsAndConditions = () => {
 
   return (
     <div className='px-6 py-16'>
-      <h2 className='mb-6 font-bold text-4xl text-center text-zinc-800 dark:text-zinc-200'>
+      <h2 className='mb-6 font-bold text-4xl text-center'>
         📜 Terms and Conditions
       </h2>
-      <p className='mb-8 text-center text-gray-600 text-lg dark:text-gray-400'>
+      <p className='mb-8 text-center text-lg'>
         Please review the following terms for the services we provide.
       </p>
       <ul className='space-y-4 mx-auto max-w-2xl'>

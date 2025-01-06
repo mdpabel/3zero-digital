@@ -40,9 +40,7 @@ const QuickActions = () => {
                 <Button asChild>
                   <Link href={link.href}>{link.label}</Link>
                 </Button>
-                <p className='text-gray-600 text-sm dark:text-gray-300'>
-                  {link.description}
-                </p>
+                <p className='text-sm dark:text-gray-300'>{link.description}</p>
               </div>
             </div>
           </li>

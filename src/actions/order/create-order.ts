@@ -1,5 +1,3 @@
-'use server';
-
 import { auth } from '@/auth';
 import OrderConfirmationEmailTemplate from '@/components/email/order-confirmation-email-template';
 import { sendEmail } from '@/lib/send-email';
@@ -12,53 +10,37 @@ export const createOrder = async (
   _: any,
   payload: z.infer<typeof paymentIntentSchema>,
 ) => {
-  try {
-    const {
-      productId,
-      quantity,
-      paymentMode,
-      metaData,
-      email,
-      productType,
-      firstName,
-      lastName,
-      note,
-      websites,
-    } = paymentIntentSchema.parse(payload);
+  const {
+    productId,
+    quantity,
+    paymentMode,
+    metaData,
+    email,
+    productType,
+    firstName,
+    lastName,
+    note,
+    websites,
+    paymentType,
+  } = paymentIntentSchema.parse(payload);
 
-    // Check if there is an active session
+  try {
     const session = await auth();
     let userId: string;
 
     if (session) {
-      // Use the existing account if the session exists
       const user = await prisma.user.findFirst({
-        where: {
-          email: session.user?.email,
-        },
+        where: { email: session.user?.email },
       });
-
-      if (!user) {
-        throw new Error("User doesn't exist");
-      }
-
+      if (!user) throw new Error("User doesn't exist");
       userId = user.id;
     } else {
-      // Check if a user already exists with the given email
-      const user = await prisma.user.findFirst({
-        where: {
-          email,
-        },
-      });
-
+      const user = await prisma.user.findFirst({ where: { email } });
       if (!user) {
-        // Step 1: Create a Stripe customer
         const stripeCustomer = await stripe.customers.create({
-          email: email,
+          email,
           name: `${firstName} ${lastName}`,
         });
-
-        // Step 2: Create the new user in the database
         const newUser = await prisma.user.create({
           data: {
             email,
@@ -66,114 +48,93 @@ export const createOrder = async (
             stripeCustomerId: stripeCustomer.id,
           },
         });
-
         userId = newUser.id;
       } else {
         userId = user.id;
       }
     }
 
-    if (!userId) {
-      throw new Error('User not found');
-    }
-
-    let templateId: string | undefined = undefined;
-
-    if (productType === 'template') {
-      templateId = productId;
-    }
-
-    let price: number; // Default value for price
+    let price: number;
     let productName: string;
 
     if (productType === 'template') {
-      const fetchedTemplate = await prisma.template.findUnique({
-        where: {
-          id: templateId,
-        },
+      const template = await prisma.template.findUnique({
+        where: { id: productId },
       });
-
-      if (!fetchedTemplate) {
-        throw new Error('Template not found');
-      }
-
-      price = fetchedTemplate.price;
-      productName = fetchedTemplate.name;
+      if (!template) throw new Error('Template not found');
+      price = template.price;
+      productName = template.name;
     } else {
-      const fetchedProduct = await prisma.product.findUnique({
-        where: {
-          id: productId,
-        },
-        include: {
-          prices: true,
-        },
+      const product = await prisma.product.findUnique({
+        where: { id: productId },
+        include: { prices: true },
       });
-
-      if (!fetchedProduct) {
-        throw new Error('Product not found');
-      }
-
-      if (fetchedProduct.type === 'STANDARD') {
-        price = fetchedProduct.prices[0]?.unitAmount; // Default to 0 if no price is found
-        productName = fetchedProduct.name;
-      } else {
-        // Handle other product types if necessary
-        throw new Error('Not implemented yet');
-      }
+      if (!product) throw new Error('Product not found');
+      price = product.prices[0]?.unitAmount || 0;
+      productName = product.name;
     }
+
+    if (!price) throw new Error('Price not found');
 
     const parsedMetaData = metaData ? JSON.parse(metaData) : {};
 
-    // Check if the product or template ID is provided
+    // Use a transaction for atomicity
+    const result = await prisma.$transaction(async (tx) => {
+      // Step 1: Create the order
+      const order = await tx.order.create({
+        data: {
+          userId,
+          quantity: parseInt(quantity),
+          total: price * parseInt(quantity),
+          productId,
+          note,
+          websiteDetails: websites,
+          metadata: parsedMetaData,
+        },
+      });
 
-    if (!productId || !price) {
-      throw new Error('Product ID or price not found');
-    }
+      // Step 2: Create the payment
+      const payment = await tx.payment.create({
+        data: {
+          orderId: order.id,
+          gateway: paymentType,
+          amount: order.total,
+          currency: 'USD',
+          status: 'unpaid',
+          metadata: {
+            email,
+            note,
+            websites,
+          },
+        },
+      });
 
-    // Create the order in the database
-    const order = await prisma.order.create({
-      data: {
-        userId,
-        productId: productId ? productId : templateId!,
-        quantity: parseInt(quantity),
-        total: price * parseInt(quantity),
-        metadata: parsedMetaData,
-        templateId,
-        note,
-        websiteDetails: websites,
-      },
+      return { order, payment };
     });
 
-    try {
-      await sendEmail({
-        name: `${firstName} ${lastName}`,
-        subject: 'Order Confirmation',
-        to: email,
-        react: OrderConfirmationEmailTemplate({
-          customerName: `${firstName} ${lastName}`,
-          orderId: order.id,
-          productName: productName,
-          productPrice: `$${price}`,
-        }),
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    // Step 3: Send confirmation email
+    await sendEmail({
+      name: `${firstName} ${lastName}`,
+      subject: 'Order Confirmation',
+      to: email,
+      react: OrderConfirmationEmailTemplate({
+        customerName: `${firstName} ${lastName}`,
+        orderId: result.order.id,
+        productName,
+        productPrice: `$${price}`,
+      }),
+    });
 
     return {
       success: true,
       message: 'Order created successfully',
-      order,
+      order: result.order,
     };
   } catch (error: any) {
-    if (process.env.NODE_ENV !== 'production') {
-      console.error(error);
-      return {
-        success: false,
-        message: error.message || 'Error creating order',
-      };
-    } else {
-      throw new Error(error);
-    }
+    console.error(error);
+    return {
+      success: false,
+      message: error.message || 'Error creating order',
+    };
   }
 };

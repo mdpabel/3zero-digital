@@ -85,9 +85,7 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
 
             {/* Case Study Details */}
             <div className='flex-1 md:px-4'>
-              <h3 className='mb-4 font-bold text-2xl text-zinc-800 dark:text-zinc-200'>
-                {currentStudy.title}
-              </h3>
+              <h3 className='mb-4 font-bold text-2xl'>{currentStudy.title}</h3>
               <p className='mb-8 text-gray-700 dark:text-gray-300 leading-relaxed'>
                 {currentStudy.description}
               </p>
@@ -96,23 +94,15 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
                 <div className='flex items-center gap-4'>
                   <FaShieldAlt className='text-blue-500' size={24} />
                   <div>
-                    <p className='font-semibold text-zinc-800 dark:text-zinc-200'>
-                      Outcome
-                    </p>
-                    <p className='text-gray-600 dark:text-gray-400'>
-                      {currentStudy.outcome}
-                    </p>
+                    <p className='font-semibold'>Outcome</p>
+                    <p className=''>{currentStudy.outcome}</p>
                   </div>
                 </div>
                 <div className='flex items-center gap-4'>
                   <FaClock className='text-yellow-500' size={24} />
                   <div>
-                    <p className='font-semibold text-zinc-800 dark:text-zinc-200'>
-                      Services
-                    </p>
-                    <p className='text-gray-600 dark:text-gray-400'>
-                      {currentStudy.services.join(', ')}
-                    </p>
+                    <p className='font-semibold'>Services</p>
+                    <p className=''>{currentStudy.services.join(', ')}</p>
                   </div>
                 </div>
               </div>

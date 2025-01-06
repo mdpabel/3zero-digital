@@ -62,11 +62,9 @@ const TechnologyStack = () => {
           <div
             key={index}
             className='flex flex-col justify-center items-center text-center group'>
-            <tech.icon className='group-hover:scale-110 text-4xl text-zinc-800 dark:text-zinc-200 transition-transform' />
-            <p className='mt-4 font-semibold text-zinc-800 dark:text-zinc-200'>
-              {tech.name}
-            </p>
-            <span className='opacity-0 group-hover:opacity-100 mt-2 text-gray-600 text-sm dark:text-gray-300 transition-opacity'>
+            <tech.icon className='group-hover:scale-110 text-4xl transition-transform' />
+            <p className='mt-4 font-semibold'>{tech.name}</p>
+            <span className='opacity-0 group-hover:opacity-100 mt-2 text-sm dark:text-gray-300 transition-opacity'>
               {tech.description}
             </span>
           </div>

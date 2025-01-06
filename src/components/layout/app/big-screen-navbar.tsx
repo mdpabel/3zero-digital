@@ -29,7 +29,7 @@ const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
                   <NavigationMenuItem asChild key={id}>
                     {products.length > 0 ? (
                       <li>
-                        <NavigationMenuTrigger className='text-zinc-800 dark:text-zinc-200'>
+                        <NavigationMenuTrigger className=''>
                           {name}
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>
@@ -40,7 +40,7 @@ const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
                                   key={id}
                                   title={name}
                                   href={slug}
-                                  className='text-zinc-800 dark:text-zinc-200'>
+                                  className=''>
                                   {description}
                                 </ListItem>
                               ),
@@ -52,10 +52,7 @@ const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
                       <li>
                         <NavigationMenuLink
                           asChild
-                          className={cn(
-                            navigationMenuTriggerStyle(),
-                            'text-zinc-800 dark:text-zinc-200',
-                          )}>
+                          className={cn(navigationMenuTriggerStyle(), '')}>
                           <Link prefetch={true} href={slug!}>
                             {name}{' '}
                           </Link>
@@ -68,10 +65,7 @@ const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
             <li>
               <NavigationMenuLink
                 asChild
-                className={cn(
-                  navigationMenuTriggerStyle(),
-                  'text-zinc-800 dark:text-zinc-200',
-                )}>
+                className={cn(navigationMenuTriggerStyle(), '')}>
                 <Link prefetch={true} href='/shop'>
                   Shop
                 </Link>
@@ -103,7 +97,7 @@ const ListItem = React.forwardRef<
           href={props.href!}
           ref={ref}
           className={cn(
-            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground text-zinc-800 dark:text-zinc-200',
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground ',
             className,
           )}
           {...props}>

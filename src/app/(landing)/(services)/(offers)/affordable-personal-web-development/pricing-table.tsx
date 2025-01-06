@@ -71,10 +71,10 @@ const PricingTable = async () => {
 
   return (
     <div id='pricing' className='bg-gray-50 dark:bg-gray-900 py-16 text-center'>
-      <h2 className='mb-6 font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
+      <h2 className='mb-6 font-bold text-4xl'>
         🚀 Choose the Perfect Plan for You
       </h2>
-      <p className='mb-8 text-gray-600 text-xl dark:text-gray-400'>
+      <p className='mb-8 text-xl'>
         Affordable options to kickstart your website journey.
       </p>
 
@@ -105,9 +105,7 @@ const PricingTable = async () => {
             <div className='flex flex-col justify-between p-8'>
               <ul className='space-y-4 text-left'>
                 {prioritizedFeatures.map((feature, idx) => (
-                  <li
-                    key={idx}
-                    className='flex items-center gap-3 text-zinc-800 dark:text-zinc-200'>
+                  <li key={idx} className='flex items-center gap-3'>
                     {plan.features[feature] ? (
                       <FaCheck className='text-[#614385] text-lg' />
                     ) : (

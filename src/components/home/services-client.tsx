@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import Title from '../common/title';
 import { Button } from '../ui/button';
-import { FaRegFileAlt } from 'react-icons/fa';
+import { FaRegFileAlt, FaTag } from 'react-icons/fa';
 import Link from 'next/link';
 import IconRenderer from '../comment/icon-render';
 import { ServiceWithProducts } from '@/lib/product/get-product';
@@ -29,15 +29,15 @@ const ServicesClient = ({
 
       <Tabs defaultValue={active}>
         <TabsList className='flex flex-wrap justify-center gap-2 sm:space-x-4 bg-transparent mb-6'>
-          {services.map((services) => {
+          {services.map((service) => {
             return (
               <TabsTrigger
-                key={services.id}
-                value={services.name}
+                key={service.id}
+                value={service.name}
                 className='flex items-center space-x-2 hover:bg-indigo-500 p-2 sm:p-4 rounded-md text-white transition-colors primary-color'>
                 {/* {category.icon} */}
-                <IconRenderer iconName={services.icon!} />
-                <span>{services.name}</span>
+                <IconRenderer iconName={service.icon!} />
+                <span>{service.name}</span>
               </TabsTrigger>
             );
           })}
@@ -70,12 +70,14 @@ const ServicesClient = ({
                               <IconRenderer iconName={product.icon!} />
                             </span>
                             <div>
-                              <h3 className='font-semibold text-gray-800 text-md sm:text-lg dark:text-gray-200'>
-                                {product.name}
+                              <h3 className='flex items-center font-semibold text-gray-800 text-md sm:text-lg dark:text-gray-200'>
+                                {product.name}:
+                                <span className='flex items-center bg-white ml-2 px-1 rounded-sm text-[#604485]'>
+                                  <FaTag className='mr-1' />$
+                                  {product.prices[0].unitAmount}
+                                </span>
                               </h3>
-                              <p className='text-gray-600 dark:text-gray-400'>
-                                {product.description}
-                              </p>
+                              <p className=''>{product.description}</p>
                             </div>
                           </div>
                           <div className='flex md:flex-row flex-col gap-4'>

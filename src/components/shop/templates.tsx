@@ -38,21 +38,15 @@ const Templates = async ({
     <div className='relative mx-auto px-4 py-10 w-full max-w-6xl container'>
       {/* Header Section */}
       <div className='mb-10 text-center'>
-        <h2 className='font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
-          {title}
-        </h2>
-        <p className='mt-2 text-gray-600 text-lg dark:text-gray-400'>
-          {subTitle}
-        </p>
+        <h2 className='font-bold text-4xl'>{title}</h2>
+        <p className='mt-2 text-lg'>{subTitle}</p>
       </div>
 
       {/* Categories Section */}
 
       {filterOptions && (
         <section className='mb-10'>
-          <h2 className='mb-4 font-semibold text-2xl text-zinc-800 dark:text-zinc-200'>
-            Categories
-          </h2>
+          <h2 className='mb-4 font-semibold text-2xl'>Categories</h2>
           <div className='flex flex-wrap gap-4'>
             {categories.map((category) => (
               <button
@@ -67,9 +61,7 @@ const Templates = async ({
 
       {/* Product Cards Section */}
       <section className='mb-10'>
-        <h2 className='mb-6 font-semibold text-2xl text-zinc-800 dark:text-zinc-200'>
-          Featured Products
-        </h2>
+        <h2 className='mb-6 font-semibold text-2xl'>Featured Products</h2>
         <div className='gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
           {products.map((product, index) => (
             <div key={index}>
@@ -79,10 +71,10 @@ const Templates = async ({
                   <CardImage images={product.images} />
                 </Link>
                 {/* Product Info */}
-                <h3 className='mb-2 font-bold text-lg text-zinc-800 dark:text-zinc-200'>
+                <h3 className='mb-2 font-bold text-lg'>
                   <Link href={`/shop/${product.slug}`}>{product.name}</Link>
                 </h3>
-                <div className='flex justify-between items-center text-gray-600 dark:text-gray-400'>
+                <div className='flex justify-between items-center'>
                   <div className='flex flex-col'>
                     <span className='line-through'>${product.price}</span>
                     <span className='font-bold text-red-500 text-xl'>

@@ -76,7 +76,7 @@ const SSLInstallation = async () => {
       <div className='mx-auto mt-32 px-6 lg:px-8 max-w-7xl'>
         {/* Hero Section */}
         <div className='text-center'>
-          <h2 className='font-extrabold text-4xl text-zinc-800 dark:text-zinc-200'>
+          <h2 className='font-extrabold text-4xl'>
             SSL Installation & Configuration
           </h2>
           <p className='mt-4 text-lg text-zinc-600 dark:text-zinc-400'>
@@ -95,7 +95,7 @@ const SSLInstallation = async () => {
 
         {/* Benefits List */}
         <div className='mt-16'>
-          <h3 className='font-semibold text-2xl text-center text-zinc-800 dark:text-zinc-200'>
+          <h3 className='font-semibold text-2xl text-center'>
             Why Choose Our SSL Installation Service?
           </h3>
           <ul className='space-y-6 mt-8'>
@@ -106,9 +106,7 @@ const SSLInstallation = async () => {
                 <div className='text-3xl text-indigo-600 dark:text-indigo-400'>
                   {benefit.icon}
                 </div>
-                <p className='text-lg text-zinc-800 dark:text-zinc-200'>
-                  {benefit.text}
-                </p>
+                <p className='text-lg'>{benefit.text}</p>
               </li>
             ))}
           </ul>

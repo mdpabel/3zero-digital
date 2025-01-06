@@ -1,5 +1,5 @@
 import prisma from '@/prisma/db';
-import { Category, Product } from '@prisma/client';
+import { Category, Price, Product } from '@prisma/client';
 
 export const getProduct = async (slug: string) => {
   const product = await prisma.product.findFirst({
@@ -29,7 +29,7 @@ export const getProduct = async (slug: string) => {
 
 // Shape of the data passed to ServicesClient
 export interface ServiceWithProducts extends Category {
-  products: Product[];
+  products: (Product & { prices: Price[] })[];
 }
 
 export const getProductWithServices = async () => {
@@ -39,6 +39,7 @@ export const getProductWithServices = async () => {
     },
     include: {
       category: true, // This will give you the category for each product
+      prices: true,
     },
   });
 

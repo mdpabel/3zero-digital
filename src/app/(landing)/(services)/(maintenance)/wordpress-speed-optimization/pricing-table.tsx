@@ -25,7 +25,7 @@ const PricingTable = ({
   return (
     <div id='getStarted' className='flex flex-col justify-center items-center'>
       <div className='shadow-md p-6 rounded-lg w-full'>
-        <h3 className='mb-4 font-semibold text-2xl text-center text-zinc-800 dark:text-zinc-200'>
+        <h3 className='mb-4 font-semibold text-2xl text-center'>
           Speed Optimization Service
         </h3>
         <div className='mb-6 text-center'>
@@ -35,7 +35,7 @@ const PricingTable = ({
                 {formatCurrency({ amount: totalOriginalPrice })}
               </span>
             )}
-            <span className='block font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
+            <span className='block font-bold text-4xl'>
               {formatCurrency({ amount: totalPrice })}
             </span>
             <span className='block mt-2 text-sm text-zinc-600 dark:text-zinc-400'>
@@ -64,20 +64,18 @@ const PricingTable = ({
                 quantity === 1
                   ? 'bg-gray-300 cursor-not-allowed'
                   : 'bg-gray-200 dark:bg-gray-700'
-              } px-4 py-2 rounded-lg text-zinc-800 dark:text-zinc-200`}>
+              } px-4 py-2 rounded-lg `}>
               -
             </button>
 
             {/* Quantity Display */}
-            <span className='font-semibold text-xl text-zinc-800 dark:text-zinc-200'>
-              {quantity}
-            </span>
+            <span className='font-semibold text-xl'>{quantity}</span>
 
             {/* Increase Button */}
             <button
               onClick={handleIncrease}
               type='button'
-              className='bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded-lg text-zinc-800 dark:text-zinc-200'>
+              className='bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded-lg'>
               +
             </button>
           </div>

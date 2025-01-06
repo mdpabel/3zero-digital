@@ -74,7 +74,7 @@ const SearchForm = () => {
               />
             </div>
           </DialogTitle>
-          <DialogDescription className='mt-2 text-gray-500 text-sm dark:text-gray-400'>
+          <DialogDescription className='mt-2 text-gray-500 text-sm'>
             Start typing to search. Press <kbd>ESC</kbd> to close.
           </DialogDescription>
         </DialogHeader>
@@ -118,9 +118,7 @@ const SearchForm = () => {
 
         <DialogFooter>
           <div className='flex flex-wrap justify-start items-center gap-2 text-sm'>
-            <span className='text-gray-500 dark:text-gray-400'>
-              Try searching for:
-            </span>
+            <span className='text-gray-500'>Try searching for:</span>
             <Button
               variant='link'
               size='sm'

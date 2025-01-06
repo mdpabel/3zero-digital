@@ -12,10 +12,10 @@ const PricingTable = async () => {
     <div
       id='getStarted'
       className='bg-gray-50 dark:bg-gray-900 mt-32 py-16 text-center'>
-      <h2 className='mb-6 font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
+      <h2 className='mb-6 font-bold text-4xl'>
         🚀 Simple, Transparent Pricing
       </h2>
-      <p className='mb-8 text-gray-600 text-xl dark:text-gray-400'>
+      <p className='mb-8 text-xl'>
         Everything you need to get your website up and running for just $79.
       </p>
 
@@ -49,9 +49,7 @@ const PricingTable = async () => {
                 'Domain, Hosting & DNS Setup',
                 'SMTP for Better Email Deliverability',
               ].map((feature, index) => (
-                <li
-                  key={index}
-                  className='flex items-center gap-3 text-zinc-800 dark:text-zinc-200'>
+                <li key={index} className='flex items-center gap-3'>
                   <FaCheck className='text-[#614385] text-lg' />
                   {feature}
                 </li>

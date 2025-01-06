@@ -13,7 +13,7 @@ const PerformanceComparison: React.FC = () => {
         <h2 className='mb-6 font-bold text-3xl text-center text-zinc-800 md:text-4xl dark:text-zinc-200'>
           How We Boosted Page Speed by 66% — See the Stunning Results!
         </h2>
-        <p className='mt-4 text-lg text-zinc-800 dark:text-zinc-200'>
+        <p className='mt-4 text-lg'>
           Faster load times mean happier users, better engagement, and more
           conversions. See how we turned a sluggish website into a performance
           powerhouse, with load times that increase user retention and improve
@@ -30,9 +30,7 @@ const PerformanceComparison: React.FC = () => {
             alt='Before Performance'
             className='shadow-md rounded-lg w-full h-auto'
           />
-          <p className='mt-2 text-zinc-800 dark:text-zinc-200'>
-            Before: PageSpeed 25
-          </p>
+          <p className='mt-2'>Before: PageSpeed 25</p>
         </div>
 
         {/* After Image */}
@@ -42,9 +40,7 @@ const PerformanceComparison: React.FC = () => {
             alt='After Performance'
             className='shadow-md rounded-lg w-full h-auto'
           />
-          <p className='mt-2 text-zinc-800 dark:text-zinc-200'>
-            After: PageSpeed 100
-          </p>
+          <p className='mt-2'>After: PageSpeed 100</p>
         </div>
       </div>
     </div>

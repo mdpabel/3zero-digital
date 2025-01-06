@@ -64,7 +64,7 @@ const BlacklistRemovalVendors = ({
       {/* Top Total Price and Checkout Button */}
       <div className='flex justify-between items-center mb-8 p-6 rounded-lg'>
         <div>
-          <h3 className='flex items-center space-x-2 font-semibold text-2xl text-zinc-800 dark:text-zinc-200'>
+          <h3 className='flex items-center space-x-2 font-semibold text-2xl'>
             Total Price:{' '}
             <span className='ml-2'>
               {totalPrice > 0
@@ -116,7 +116,7 @@ const BlacklistRemovalVendors = ({
               />
               <label
                 htmlFor={`blacklist-${index}`}
-                className='flex-1 font-semibold text-zinc-800 dark:text-zinc-200'>
+                className='flex-1 font-semibold'>
                 {item.name}
               </label>
               <div className='text-right'>
@@ -125,7 +125,7 @@ const BlacklistRemovalVendors = ({
                     {formatCurrency({ amount: origPrice })}
                   </span>
                 )}
-                <span className='block font-bold text-lg text-zinc-800 dark:text-zinc-200'>
+                <span className='block font-bold text-lg'>
                   {formatCurrency({ amount: price })}
                 </span>
               </div>

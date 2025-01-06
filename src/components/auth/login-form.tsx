@@ -48,10 +48,10 @@ const LoginForm = () => {
   const callbackUrl = searchParams.get('callbackUrl') ?? '/';
 
   return (
-    <Card className='mx-auto my-10 max-w-md text-zinc-800 dark:text-zinc-200'>
+    <Card className='mx-auto my-10 max-w-md'>
       <CardHeader className='space-y-1'>
         <CardTitle className='text-2xl'>Sign in to your account</CardTitle>
-        <CardDescription className='text-zinc-800 dark:text-zinc-200'>
+        <CardDescription className=''>
           Enter your email below to login to your account
         </CardDescription>
       </CardHeader>

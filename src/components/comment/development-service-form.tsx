@@ -74,25 +74,16 @@ const DevelopmentServiceForm = ({ Icon, title }: Props) => {
   });
 
   return (
-    <div id='getStarted' className='mx-auto mt-32 max-w-4xl'>
+    <div id='getStarted' className='mx-auto mt-12 max-w-4xl'>
       <h2 className='mb-6 font-bold text-3xl text-center text-zinc-800 md:text-4xl dark:text-zinc-200'>
         {title}
       </h2>
       <p className='mx-auto mb-8 md:mb-12 max-w-3xl text-center text-lg text-zinc-700 md:text-xl dark:text-zinc-400'>
         At 3Zero Digital, we deliver robust, scalable, and secure {title}
         solutions with virtually{' '}
-        <span className='font-bold text-zinc-800 dark:text-zinc-200'>
-          0 Vulnerability
-        </span>
-        ,{' '}
-        <span className='font-bold text-zinc-800 dark:text-zinc-200'>
-          0 Downtime
-        </span>
-        , and{' '}
-        <span className='font-bold text-zinc-800 dark:text-zinc-200'>
-          0 Error
-        </span>
-        . Built for perfection.
+        <span className='font-bold'>0 Vulnerability</span>,{' '}
+        <span className='font-bold'>0 Downtime</span>, and{' '}
+        <span className='font-bold'>0 Error</span>. Built for perfection.
       </p>
       <Form {...form}>
         <form

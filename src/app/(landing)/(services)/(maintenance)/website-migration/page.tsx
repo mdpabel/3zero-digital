@@ -69,9 +69,7 @@ const WebsiteMigration = async () => {
               <span className='font-semibold text-lg'>{index + 1}</span>
             </div>
             <div>
-              <h3 className='font-semibold text-lg text-zinc-800 dark:text-zinc-200'>
-                {step}
-              </h3>
+              <h3 className='font-semibold text-lg'>{step}</h3>
               <p className='mt-2 text-sm text-zinc-600 dark:text-zinc-400'>
                 {index % 2 === 0
                   ? 'We carefully plan and execute each step to ensure a seamless transition with no impact on your site’s performance or SEO.'

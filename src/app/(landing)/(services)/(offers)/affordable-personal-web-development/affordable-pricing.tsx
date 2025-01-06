@@ -22,10 +22,10 @@ const AffordablePricing = () => {
 
   return (
     <div className='px-6 py-16 text-center'>
-      <h2 className='mb-6 font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
+      <h2 className='mb-6 font-bold text-4xl'>
         💡 How We Keep Prices Affordable
       </h2>
-      <p className='mb-8 text-gray-600 text-lg dark:text-gray-400'>
+      <p className='mb-8 text-lg'>
         Transparency is key. Here’s how we provide quality services at an
         unbeatable price.
       </p>
@@ -36,12 +36,8 @@ const AffordablePricing = () => {
             className='bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl p-6 rounded-lg transition'>
             <div className='flex flex-col items-center'>
               <FaCheckCircle className='text-[#614385] text-3xl' />
-              <h3 className='mt-4 font-semibold text-xl text-zinc-800 dark:text-zinc-200'>
-                {reason.title}
-              </h3>
-              <p className='mt-2 text-center text-gray-600 text-sm dark:text-gray-400'>
-                {reason.description}
-              </p>
+              <h3 className='mt-4 font-semibold text-xl'>{reason.title}</h3>
+              <p className='mt-2 text-center text-sm'>{reason.description}</p>
             </div>
           </div>
         ))}

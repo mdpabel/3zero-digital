@@ -70,25 +70,25 @@ const OrderDetail = async ({ params }: Props) => {
 
         <div className='gap-4 grid grid-cols-1 md:grid-cols-2'>
           <div>
-            <p className='text-gray-600 dark:text-gray-400'>
+            <p className=''>
               <strong>Order ID:</strong> {order.id}
             </p>
-            <p className='text-gray-600 dark:text-gray-400'>
+            <p className=''>
               <strong>Date Created:</strong>{' '}
               {formatDate(order.createdAt.toString())}
             </p>
-            <p className='text-gray-600 dark:text-gray-400'>
+            <p className=''>
               <strong>Total Amount:</strong> ${order.total.toFixed(2)}
             </p>
           </div>
           <div>
-            <p className='text-gray-600 dark:text-gray-400'>
+            <p className=''>
               <strong>Items Ordered:</strong> {order.quantity}
             </p>
-            <p className='text-gray-600 dark:text-gray-400'>
+            <p className=''>
               <strong>Payment Status:</strong> {order.paymentStatus}
             </p>
-            <p className='text-gray-600 dark:text-gray-400'>
+            <p className=''>
               <strong>Currency:</strong> {order.currency}
             </p>
           </div>
@@ -106,10 +106,10 @@ const OrderDetail = async ({ params }: Props) => {
           <p className='text-gray-800 dark:text-gray-200'>
             <strong>Product:</strong> {order.product.name}
           </p>
-          <p className='text-gray-600 dark:text-gray-400'>
+          <p className=''>
             <strong>Quantity:</strong> {order.quantity}
           </p>
-          <p className='text-gray-600 dark:text-gray-400'>
+          <p className=''>
             <strong>Price per item:</strong> ${productPrice}
           </p>
         </div>
@@ -143,7 +143,7 @@ const OrderDetail = async ({ params }: Props) => {
         <p className='text-gray-800 dark:text-gray-200'>
           <strong>Paid:</strong> {order.paymentStatus === 'paid' ? 'Yes' : 'No'}
         </p>
-        <p className='text-gray-600 dark:text-gray-400'>
+        <p className=''>
           <strong>Transaction ID:</strong> {order.transactionId || 'N/A'}
         </p>
       </div>

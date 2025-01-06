@@ -80,9 +80,7 @@ const Support = () => {
   return (
     <div className='md:px-10 py-5'>
       <div className='mx-auto max-w-6xl container'>
-        <h1 className='font-bold text-3xl text-zinc-800 dark:text-zinc-200'>
-          Chat with us
-        </h1>
+        <h1 className='font-bold text-3xl'>Chat with us</h1>
         <div
           id='tawk_66eac2884cbc4814f7da18fb'
           className='mx-auto max-w-3xl'

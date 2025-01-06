@@ -22,7 +22,7 @@ const TermsOfService = () => {
         <h1 className='font-bold text-3xl text-center text-gray-900 md:text-5xl dark:text-white'>
           Terms of Service (ToS)
         </h1>
-        <p className='mt-4 text-center text-gray-600 text-lg dark:text-gray-300'>
+        <p className='mt-4 text-center text-lg dark:text-gray-300'>
           Effective Date:{' '}
           <span className='font-semibold'>November 9, 2024</span> <br />
           Last Updated: <span className='font-semibold'>November 9, 2024</span>

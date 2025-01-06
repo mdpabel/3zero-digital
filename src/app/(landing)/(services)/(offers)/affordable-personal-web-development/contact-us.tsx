@@ -25,10 +25,8 @@ const ContactUs = () => {
 
   return (
     <div className='px-6 py-16 text-center'>
-      <h2 className='mb-6 font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
-        📞 Contact Us
-      </h2>
-      <p className='mb-8 text-gray-600 text-lg dark:text-gray-400'>
+      <h2 className='mb-6 font-bold text-4xl'>📞 Contact Us</h2>
+      <p className='mb-8 text-lg'>
         We’re here to help! Reach out to us through any of the channels below.
       </p>
       <div className='gap-6 grid grid-cols-1 sm:grid-cols-3 mx-auto max-w-5xl'>
@@ -41,12 +39,8 @@ const ContactUs = () => {
             className='bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl p-6 rounded-lg transition'>
             <div className='flex flex-col items-center'>
               {contact.icon}
-              <h3 className='mt-4 font-semibold text-xl text-zinc-800 dark:text-zinc-200'>
-                {contact.name}
-              </h3>
-              <p className='mt-2 text-center text-gray-600 text-sm dark:text-gray-400'>
-                {contact.description}
-              </p>
+              <h3 className='mt-4 font-semibold text-xl'>{contact.name}</h3>
+              <p className='mt-2 text-center text-sm'>{contact.description}</p>
             </div>
           </a>
         ))}

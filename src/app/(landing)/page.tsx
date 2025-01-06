@@ -10,9 +10,10 @@ import {
 } from './schema-markup';
 import CustomerIssues from '@/components/home/customer-issues';
 import CompaniesLogo from '@/components/home/company-logos';
-import AffordableWebDevelopment from '@/components/home/affordable-web-development';
 import Comparison from '@/components/development/comparison';
 import Script from 'next/script';
+import FeaturedServices from '@/components/featured-services/featured-services';
+import HeroSection from '@/components/comment/hero-section';
 
 export const dynamic = 'force-static';
 
@@ -23,8 +24,8 @@ const Home = () => {
       <CustomerIssues />
       <Services />
       <CompaniesLogo />
+      <FeaturedServices />
       <Comparison />
-      <AffordableWebDevelopment />
       <Suspense fallback='loading...'>
         <Templates featured limit={6} />
       </Suspense>

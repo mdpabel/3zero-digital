@@ -42,14 +42,14 @@ const PaymentSuccess = async ({ searchParams }: Props) => {
             <h1 className='mb-6 font-bold text-4xl text-zinc-800 md:text-5xl dark:text-zinc-200'>
               🎉 Payment Successful!
             </h1>
-            <p className='mb-6 text-gray-600 text-lg md:text-xl dark:text-gray-400'>
+            <p className='mb-6 text-lg md:text-xl'>
               Thank you for your purchase! Your payment of{' '}
               <span className='font-semibold'>
                 {amountPaid} {currency}
               </span>{' '}
               has been processed successfully.
             </p>
-            <p className='text-gray-600 text-md md:text-lg dark:text-gray-400'>
+            <p className='text-md md:text-lg'>
               Payment Status: <strong>{paymentStatus}</strong>
             </p>
           </div>
@@ -84,7 +84,7 @@ const PaymentSuccess = async ({ searchParams }: Props) => {
           <h1 className='mb-4 font-bold text-4xl text-red-500 md:text-5xl'>
             ⚠️ Invalid or Unauthorized Session
           </h1>
-          <p className='text-gray-600 text-lg dark:text-gray-400'>
+          <p className='text-lg'>
             The payment session could not be found or you are not authorized to
             view this page. If you believe this is an error, please contact
             support.

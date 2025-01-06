@@ -20,18 +20,9 @@ const HeroSection = ({
     <div className='relative py-10 md:py-14'>
       <div className='gap-8 grid grid-cols-1 md:grid-cols-5'>
         <div className='flex flex-col justify-center col-span-3'>
-          <h1
-            className={`text-3xl md:text-5xl font-bold mb-4 text-zinc-800 dark:text-zinc-200`}>
-            {title}
-          </h1>
-          <p
-            className={`text-xl md:text-2xl mb-8 dark:text-gray-400 text-gray-600`}>
-            {subtitle}
-          </p>
-          <p
-            className={`text-md md:text-lg mb-10 dark:text-gray-400 text-gray-600`}>
-            {description}
-          </p>
+          <h1 className={`text-3xl md:text-5xl font-bold mb-4 `}>{title}</h1>
+          <p className={`text-xl md:text-2xl mb-8  `}>{subtitle}</p>
+          <p className={`text-md md:text-lg mb-10  `}>{description}</p>
           <div className='flex md:flex-row flex-col gap-8 md:gap-6'>
             <div>
               <Link

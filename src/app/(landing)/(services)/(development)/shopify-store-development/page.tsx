@@ -11,6 +11,8 @@ import ProcessSteps from '@/components/comment/process-steps';
 import Comparison from '@/components/development/comparison';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
+import CompaniesLogo from '@/components/home/company-logos';
+import FeaturedServices from '@/components/featured-services/featured-services';
 
 export const dynamic = 'force-static';
 
@@ -40,6 +42,9 @@ const ShopifyWebsiteDevelopment = () => {
       />
 
       <Comparison />
+
+      <CompaniesLogo />
+      <FeaturedServices />
 
       <Templates
         filterOptions={false}

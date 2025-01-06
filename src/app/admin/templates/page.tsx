@@ -17,9 +17,7 @@ const AllTemplates = async () => {
     <div className='px-10 py-10'>
       {/* Header */}
       <header className='flex justify-between items-center mb-10'>
-        <h1 className='font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
-          Manage Templates
-        </h1>
+        <h1 className='font-bold text-4xl'>Manage Templates</h1>
         <button className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-md px-6 py-3 rounded-lg text-white'>
           Add New Template
         </button>
@@ -28,7 +26,7 @@ const AllTemplates = async () => {
       {/* Template Table */}
       <div className='overflow-x-auto'>
         {templates.length === 0 ? (
-          <div className='py-10 text-center text-gray-500 dark:text-gray-400'>
+          <div className='py-10 text-center text-gray-500'>
             <p>No templates found. Start by adding a new template.</p>
           </div>
         ) : (

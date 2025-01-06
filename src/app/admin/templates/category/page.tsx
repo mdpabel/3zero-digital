@@ -8,10 +8,8 @@ const TemplateCategories = async () => {
     <div className='px-10 py-10'>
       {/* Header */}
       <header className='mb-10 text-center'>
-        <h1 className='font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
-          Manage Template Categories
-        </h1>
-        <p className='mt-2 text-gray-600 dark:text-gray-400'>
+        <h1 className='font-bold text-4xl'>Manage Template Categories</h1>
+        <p className='mt-2'>
           Add, edit, or remove template categories to organize your templates
           effectively.
         </p>
@@ -22,9 +20,7 @@ const TemplateCategories = async () => {
 
       {/* Categories List */}
       <div className='bg-white dark:bg-gray-900 shadow-md mx-auto p-6 rounded-lg max-w-4xl'>
-        <h2 className='mb-4 font-bold text-2xl text-zinc-800 dark:text-zinc-200'>
-          Existing Categories
-        </h2>
+        <h2 className='mb-4 font-bold text-2xl'>Existing Categories</h2>
         {categories.length > 0 ? (
           <ul className='space-y-4'>
             {categories.map((category) => (
@@ -41,7 +37,7 @@ const TemplateCategories = async () => {
             ))}
           </ul>
         ) : (
-          <p className='text-center text-gray-600 dark:text-gray-400'>
+          <p className='text-center'>
             No categories available. Add a new category above.
           </p>
         )}

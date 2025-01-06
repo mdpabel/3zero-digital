@@ -66,10 +66,10 @@ const hostingFeatures = [
 const HostingFeatures = () => {
   return (
     <div className='py-16 text-center'>
-      <h2 className='mb-6 font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
+      <h2 className='mb-6 font-bold text-4xl'>
         🚀 Get Your Website’s **Home** for FREE! 🏠
       </h2>
-      <p className='mb-8 text-gray-600 text-xl dark:text-gray-400'>
+      <p className='mb-8 text-xl'>
         Hosting, domain, security, and everything you need to launch and grow
         your website—at NO EXTRA COST!
       </p>
@@ -80,12 +80,8 @@ const HostingFeatures = () => {
             key={index}
             className='dark:bg-gray-900 shadow-lg p-6 rounded-lg text-center'>
             {feature.icon}
-            <h3 className='mb-2 font-semibold text-xl text-zinc-800 dark:text-zinc-200'>
-              {feature.title}
-            </h3>
-            <p className='text-gray-600 dark:text-gray-400'>
-              {feature.description}
-            </p>
+            <h3 className='mb-2 font-semibold text-xl'>{feature.title}</h3>
+            <p className=''>{feature.description}</p>
           </div>
         ))}
       </div>

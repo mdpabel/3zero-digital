@@ -65,9 +65,7 @@ const EmailDeliverabilityIssues = async () => {
               <span className='font-semibold text-lg'>{index + 1}</span>
             </div>
             <div>
-              <h3 className='font-semibold text-lg text-zinc-800 dark:text-zinc-200'>
-                {issue}
-              </h3>
+              <h3 className='font-semibold text-lg'>{issue}</h3>
               <p className='mt-2 text-sm text-zinc-600 dark:text-zinc-400'>
                 {index % 2 === 0
                   ? 'Our experts will identify this issue and provide targeted solutions to improve your email deliverability.'

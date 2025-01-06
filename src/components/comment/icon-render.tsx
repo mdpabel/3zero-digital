@@ -6,6 +6,8 @@ import {
   FaShopify,
   FaWordpress,
   FaShieldAlt,
+  FaUserCircle,
+  FaUser,
   FaRocket,
   FaBug,
   FaExclamationTriangle,
@@ -17,6 +19,8 @@ import {
   FaCube,
   FaImage,
   FaPlay,
+  FaCrown,
+  FaDollarSign,
 } from 'react-icons/fa';
 
 // Map of icon names to actual React components from react-icons
@@ -38,6 +42,10 @@ const iconMapping: { [key: string]: React.ElementType } = {
   FaCube,
   FaImage,
   FaPlay,
+  FaCrown,
+  FaUserCircle,
+  FaUser,
+  FaDollarSign,
 };
 
 // Component to render the correct icon based on the name

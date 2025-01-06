@@ -31,7 +31,7 @@ const Hero: React.FC<HeroProps> = ({
         {headline}
       </h1>
       <p
-        className='mb-2 text-gray-600 text-xl dark:text-gray-400'
+        className='mb-2 text-xl'
         dangerouslySetInnerHTML={{
           __html: description,
         }}></p>

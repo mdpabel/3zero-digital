@@ -8,6 +8,8 @@ interface VideoProps {
 const Video: React.FC<VideoProps> = ({ videoId, pageSlug }) => {
   // const videoUrl = `https://www.youtube.com/embed/${videoId}`;
 
+  return null;
+
   return (
     <div className='relative bg-white dark:bg-zinc-900 shadow-lg mx-auto mt-10 mb-14 rounded-lg w-full max-w-5xl h-[200px] sm:h-[350px] md:h-[500px]'>
       {/* Title Bar */}
@@ -15,14 +17,12 @@ const Video: React.FC<VideoProps> = ({ videoId, pageSlug }) => {
         <div className='bg-red-500 mr-2 rounded-full w-[12px] h-[12px]'></div>
         <div className='bg-yellow-500 mr-2 rounded-full w-[12px] h-[12px]'></div>
         <div className='bg-green-500 mr-2 rounded-full w-[12px] h-[12px]'></div>
-        <span className='font-bold text-xs text-zinc-800 dark:text-zinc-200'>
-          www.3zerodigital.com
-        </span>
+        <span className='font-bold text-xs'>www.3zerodigital.com</span>
       </div>
 
       {/* URL Bar */}
       <div className='flex items-center border-gray-300 dark:border-zinc-700 bg-gray-200 dark:bg-zinc-800 pl-2 border-t border-b h-[25px] text-xs'>
-        <span className='text-gray-500 dark:text-gray-400'>
+        <span className='text-gray-500'>
           <span className='md:inline-block hidden'>
             https://www.3zerodigital.com/
           </span>

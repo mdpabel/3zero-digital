@@ -66,23 +66,19 @@ const ProductDetails = async ({
           </h1>
 
           {/* Displaying Multiple Categories */}
-          <p className='mt-2 text-gray-500 text-lg dark:text-gray-400'>
+          <p className='mt-2 text-gray-500 text-lg'>
             {product.categories.map((category) => category.name).join(', ')}
           </p>
         </div>
 
         <div className='flex items-center space-x-6'>
           <div className='flex items-center space-x-2'>
-            <FaRegClock className='text-gray-500 dark:text-gray-400' />
-            <span className='text-gray-500 text-sm dark:text-gray-400'>
-              Recently Updated
-            </span>
+            <FaRegClock className='text-gray-500' />
+            <span className='text-gray-500 text-sm'>Recently Updated</span>
           </div>
           <div className='flex items-center space-x-2'>
-            <FaRegFileAlt className='text-gray-500 dark:text-gray-400' />
-            <span className='text-gray-500 text-sm dark:text-gray-400'>
-              Well Documented
-            </span>
+            <FaRegFileAlt className='text-gray-500' />
+            <span className='text-gray-500 text-sm'>Well Documented</span>
           </div>
         </div>
       </div>

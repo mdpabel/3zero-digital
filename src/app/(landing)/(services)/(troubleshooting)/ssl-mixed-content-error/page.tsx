@@ -33,9 +33,7 @@ export default async function FixMixedContentErrorService() {
 
         <div className='gap-6 grid grid-cols-1 md:grid-cols-2 mt-12'>
           <div className='bg-gray-300 dark:bg-gray-900 shadow-xl p-6 rounded-lg'>
-            <h3 className='mb-4 font-semibold text-xl text-zinc-800 dark:text-zinc-200'>
-              What’s Included
-            </h3>
+            <h3 className='mb-4 font-semibold text-xl'>What’s Included</h3>
             <ul className='space-y-4 text-zinc-600 dark:text-zinc-400'>
               <li className='flex items-start'>
                 <svg
@@ -87,7 +85,7 @@ export default async function FixMixedContentErrorService() {
 
           <div className='flex justify-center items-center bg-gray-300 dark:bg-gray-900 shadow-xl p-6 rounded-lg'>
             <div>
-              <h3 className='mb-4 font-bold text-2xl text-center text-zinc-800 dark:text-zinc-200'>
+              <h3 className='mb-4 font-bold text-2xl text-center'>
                 Why Choose Us?
               </h3>
               <p className='text-center text-zinc-600 dark:text-zinc-400'>

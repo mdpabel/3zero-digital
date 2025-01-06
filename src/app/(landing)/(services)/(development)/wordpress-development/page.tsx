@@ -10,6 +10,8 @@ import Templates from '@/components/shop/templates';
 import Comparison from '@/components/development/comparison';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
+import CompaniesLogo from '@/components/home/company-logos';
+import FeaturedServices from '@/components/featured-services/featured-services';
 
 export const dynamic = 'force-static';
 
@@ -38,6 +40,9 @@ const WordPressDevelopment = () => {
       />
 
       <Comparison />
+
+      <CompaniesLogo />
+      <FeaturedServices />
 
       <Templates
         filterOptions={false}

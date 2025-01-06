@@ -12,6 +12,8 @@ import ProcessSteps from '@/components/comment/process-steps';
 import Comparison from '@/components/development/comparison';
 import Script from 'next/script';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
+import CompaniesLogo from '@/components/home/company-logos';
+import FeaturedServices from '@/components/featured-services/featured-services';
 
 export const dynamic = 'force-static';
 
@@ -53,6 +55,9 @@ const NextJsFullStack = () => {
       />
 
       <Comparison />
+
+      <CompaniesLogo />
+      <FeaturedServices />
 
       <ProcessSteps
         title='How We Build Your Dream Fullstack Nextjs Site'

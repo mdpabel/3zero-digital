@@ -18,9 +18,7 @@ const Input: React.FC<InputProps> = ({
   type = 'text',
 }) => (
   <div className='mb-6 md:mb-8'>
-    <label
-      htmlFor={id}
-      className='block mb-2 font-semibold text-lg text-zinc-800 dark:text-zinc-200'>
+    <label htmlFor={id} className='block mb-2 font-semibold text-lg'>
       {label}
     </label>
     <input

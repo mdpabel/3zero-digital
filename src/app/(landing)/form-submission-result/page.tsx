@@ -33,7 +33,7 @@ const FormSubmissionResult: React.FC<Props> = async ({ searchParams }) => {
             <h2 className='font-bold text-2xl text-gray-900 dark:text-gray-100'>
               Submission Successful!
             </h2>
-            <p className='mt-2 text-gray-600 dark:text-gray-400'>
+            <p className='mt-2'>
               Thank you for submitting your project. We will get back to you
               shortly.
             </p>
@@ -49,7 +49,7 @@ const FormSubmissionResult: React.FC<Props> = async ({ searchParams }) => {
             <h2 className='font-bold text-2xl text-gray-900 dark:text-gray-100'>
               Submission Failed
             </h2>
-            <p className='mt-2 text-gray-600 dark:text-gray-400'>
+            <p className='mt-2'>
               There was an issue with your submission. Please correct the
               following errors:
             </p>

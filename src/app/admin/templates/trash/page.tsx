@@ -17,15 +17,13 @@ const DeletedTemplates = async () => {
     <div className='px-10 py-10'>
       {/* Header */}
       <header className='flex justify-between items-center mb-10'>
-        <h1 className='font-bold text-4xl text-zinc-800 dark:text-zinc-200'>
-          Deleted Templates
-        </h1>
+        <h1 className='font-bold text-4xl'>Deleted Templates</h1>
       </header>
 
       {/* Template Table */}
       <div className='overflow-x-auto'>
         {templates.length === 0 ? (
-          <div className='py-10 text-center text-gray-500 dark:text-gray-400'>
+          <div className='py-10 text-center text-gray-500'>
             <p>No templates found. Start by adding a new template.</p>
           </div>
         ) : (

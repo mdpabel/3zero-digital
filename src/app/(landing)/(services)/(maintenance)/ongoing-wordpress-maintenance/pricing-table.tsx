@@ -27,9 +27,7 @@ const PricingTable = ({
       id='getStarted'
       className='flex md:flex-row flex-col justify-between items-center bg-gray-200 dark:bg-gray-900 shadow-xl mt-12 p-8 rounded-lg'>
       <div className='mb-8 md:mb-0 text-center md:text-left'>
-        <h3 className='font-bold text-2xl text-zinc-800 dark:text-zinc-200'>
-          Ongoing WordPress Maintenance
-        </h3>
+        <h3 className='font-bold text-2xl'>Ongoing WordPress Maintenance</h3>
         <p className='text-lg text-zinc-600 dark:text-zinc-400'>
           Starting at{' '}
           {totalOriginalPrice > price && (
@@ -37,7 +35,7 @@ const PricingTable = ({
               {formatCurrency({ amount: totalOriginalPrice })}
             </span>
           )}{' '}
-          <span className='font-bold text-zinc-800 dark:text-zinc-200'>
+          <span className='font-bold'>
             {formatCurrency({ amount: totalPrice })}/month
           </span>
         </p>
@@ -56,16 +54,14 @@ const PricingTable = ({
                 quantity === 1
                   ? 'bg-gray-300 cursor-not-allowed'
                   : 'bg-gray-200 dark:bg-gray-700'
-              } px-4 py-2 rounded-lg text-zinc-800 dark:text-zinc-200`}>
+              } px-4 py-2 rounded-lg `}>
               -
             </button>
-            <span className='font-semibold text-xl text-zinc-800 dark:text-zinc-200'>
-              {quantity}
-            </span>
+            <span className='font-semibold text-xl'>{quantity}</span>
             <button
               onClick={handleIncrease}
               type='button'
-              className='bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded-lg text-zinc-800 dark:text-zinc-200'>
+              className='bg-gray-200 dark:bg-gray-700 px-4 py-2 rounded-lg'>
               +
             </button>
           </div>
