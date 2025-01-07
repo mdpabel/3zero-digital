@@ -1,19 +1,16 @@
+'use server';
 import { auth } from '@/auth';
 import OrderConfirmationEmailTemplate from '@/components/email/order-confirmation-email-template';
 import { sendEmail } from '@/lib/send-email';
 import { stripe } from '@/lib/stripe/stripe';
 import prisma from '@/prisma/db';
-import { paymentIntentSchema } from '@/schema/payment/payment-intent-schema';
+import { orderSchema } from '@/schema/payment/order-schema';
 import { z } from 'zod';
 
-export const createOrder = async (
-  _: any,
-  payload: z.infer<typeof paymentIntentSchema>,
-) => {
+export const createOrder = async (data: z.infer<typeof orderSchema>) => {
   const {
     productId,
     quantity,
-    paymentMode,
     metaData,
     email,
     productType,
@@ -21,8 +18,9 @@ export const createOrder = async (
     lastName,
     note,
     websites,
-    paymentType,
-  } = paymentIntentSchema.parse(payload);
+  } = orderSchema.parse(data);
+
+  console.log(data.metaData);
 
   try {
     const session = await auth();
@@ -62,6 +60,7 @@ export const createOrder = async (
         where: { id: productId },
       });
       if (!template) throw new Error('Template not found');
+      if (!template.price) throw new Error('Price not found');
       price = template.price;
       productName = template.name;
     } else {
@@ -70,11 +69,10 @@ export const createOrder = async (
         include: { prices: true },
       });
       if (!product) throw new Error('Product not found');
+      if (!product.prices[0]?.unitAmount) throw new Error('Price not found');
       price = product.prices[0]?.unitAmount || 0;
       productName = product.name;
     }
-
-    if (!price) throw new Error('Price not found');
 
     const parsedMetaData = metaData ? JSON.parse(metaData) : {};
 
@@ -97,10 +95,7 @@ export const createOrder = async (
       const payment = await tx.payment.create({
         data: {
           orderId: order.id,
-          gateway: paymentType,
           amount: order.total,
-          currency: 'USD',
-          status: 'unpaid',
           metadata: {
             email,
             note,

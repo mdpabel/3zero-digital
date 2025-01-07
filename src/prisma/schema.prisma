@@ -84,17 +84,23 @@ enum PaymentStatus {
   failed
 }
 
+enum PaymentGateWay {
+  PayPal
+  Stripe
+  Not_Specified
+}
+
 model Payment {
-  id            String        @id @default(auto()) @map("_id") @db.ObjectId
-  orderId       String        @db.ObjectId
-  gateway       String // e.g., 'PayPal', 'Stripe'
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId
+  orderId       String         @db.ObjectId
+  gateway       PaymentGateWay @default(Not_Specified) // e.g., 'PayPal', 'Stripe'
   transactionId String? // Gateway-specific transaction ID
   amount        Float // Payment amount
-  currency      String?       @default("USD")
-  status        PaymentStatus @default(unpaid) // 'unpaid', 'paid', 'failed', etc.
+  currency      String?        @default("USD")
+  status        PaymentStatus  @default(unpaid) // 'unpaid', 'paid', 'failed', etc.
   metadata      Json? // Gateway-specific data
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
 
   order Order @relation(fields: [orderId], references: [id])
 }

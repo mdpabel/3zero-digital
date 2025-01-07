@@ -1,7 +1,8 @@
-import UserConfirmationEmail from '@/components/email/feedback-email-template';
 import { CreateEmailOptions, Resend } from 'resend';
 
-export const resend = new Resend(process.env.RESEND_API_KEY);
+const api_key = process.env.RESEND_API_KEY!;
+
+export const resend = new Resend(api_key);
 
 export async function sendEmail({
   replyTo,
@@ -13,24 +14,13 @@ export async function sendEmail({
   name: string;
 }) {
   try {
-    const response = await resend.batch.send([
-      {
-        from: process.env.EMAIL_TO!,
-        replyTo,
-        to,
-        subject,
-        react,
-      },
-      // {
-      //   from: process.env.EMAIL_TO!,
-      //   replyTo: process.env.EMAIL_TO!,
-      //   to: replyTo!,
-      //   subject: 'We have received your message!',
-      //   react: UserConfirmationEmail({
-      //     name,
-      //   }),
-      // },
-    ]);
+    const response = await resend.emails.send({
+      from: process.env.EMAIL_TO!,
+      replyTo,
+      to,
+      subject,
+      react,
+    });
 
     console.log('Email sent successfully:', response);
     return response;

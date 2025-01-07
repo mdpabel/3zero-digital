@@ -1,11 +1,6 @@
-'use client';
-
 import Link from 'next/link';
 import Spinner from '../common/spinner';
 import { useFormStatus } from 'react-dom';
-import { createStripeSession } from '@/actions/payment/create-checkout-session';
-import { useRouter } from 'next/navigation';
-import { useActionState, useEffect } from 'react';
 import { useSession } from 'next-auth/react';
 import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
@@ -28,7 +23,7 @@ const Checkout = ({
   return (
     <Button asChild className='py-6 w-full min-w-64'>
       <Link
-        href={`/checkout?quantity=${quantity}&productId=${productId}&metaData=${metaData}&paymentMode=${paymentMode}`}>
+        href={`/place-order?quantity=${quantity}&productId=${productId}&metaData=${metaData}&paymentMode=${paymentMode}`}>
         {label}
       </Link>
     </Button>

@@ -12,5 +12,4 @@ export const checkoutSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email.' }),
   websites: z.string().optional(),
   note: z.string().optional(),
-  paymentType: z.enum(['paypal', 'stripe', 'manual']),
 });

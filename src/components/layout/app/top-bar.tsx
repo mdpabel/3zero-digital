@@ -6,7 +6,6 @@ const navItems = [
   { href: '/case-studies', label: 'Case Studies' },
   { href: '/contact', label: 'Contact' },
   { href: '/blog', label: 'Blog' },
-  { href: '/checkout', label: 'Checkout' },
 ];
 
 const TopBar = () => {
