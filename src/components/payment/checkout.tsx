@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import Spinner from '../common/spinner';
 import { useFormStatus } from 'react-dom';
