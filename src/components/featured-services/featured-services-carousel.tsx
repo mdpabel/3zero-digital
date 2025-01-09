@@ -21,7 +21,7 @@ const FeaturedServicesCarousel = (props: Props) => {
   const numberOfServices = Object.keys(props).length;
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: numberOfServices > 1, // Disable infinite mode if there's only one service
     speed: 500,
     slidesToShow: 1,

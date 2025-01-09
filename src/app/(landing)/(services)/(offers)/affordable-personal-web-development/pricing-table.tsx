@@ -17,9 +17,9 @@ type Features = {
 
 const plans = [
   {
-    name: '$7.00 Plan',
+    name: '$9.00 Plan',
     productId: '',
-    price: 7.0, // Store price as a number for calculations
+    price: 9.0, // Store price as a number for calculations
     features: {
       'cPanel Access': true,
       'Domain Name (.xyz)': true,
@@ -33,9 +33,9 @@ const plans = [
     },
   },
   {
-    name: '$12.00 Plan',
+    name: '$14.00 Plan',
     productId: '',
-    price: 12.0,
+    price: 14.0,
     features: {
       'cPanel Access': true,
       'Domain Name (.xyz)': false,
