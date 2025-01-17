@@ -202,7 +202,7 @@ html {
 }
 
 .alignwide {
-  @apply w-screen relative px-4;
+  @apply relative px-4 w-screen;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
@@ -211,7 +211,7 @@ html {
 }
 
 .alignfull {
-  @apply w-screen relative px-1;
+  @apply relative px-1 w-screen;
   left: 50%;
   right: 50%;
   margin-left: -50vw;
@@ -232,7 +232,7 @@ html {
 .alignright,
 .aligncenter,
 .is-resized {
-  @apply table ml-0 mr-0;
+  @apply mr-0 ml-0 table;
 }
 
 .alignleft > figcaption,
@@ -258,7 +258,7 @@ html {
 
 .wp-block-button a,
 .wp-block-file a.wp-block-file__button {
-  @apply bg-blue-500 text-white no-underline py-2 px-4;
+  @apply bg-blue-500 px-4 py-2 text-white no-underline;
 }
 
 .wp-block-button a:hover,
@@ -271,7 +271,7 @@ html {
 }
 
 .wp-block-cover {
-  @apply justify-center items-center bg-cover bg-center overflow-hidden grid;
+  @apply justify-center items-center grid bg-cover bg-center overflow-hidden;
 
   min-height: 430px;
 }
@@ -281,7 +281,7 @@ html {
 }
 
 .wp-block-media-text {
-  @apply grid grid-cols-2 gap-4;
+  @apply gap-4 grid grid-cols-2;
 }
 
 .wp-block-columns {
@@ -352,3 +352,11 @@ html {
 }
 
 /* type writer end */
+
+.affordable-web-dev-dark {
+  display: none !important;
+}
+
+.dark .affordable-web-dev-dark {
+  display: block !important;
+}

@@ -17,7 +17,7 @@ const FeaturedService = ({
 }) => {
   return (
     <div className='mx-auto px-4 py-14 max-w-6xl'>
-      <div className='items-center gap-8 grid grid-cols-1 lg:grid-cols-5'>
+      <div className='items-center gap-8 md:gap-12 grid grid-cols-1 lg:grid-cols-5'>
         {/* Text Section */}
         <div className='lg:col-span-2 text-center lg:text-left'>
           <h3 className='mb-4 font-bold text-2xl text-zinc-800 md:text-3xl dark:text-zinc-200'>
@@ -45,7 +45,7 @@ const FeaturedService = ({
           <Image
             src={darkImage}
             alt='Website prototype (dark)'
-            className='dark:block hidden shadow-md rounded-lg'
+            className='shadow-md rounded-lg affordable-web-dev-dark'
           />
         </div>
       </div>

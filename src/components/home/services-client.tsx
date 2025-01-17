@@ -72,22 +72,25 @@ const ServicesClient = ({
                             <div>
                               <h3 className='flex items-center font-semibold text-gray-800 text-md sm:text-lg dark:text-gray-200'>
                                 {product.name}:
-                                <span className='flex items-center bg-white ml-2 px-1 rounded-sm text-[#604485]'>
-                                  <FaTag className='mr-1' />$
-                                  {product.prices[0].unitAmount}
-                                </span>
+                                {product.prices[0].unitAmount && (
+                                  <span className='flex items-center bg-white ml-2 px-1 rounded-sm text-[#604485]'>
+                                    <FaTag className='mr-1' />$
+                                    {product.prices[0].unitAmount}
+                                  </span>
+                                )}
                               </h3>
                               <p className=''>{product.description}</p>
                             </div>
                           </div>
                           <div className='flex md:flex-row flex-col gap-4'>
-                            {product.name !== 'Development' && (
-                              <PlaceOrder productId={product.id} />
-                            )}
+                            {product.name !== 'Development' &&
+                              product.prices[0].unitAmount > 0 && (
+                                <PlaceOrder productId={product.id} />
+                              )}
                             <Button asChild>
                               <Link href={product.slug}>
                                 <FaRegFileAlt className='mr-2' />
-                                Request a Quote
+                                Explore Service
                               </Link>
                             </Button>
                           </div>
