@@ -11,20 +11,24 @@ const OrderPage = async () => {
     return redirect('/login');
   }
 
-  const userWithOrders = await prisma.user.findFirst({
+  const user = await prisma.user.findFirst({
     where: {
       email: session.user?.email,
     },
-    include: {
-      Order: {
-        include: {
-          product: true,
-        },
-      },
-    },
   });
 
-  const orders = userWithOrders?.Order;
+  if (!user) {
+    redirect('/login?callbackUrl=/me/order');
+  }
+
+  const orders = await prisma.order.findMany({
+    where: { userId: user.id },
+    include: {
+      payment: true,
+      product: true,
+      // template: true,
+    },
+  });
 
   return (
     <div className='md:px-10 py-10 md:py-20'>
@@ -32,7 +36,7 @@ const OrderPage = async () => {
         <h1 className='mb-6 font-bold text-3xl text-zinc-800 md:text-5xl dark:text-zinc-200'>
           Your Orders
         </h1>
-        <OrdersTable orders={orders ?? []} />
+        <OrdersTable orders={orders} />
       </div>
     </div>
   );

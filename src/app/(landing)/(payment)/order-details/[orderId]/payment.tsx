@@ -6,6 +6,9 @@ import PayPal from './paypal';
 import Stripe from './stripe';
 import { FaPaypal, FaStripe } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import payPalImg from '@/../public/images/payment-gateway-logos/Paypal.png';
+import stripeImg from '@/../public/images/payment-gateway-logos/stripe.png';
 
 const Payment = ({
   orderId,
@@ -34,22 +37,20 @@ const Payment = ({
               className='hover:shadow-lg cursor-pointer'
               onClick={() => handleMethodSelect('paypal')}>
               <CardContent className='flex flex-col justify-center items-center py-6'>
-                <FaPaypal size={48} className='text-blue-600' />
-                <CardTitle className='mt-4 text-xl'>PayPal</CardTitle>
+                <Image src={payPalImg} alt='PayPal' width={80} />
               </CardContent>
             </Card>
             <Card
               className='hover:shadow-lg cursor-pointer'
               onClick={() => handleMethodSelect('stripe')}>
               <CardContent className='flex flex-col justify-center items-center py-6'>
-                <FaStripe size={48} className='text-indigo-600' />
-                <CardTitle className='mt-4 text-xl'>Stripe</CardTitle>
+                <Image src={stripeImg} alt='PayPal' width={80} />
               </CardContent>
             </Card>
           </div>
         </>
       ) : (
-        <Card className='w-full max-w-md'>
+        <Card className='py-8 w-full max-w-md'>
           <CardContent>
             <CardTitle className='mb-4 text-2xl text-center'>
               {selectedMethod === 'paypal'

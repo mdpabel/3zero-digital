@@ -21,7 +21,7 @@ const Order = async ({ params }: { params: Promise<{ orderId: string }> }) => {
         },
       },
       template: true,
-      Payment: true,
+      payment: true,
       user: true,
     },
   });
@@ -29,6 +29,8 @@ const Order = async ({ params }: { params: Promise<{ orderId: string }> }) => {
   if (!order) {
     return <div className='mx-auto p-4 max-w-6xl'>Order is not found</div>;
   }
+
+  const isPaid = order.payment[0].status === 'paid';
 
   return (
     <div className='mx-auto py-12 p-4 max-w-6xl'>
@@ -43,9 +45,9 @@ const Order = async ({ params }: { params: Promise<{ orderId: string }> }) => {
           {/* Right Column: Order Summary and Place Order */}
           <div className='space-y-6'>
             {/* Order Summary */}
-            <Card>
+            <Card className='py-8'>
               <CardTitle>
-                <h3 className='py-4 text-center'>Order Summery</h3>
+                <div className='py-4 text-center'>Order Summery</div>
               </CardTitle>
               <CardContent className='space-y-3'>
                 <p className='flex justify-between items-center'>
@@ -98,7 +100,16 @@ const Order = async ({ params }: { params: Promise<{ orderId: string }> }) => {
 
         {/* Right side  */}
         <div>
-          <Payment orderStatus={order.status} orderId={order.id} />
+          {isPaid ? (
+            <Card className='py-8'>
+              <CardContent className='text-center'>
+                <p>Your payment has been successfully completed.</p>
+                <p>Thank you for your purchase!</p>
+              </CardContent>
+            </Card>
+          ) : (
+            <Payment orderStatus={order.status} orderId={order.id} />
+          )}
         </div>
       </div>
     </div>

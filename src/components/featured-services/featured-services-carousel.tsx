@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import Slider from 'react-slick';
+import Slider, { Settings } from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import FeaturedService from './affordable-web-development';
@@ -20,7 +20,7 @@ type Props = {
 const FeaturedServicesCarousel = (props: Props) => {
   const numberOfServices = Object.keys(props).length;
 
-  const settings = {
+  const settings: Settings = {
     dots: true,
     infinite: numberOfServices > 1, // Disable infinite mode if there's only one service
     speed: 500,
@@ -29,6 +29,12 @@ const FeaturedServicesCarousel = (props: Props) => {
     arrows: false,
     autoplay: numberOfServices > 1, // Disable autoplay if there's only one service
     autoplaySpeed: 3000,
+    dotsClass: '!flex gap-4 justify-center',
+    customPaging: () => {
+      return (
+        <li className='bg-black dark:bg-white rounded-full w-[5px] h-[5px] cursor-pointer'></li>
+      );
+    },
   };
 
   return (

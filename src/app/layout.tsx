@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
+import { Toaster } from '@/components/ui/toaster';
 import { GoogleTagManager } from '@next/third-parties/google';
 import './globals.css';
 import Providers from './providers';
@@ -63,6 +64,7 @@ export default function RootLayout({
       suppressHydrationWarning>
       <body>
         <Providers>{children}</Providers>
+        <Toaster />
         <GoogleTagManager gtmId='GTM-T7DTDMX7' />
       </body>
     </html>

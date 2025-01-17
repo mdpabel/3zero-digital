@@ -20,8 +20,6 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
     websites,
   } = orderSchema.parse(data);
 
-  console.log(data.metaData);
-
   try {
     const session = await auth();
     let userId: string;

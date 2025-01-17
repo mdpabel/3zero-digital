@@ -29,6 +29,9 @@ const OrderDetail = async ({ params }: Props) => {
           prices: true,
         },
       },
+      coupon: true,
+      template: true,
+      payment: true,
     },
   });
 
@@ -39,9 +42,6 @@ const OrderDetail = async ({ params }: Props) => {
   const prices = order.product?.prices || [];
   const productPrice =
     prices.length > 0 ? prices[0].unitAmount.toFixed(2) : 'N/A';
-
-  // @ts-ignore
-  const metaData = JSON.parse(order.metadata ?? '[]');
 
   return (
     <div className='mx-auto px-4 py-10 max-w-5xl'>
@@ -80,13 +80,19 @@ const OrderDetail = async ({ params }: Props) => {
             <p className=''>
               <strong>Total Amount:</strong> ${order.total.toFixed(2)}
             </p>
+            {order.coupon && (
+              <p className=''>
+                <strong>Coupon Used:</strong> {order.coupon.code}
+              </p>
+            )}
           </div>
           <div>
             <p className=''>
               <strong>Items Ordered:</strong> {order.quantity}
             </p>
             <p className=''>
-              <strong>Payment Status:</strong> {order.paymentStatus}
+              <strong>Payment Status:</strong>{' '}
+              {order.payment[0]?.status || 'N/A'}
             </p>
             <p className=''>
               <strong>Currency:</strong> {order.currency}
@@ -113,25 +119,12 @@ const OrderDetail = async ({ params }: Props) => {
             <strong>Price per item:</strong> ${productPrice}
           </p>
         </div>
+        {order.template && (
+          <p className='text-gray-800 dark:text-gray-200'>
+            <strong>Template:</strong> {order.template.name}
+          </p>
+        )}
       </div>
-
-      {metaData.length > 0 && (
-        <div className='bg-white dark:bg-gray-900 shadow-lg mb-8 p-6 rounded-lg'>
-          <div className='flex items-center mb-6'>
-            <FaExclamationCircle className='mr-3 text-2xl text-red-600 dark:text-red-400' />
-            <h2 className='font-semibold text-2xl text-gray-800 dark:text-gray-200'>
-              Order Details
-            </h2>
-          </div>
-          <ul className='pl-5 text-gray-800 dark:text-gray-200 list-disc'>
-            {metaData.map((detail: string, index: number) => (
-              <li key={index} className='mb-2'>
-                {detail}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
 
       <div className='bg-white dark:bg-gray-900 shadow-lg mb-8 p-6 rounded-lg'>
         <div className='flex items-center mb-6'>
@@ -140,12 +133,22 @@ const OrderDetail = async ({ params }: Props) => {
             Billing Information
           </h2>
         </div>
-        <p className='text-gray-800 dark:text-gray-200'>
-          <strong>Paid:</strong> {order.paymentStatus === 'paid' ? 'Yes' : 'No'}
-        </p>
-        <p className=''>
-          <strong>Transaction ID:</strong> {order.transactionId || 'N/A'}
-        </p>
+        {order.payment.map((payment, index) => (
+          <div key={index} className='mb-4'>
+            <p className='text-gray-800 dark:text-gray-200'>
+              <strong>Gateway:</strong> {payment.gateway}
+            </p>
+            <p className=''>
+              <strong>Transaction ID:</strong> {payment.transactionId || 'N/A'}
+            </p>
+            <p className=''>
+              <strong>Amount Paid:</strong> ${payment.amount.toFixed(2)}
+            </p>
+            <p className=''>
+              <strong>Payment Status:</strong> {payment.status}
+            </p>
+          </div>
+        ))}
       </div>
 
       <div className='bg-white dark:bg-gray-900 shadow-lg p-6 rounded-lg'>

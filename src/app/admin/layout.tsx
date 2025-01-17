@@ -4,7 +4,6 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar';
 import DashboardSidebar from '@/components/layout/dashboard/sidebar';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function DashboardLayout({

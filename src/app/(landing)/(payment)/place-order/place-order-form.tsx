@@ -16,10 +16,10 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { createOrder } from '@/actions/order/create-order';
-import { toast, useToast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Spinner from '@/components/common/spinner';
+import { useToast } from '@/hooks/use-toast';
 
 type Props = {
   firstName?: string;
@@ -42,6 +42,7 @@ const PlaceOrderForm = ({
   quantity,
   productType,
 }: Props) => {
+  const { toast } = useToast();
   const [pending, setPending] = useState(false);
   const router = useRouter();
   const form = useForm<z.infer<typeof checkoutSchema>>({
@@ -67,10 +68,19 @@ const PlaceOrderForm = ({
     });
 
     if (success && order?.id) {
-      toast.success('Order placed successfully!');
+      toast({
+        title: 'Order Confirmed!',
+        description:
+          'Your order has been placed successfully. Redirecting you to the payment page.',
+        action: <Link href={`/order-details/${order.id}`}>Pay Now</Link>,
+      });
       router.push(`/order-details/${order.id}`);
     } else {
-      toast.error(message);
+      toast({
+        title: 'Something went wrong',
+        description:
+          'We couldn’t process your order. Please try again or contact support.',
+      });
     }
 
     setPending(false);

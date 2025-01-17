@@ -9,7 +9,7 @@ import {
   flexRender,
 } from '@tanstack/react-table';
 import { cn, formatDate } from '@/lib/utils';
-import { FaEye } from 'react-icons/fa'; // Import the icon from react-icons
+import { FaEye } from 'react-icons/fa';
 import Link from 'next/link';
 import {
   Table,
@@ -20,20 +20,29 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Order, OrderStatus, PaymentStatus, Product } from '@prisma/client';
+import {
+  Order,
+  OrderStatus,
+  Payment,
+  PaymentStatus,
+  Product,
+} from '@prisma/client';
 
 const OrdersTable = ({
   orders,
 }: {
   orders: (Order & {
     product: Product;
+    payment: Payment[]; // Include related payments
   })[];
 }) => {
-  const columns = useMemo<ColumnDef<Order>[]>(
+  const columns = useMemo<
+    ColumnDef<Order & { product: Product; payment: Payment[] }>[]
+  >(
     () => [
       {
-        header: 'Product Name',
-        accessorKey: 'product.name', // Access the product name directly
+        header: 'Service',
+        accessorKey: 'product.name',
         cell: (info) => info.getValue<string>(),
       },
       {
@@ -55,34 +64,38 @@ const OrdersTable = ({
         cell: (info) => `$${info.getValue<number>().toFixed(2)}`,
       },
       {
+        header: 'Payment Status',
+        accessorKey: 'paymentStatus',
+        cell: (info) => {
+          const payments = info.row.original.payment;
+          return payments.length
+            ? payments
+                .map(
+                  (payment) =>
+                    payment.status.charAt(0).toUpperCase() +
+                    payment.status.slice(1),
+                )
+                .join(', ')
+            : 'No Payment';
+        },
+      },
+      {
         header: 'Actions',
         accessorKey: 'id',
         cell: (info) => (
-          <Link
-            href={`/dashboard/orders/${info.getValue<string>()}`}
-            className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-4 py-2 rounded-lg font-semibold text-white transform transition-transform hover:scale-105'>
-            <FaEye className='inline-block text-white' />
-          </Link>
+          <div className='flex space-x-2'>
+            <Link href={`/me/orders/${info.getValue<string>()}`}>View</Link>
+            {info.row.original.payment.some(
+              (payment) => payment.status === 'unpaid',
+            ) && (
+              <a
+                href={`/order-details/${info.getValue<string>()}`}
+                className='text-blue-500 underline'>
+                Pay Now
+              </a>
+            )}
+          </div>
         ),
-      },
-      // Add Payment Link column if unpaid
-      {
-        header: 'Payment Link',
-        accessorKey: 'paymentLink',
-        cell: (info) => {
-          const paymentLink = info.getValue<string>();
-          return paymentLink && info.row.original.paymentStatus === 'unpaid' ? (
-            <a
-              href={paymentLink}
-              className='text-blue-500'
-              target='_blank'
-              rel='noopener noreferrer'>
-              Pay Now
-            </a>
-          ) : (
-            'Paid'
-          );
-        },
       },
     ],
     [],
@@ -102,12 +115,7 @@ const OrdersTable = ({
   });
 
   return (
-    <div
-      style={{
-        maxWidth: '100vw',
-        overflow: 'hidden',
-      }}
-      className='w-full overflow-auto'>
+    <div className='w-full overflow-auto'>
       <Table className='relative'>
         <TableCaption>Your recent orders</TableCaption>
         <TableHeader>

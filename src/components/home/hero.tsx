@@ -11,11 +11,11 @@ const Hero = () => {
             <h1 className={`text-3xl md:text-5xl font-bold mb-4`}>
               3Zero Digital
             </h1>
-            <p className='mb-8 text-xl md:text-2xl'>
+            <p className='mb-6 text-xl md:text-2xl'>
               Empowering Digital Solutions with Zero Compromises
             </p>
             <div>
-              <p className='mb-10 text-md md:text-lg'>
+              <p className='mb-6 text-md md:text-lg'>
                 Offering top-tier custom web development and website security
                 solutions with virtually{' '}
                 <span className='inline-block relative font-semibold text-primary-500'>
