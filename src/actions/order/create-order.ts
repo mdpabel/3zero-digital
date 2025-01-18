@@ -2,7 +2,6 @@
 import { auth } from '@/auth';
 import OrderConfirmationEmailTemplate from '@/components/email/order-confirmation-email-template';
 import { sendEmail } from '@/lib/send-email';
-import { stripe } from '@/lib/stripe/stripe';
 import prisma from '@/prisma/db';
 import { orderSchema } from '@/schema/payment/order-schema';
 import { z } from 'zod';
@@ -32,21 +31,24 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
       userId = user.id;
     } else {
       const user = await prisma.user.findFirst({ where: { email } });
+
+      if (user) {
+        return {
+          success: false,
+          accountExist: true,
+          message:
+            'We found an existing account associated with this email address. Please log in to proceed with checkout.',
+        };
+      }
+
       if (!user) {
-        const stripeCustomer = await stripe.customers.create({
-          email,
-          name: `${firstName} ${lastName}`,
-        });
         const newUser = await prisma.user.create({
           data: {
             email,
             name: `${firstName} ${lastName}`,
-            stripeCustomerId: stripeCustomer.id,
           },
         });
         userId = newUser.id;
-      } else {
-        userId = user.id;
       }
     }
 

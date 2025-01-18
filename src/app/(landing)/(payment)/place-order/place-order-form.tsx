@@ -59,13 +59,24 @@ const PlaceOrderForm = ({
 
   async function onSubmit(values: z.infer<typeof checkoutSchema>) {
     setPending(true);
-    const { message, success, order } = await createOrder({
+    const { message, success, order, accountExist } = await createOrder({
       ...values,
       productType: productType as 'product' | 'template',
       productId,
       quantity,
       metaData,
     });
+
+    if (accountExist) {
+      toast({
+        title: 'Account Exists',
+        description:
+          'A 3 Zero Digital account already exists with the provided email address. Please login to place your order.',
+        action: <Link href='/login?callbackUrl=place-order'>Login</Link>,
+      });
+      router.push('/login?callbackUrl=place-order');
+      return;
+    }
 
     if (success && order?.id) {
       toast({
