@@ -15,6 +15,7 @@ import { getProductWithServices } from '@/lib/product/get-product';
 // Define the navigation items in arrays
 const quickLinks = [
   { name: 'About Us', href: '/about-us' },
+  { name: 'Careers', href: '/careers' },
   { name: 'Contact', href: '/contact' },
   { name: 'Blog', href: '/blog' },
   { name: 'Book a call', href: '/book-a-call' },

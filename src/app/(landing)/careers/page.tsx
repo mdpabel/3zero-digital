@@ -10,12 +10,12 @@ import {
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { jobs } from './data';
+import { genMetaData } from '@/app/seo';
 
-export const metadata: Metadata = {
-  title: 'Careers | Your Company Name',
-  description:
-    'Join our team and help shape the future of technology. Explore our current job openings and find your next career opportunity.',
-};
+export const metadata = genMetaData({
+  title: 'Careers',
+  url: '/careers',
+});
 
 export default async function CareerPage() {
   return (
