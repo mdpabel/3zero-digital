@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils';
 const navItems = [
   { href: '/case-studies', label: 'Case Studies' },
   { href: '/contact', label: 'Contact' },
+  { href: '/careers', label: 'Careers' },
   { href: '/blog', label: 'Blog' },
 ];
 
