@@ -8,7 +8,6 @@ const getProducts = async () => {
     },
     include: {
       category: true,
-      prices: true, // Include prices
     },
     orderBy: {
       createdAt: 'desc',
@@ -63,17 +62,7 @@ const DeletedProducts = async () => {
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
                   {/* Display Price: Handle Standard and Subscription Products */}
-                  {product.prices.length > 0
-                    ? product.prices.map((price, index) => (
-                        <div key={price.id}>
-                          {price.isRecurring
-                            ? `${price.unitAmount.toFixed(2)} / ${
-                                price.billingInterval
-                              }`
-                            : `$${price.unitAmount.toFixed(2)}`}
-                        </div>
-                      ))
-                    : 'No Price Available'}
+                  {product.price}
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
                   {product.category?.name || 'Uncategorized'}

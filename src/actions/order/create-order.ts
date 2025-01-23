@@ -66,15 +66,17 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
     } else {
       const product = await prisma.product.findUnique({
         where: { id: productId },
-        include: { prices: true },
       });
       if (!product) throw new Error('Product not found');
-      if (!product.prices[0]?.unitAmount) throw new Error('Price not found');
-      price = product.prices[0]?.unitAmount || 0;
+      if (!product.price) throw new Error('Price not found');
+      price = product.price || 0;
       productName = product.name;
     }
 
-    const parsedMetaData = metaData ? JSON.parse(metaData) : {};
+    console.log({ metaData });
+
+    const parsedMetaData =
+      metaData && metaData !== 'undefined' ? JSON.parse(metaData) : {};
 
     // Use a transaction for atomicity
     const result = await prisma.$transaction(async (tx) => {

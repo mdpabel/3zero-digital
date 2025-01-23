@@ -46,7 +46,7 @@ export default async function JobPage({
   const job = getJob(slug);
 
   return (
-    <div className='mx-auto px-4 py-12 max-w-6xl'>
+    <div className='mx-auto px-4 py-12 max-w-5xl'>
       <h1 className='mb-4 font-bold text-4xl text-center'>{job.title}</h1>
       <div className='flex flex-wrap justify-center gap-4 mb-8'>
         <Badge variant='secondary'>{job.department}</Badge>

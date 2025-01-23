@@ -1,21 +1,19 @@
 'use client';
 import React, { useEffect } from 'react';
 import { updateProduct } from '@/actions/product/update-product';
-import { Category, Product, Price } from '@prisma/client';
+import { Category, Product } from '@prisma/client';
 import { useFormState } from 'react-dom';
-import { toast } from 'react-toastify';
 import FormButton from '@/components/common/form-button';
-import ProductType from './product-type';
+import { useToast } from '@/hooks/use-toast';
 
 const EditProductForm = ({
   product,
   categories,
-  prices,
 }: {
   product: Product;
   categories: Category[];
-  prices: Price[];
 }) => {
+  const { toast } = useToast();
   const [state, formAction] = useFormState(updateProduct, {
     message: '',
     success: false,
@@ -24,14 +22,16 @@ const EditProductForm = ({
 
   useEffect(() => {
     if (!state.message) return;
-
-    const toastMessage = state.success ? toast.success : toast.error;
-    const message = state.errors
-      ? Object.values(state.errors).join(', ')
-      : state.message;
-
-    if (message) {
-      toastMessage(message);
+    if (state.success && state.message) {
+      toast({
+        title: state.message,
+      });
+    } else if (!state.success && state.message) {
+      toast({
+        title: state.message,
+        description: Object.values(state.errors!).join(', '),
+        variant: 'destructive',
+      });
     }
   }, [state.message, state.errors, state.success]);
 
@@ -66,11 +66,41 @@ const EditProductForm = ({
           />
         </div>
 
-        {/* Product Type Component */}
-        <ProductType
-          productType={prices[0].isRecurring ? 'SUBSCRIPTION' : 'STANDARD'}
-          prices={prices}
-        />
+        {/* Product Price */}
+        <div>
+          <label
+            htmlFor='price'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Product Price
+          </label>
+          <input
+            type='text'
+            id='price'
+            name='price'
+            defaultValue={product.price}
+            required
+            placeholder='Product Price'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
+        </div>
+
+        {/* Product orig Price */}
+        <div>
+          <label
+            htmlFor='origPrice'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Product Price
+          </label>
+          <input
+            type='text'
+            id='origPrice'
+            name='origPrice'
+            defaultValue={product.origPrice ?? product.price}
+            required
+            placeholder='Product origPrice'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
+        </div>
 
         {/* Description */}
         <div>
@@ -188,6 +218,7 @@ const EditProductForm = ({
             type='url'
             id='metaImageUrl'
             name='metaImageUrl'
+            defaultValue={product.imageUrl!}
             placeholder='SEO Image URL for Product (e.g., social sharing)'
             className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
           />

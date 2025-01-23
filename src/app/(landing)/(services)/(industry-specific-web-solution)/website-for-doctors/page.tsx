@@ -1,11 +1,7 @@
-import HostingFeatures from '../../../../../components/development/hosting-features';
-import ServicesProvided from '../../../../../components/development/service-provided';
 import FAQ from '../../../../../components/development/FAQ';
 import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
 import PricingTable from '../../../../../components/development/pricing-table';
-import ProcessSteps from '@/components/comment/process-steps';
-import { processes, steps } from './data';
 import Templates from '@/components/shop/templates';
 import React from 'react';
 import { getServiceMetadata } from '@/app/seo';
@@ -13,10 +9,11 @@ import Comparison from '@/components/development/comparison';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
 import ProjectSteps from '../../../../../components/development/project-steps';
+import { steps } from './data';
 
 export const dynamic = 'force-static';
 
-const slug = 'affordable-web-development';
+const slug = 'website-for-doctors';
 
 export const metadata = getServiceMetadata(slug);
 

@@ -61,7 +61,6 @@ const PlaceOrderForm = ({
     setPending(true);
     const { message, success, order, accountExist } = await createOrder({
       ...values,
-      productType: productType as 'product' | 'template',
       productId,
       quantity,
       metaData,

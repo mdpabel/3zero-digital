@@ -14,7 +14,6 @@ const EditProduct = async ({ params }: Props) => {
     prisma.product.findUnique({
       where: { id: id },
       include: {
-        prices: true,
         category: true,
       },
     }),
@@ -27,11 +26,7 @@ const EditProduct = async ({ params }: Props) => {
 
   return (
     <div>
-      <EditProductForm
-        categories={categories}
-        prices={product.prices}
-        product={product}
-      />
+      <EditProductForm categories={categories} product={product} />
     </div>
   );
 };

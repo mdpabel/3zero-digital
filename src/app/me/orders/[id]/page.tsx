@@ -24,11 +24,7 @@ const OrderDetail = async ({ params }: Props) => {
       userId: userId,
     },
     include: {
-      product: {
-        include: {
-          prices: true,
-        },
-      },
+      product: true,
       coupon: true,
       template: true,
       payment: true,
@@ -39,9 +35,7 @@ const OrderDetail = async ({ params }: Props) => {
     return <p>Order not found</p>;
   }
 
-  const prices = order.product?.prices || [];
-  const productPrice =
-    prices.length > 0 ? prices[0].unitAmount.toFixed(2) : 'N/A';
+  const productPrice = order.product?.price;
 
   return (
     <div className='mx-auto px-4 py-10 max-w-5xl'>

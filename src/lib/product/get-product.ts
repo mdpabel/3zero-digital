@@ -1,13 +1,10 @@
 import prisma from '@/prisma/db';
-import { Category, Price, Product } from '@prisma/client';
+import { Category, Product } from '@prisma/client';
 
 export const getProduct = async (slug: string) => {
   const product = await prisma.product.findFirst({
     where: {
       slug,
-    },
-    include: {
-      prices: true,
     },
   });
 
@@ -15,9 +12,8 @@ export const getProduct = async (slug: string) => {
     throw new Error('Product not found!');
   }
 
-  const prices = product?.prices!;
-  const price = prices[0].unitAmount;
-  const origPrice = prices[0].origPrice!;
+  const price = product.price;
+  const origPrice = product.origPrice;
   const productId = product?.id!;
 
   return {
@@ -29,7 +25,7 @@ export const getProduct = async (slug: string) => {
 
 // Shape of the data passed to ServicesClient
 export interface ServiceWithProducts extends Category {
-  products: (Product & { prices: Price[] })[];
+  products: Product[];
 }
 
 export const getProductWithServices = async () => {
@@ -39,7 +35,6 @@ export const getProductWithServices = async () => {
     },
     include: {
       category: true, // This will give you the category for each product
-      prices: true,
     },
   });
 

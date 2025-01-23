@@ -3,15 +3,13 @@ import { getProduct } from '@/lib/product/get-product';
 import React from 'react';
 import { FaCheck } from 'react-icons/fa';
 
-const PricingTable = async () => {
-  const { origPrice, price, productId } = await getProduct(
-    'affordable-web-development',
-  );
+const PricingTable = async ({ slug }: { slug: string }) => {
+  const { origPrice, price, productId } = await getProduct(slug);
 
   return (
     <div
       id='getStarted'
-      className='bg-gray-50 dark:bg-gray-900 mt-32 py-16 text-center'>
+      className='bg-gray-50 dark:bg-gray-900 mt-16 py-16 text-center'>
       <h2 className='mb-6 font-bold text-4xl'>
         🚀 Simple, Transparent Pricing
       </h2>

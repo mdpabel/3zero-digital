@@ -15,11 +15,7 @@ const Order = async ({ params }: { params: Promise<{ orderId: string }> }) => {
       id: orderId,
     },
     include: {
-      product: {
-        include: {
-          prices: true,
-        },
-      },
+      product: true,
       template: true,
       payment: true,
       user: true,
@@ -60,16 +56,14 @@ const Order = async ({ params }: { params: Promise<{ orderId: string }> }) => {
                   </p>
                 )}
 
-                {order.product?.prices[0].unitAmount && (
+                {order.product?.price && (
                   <p className='flex justify-between items-center'>
                     <span>Product price</span>{' '}
-                    <span>
-                      ${order.product?.prices[0].unitAmount.toFixed(2)}
-                    </span>
+                    <span>${order.product?.price.toFixed(2)}</span>
                   </p>
                 )}
 
-                {order.product?.prices[0].unitAmount && (
+                {order.product?.price && (
                   <p className='flex justify-between items-center'>
                     <span>Quantity</span> <span>{order.quantity}</span>
                   </p>

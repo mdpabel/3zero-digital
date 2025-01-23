@@ -23,9 +23,6 @@ const PlaceOrder = async ({ searchParams }: Props) => {
 
   const product = await prisma.product.findUnique({
     where: { id: productId },
-    include: {
-      prices: true,
-    },
   });
 
   if (!product) {
@@ -62,9 +59,7 @@ const PlaceOrder = async ({ searchParams }: Props) => {
                 </div>
                 <div className='flex justify-between'>
                   <h4 className='font-semibold'>Product Price</h4>
-                  <p className='font-semibold'>
-                    ${product.prices[0].unitAmount}
-                  </p>
+                  <p className='font-semibold'>${product.price}</p>
                 </div>
                 <div className='flex justify-between'>
                   <h4 className='font-semibold'>Quantity</h4>
@@ -86,7 +81,7 @@ const PlaceOrder = async ({ searchParams }: Props) => {
               <div className='flex justify-between items-center mt-6 pt-4 border-t'>
                 <h4 className='font-semibold'>Total</h4>
                 <p className='font-bold text-lg'>
-                  ${(product.prices[0]?.unitAmount || 0) * parseInt(quantity)}
+                  ${product.price * parseInt(quantity)}
                 </p>
               </div>
             </div>

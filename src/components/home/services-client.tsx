@@ -72,10 +72,9 @@ const ServicesClient = ({
                             <div>
                               <h3 className='flex items-center font-semibold text-gray-800 text-md sm:text-lg dark:text-gray-200'>
                                 {product.name}:
-                                {product.prices[0].unitAmount && (
+                                {product.price && (
                                   <span className='flex items-center bg-white ml-2 px-1 rounded-sm text-[#604485]'>
-                                    <FaTag className='mr-1' />$
-                                    {product.prices[0].unitAmount}
+                                    <FaTag className='mr-1' />${product.price}
                                   </span>
                                 )}
                               </h3>
@@ -84,7 +83,7 @@ const ServicesClient = ({
                           </div>
                           <div className='flex md:flex-row flex-col gap-4'>
                             {product.name !== 'Development' &&
-                              product.prices[0].unitAmount > 0 && (
+                              product.price > 0 && (
                                 <PlaceOrder productId={product.id} />
                               )}
                             <Button asChild>

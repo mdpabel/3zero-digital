@@ -1,9 +1,5 @@
 'use server';
 
-import EmailVerificationEmailTemplate from '@/components/email/verify-email-template';
-import { generateToken } from '@/lib/auth/jwt-token';
-import { sendEmail } from '@/lib/send-email';
-import { stripe } from '@/lib/stripe/stripe'; // Ensure this is your initialized Stripe instance
 import prisma from '@/prisma/db';
 import { SignUpSchema } from '@/schema/auth/create-user-schema';
 
@@ -40,37 +36,13 @@ export const signUpAction = async (_: any, formData: FormData) => {
   }
 
   try {
-    // Step 1: Create a Stripe customer
-    const stripeCustomer = await stripe.customers.create({
-      email: email,
-      name: `${firstName} ${lastName}`,
-    });
-
-    // Step 2: Create the new user in the database
+    // Step 1: Create the new user in the database
     const newUser = await prisma.user.create({
       data: {
         email,
         name: `${firstName} ${lastName}`,
-        stripeCustomerId: stripeCustomer.id,
       },
     });
-
-    // Step 4: Generate the JWT token for email verification
-    // const token = await generateToken({ email });
-
-    // Step 5: Construct the email verification link with the token
-    // const verificationLink = `${process.env.FRONTEND_URL}/verify-email?token=${token}`;
-
-    // // Step 6: Send the email with the verification link
-    // await sendEmail({
-    //   name: `${firstName} ${lastName}`,
-    //   subject: 'Email Verification',
-    //   to: email,
-    //   replyTo: 'noreply@3zerodigital.com',
-    //   react: EmailVerificationEmailTemplate({
-    //     verificationLink,
-    //   }),
-    // });
 
     // Return success message
     return {

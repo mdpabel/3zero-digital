@@ -1,5 +1,4 @@
 'use server';
-import { createStripePrices } from '@/lib/stripe/create-price';
 import { createStripeProduct } from '@/lib/stripe/create-product';
 import prisma from '@/prisma/db';
 import { productFormSchema } from '@/schema/product/product-form-schema';
@@ -10,79 +9,6 @@ import slugify from 'slugify';
 export async function createProduct(formData: FormData) {
   try {
     const formDataObj = Object.fromEntries(formData.entries());
-
-    // Build the prices array before validation
-    let prices = [];
-    if (formDataObj.type === 'STANDARD') {
-      if (!formDataObj.price) {
-        throw new Error('Price is required for standard products');
-      }
-
-      prices.push({
-        unitAmount: formDataObj.price,
-        origPrice: formDataObj.origPrice,
-        billingInterval: '',
-        isRecurring: false,
-      });
-    } else if (formDataObj.type === 'SUBSCRIPTION') {
-      if (formDataObj.monthly) {
-        const monthlyPrice = parseFloat(formDataObj.monthly as string);
-        const monthlyOrigPrice = formDataObj.monthlyOrigPrice
-          ? parseFloat(formDataObj.monthlyOrigPrice as string)
-          : undefined;
-
-        if (monthlyPrice > 0) {
-          prices.push({
-            unitAmount: monthlyPrice,
-            origPrice: monthlyOrigPrice,
-            billingInterval: 'month',
-            isRecurring: true,
-          });
-        }
-      }
-
-      if (formDataObj.quarterly) {
-        const quarterlyPrice = parseFloat(formDataObj.quarterly as string);
-        const quarterlyOrigPrice = formDataObj.quarterlyOrigPrice
-          ? parseFloat(formDataObj.quarterlyOrigPrice as string)
-          : undefined;
-
-        if (quarterlyPrice > 0) {
-          prices.push({
-            unitAmount: quarterlyPrice,
-            origPrice: quarterlyOrigPrice,
-            billingInterval: 'quarter',
-            isRecurring: true,
-          });
-        }
-      }
-
-      if (formDataObj.yearly) {
-        const yearlyPrice = parseFloat(formDataObj.yearly as string);
-        const yearlyOrigPrice = formDataObj.yearlyOrigPrice
-          ? parseFloat(formDataObj.yearlyOrigPrice as string)
-          : undefined;
-
-        if (yearlyPrice > 0) {
-          prices.push({
-            unitAmount: yearlyPrice,
-            origPrice: yearlyOrigPrice,
-            billingInterval: 'year',
-            isRecurring: true,
-          });
-        }
-      }
-
-      if (prices.length === 0) {
-        return {
-          message: 'Validation failed',
-          success: false,
-          errors: {
-            prices: ['At least one subscription price must be provided.'],
-          },
-        };
-      }
-    }
 
     const result = productFormSchema.safeParse({
       name: formDataObj.name,
@@ -96,7 +22,6 @@ export async function createProduct(formData: FormData) {
       imageUrl: formDataObj.imageUrl,
       categoryId: formDataObj.categoryId,
       type: formDataObj.type,
-      prices: prices.length > 0 ? prices : undefined,
       metaTitle: formDataObj.metaTitle,
       metaDescription: formDataObj.metaDescription,
       metaKeywords: formDataObj.metaKeywords,
@@ -119,7 +44,6 @@ export async function createProduct(formData: FormData) {
       description,
       imageUrl,
       categoryId,
-      type,
       metaDescription,
       metaKeywords,
       metaTitle,
@@ -128,13 +52,6 @@ export async function createProduct(formData: FormData) {
 
     const stripeProduct = await createStripeProduct(name, categoryId);
     const stripeProductId = stripeProduct.id;
-
-    const stripePrices = await createStripePrices(
-      type,
-      stripeProductId,
-      prices,
-      price,
-    );
 
     const slug = slugify(name, {
       lower: true,
@@ -148,34 +65,10 @@ export async function createProduct(formData: FormData) {
         imageUrl,
         categoryId,
         stripeProductId,
-        type,
         icon,
+        origPrice,
         slug,
-        prices: {
-          create: stripePrices.map((stripePrice, index) => {
-            let billingInterval: 'MONTH' | 'QUARTER' | 'YEAR' | null = null;
-
-            if (type === 'SUBSCRIPTION' && stripePrice.recurring?.interval) {
-              if (stripePrice.recurring.interval === 'month') {
-                billingInterval = 'MONTH';
-              } else if (stripePrice.recurring.interval === 'quarter') {
-                billingInterval = 'QUARTER';
-              } else if (stripePrice.recurring.interval === 'year') {
-                billingInterval = 'YEAR';
-              }
-            }
-
-            return {
-              stripePriceId: stripePrice.id,
-              unitAmount: stripePrice.unit_amount / 100,
-              origPrice:
-                parseFloat(prices[index].origPrice as string) || undefined,
-              currency: 'usd',
-              billingInterval,
-              isRecurring: type === 'SUBSCRIPTION',
-            };
-          }),
-        },
+        price,
         metaTitle,
         metaDescription,
         metaKeywords,

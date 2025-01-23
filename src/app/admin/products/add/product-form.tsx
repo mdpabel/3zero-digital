@@ -1,21 +1,27 @@
 'use client';
 import FormButton from '@/components/common/form-button';
-import React, { useActionState, useEffect } from 'react';
-import ProductType from './product-type';
 import { createProduct } from '@/actions/product/add-product';
 import { Category } from '@prisma/client';
-import { toast } from 'react-toastify';
+import { useToast } from '@/hooks/use-toast';
 
 const ProductForm = ({ categories }: { categories: Category[] }) => {
+  const { toast } = useToast();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const { message, success, errors } = await createProduct(formData);
 
     if (success && message) {
-      toast.success(message);
+      toast({
+        title: message,
+      });
     } else if (!success && message) {
-      toast.error(message);
+      toast({
+        title: message,
+        description: Object.values(errors!).join(', '),
+        variant: 'destructive',
+      });
     }
   };
 
@@ -43,8 +49,22 @@ const ProductForm = ({ categories }: { categories: Category[] }) => {
           />
         </div>
 
-        {/* Product Type Component */}
-        <ProductType />
+        {/* Product Price */}
+        <div>
+          <label
+            htmlFor='price'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Product Price
+          </label>
+          <input
+            type='text'
+            id='price'
+            name='price'
+            required
+            placeholder='Product Price'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
+        </div>
 
         {/* Description */}
         <div>

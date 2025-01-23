@@ -17,7 +17,6 @@ const Products = async ({ searchParams }: { searchParams: SearchParams }) => {
       deleted: false,
     },
     include: {
-      prices: true, // Include prices for each product
       category: true, // Include category for each product
     },
     take: PAGE_SIZE,
@@ -72,9 +71,7 @@ const Products = async ({ searchParams }: { searchParams: SearchParams }) => {
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
                   {/* Displaying the first price or a default message if no prices */}
-                  {product.prices.length > 0
-                    ? `$${product.prices[0].unitAmount.toFixed(2)}`
-                    : 'Price not available'}
+                  {product.price}
                 </td>
                 <td className='border-zinc-200 dark:border-zinc-700 px-4 py-3 border-b'>
                   {/* Display category name or default to 'Uncategorized' */}
