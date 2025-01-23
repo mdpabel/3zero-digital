@@ -76,6 +76,7 @@ export default async function CareerPage() {
               </CardHeader>
               <CardContent>
                 <div className='flex flex-wrap gap-2 mb-4'>
+                  <Badge variant='secondary'>{job.department}</Badge>
                   <Badge variant='secondary'>{job.location}</Badge>
                   <Badge variant='outline'>{job.type}</Badge>
                 </div>
