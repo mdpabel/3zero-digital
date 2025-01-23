@@ -19,33 +19,38 @@ export const metadata: Metadata = {
 
 export default async function CareerPage() {
   return (
-    <div className='mx-auto px-4 py-12 p-4 max-w-6xl'>
+    <div className='mx-auto px-4 py-12 p-4 max-w-5xl'>
       <section className='mb-16 text-center'>
-        <h1 className='mb-4 font-bold text-4xl'>Join Our Team</h1>
-        <p className='mx-auto max-w-2xl text-muted-foreground text-xl'>
-          At [Your Company Name], we're on a mission to [brief mission
-          statement]. Join us and be part of something extraordinary.
+        <h1 className='mb-4 font-bold text-4xl'>
+          Join Our Team at 3 Zero Digital
+        </h1>
+        <p className='mx-auto max-w-3xl text-muted-foreground text-xl'>
+          At 3 Zero Digital, we're committed to achieving 0 Vulnerability, 0
+          Downtime, and 0 Error. Join us and be part of a team that is
+          transforming digital experiences with precision and excellence.
         </p>
       </section>
 
       <section className='mb-16'>
-        <h2 className='mb-8 font-semibold text-3xl'>Why Work With Us</h2>
+        <h2 className='mb-8 font-semibold text-3xl'>
+          Why Work With 3 Zero Digital
+        </h2>
         <div className='gap-8 grid md:grid-cols-3'>
           {[
             {
-              title: 'Innovation',
+              title: 'Excellence',
               description:
-                'Work on cutting-edge technology that shapes the future.',
+                'Be part of a team that strives for 0 Vulnerability, 0 Downtime, and 0 Error in everything we do.',
             },
             {
-              title: 'Growth',
+              title: 'Innovation',
               description:
-                'Continuous learning and career development opportunities.',
+                'Work on groundbreaking solutions that push the boundaries of digital technology.',
             },
             {
               title: 'Impact',
               description:
-                'Make a real difference in the lives of millions of users.',
+                'Make a significant impact on the digital world by providing flawless, error-free services to clients globally.',
             },
           ].map((perk, index) => (
             <Card key={index}>
