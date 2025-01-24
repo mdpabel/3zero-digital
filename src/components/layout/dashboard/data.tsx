@@ -81,6 +81,31 @@ export const adminDashboardSidebarItems = [
       },
     ],
   },
+
+  {
+    label: 'Coupons',
+    href: '#',
+    icon: <FaBox />,
+    roles: ['ADMIN'],
+    isOpen: true,
+    subItems: [
+      {
+        label: 'All Coupons',
+        href: '/admin/coupons',
+        icon: <FaThList />,
+      },
+      {
+        label: 'Add Coupon',
+        href: '/admin/coupons/add',
+        icon: <FaPlus />,
+      },
+      {
+        label: 'Trash Coupons',
+        href: '/admin/coupons/trash',
+        icon: <FaTrash />,
+      },
+    ],
+  },
   {
     label: 'Templates',
     icon: <FaBox />,
@@ -93,7 +118,7 @@ export const adminDashboardSidebarItems = [
         icon: <FaThList />,
       },
       {
-        label: 'Add Product',
+        label: 'Add Templates',
         href: '/admin/templates/add',
         icon: <FaPlus />,
       },

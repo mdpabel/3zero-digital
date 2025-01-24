@@ -5,17 +5,18 @@ export type Active =
   | 'Development'
   | 'Marketing'
   | 'Troubleshooting'
-  | 'Maintenance';
+  | 'Maintenance'
+  | 'Exclusive';
 
-const Services = async ({ active = 'Maintenance' }: { active?: Active }) => {
+const Services = async ({ active = 'Exclusive' }: { active?: Active }) => {
   const services = await getProductWithServices();
 
   const order = [
+    'Exclusive',
     'Maintenance',
     'Development',
     'Marketing',
     'Troubleshooting',
-    'Exclusive',
   ];
 
   const sortedServices = services.sort((a, b) => {

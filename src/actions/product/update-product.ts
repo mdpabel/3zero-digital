@@ -48,6 +48,7 @@ export async function updateProduct(_: any, formData: FormData) {
       metaTitle,
       metaDescription,
       metaKeywords,
+      icon,
     } = result.data;
 
     // Fetch existing product from database
@@ -77,6 +78,7 @@ export async function updateProduct(_: any, formData: FormData) {
         metaTitle,
         metaDescription,
         metaKeywords,
+        icon: icon,
       },
     });
 

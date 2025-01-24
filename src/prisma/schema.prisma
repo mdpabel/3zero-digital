@@ -143,6 +143,8 @@ model Product {
   updatedAt DateTime  @updatedAt
   category  Category? @relation(fields: [categoryId], references: [id])
   order     Order[]
+  Coupon    Coupon?   @relation(fields: [couponId], references: [id])
+  couponId  String?   @db.ObjectId
 }
 
 // model Price {
@@ -260,11 +262,22 @@ model Payment {
 }
 
 model Coupon {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  code       String    @unique // e.g., 'SUMMER21'
-  discount   Float // Percentage or flat discount
-  validFrom  DateTime
-  validUntil DateTime?
-  createdAt  DateTime  @default(now())
-  orders     Order[] // Track which orders used this coupon
+  id                  String       @id @default(auto()) @map("_id") @db.ObjectId
+  code                String       @unique // e.g., 'SUMMER21'
+  discountType        DiscountType @default(PERCENTAGE)
+  discount            Float // Percentage or flat discount
+  validFrom           DateTime
+  validUntil          DateTime?
+  createdAt           DateTime     @default(now())
+  applicableProducts  Product[]
+  orders              Order[] // Track which orders used this coupon
+  maxUsageCount       Int? // Optional: Maximum number of uses
+  usedCount           Int          @default(0) // Current usage count
+  isActive            Boolean      @default(true) // Active/inactive flag
+  applicableCountries String[] // List of country codes where the coupon is valid
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FLAT
 }

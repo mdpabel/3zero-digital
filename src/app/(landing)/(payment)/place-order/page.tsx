@@ -2,6 +2,7 @@ import { auth } from '@/auth';
 import React from 'react';
 import PlaceOrderForm from './place-order-form';
 import prisma from '@/prisma/db';
+import CouponForm from './coupon-form';
 
 type Props = {
   searchParams: Promise<{
@@ -84,6 +85,8 @@ const PlaceOrder = async ({ searchParams }: Props) => {
                   ${product.price * parseInt(quantity)}
                 </p>
               </div>
+
+              <CouponForm />
             </div>
           </div>
         </div>

@@ -21,6 +21,9 @@ import {
   FaPlay,
   FaCrown,
   FaDollarSign,
+  FaStethoscope,
+  FaGavel,
+  FaShoppingCart,
 } from 'react-icons/fa';
 
 // Map of icon names to actual React components from react-icons
@@ -46,6 +49,9 @@ const iconMapping: { [key: string]: React.ElementType } = {
   FaUserCircle,
   FaUser,
   FaDollarSign,
+  FaStethoscope,
+  FaGavel,
+  FaShoppingCart,
 };
 
 // Component to render the correct icon based on the name

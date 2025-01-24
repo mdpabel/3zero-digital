@@ -66,6 +66,23 @@ const ProductForm = ({ categories }: { categories: Category[] }) => {
           />
         </div>
 
+        {/* Product orig Price */}
+        <div>
+          <label
+            htmlFor='origPrice'
+            className='block mb-2 font-medium text-gray-700 dark:text-gray-300'>
+            Product Orig Price
+          </label>
+          <input
+            type='text'
+            id='origPrice'
+            name='origPrice'
+            required
+            placeholder='Product origPrice'
+            className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500 w-full dark:text-gray-100 focus:outline-none'
+          />
+        </div>
+
         {/* Description */}
         <div>
           <label

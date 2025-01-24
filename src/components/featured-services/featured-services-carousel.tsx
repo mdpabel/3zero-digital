@@ -32,7 +32,7 @@ const FeaturedServicesCarousel = (props: Props) => {
     dotsClass: '!flex gap-4 justify-center',
     customPaging: () => {
       return (
-        <li className='bg-black dark:bg-white rounded-full w-[5px] h-[5px] cursor-pointer'></li>
+        <div className='bg-black dark:bg-white rounded-full w-[5px] h-[5px] cursor-pointer'></div>
       );
     },
   };

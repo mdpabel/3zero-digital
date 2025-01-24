@@ -50,9 +50,6 @@ export async function createProduct(formData: FormData) {
       icon,
     } = result.data;
 
-    const stripeProduct = await createStripeProduct(name, categoryId);
-    const stripeProductId = stripeProduct.id;
-
     const slug = slugify(name, {
       lower: true,
       trim: true,
@@ -64,7 +61,6 @@ export async function createProduct(formData: FormData) {
         description,
         imageUrl,
         categoryId,
-        stripeProductId,
         icon,
         origPrice,
         slug,
@@ -79,7 +75,7 @@ export async function createProduct(formData: FormData) {
     revalidatePath('/admin/products');
 
     return {
-      message: 'Product successfully added and synced with Stripe.',
+      message: 'Product successfully added',
       success: true,
     };
   } catch (error) {
