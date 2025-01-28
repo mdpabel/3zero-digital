@@ -68,10 +68,7 @@ export async function updateTemplate(_: unknown, formData: FormData) {
           create: images.map((url) => ({ url })), // Directly store image URLs in the database
         },
         categories: {
-          disconnect: categories.map((category) => ({
-            id: category.id,
-          })), // Disconnect selected categories
-          connect: categories.map((category) => ({ id: category.id })), // Reconnect categories based on the new selection
+          set: categories.map((category) => ({ id: category.id })),
         },
       },
     });

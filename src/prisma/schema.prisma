@@ -158,42 +158,40 @@ model Product {
 //   billingInterval BillingInterval?
 //   isRecurring     Boolean
 // }
-
-// TEMPLATE START 
-model TemplateCategory {
-  id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  name       String    @unique
-  slug       String?
-  createdAt  DateTime  @default(now())
-  updatedAt  DateTime  @updatedAt
-  Template   Template? @relation(fields: [templateId], references: [id])
-  templateId String?   @db.ObjectId
-}
-
 model Template {
-  id          String             @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
+  id          String                       @id @default(auto()) @map("_id") @db.ObjectId
+  name        String                       @unique
   slug        String
   fileUrl     String
   liveUrl     String
   description String?
   price       Float
   salePrice   Float
-  categoryIds String[]           @db.ObjectId // Array of category IDs (workaround for MongoDB)
-  images      Image[]
-  deleted     Boolean            @default(false)
-  createdAt   DateTime           @default(now())
-  updatedAt   DateTime           @updatedAt
+  images      String[]
+  deleted     Boolean                      @default(false)
+  createdAt   DateTime                     @default(now())
+  updatedAt   DateTime                     @updatedAt
   Order       Order[]
-  categories  TemplateCategory[]
+  categories  TemplateCategoryOnTemplate[]
 }
 
-model Image {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  url        String
-  templateId String   @db.ObjectId
-  template   Template @relation(fields: [templateId], references: [id], onDelete: Cascade)
-  createdAt  DateTime @default(now())
+model TemplateCategory {
+  id        String                       @id @default(auto()) @map("_id") @db.ObjectId
+  name      String                       @unique
+  slug      String?
+  createdAt DateTime                     @default(now())
+  updatedAt DateTime                     @updatedAt
+  templates TemplateCategoryOnTemplate[]
+}
+
+model TemplateCategoryOnTemplate {
+  id         String           @id @default(auto()) @map("_id") @db.ObjectId
+  templateId String           @db.ObjectId
+  categoryId String           @unique @db.ObjectId
+  createdAt  DateTime         @default(now())
+  updatedBy  String? // Additional metadata field
+  template   Template         @relation(fields: [templateId], references: [id])
+  category   TemplateCategory @relation(fields: [categoryId], references: [id])
 }
 
 enum OrderStatus {

@@ -3,10 +3,14 @@
 import dynamic from 'next/dynamic';
 import { editTemplate } from '@/actions/template/edit-template'; // Assuming you've written this action
 import FormButton from '@/components/common/form-button';
-import { Category, Image, Template } from '@prisma/client';
+import {
+  TemplateCategoryOnTemplate,
+  TemplateCategory,
+  Template,
+} from '@prisma/client';
 import React, { useState, useEffect, useActionState } from 'react';
-import { toast } from 'react-toastify';
 import 'react-quill-new/dist/quill.snow.css';
+import { useToast } from '@/hooks/use-toast';
 
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
 
@@ -14,37 +18,35 @@ const EditTemplateForm = ({
   categories,
   template,
 }: {
-  categories: Category[];
-  template: Template & { images: Image[]; categories: Category[] };
+  categories: TemplateCategory[];
+  template: Template & { categories: TemplateCategoryOnTemplate[] };
 }) => {
+  const { toast } = useToast();
   const [state, editTemplateAction] = useActionState(editTemplate, {
     success: true,
     message: '',
   });
 
   const [description, setDescription] = useState(template.description || '');
-  const [imageUrls, setImageUrls] = useState(
-    template.images.map((image) => image.url).join(', ') || '',
-  );
   const [selectedCategories, setSelectedCategories] = useState<string[]>(
-    template.categories.map((category) => category.id),
+    template.categories.map((category) => category.categoryId),
   );
 
   useEffect(() => {
-    if (!state.message) return;
-    const toastMessage = state.success ? toast.success : toast.error;
-    const message = state.message;
-    if (message) {
-      toastMessage(message);
+    if (state.message && state.success) {
+      toast({
+        title: state.message,
+      });
+    } else if (!state.success && state.message) {
+      toast({
+        title: state.message,
+        variant: 'destructive',
+      });
     }
   }, [state.message, state.success]);
 
   const handleDescriptionChange = (value: string) => {
     setDescription(value);
-  };
-
-  const handleImageUrlsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setImageUrls(e.target.value);
   };
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +70,6 @@ const EditTemplateForm = ({
           const formData = new FormData();
           formData.append('name', template.name); // Assuming name won't change
           formData.append('description', description);
-          formData.append('imageUrls', imageUrls);
           formData.append('categoryIds', JSON.stringify(selectedCategories)); // Append selected categories
           formData.append('templateLiveUrl', template.liveUrl); // Assuming live URL won't change
           formData.append('templateUrl', template.fileUrl); // Assuming file URL won't change
@@ -88,7 +89,6 @@ const EditTemplateForm = ({
             type='text'
             name='name'
             defaultValue={template.name}
-            disabled
             className='dark:bg-gray-800 px-4 py-2 border rounded-lg w-full dark:text-gray-200'
           />
         </div>
@@ -128,7 +128,6 @@ const EditTemplateForm = ({
             type='text'
             name='templateLiveUrl'
             defaultValue={template.liveUrl}
-            disabled
             className='dark:bg-gray-800 px-4 py-2 border rounded-lg w-full dark:text-gray-200'
           />
         </div>
@@ -142,7 +141,6 @@ const EditTemplateForm = ({
             type='text'
             name='templateUrl'
             defaultValue={template.fileUrl}
-            disabled
             className='dark:bg-gray-800 px-4 py-2 border rounded-lg w-full dark:text-gray-200'
           />
         </div>
@@ -156,7 +154,6 @@ const EditTemplateForm = ({
             type='number'
             name='price'
             defaultValue={template.price}
-            disabled
             className='dark:bg-gray-800 px-4 py-2 border rounded-lg w-full dark:text-gray-200'
           />
         </div>
@@ -170,7 +167,6 @@ const EditTemplateForm = ({
             type='number'
             name='salePrice'
             defaultValue={template.salePrice}
-            disabled
             className='dark:bg-gray-800 px-4 py-2 border rounded-lg w-full dark:text-gray-200'
           />
         </div>
@@ -183,8 +179,7 @@ const EditTemplateForm = ({
           <input
             type='text'
             name='imageUrls'
-            value={imageUrls}
-            onChange={handleImageUrlsChange}
+            defaultValue={template.images.join(', ')}
             className='dark:bg-gray-800 px-4 py-2 border rounded-lg w-full dark:text-gray-200'
             placeholder='https://example.com/image1.jpg, https://example.com/image2.jpg'
           />

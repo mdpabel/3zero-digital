@@ -35,7 +35,7 @@ export function SidebarNavMain({ items }: { items: SidebarItem[] }) {
           if (!isAllowed) return null;
 
           return (
-            <Collapsible key={item.label} asChild defaultOpen={!!item.isOpen}>
+            <Collapsible key={item.label} asChild defaultOpen={false}>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip={item.label}>
                   <Link

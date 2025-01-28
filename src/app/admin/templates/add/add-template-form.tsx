@@ -2,38 +2,25 @@
 import dynamic from 'next/dynamic';
 import { addTemplate } from '@/actions/template/add-template';
 import FormButton from '@/components/common/form-button';
-import { Category } from '@prisma/client';
-import React, { useActionState, useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { TemplateCategory } from '@prisma/client';
+import React, { useState } from 'react';
 import 'react-quill-new/dist/quill.snow.css';
+import { useToast } from '@/hooks/use-toast';
 const ReactQuill = dynamic(() => import('react-quill-new'), {
   ssr: false,
 });
 
-const AddTemplateForm = ({ categories }: { categories: Category[] }) => {
+const AddTemplateForm = ({
+  categories,
+}: {
+  categories: TemplateCategory[];
+}) => {
+  const { toast } = useToast();
   const [description, setDescription] = useState('');
-  const [imageUrls, setImageUrls] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]); // Store selected category IDs
-  const [state, action] = useActionState(addTemplate, {
-    success: true,
-    message: '',
-  });
-
-  useEffect(() => {
-    if (!state.message) return;
-    const toastMessage = state.success ? toast.success : toast.error;
-    const message = state.message;
-    if (message) {
-      toastMessage(message);
-    }
-  }, [state.message, state.success]);
 
   const handleDescriptionChange = (value: string) => {
     setDescription(value);
-  };
-
-  const handleImageUrlsChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setImageUrls(e.target.value);
   };
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +30,27 @@ const AddTemplateForm = ({ categories }: { categories: Category[] }) => {
         ? prevSelected.filter((id) => id !== categoryId)
         : [...prevSelected, categoryId],
     );
+  };
+
+  const handleFormSubmission = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    formData.append('description', description);
+    formData.append('categoryIds', JSON.stringify(selectedCategories));
+    const { message, success } = await addTemplate(formData);
+
+    if (message) {
+      if (success) {
+        toast({
+          title: message,
+        });
+      } else {
+        toast({
+          title: message,
+          variant: 'destructive',
+        });
+      }
+    }
   };
 
   return (
@@ -55,12 +63,7 @@ const AddTemplateForm = ({ categories }: { categories: Category[] }) => {
       </header>
 
       <form
-        action={(formData) => {
-          formData.append('description', description);
-          formData.append('imageUrls', imageUrls);
-          formData.append('categoryIds', JSON.stringify(selectedCategories)); // Append selected categories
-          action(formData);
-        }}
+        onSubmit={handleFormSubmission}
         className='bg-white dark:bg-gray-900 shadow-md mx-auto p-8 rounded-lg max-w-3xl'>
         {/* Name */}
         <div className='mb-6'>
@@ -159,8 +162,6 @@ const AddTemplateForm = ({ categories }: { categories: Category[] }) => {
           <input
             type='text'
             name='imageUrls'
-            value={imageUrls}
-            onChange={handleImageUrlsChange}
             className='dark:bg-gray-800 px-4 py-2 border rounded-lg w-full dark:text-gray-200'
             placeholder='https://example.com/image1.jpg, https://example.com/image2.jpg'
           />

@@ -3,9 +3,7 @@
 import prisma from '@/prisma/db';
 import { revalidatePath } from 'next/cache';
 
-export const deleteTemplate = async (formData: FormData) => {
-  const templateId = formData.get('templateId') as string;
-
+export const deleteTemplate = async (templateId: string) => {
   // Check if templateId is provided
   if (!templateId) {
     return {
@@ -13,6 +11,8 @@ export const deleteTemplate = async (formData: FormData) => {
       message: 'Template ID is required.',
     };
   }
+
+  console.log({ templateId });
 
   try {
     // Attempt to mark the template as deleted

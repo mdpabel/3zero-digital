@@ -28,9 +28,6 @@ const Templates = async ({
     where: {
       deleted: false,
     },
-    include: {
-      images: true,
-    },
     take: limit,
   });
 

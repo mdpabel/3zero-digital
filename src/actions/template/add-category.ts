@@ -1,6 +1,7 @@
 'use server';
 
 import prisma from '@/prisma/db';
+import { revalidatePath } from 'next/cache';
 import slugify from 'slugify';
 
 // Add a new category
@@ -30,6 +31,8 @@ export async function addCategory(_: any, formData: FormData) {
     await prisma.templateCategory.create({
       data: { name, slug },
     });
+
+    revalidatePath('/admin/template/category');
 
     return { success: true, message: 'Category added successfully.' };
   } catch (error) {

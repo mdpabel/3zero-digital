@@ -13,7 +13,6 @@ const EditPage = async ({ params }: { params: Promise<{ id: string }> }) => {
     },
     include: {
       categories: true,
-      images: true,
     },
   });
 

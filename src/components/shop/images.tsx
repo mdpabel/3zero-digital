@@ -3,10 +3,9 @@ import dynamic from 'next/dynamic';
 const Slider = dynamic(() => import('react-slick'));
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { Image as PrismaImage } from '@prisma/client';
 import Image from 'next/image';
 
-const CardImage = ({ images }: { images: PrismaImage[] }) => {
+const CardImage = ({ images }: { images: string[] }) => {
   const sliderSettings = {
     dots: false,
     infinite: images.length > 1, // Disable infinite mode if there's only one image
@@ -24,9 +23,9 @@ const CardImage = ({ images }: { images: PrismaImage[] }) => {
         <Slider {...sliderSettings}>
           {images.map((image) => (
             <Image
-              key={image.id}
-              src={image.url}
-              alt={`Product Image ${image.id}`}
+              key={image}
+              src={image}
+              alt={`Product Image ${image}`}
               className='rounded-lg w-full h-40 object-fill'
               width={200}
               height={200}
@@ -36,9 +35,9 @@ const CardImage = ({ images }: { images: PrismaImage[] }) => {
       ) : (
         // Render a single image directly if only one image is available
         <Image
-          key={images[0].id}
-          src={images[0].url}
-          alt={`Product Image ${images[0].id}`}
+          key={images[0]}
+          src={images[0]}
+          alt={`Product Image ${images[0]}`}
           className='rounded-lg w-full h-40 object-fill'
           width={200}
           height={200}

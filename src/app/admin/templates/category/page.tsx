@@ -1,8 +1,12 @@
 import prisma from '@/prisma/db';
 import AddCategoryForm from './add-category-form';
+import DeleteCategory from './delete-category';
+import DeleteAllCategory from './delete-all-category';
 
 const TemplateCategories = async () => {
   const categories = await prisma.templateCategory.findMany();
+
+  console.log({ categories });
 
   return (
     <div className='px-10 py-10'>
@@ -20,7 +24,10 @@ const TemplateCategories = async () => {
 
       {/* Categories List */}
       <div className='bg-white dark:bg-gray-900 shadow-md mx-auto p-6 rounded-lg max-w-4xl'>
-        <h2 className='mb-4 font-bold text-2xl'>Existing Categories</h2>
+        <div className='flex justify-between items-center'>
+          <h2 className='mb-4 py-8 font-bold text-2xl'>Existing Categories</h2>
+          <DeleteAllCategory />
+        </div>
         {categories.length > 0 ? (
           <ul className='space-y-4'>
             {categories.map((category) => (
@@ -30,9 +37,7 @@ const TemplateCategories = async () => {
                 <span className='font-medium text-gray-800 dark:text-gray-200'>
                   {category.name}
                 </span>
-                <button className='bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-white'>
-                  Delete
-                </button>
+                <DeleteCategory categoryId={category.id} />
               </li>
             ))}
           </ul>

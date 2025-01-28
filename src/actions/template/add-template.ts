@@ -3,7 +3,7 @@
 import prisma from '@/prisma/db';
 import slugify from 'slugify';
 
-export async function addTemplate(_: unknown, formData: FormData) {
+export async function addTemplate(formData: FormData) {
   try {
     // Extract data from the FormData object
     const name = formData.get('name') as string | null;
@@ -46,7 +46,7 @@ export async function addTemplate(_: unknown, formData: FormData) {
     });
 
     // Save the template in the database
-    await prisma.template.create({
+    const template = await prisma.template.create({
       data: {
         name,
         slug,
@@ -55,12 +55,10 @@ export async function addTemplate(_: unknown, formData: FormData) {
         salePrice,
         fileUrl: templateUrl,
         liveUrl: templateLiveUrl,
-        images: {
-          create: images.map((url) => ({ url })), // Directly store image URLs in the database
-        },
+        images,
         categories: {
-          connect: categories.map((category) => ({
-            id: category.id, // Connect each category to the template
+          create: categories.map((category) => ({
+            categoryId: category.id,
           })),
         },
       },
@@ -69,7 +67,7 @@ export async function addTemplate(_: unknown, formData: FormData) {
     return { success: true, message: 'Template added successfully!' };
   } catch (error: any) {
     // Log error for debugging (optional)
-    console.error('Error adding template:', error);
+    console.log('Error adding template:', error);
 
     // Return a standardized error response
     return {

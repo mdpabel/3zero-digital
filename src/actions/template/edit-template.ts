@@ -8,7 +8,7 @@ export async function editTemplate(_: any, formData: FormData) {
     // Extract data from the FormData object
     const name = formData.get('name') as string | null;
     const description = formData.get('description') as string | null;
-    const categoryIds = formData.get('categoryIds') as string;
+    const categoryIds = formData.get('categoryIds') as string; // JSON string of category IDs
     const price = parseFloat(formData.get('price') as string);
     const salePrice = parseFloat(formData.get('salePrice') as string) || 0;
     const imageUrls = formData.get('imageUrls') as string | null;
@@ -34,19 +34,26 @@ export async function editTemplate(_: any, formData: FormData) {
 
     const slug = slugify(name);
 
+    // Parse category IDs from JSON string
+    const categoryIdArray = JSON.parse(categoryIds);
+
     // Check if all categories exist
     const categories = await prisma.templateCategory.findMany({
       where: {
         id: {
-          in: JSON.parse(categoryIds),
+          in: categoryIdArray,
         },
       },
     });
 
-    // Check if template exists and include related categories
+    if (categories.length !== categoryIdArray.length) {
+      return { success: false, message: 'Some categories do not exist' };
+    }
+
+    // Check if template exists
     const existingTemplate = await prisma.template.findUnique({
       where: { id },
-      include: { categories: true }, // Include related categories here
+      include: { categories: true },
     });
 
     if (!existingTemplate) {
@@ -64,17 +71,12 @@ export async function editTemplate(_: any, formData: FormData) {
         salePrice,
         fileUrl: templateUrl,
         liveUrl: templateLiveUrl,
-        images: {
-          deleteMany: {}, // Delete all existing images before adding new ones
-          create: images.map((url) => ({ url })), // Add new images
-        },
+        images,
         categories: {
-          disconnect: existingTemplate.categories.map((category) => ({
-            id: category.id, // Disconnect previous categories
-          })),
-          connect: categories.map((category) => ({
-            id: category.id, // Connect new categories
-          })),
+          deleteMany: {}, // Remove all existing category associations
+          create: categoryIdArray.map((categoryId: string) => ({
+            categoryId,
+          })), // Add new category associations
         },
       },
     });

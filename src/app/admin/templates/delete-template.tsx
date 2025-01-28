@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 
 const DeleteTemplate = ({ templateId }: { templateId: string }) => {
-  const [isPendig, setIsPending] = useState(false);
+  const [isPending, setIsPending] = useState(false);
 
   return (
     <button
@@ -13,12 +13,14 @@ const DeleteTemplate = ({ templateId }: { templateId: string }) => {
       className='text-red-400 hover:text-red-500 transition-colors'
       onClick={async () => {
         setIsPending(true);
-        const formData = new FormData();
-        formData.append('templateId', templateId);
-        await deleteTemplate(formData);
+        await deleteTemplate(templateId);
         setIsPending(false);
       }}>
-      {isPendig ? <Spinner /> : <FaTrashAlt className='inline-block w-5 h-5' />}
+      {isPending ? (
+        <Spinner />
+      ) : (
+        <FaTrashAlt className='inline-block w-5 h-5' />
+      )}
     </button>
   );
 };
