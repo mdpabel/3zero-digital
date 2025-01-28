@@ -47,8 +47,11 @@ const ProductDetails = async ({
   const product = await prisma.template.findFirst({
     where: { slug },
     include: {
-      categories: true, // Include related categories
-      images: true, // Assuming 'images' is the field with images related to the product
+      categories: {
+        select: {
+          category: true,
+        },
+      }, // Include related categories
     },
   });
 
@@ -67,7 +70,9 @@ const ProductDetails = async ({
 
           {/* Displaying Multiple Categories */}
           <p className='mt-2 text-gray-500 text-lg'>
-            {product.categories.map((category) => category.name).join(', ')}
+            {product.categories
+              .map((category) => category.category.name)
+              .join(', ')}
           </p>
         </div>
 

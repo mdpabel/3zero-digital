@@ -66,8 +66,7 @@ const EditTemplateForm = ({
       </header>
 
       <form
-        action={() => {
-          const formData = new FormData();
+        action={(formData) => {
           formData.append('name', template.name); // Assuming name won't change
           formData.append('description', description);
           formData.append('categoryIds', JSON.stringify(selectedCategories)); // Append selected categories

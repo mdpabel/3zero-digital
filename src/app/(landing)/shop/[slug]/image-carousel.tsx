@@ -1,5 +1,4 @@
 'use client';
-import { Image as TemplateImage } from '@prisma/client';
 import Slider from 'react-slick';
 
 // Import Slick styles
@@ -7,7 +6,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from 'next/image';
 
-const ImageCarousel = ({ images }: { images: TemplateImage[] }) => {
+const ImageCarousel = ({ images }: { images: string[] }) => {
   // React Slick Settings
   const sliderSettings = {
     dots: true,
@@ -25,9 +24,9 @@ const ImageCarousel = ({ images }: { images: TemplateImage[] }) => {
       <Slider {...sliderSettings}>
         {images.map((image) => (
           <img
-            key={image.id}
-            src={image.url}
-            alt={`Product Image ${image.id}`}
+            key={image}
+            src={image}
+            alt={`Product Image ${image}`}
             className='rounded-lg w-full object-fill'
           />
         ))}

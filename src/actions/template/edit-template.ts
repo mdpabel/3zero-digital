@@ -32,6 +32,8 @@ export async function editTemplate(_: any, formData: FormData) {
       ? imageUrls.split(',').map((url) => url.trim())
       : [];
 
+    console.log({ images, imageUrls });
+
     const slug = slugify(name);
 
     // Parse category IDs from JSON string
