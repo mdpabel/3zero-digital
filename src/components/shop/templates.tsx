@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import prisma from '@/prisma/db';
 import { FaCartShopping } from 'react-icons/fa6';
 import Link from 'next/link';
@@ -125,7 +125,9 @@ const Templates = async ({
       )}
 
       {!featured && (
-        <TemplatePagination total={products.length} limit={limit} />
+        <Suspense>
+          <TemplatePagination total={products.length} limit={limit} />
+        </Suspense>
       )}
     </div>
   );
