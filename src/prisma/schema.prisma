@@ -147,17 +147,6 @@ model Product {
   couponId  String?   @db.ObjectId
 }
 
-// model Price {
-//   id              String           @id @default(auto()) @map("_id") @db.ObjectId
-//   product         Product          @relation(fields: [productId], references: [id])
-//   productId       String           @db.ObjectId
-//   stripePriceId   String
-//   unitAmount      Float
-//   origPrice       Float?
-//   currency        String
-//   billingInterval BillingInterval?
-//   isRecurring     Boolean
-// }
 model Template {
   id          String                       @id @default(auto()) @map("_id") @db.ObjectId
   name        String                       @unique
