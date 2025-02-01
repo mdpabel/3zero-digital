@@ -12,6 +12,11 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { applyCoupon } from '@/actions/coupon/apply-coupon';
+import { useToast } from '@/hooks/use-toast';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
+import Spinner from '@/components/common/spinner';
 
 const couponSchema = z.object({
   coupon: z
@@ -23,6 +28,11 @@ const couponSchema = z.object({
 });
 
 const CouponForm = () => {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathName = usePathname();
+  const { toast } = useToast();
+  const [pending, setPending] = useState(false);
   const form = useForm<z.infer<typeof couponSchema>>({
     resolver: zodResolver(couponSchema),
     defaultValues: {
@@ -30,8 +40,31 @@ const CouponForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof couponSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof couponSchema>) {
+    setPending(true);
+    const { message, success, coupon } = await applyCoupon(values.coupon);
+    if (message) {
+      toast({
+        title: message,
+        variant: success ? 'default' : 'destructive',
+      });
+    }
+
+    const params = new URLSearchParams(searchParams);
+
+    const existingCouponId = params.get('couponId');
+
+    if (existingCouponId) {
+      params.delete('couponId');
+    }
+
+    if (coupon && coupon?.id) {
+      params.set('couponId', coupon?.id);
+      params.set('discount', coupon?.discount.toString());
+      params.set('discountType', coupon?.discountType);
+    }
+    router.replace(pathName + '?' + params.toString());
+    setPending(false);
   }
 
   return (
@@ -51,7 +84,7 @@ const CouponForm = () => {
               </FormItem>
             )}
           />
-          <Button type='submit'>Apply</Button>
+          <Button type='submit'>{pending ? <Spinner /> : 'Apply'}</Button>
         </div>
       </form>
     </Form>

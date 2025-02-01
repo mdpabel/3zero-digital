@@ -8,7 +8,7 @@ import {
 } from 'react-icons/fa';
 import { MdSecurity, MdUpdate } from 'react-icons/md';
 import PricingTable from './pricing-table';
-import HeroSection from '@/components/comment/hero-section';
+import HeroSection from '@/components/common/hero-section';
 import { getProduct } from '@/lib/product/get-product';
 import Quiz from '@/components/comment/quiz';
 import { questions } from './data';

@@ -14,7 +14,8 @@ const PricingTable = async ({ slug }: { slug: string }) => {
         🚀 Simple, Transparent Pricing
       </h2>
       <p className='mb-8 text-xl'>
-        Everything you need to get your website up and running for just $79.
+        Everything you need to get your website up and running for just ${price}
+        .
       </p>
 
       <div className='mx-auto max-w-4xl'>
@@ -23,7 +24,7 @@ const PricingTable = async ({ slug }: { slug: string }) => {
             <h3 className='font-bold text-2xl'>
               Affordable Website development
             </h3>
-            <p className='mt-2 font-extrabold text-5xl'>$79</p>
+            <p className='mt-2 font-extrabold text-5xl'>${price}</p>
             <p className='mt-2 text-lg'>One-time fee. No hidden charges.</p>
           </div>
 

@@ -17,6 +17,7 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
     lastName,
     note,
     websites,
+    couponId,
   } = orderSchema.parse(data);
 
   try {
@@ -73,10 +74,21 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
       productName = product.name;
     }
 
-    console.log({ metaData });
-
     const parsedMetaData =
       metaData && metaData !== 'undefined' ? JSON.parse(metaData) : {};
+
+    // fetch coupon
+    const coupon = await prisma.coupon.findUnique({
+      where: { id: couponId },
+    });
+
+    if (coupon) {
+      if (coupon.discountType === 'FLAT' && coupon.discount < price) {
+        price = price - coupon.discount;
+      } else if (coupon.discountType === 'PERCENTAGE') {
+        price = price - (price * coupon.discount) / 100;
+      }
+    }
 
     // Use a transaction for atomicity
     const result = await prisma.$transaction(async (tx) => {
@@ -90,6 +102,7 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
           note,
           websiteDetails: websites,
           metadata: parsedMetaData,
+          couponId: coupon?.id,
         },
       });
 

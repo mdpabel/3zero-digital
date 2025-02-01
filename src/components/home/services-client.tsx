@@ -12,6 +12,8 @@ import { ServiceWithProducts } from '@/lib/product/get-product';
 import dynamic from 'next/dynamic';
 import { Active } from './services';
 const PlaceOrder = dynamic(() => import('./place-order'));
+import freeStamp from '@/../public/images/freeStamp.png';
+import Image from 'next/image';
 
 const ServicesClient = ({
   services,
@@ -69,13 +71,22 @@ const ServicesClient = ({
                             <span className='text-indigo-500 text-xl sm:text-2xl'>
                               <IconRenderer iconName={product.icon!} />
                             </span>
-                            <div>
+                            <div className='relative'>
                               <h3 className='flex items-center font-semibold text-gray-800 text-md sm:text-lg dark:text-gray-200'>
                                 {product.name}:
-                                {product.price && (
+                                {product.price > 0 ? (
                                   <span className='flex items-center bg-white ml-2 px-1 rounded-sm text-[#604485]'>
                                     <FaTag className='mr-1' />${product.price}
                                   </span>
+                                ) : (
+                                  <div>
+                                    <Image
+                                      className='ml-2'
+                                      src={freeStamp}
+                                      alt='free stamp'
+                                      width={50}
+                                    />
+                                  </div>
                                 )}
                               </h3>
                               <p className=''>{product.description}</p>

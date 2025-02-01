@@ -10,6 +10,8 @@ import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
 import ProjectSteps from '../../../../../components/development/project-steps';
 import { steps } from './data';
+import HeroSection from '@/components/common/hero-section';
+import websiteForDoctors from '@/../public/images/services/website-for-doctors-hero-image.png';
 
 export const dynamic = 'force-static';
 
@@ -22,17 +24,23 @@ const page = () => {
 
   return (
     <div className='mx-auto px-4 max-w-6xl'>
-      <Hero
-        subHeadline='Ready to create a professional website without the high costs or stress?'
-        headline='Get Your Business Website in Just 7 Days for Only $79'
-        description="<strong className='text-black dark:text-white'>
-          security, hosting, domain, SSL, Email
-        </strong>
-        , and more—at a price that won’t break the bank."
+      <HeroSection
+        title='Website Development for Doctors'
+        subtitle='Build a professional online presence with a custom website tailored for medical professionals.'
+        description='Our websites help doctors connect with patients, manage appointments, and showcase their expertise with ease. Get a secure, fast, and SEO-friendly website today!'
+        firstBtnText='Get Started'
+        firstBtnLink='/contact'
+        imgSrc={websiteForDoctors}
       />
+
       <Video videoId='na2iB6nBzIc' pageSlug={slug} />
       <PricingTable slug={slug} />
-      <ProjectSteps steps={steps} />
+      <ProjectSteps
+        title='🚀 Our Workflow to Build Your Dream Website'
+        steps={steps}
+        subtitle='Here’s how our company ensures a smooth and professional process for
+        creating your website.'
+      />
       <Comparison />
       <Templates
         filterOptions={false}

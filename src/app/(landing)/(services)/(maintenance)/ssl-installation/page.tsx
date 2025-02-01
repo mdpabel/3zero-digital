@@ -12,7 +12,7 @@ import {
 import PricingTable from './pricing-table';
 import { getProduct } from '@/lib/product/get-product';
 import { getServiceMetadata } from '@/app/seo';
-import HeroSection from '@/components/comment/hero-section';
+import HeroSection from '@/components/common/hero-section';
 import Quiz from '@/components/comment/quiz';
 import { questions } from './data';
 import Video from '@/components/common/video';

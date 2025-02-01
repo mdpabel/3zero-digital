@@ -19,6 +19,7 @@ const Order = async ({ params }: { params: Promise<{ orderId: string }> }) => {
       template: true,
       payment: true,
       user: true,
+      coupon: true,
     },
   });
 
@@ -66,6 +67,13 @@ const Order = async ({ params }: { params: Promise<{ orderId: string }> }) => {
                 {order.product?.price && (
                   <p className='flex justify-between items-center'>
                     <span>Quantity</span> <span>{order.quantity}</span>
+                  </p>
+                )}
+
+                {order.coupon && (
+                  <p className='flex justify-between items-center'>
+                    <span>Discount</span>{' '}
+                    <span>{order.coupon?.discount + '' + '%'}</span>
                   </p>
                 )}
 

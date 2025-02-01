@@ -13,5 +13,6 @@ export const orderSchema = z.object({
   lastName: z.string().min(1),
   websites: z.string().optional(),
   note: z.string().optional(),
+  couponId: z.string().optional(),
   productType: z.enum(['product', 'template']).default('product').optional(),
 });

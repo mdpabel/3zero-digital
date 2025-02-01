@@ -3,6 +3,7 @@ import React from 'react';
 import PlaceOrderForm from './place-order-form';
 import prisma from '@/prisma/db';
 import CouponForm from './coupon-form';
+import { DiscountType } from '@prisma/client';
 
 type Props = {
   searchParams: Promise<{
@@ -10,13 +11,24 @@ type Props = {
     quantity: string;
     metaData: string;
     productType: string;
+    couponId?: string;
+    discount?: string;
+    discountType?: DiscountType;
   }>;
 };
 
 const PlaceOrder = async ({ searchParams }: Props) => {
   const session = await auth();
 
-  const { metaData, productId, quantity, productType } = await searchParams;
+  const {
+    metaData,
+    productId,
+    quantity,
+    productType,
+    couponId,
+    discount,
+    discountType,
+  } = await searchParams;
 
   if (!productId) {
     return <div className='mx-auto py-10 p-4 max-w-6xl'>Product not found</div>;
@@ -28,6 +40,16 @@ const PlaceOrder = async ({ searchParams }: Props) => {
 
   if (!product) {
     return <div className='mx-auto py-10 p-4 max-w-6xl'>Product not found</div>;
+  }
+
+  let discountedValue = 0;
+  if (couponId) {
+    if (discountType === 'FLAT') {
+      discountedValue = discount ? parseInt(discount) : 0;
+    } else if (discountType === 'PERCENTAGE') {
+      const percentage = discount ? parseInt(discount) : 0;
+      discountedValue = (product.price * percentage) / 100;
+    }
   }
 
   return (
@@ -43,6 +65,7 @@ const PlaceOrder = async ({ searchParams }: Props) => {
             quantity={quantity}
             productType={productType}
             metaData={metaData}
+            couponId={couponId}
           />
         </div>
 
@@ -82,7 +105,11 @@ const PlaceOrder = async ({ searchParams }: Props) => {
               <div className='flex justify-between items-center mt-6 pt-4 border-t'>
                 <h4 className='font-semibold'>Total</h4>
                 <p className='font-bold text-lg'>
-                  ${product.price * parseInt(quantity)}
+                  $
+                  {(
+                    product.price * parseInt(quantity) -
+                    discountedValue
+                  ).toFixed(2)}
                 </p>
               </div>
 

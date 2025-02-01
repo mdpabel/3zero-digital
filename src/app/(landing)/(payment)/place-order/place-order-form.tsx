@@ -30,6 +30,7 @@ type Props = {
   quantity: string;
   metaData: string;
   productType: string;
+  couponId?: string;
 };
 
 const PlaceOrderForm = ({
@@ -41,6 +42,7 @@ const PlaceOrderForm = ({
   productId,
   quantity,
   productType,
+  couponId,
 }: Props) => {
   const { toast } = useToast();
   const [pending, setPending] = useState(false);
@@ -64,6 +66,7 @@ const PlaceOrderForm = ({
       productId,
       quantity,
       metaData,
+      couponId,
     });
 
     if (accountExist) {

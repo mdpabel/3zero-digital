@@ -1,4 +1,4 @@
-import HeroSection from '@/components/comment/hero-section';
+import HeroSection from '@/components/common/hero-section';
 import KeyBenefits from '@/components/comment/key-benefits';
 import Quiz from '@/components/comment/quiz';
 import { benefits, processes, questions } from './data';

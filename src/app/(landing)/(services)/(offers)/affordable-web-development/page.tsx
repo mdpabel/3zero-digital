@@ -5,7 +5,7 @@ import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
 import PricingTable from '../../../../../components/development/pricing-table';
 import ProcessSteps from '@/components/comment/process-steps';
-import { processes, steps } from './data';
+import { steps } from './data';
 import Templates from '@/components/shop/templates';
 import React from 'react';
 import { getServiceMetadata } from '@/app/seo';
@@ -35,7 +35,12 @@ const page = () => {
       />
       <Video videoId='na2iB6nBzIc' pageSlug={slug} />
       <PricingTable slug={slug} />
-      <ProjectSteps steps={steps} />
+      <ProjectSteps
+        title='🚀 Our Workflow to Build Your Dream Website'
+        steps={steps}
+        subtitle='Here’s how our company ensures a smooth and professional process for
+              creating your website.'
+      />
       <Comparison />
       <Templates
         filterOptions={false}

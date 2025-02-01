@@ -9,9 +9,9 @@ const PAGE_SIZE = 6;
 const Coupons = async ({
   searchParams,
 }: {
-  searchParams: { page: string };
+  searchParams: Promise<{ page: string }>;
 }) => {
-  const page = parseInt(searchParams.page || '1', 10);
+  const page = parseInt((await searchParams).page || '1', 10);
 
   const totalCoupons = await prisma.coupon.count();
   const coupons = await prisma.coupon.findMany({

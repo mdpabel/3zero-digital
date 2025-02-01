@@ -1,4 +1,5 @@
 import { YouTubeEmbed } from '@next/third-parties/google';
+import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 
 const HeroSection = ({
@@ -7,14 +8,16 @@ const HeroSection = ({
   description,
   youtubeId,
   firstBtnText,
+  imgSrc,
   firstBtnLink,
 }: {
   title: string;
   subtitle: string;
   description: string;
-  youtubeId: string;
+  youtubeId?: string;
   firstBtnText: string;
   firstBtnLink: string;
+  imgSrc?: StaticImageData;
 }) => {
   return (
     <div className='relative py-10 md:py-14'>
@@ -42,7 +45,10 @@ const HeroSection = ({
         </div>
 
         <div className='relative flex justify-center items-center col-span-2'>
-          <YouTubeEmbed videoid={youtubeId} width={400} params='controls=0' />
+          {youtubeId && (
+            <YouTubeEmbed videoid={youtubeId} width={400} params='controls=0' />
+          )}
+          {imgSrc && <Image src={imgSrc} alt={title} />}
         </div>
       </div>
     </div>

@@ -2,21 +2,24 @@ import React from 'react';
 
 const ProjectSteps = ({
   steps,
+  title,
+  subtitle,
 }: {
   steps: {
     icon: React.JSX.Element;
     title: string;
     description: string;
   }[];
+  title: string;
+  subtitle: string;
 }) => {
   return (
     <div className='bg-gradient-to-r py-16 text-white'>
       <h2 className='mb-6 font-bold text-4xl text-black text-center dark:text-white'>
-        🚀 Our Workflow to Build Your Dream Website
+        {title}
       </h2>
       <p className='mx-auto mb-12 max-w-2xl text-black text-center text-lg dark:text-white'>
-        Here’s how our company ensures a smooth and professional process for
-        creating your website.
+        {subtitle}
       </p>
 
       <div className='relative mx-auto max-w-4xl'>
