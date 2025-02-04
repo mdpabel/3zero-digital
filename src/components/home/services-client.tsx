@@ -1,7 +1,3 @@
-'use client';
-
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import Title from '../common/title';
 import { Button } from '../ui/button';
@@ -37,7 +33,6 @@ const ServicesClient = ({
                 key={service.id}
                 value={service.name}
                 className='flex items-center space-x-2 hover:bg-indigo-500 p-2 sm:p-4 rounded-md text-white transition-colors primary-color'>
-                {/* {category.icon} */}
                 <IconRenderer iconName={service.icon!} />
                 <span>{service.name}</span>
               </TabsTrigger>
@@ -48,68 +43,61 @@ const ServicesClient = ({
         {services.map((service) => {
           return (
             <TabsContent
-              className='p-4 pt-10'
+              className='opacity-0 data-[state=active]:opacity-100 p-4 pt-10 transition-opacity transition-transform translate-y-4 data-[state=active]:translate-y-0 duration-500'
               key={service.id}
               value={service.name}>
-              <motion.div
-                key={service.name}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
-                transition={{ duration: 0.6 }}>
-                <div>
-                  <h2 className='mb-4 sm:mb-6 font-bold text-gray-800 text-lg sm:text-2xl dark:text-gray-200'>
-                    {service.description}
-                  </h2>
-                  <ul className='space-y-4 sm:space-y-6'>
-                    {service.products.map((product, i) => {
-                      return (
-                        <li
-                          key={i}
-                          className='flex lg:flex-row flex-col lg:justify-between lg:items-center gap-4 !mb-12 md:!mb-0'>
-                          <div className='flex items-center space-x-4'>
-                            <span className='text-indigo-500 text-xl sm:text-2xl'>
-                              <IconRenderer iconName={product.icon!} />
-                            </span>
-                            <div className='relative'>
-                              <h3 className='flex items-center font-semibold text-gray-800 text-md sm:text-lg dark:text-gray-200'>
-                                {product.name}:
-                                {product.price > 0 ? (
-                                  <span className='flex items-center bg-white ml-2 px-1 rounded-sm text-[#604485]'>
-                                    <FaTag className='mr-1' />${product.price}
-                                  </span>
-                                ) : (
-                                  <div>
-                                    <Image
-                                      className='ml-2'
-                                      src={freeStamp}
-                                      alt='free stamp'
-                                      width={50}
-                                    />
-                                  </div>
-                                )}
-                              </h3>
-                              <p className=''>{product.description}</p>
-                            </div>
-                          </div>
-                          <div className='flex md:flex-row flex-col gap-4'>
-                            {product.name !== 'Development' &&
-                              product.price > 0 && (
-                                <PlaceOrder productId={product.id} />
+              <div>
+                <h2 className='mb-4 sm:mb-6 font-bold text-gray-800 text-lg sm:text-2xl dark:text-gray-200'>
+                  {service.description}
+                </h2>
+                <ul className='space-y-4 sm:space-y-6'>
+                  {service.products.map((product, i) => {
+                    return (
+                      <li
+                        key={i}
+                        className='flex lg:flex-row flex-col lg:justify-between lg:items-center gap-4 !mb-12 md:!mb-0'>
+                        <div className='flex items-center space-x-4'>
+                          <span className='text-indigo-500 text-xl sm:text-2xl'>
+                            <IconRenderer iconName={product.icon!} />
+                          </span>
+                          <div className='relative'>
+                            <h3 className='flex items-center font-semibold text-gray-800 text-md sm:text-lg dark:text-gray-200'>
+                              {product.name}:
+                              {product.price > 0 ? (
+                                <span className='flex items-center bg-white ml-2 px-1 rounded-sm text-[#604485]'>
+                                  <FaTag className='mr-1' />${product.price}
+                                </span>
+                              ) : (
+                                <div>
+                                  <Image
+                                    className='ml-2'
+                                    src={freeStamp}
+                                    alt='free stamp'
+                                    width={50}
+                                  />
+                                </div>
                               )}
-                            <Button asChild>
-                              <Link href={product.slug}>
-                                <FaRegFileAlt className='mr-2' />
-                                Explore Service
-                              </Link>
-                            </Button>
+                            </h3>
+                            <p className=''>{product.description}</p>
                           </div>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              </motion.div>
+                        </div>
+                        <div className='flex md:flex-row flex-col gap-4'>
+                          {product.name !== 'Development' &&
+                            product.price > 0 && (
+                              <PlaceOrder productId={product.id} />
+                            )}
+                          <Button asChild>
+                            <Link href={product.slug}>
+                              <FaRegFileAlt className='mr-2' />
+                              Explore Service
+                            </Link>
+                          </Button>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
             </TabsContent>
           );
         })}

@@ -2,6 +2,7 @@ import { fetchCaseStudies } from '@/lib/wordpress/case-study';
 import { fetchCategories } from '@/lib/wordpress/fetch-category';
 import { getPosts } from '@/lib/wordpress/fetch-posts';
 import { fetchTags } from '@/lib/wordpress/fetch-tags';
+import prisma from '@/prisma/db';
 import { services } from '@/services';
 import type { MetadataRoute } from 'next';
 import { WP_REST_API_Post, WP_REST_API_Posts } from 'wp-types';
@@ -102,11 +103,34 @@ export const generateBlogSitemap = async () => {
   return [...blogUrls, ...categoryUrls];
 };
 
+const generateTemplateCategorySitemap = async () => {
+  const categories = await prisma.templateCategory.findMany();
+
+  const baseUrl = 'https://www.3zerodigital.com/shop/category';
+
+  // Generate category URLs
+  const categoriesUrl: MetadataRoute.Sitemap = categories.map((category) => ({
+    url: `${baseUrl}/${category.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.4,
+  }));
+
+  return categoriesUrl;
+};
+
 export default async function sitemap() {
   const staticPages = generateStaticSitemap();
   const services = generateServicesSitemap();
   const caseStudies = await generateCaseStudiesSitemap();
   const blogs = await generateBlogSitemap();
+  const templateCategory = await generateTemplateCategorySitemap();
 
-  return [...staticPages, ...services, ...caseStudies, ...blogs];
+  return [
+    ...staticPages,
+    ...services,
+    ...caseStudies,
+    ...blogs,
+    ...templateCategory,
+  ];
 }

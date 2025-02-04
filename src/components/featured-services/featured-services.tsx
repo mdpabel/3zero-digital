@@ -1,6 +1,10 @@
 import React from 'react';
-import FeaturedServicesCarousel from './featured-services-carousel';
 import { getProduct } from '@/lib/product/get-product';
+import dynamic from 'next/dynamic';
+
+const FeaturedServicesCarousel = dynamic(
+  () => import('./featured-services-carousel'),
+);
 
 const FeaturedServices = async () => {
   const affordableWebDevelopment = await getProduct(
