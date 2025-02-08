@@ -5,11 +5,14 @@ import Link from 'next/link';
 import CardImage from './images';
 import { Button } from '../ui/button';
 import TemplatePagination from './pagination';
+import CardBorder from '../common/card-border';
+import TemplateCategory from './template-category';
 
 const Templates = async ({
   featured = false,
   filterOptions = true,
   limit = 12,
+  currentPage = 1,
   sortBy,
   category,
   title = 'Explore Premium Templates for Your Business',
@@ -24,10 +27,11 @@ const Templates = async ({
   limit?: number;
   sortBy?: string;
   category?: string;
+  currentPage?: number;
 }) => {
-  const categories = await prisma.templateCategory.findMany();
+  const skip = (currentPage - 1) * limit;
 
-  const products = await prisma.template.findMany({
+  const templates = await prisma.template.findMany({
     where: {
       deleted: false,
       categories: {
@@ -39,11 +43,13 @@ const Templates = async ({
       },
     },
     take: limit,
-
+    skip: (currentPage - 1) * limit,
     orderBy: {
       price: 'desc',
     },
   });
+
+  const totalTemplates = await prisma.template.count();
 
   return (
     <div className='relative mx-auto px-4 py-10 w-full max-w-6xl container'>
@@ -55,59 +61,48 @@ const Templates = async ({
 
       {/* Categories Section */}
 
-      {filterOptions && (
-        <section className='mb-10'>
-          <h2 className='mb-4 font-semibold text-2xl'>Categories</h2>
-          <div className='flex flex-wrap gap-4'>
-            {categories.map((category) => (
-              <Link
-                href={`/shop/category/${category.slug}`}
-                key={category.id}
-                className='bg-gray-100 hover:bg-gray-200 dark:hover:bg-gray-700 dark:bg-gray-800 shadow-md px-4 py-2 rounded-lg text-gray-700 dark:text-gray-200'>
-                {category.name}
-              </Link>
-            ))}
-          </div>
-        </section>
-      )}
+      {filterOptions && <TemplateCategory />}
 
       {/* Product Cards Section */}
-      {products.length > 0 ? (
+      {templates.length > 0 ? (
         <section className='mb-10'>
-          <h2 className='mb-6 font-semibold text-2xl'>Featured Products</h2>
+          <h2 className='mb-6 font-semibold text-2xl'>Featured Templates</h2>
           <div className='gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-            {products.map((product, index) => (
+            {templates.map((product, index) => (
               <div key={index}>
-                <div className='bg-white dark:bg-gray-900 shadow-md p-6 rounded-lg'>
-                  {/* Image Slider */}
-                  <Link href={`/shop/${product.slug}`}>
-                    <CardImage images={product.images} />
-                  </Link>
-                  {/* Product Info */}
-                  <h3 className='mb-2 font-bold text-lg'>
-                    <Link href={`/shop/${product.slug}`}>{product.name}</Link>
-                  </h3>
-                  <div className='flex justify-between items-center'>
-                    <div className='flex flex-col'>
-                      <span className='line-through'>${product.price}</span>
-                      <span className='font-bold text-red-500 text-xl'>
-                        ${product.salePrice}
-                      </span>
-                    </div>
-                    <div className='flex items-center space-x-2'>
-                      <Link
-                        href={product.liveUrl}
-                        target='_blank'
-                        className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-md px-4 py-1.5 rounded-lg font-semibold text-white'>
-                        Live Preview
-                      </Link>
-                      <form action=''>
-                        <button className='bg-gray-100 dark:bg-gray-800 shadow-md px-4 py-2 rounded-full'>
-                          <span role='img' aria-label='cart'>
-                            <FaCartShopping />
-                          </span>
-                        </button>
-                      </form>
+                <div className='border-slate-300 dark:border-slate-700 bg-white dark:bg-gray-900 shadow-md border rounded-lg'>
+                  <CardBorder />
+                  <div className='p-6'>
+                    {/* Image Slider */}
+                    <Link href={`/shop/${product.slug}`}>
+                      <CardImage images={product.images} />
+                    </Link>
+                    {/* Product Info */}
+                    <h3 className='mb-2 font-bold text-lg'>
+                      <Link href={`/shop/${product.slug}`}>{product.name}</Link>
+                    </h3>
+                    <div className='flex justify-between items-center'>
+                      <div className='flex flex-col'>
+                        <span className='line-through'>${product.price}</span>
+                        <span className='font-bold text-pink-500 text-xl'>
+                          ${product.salePrice}
+                        </span>
+                      </div>
+                      <div className='flex items-center space-x-2'>
+                        <Link
+                          href={product.liveUrl}
+                          target='_blank'
+                          className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-md px-4 py-1.5 rounded-lg font-semibold text-white'>
+                          Live Preview
+                        </Link>
+                        <form action=''>
+                          <button className='bg-gray-100 dark:bg-gray-800 shadow-md px-4 py-2 rounded-full'>
+                            <span role='img' aria-label='cart'>
+                              <FaCartShopping />
+                            </span>
+                          </button>
+                        </form>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -126,7 +121,11 @@ const Templates = async ({
 
       {!featured && (
         <Suspense>
-          <TemplatePagination total={products.length} limit={limit} />
+          <TemplatePagination
+            totalTemplates={totalTemplates}
+            pageSize={limit}
+            currPage={currentPage}
+          />
         </Suspense>
       )}
     </div>

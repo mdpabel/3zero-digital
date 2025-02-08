@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import WhySvg from './why-svg';
+import CardBorder from '../common/card-border';
 
 const messages = [
   {
@@ -53,28 +54,31 @@ const CustomerIssues = () => {
           return (
             <div key={index}>
               {index === 1 && <WhySvg />}
-              <div className='flex flex-col border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 shadow-md hover:shadow-lg p-6 border rounded-lg transform transition-transform hover:scale-105'>
-                <div className='flex items-center gap-4 mb-4'>
-                  <Image
-                    src={message.image}
-                    alt={message.name}
-                    className='border-gray-300 dark:border-gray-600 border rounded-full w-14 h-14'
-                  />
-                  <h3 className='font-semibold text-gray-800 text-lg dark:text-gray-200'>
-                    {message.name}
-                  </h3>
-                </div>
-                <p className='mb-4 text-sm italic'>"{message.message}"</p>
-                <div className='mt-auto'>
-                  <p className='flex items-center gap-2 font-medium text-gray-700 text-sm dark:text-gray-300'>
-                    <span role='img' aria-label='reply'>
-                      💬
-                    </span>{' '}
-                    Our Reply:
-                  </p>
-                  <p className='text-gray-800 dark:text-gray-100'>
-                    {message.reply}
-                  </p>
+              <div className='flex flex-col border-slate-300 dark:border-slate-700 shadow-md hover:shadow-lg border rounded-lg transform transition-transform hover:scale-105'>
+                <CardBorder />
+                <div className='p-6'>
+                  <div className='flex items-center gap-4 mb-4'>
+                    <Image
+                      src={message.image}
+                      alt={message.name}
+                      className='border-gray-300 dark:border-gray-600 border rounded-full w-14 h-14'
+                    />
+                    <h3 className='font-semibold text-gray-800 text-lg dark:text-gray-200'>
+                      {message.name}
+                    </h3>
+                  </div>
+                  <p className='mb-4 text-sm italic'>"{message.message}"</p>
+                  <div className='mt-auto'>
+                    <p className='flex items-center gap-2 font-medium text-gray-700 text-sm dark:text-gray-300'>
+                      <span role='img' aria-label='reply'>
+                        💬
+                      </span>{' '}
+                      Our Reply:
+                    </p>
+                    <p className='text-gray-800 dark:text-gray-100'>
+                      {message.reply}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

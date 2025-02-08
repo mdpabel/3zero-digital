@@ -3,6 +3,7 @@ import { FaCheckCircle, FaTimesCircle } from 'react-icons/fa';
 import { MdCheck, MdClose } from 'react-icons/md';
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import CardBorder from '../common/card-border';
 
 const with3ZeroItems = [
   'Virtually Zero Vulnerability',
@@ -37,37 +38,45 @@ const Comparison = () => {
 
       <div className='gap-8 grid grid-cols-1 md:grid-cols-2'>
         {/* Card 1: With 3Zero */}
-        <div className='bg-gray-50 dark:bg-gray-950 shadow-lg p-6 border rounded-lg'>
-          <h4 className='pb-5 font-semibold text-2xl text-black text-center dark:text-white'>
-            Websites{' '}
-            <span className='bg-green-600 px-2 rounded-[2px]'>with 3 Zero</span>
-          </h4>
-          <ul className='pl-8 text-gray-700 list-none'>
-            {with3ZeroItems.map((item, index) => (
-              <li key={index} className='flex items-center mb-2'>
-                <MdCheck className='border-green-600 mr-2 border text-green-600' />{' '}
-                <span className='text-black dark:text-white'>{item}</span>
-              </li>
-            ))}
-          </ul>
+        <div className='border-slate-300 dark:border-slate-700 bg-gray-50 dark:bg-gray-950 shadow-lg border rounded-lg'>
+          <CardBorder />
+          <div className='p-6'>
+            <h4 className='pb-5 font-semibold text-2xl text-black text-center dark:text-white'>
+              Websites{' '}
+              <span className='bg-green-600 px-2 rounded-[2px]'>
+                with 3 Zero
+              </span>
+            </h4>
+            <ul className='pl-8 text-gray-700 list-none'>
+              {with3ZeroItems.map((item, index) => (
+                <li key={index} className='flex items-center mb-2'>
+                  <MdCheck className='border-green-600 mr-2 border text-green-600' />{' '}
+                  <span className='text-black dark:text-white'>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
 
         {/* Card 2: Without 3Zero */}
-        <div className='bg-gray-50 dark:bg-gray-950 shadow-lg p-6 border rounded-lg'>
-          <h4 className='pb-5 font-semibold text-2xl text-black text-center dark:text-white'>
-            Websites{' '}
-            <span className='bg-red-600 px-2 rounded-[2px]'>
-              without 3 Zero
-            </span>
-          </h4>
-          <ul className='pl-8 text-gray-700 list-none'>
-            {without3ZeroItems.map((item, index) => (
-              <li key={index} className='flex items-center mb-2'>
-                <MdClose className='mr-2 border border-red-600 text-red-600' />{' '}
-                <span className='text-black dark:text-white'>{item}</span>
-              </li>
-            ))}
-          </ul>
+        <div className='border-slate-300 dark:border-slate-700 bg-gray-50 dark:bg-gray-950 shadow-lg border rounded-lg'>
+          <CardBorder />
+          <div className='p-6'>
+            <h4 className='pb-5 font-semibold text-2xl text-black text-center dark:text-white'>
+              Websites{' '}
+              <span className='bg-red-600 px-2 rounded-[2px]'>
+                without 3 Zero
+              </span>
+            </h4>
+            <ul className='pl-8 text-gray-700 list-none'>
+              {without3ZeroItems.map((item, index) => (
+                <li key={index} className='flex items-center mb-2'>
+                  <MdClose className='mr-2 border border-red-600 text-red-600' />{' '}
+                  <span className='text-black dark:text-white'>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 

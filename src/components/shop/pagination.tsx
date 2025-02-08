@@ -8,100 +8,105 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 const TemplatePagination = ({
-  limit,
-  total,
+  totalTemplates,
+  currPage = 1,
+  pageSize = 10, // Default page size
 }: {
-  limit: number;
-  total: number;
+  totalTemplates: number;
+  currPage: number;
+  pageSize?: number;
 }) => {
-  const searchParams = useSearchParams();
   const router = useRouter();
-  const pathName = usePathname();
+  const searchParams = useSearchParams();
 
-  const totalPages = Math.ceil(total / limit);
-  const initialPage = parseInt(searchParams.get('page') || '1', 10);
-  const [currentPage, setCurrentPage] = useState(initialPage);
+  const totalPages = Math.ceil(totalTemplates / pageSize);
+  const [currentPage, setCurrentPage] = useState(currPage);
 
-  // Update URL with the current page
+  // Use search params to set the initial page if available
   useEffect(() => {
-    if (!searchParams.get('page')) {
-      return;
+    const pageFromUrl = searchParams.get('page');
+    if (pageFromUrl) {
+      const pageNumber = parseInt(pageFromUrl, 10);
+      if (pageNumber >= 1 && pageNumber <= totalPages) {
+        setCurrentPage(pageNumber);
+      }
     }
+  }, [searchParams, totalPages]);
 
-    const params = new URLSearchParams(searchParams);
-    params.set('page', currentPage.toString());
-    router.replace(pathName + '?' + params.toString());
-  }, [currentPage, pathName, router, searchParams]);
+  // Update the query parameter in the URL when the page changes
+  const updateUrl = (page: number) => {
+    const params = new URLSearchParams(window.location.search);
+    params.set('page', page.toString());
+    router.push(`?${params.toString()}`); // Update the URL without reloading the page
+  };
 
-  const handlePageChange = (page: number) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
+  // Handle page changes when clicking on the Previous/Next buttons
+  const handlePrevPage = () => {
+    if (currentPage > 1) {
+      const prevPage = currentPage - 1;
+      setCurrentPage(prevPage);
+      updateUrl(prevPage);
     }
   };
 
-  const renderPageNumbers = () => {
-    const pages = [];
-    const range = 2; // Number of pages before and after the current page to display
-
-    for (
-      let i = Math.max(1, currentPage - range);
-      i <= Math.min(totalPages, currentPage + range);
-      i++
-    ) {
-      pages.push(i);
+  const handleNextPage = () => {
+    if (currentPage < totalPages) {
+      const nextPage = currentPage + 1;
+      setCurrentPage(nextPage);
+      updateUrl(nextPage);
     }
-
-    return pages.map((page) => (
-      <PaginationItem key={page}>
-        <PaginationLink
-          href='#'
-          isActive={page === currentPage}
-          onClick={(e) => {
-            e.preventDefault();
-            handlePageChange(page);
-          }}>
-          {page}
-        </PaginationLink>
-      </PaginationItem>
-    ));
   };
+
+  // Handle page number click
+  const handlePageClick = (page: number) => {
+    setCurrentPage(page);
+    updateUrl(page);
+  };
+
+  // Create an array of page numbers to display
+  const pages = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pages.push(i);
+  }
 
   return (
-    <Pagination>
-      <PaginationContent>
-        <PaginationItem>
-          <PaginationPrevious
-            href='#'
-            onClick={(e) => {
-              e.preventDefault();
-              handlePageChange(currentPage - 1);
-            }}
-          />
-        </PaginationItem>
-
-        {renderPageNumbers()}
-
-        {currentPage + 2 < totalPages && (
-          <PaginationItem>
-            <PaginationEllipsis />
+    <div className='flex justify-center py-5 w-full'>
+      <Pagination>
+        <PaginationContent>
+          {/* Previous button */}
+          <PaginationItem className='cursor-pointer'>
+            <PaginationPrevious onClick={handlePrevPage} />
           </PaginationItem>
-        )}
 
-        <PaginationItem>
-          <PaginationNext
-            href='#'
-            onClick={(e) => {
-              e.preventDefault();
-              handlePageChange(currentPage + 1);
-            }}
-          />
-        </PaginationItem>
-      </PaginationContent>
-    </Pagination>
+          {/* Dynamically render page numbers */}
+          {pages.map((page) => (
+            <PaginationItem className='cursor-pointer' key={page}>
+              <PaginationLink
+                onClick={() => handlePageClick(page)}
+                isActive={page === currentPage}>
+                {page}
+              </PaginationLink>
+            </PaginationItem>
+          ))}
+
+          {/* Ellipsis if there are more than 10 pages */}
+          {totalPages > 10 && (
+            <PaginationItem className='cursor-pointer'>
+              <PaginationEllipsis />
+            </PaginationItem>
+          )}
+
+          {/* Next button */}
+          <PaginationItem className='cursor-pointer'>
+            <PaginationNext onClick={handleNextPage} />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
+    </div>
   );
 };
 
