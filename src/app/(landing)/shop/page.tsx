@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { genMetaData } from '@/app/seo';
 import Templates from '@/components/shop/templates';
+import TemplatesSkeleton from './loading';
 
 export const metadata = genMetaData({
   title: 'Shop',
@@ -14,7 +15,11 @@ const ShopPage = async ({
 }) => {
   const { page } = await searchParams;
 
-  return <Templates currentPage={+page} />;
+  return (
+    <Suspense key={page} fallback={<TemplatesSkeleton />}>
+      <Templates currentPage={+page} />
+    </Suspense>
+  );
 };
 
 export default ShopPage;

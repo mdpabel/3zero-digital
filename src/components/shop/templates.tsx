@@ -29,7 +29,9 @@ const Templates = async ({
   category?: string;
   currentPage?: number;
 }) => {
-  const skip = (currentPage - 1) * limit;
+  const page = Number(currentPage) || 1; // Default to 1 if undefined or NaN
+  const perPage = Number(limit) || 12; // Default to 12 if undefined or NaN
+  const skip = Math.max((page - 1) * perPage, 0); // Ensure skip is always non-negative
 
   const templates = await prisma.template.findMany({
     where: {
@@ -42,8 +44,8 @@ const Templates = async ({
         },
       },
     },
-    take: limit,
-    skip: (currentPage - 1) * limit,
+    take: perPage,
+    skip,
     orderBy: {
       price: 'desc',
     },
