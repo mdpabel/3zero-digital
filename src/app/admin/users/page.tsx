@@ -1,26 +1,17 @@
 import prisma from '@/prisma/db';
 import { FaEdit } from 'react-icons/fa';
-import DeleteProduct from './delete-product';
 import Link from 'next/link';
-import ProductsPagination from '../admin-pagination';
+import DashboardPagination from '../admin-pagination';
 
-type SearchParams = Promise<{ page: string }>;
+const PAGE_SIZE = 7;
 
-const PAGE_SIZE = 6;
+const Users = async ({ searchParams }: { searchParams: { page?: string } }) => {
+  const page = parseInt(searchParams.page ?? '1', 10);
 
-const Products = async ({ searchParams }: { searchParams: SearchParams }) => {
-  const { page } = await searchParams;
-
-  const totalProducts = await prisma.product.count();
-  const products = await prisma.product.findMany({
-    where: {
-      deleted: false,
-    },
-    include: {
-      category: true, // Include category for each product
-    },
+  const totalUsers = await prisma.user.count();
+  const users = await prisma.user.findMany({
     take: PAGE_SIZE,
-    skip: PAGE_SIZE * (parseInt(page ?? '1', 10) - 1),
+    skip: PAGE_SIZE * (page - 1),
     orderBy: {
       createdAt: 'desc',
     },
@@ -29,29 +20,25 @@ const Products = async ({ searchParams }: { searchParams: SearchParams }) => {
   return (
     <div className='p-8'>
       <h1 className='mb-8 font-bold text-zinc-900 dark:text-zinc-200 text-4xl'>
-        All Products
+        All Users
       </h1>
 
-      {/* If no products are found */}
-      {products.length === 0 ? (
+      {users.length === 0 ? (
         <p className='text-zinc-500 dark:text-zinc-400 text-lg'>
-          No products available.
+          No users available.
         </p>
       ) : (
         <table className='w-full table-auto'>
           <thead>
             <tr className='border-zinc-200 dark:border-zinc-700 border-b text-left'>
               <th className='px-4 py-3 text-zinc-800 dark:text-zinc-300'>
-                Product Name
+                Name
               </th>
               <th className='px-4 py-3 text-zinc-800 dark:text-zinc-300'>
-                Price
+                Email
               </th>
               <th className='px-4 py-3 text-zinc-800 dark:text-zinc-300'>
-                Category
-              </th>
-              <th className='px-4 py-3 text-zinc-800 dark:text-zinc-300'>
-                Type
+                Role
               </th>
               <th className='px-4 py-3 text-zinc-800 dark:text-zinc-300'>
                 Created At
@@ -62,50 +49,39 @@ const Products = async ({ searchParams }: { searchParams: SearchParams }) => {
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {users.map((user) => (
               <tr
-                key={product.id}
+                key={user.id}
                 className='hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors'>
                 <td className='px-4 py-3 border-zinc-200 dark:border-zinc-700 border-b'>
-                  {product.name}
+                  {user.name || 'N/A'}
                 </td>
                 <td className='px-4 py-3 border-zinc-200 dark:border-zinc-700 border-b'>
-                  {/* Displaying the first price or a default message if no prices */}
-                  {product.price}
+                  {user.email || 'N/A'}
                 </td>
                 <td className='px-4 py-3 border-zinc-200 dark:border-zinc-700 border-b'>
-                  {/* Display category name or default to 'Uncategorized' */}
-                  {product.category?.name || 'Uncategorized'}
+                  {user.role}
                 </td>
                 <td className='px-4 py-3 border-zinc-200 dark:border-zinc-700 border-b'>
-                  {/* Displaying product type */}
-                  {product.type}
-                </td>
-                <td className='px-4 py-3 border-zinc-200 dark:border-zinc-700 border-b'>
-                  {/* Formatting the creation date */}
-                  {new Date(product.createdAt).toLocaleDateString()}
+                  {new Date(user.createdAt).toLocaleDateString()}
                 </td>
                 <td className='px-4 py-3 border-zinc-200 dark:border-zinc-700 border-b'>
                   <div className='flex items-center space-x-4'>
-                    {/* Edit Icon */}
                     <Link
-                      href={`/admin/products/edit/${product.id}`}
+                      href={`/admin/users/edit/${user.id}`}
                       className='text-blue-500 hover:text-blue-600 dark:hover:text-blue-500 dark:text-blue-400 transition-colors'>
                       <FaEdit className='inline-block w-5 h-5 cursor-pointer' />
                     </Link>
-
-                    {/* Delete Product Component */}
-                    <DeleteProduct productId={product.id} />
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
           <tfoot className='mx-auto w-full'>
-            <ProductsPagination
-              currPage={parseInt(page, 10) ?? 1}
+            <DashboardPagination
+              currPage={page}
               pageSize={PAGE_SIZE}
-              total={totalProducts}
+              total={totalUsers}
             />
           </tfoot>
         </table>
@@ -114,4 +90,4 @@ const Products = async ({ searchParams }: { searchParams: SearchParams }) => {
   );
 };
 
-export default Products;
+export default Users;

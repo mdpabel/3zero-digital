@@ -157,7 +157,7 @@ const ProductDetails = async ({
             target='_blank'
             className='text-blue-600 hover:text-blue-800 dark:hover:text-blue-500 dark:text-blue-400'
             rel='noopener noreferrer'>
-            View Template File
+            Live Preview
           </a>
         </div>
       </div>

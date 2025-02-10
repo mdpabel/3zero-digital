@@ -176,7 +176,7 @@ model TemplateCategory {
 model TemplateCategoryOnTemplate {
   id         String           @id @default(auto()) @map("_id") @db.ObjectId
   templateId String           @db.ObjectId
-  categoryId String           @unique @db.ObjectId
+  categoryId String           @db.ObjectId
   createdAt  DateTime         @default(now())
   updatedBy  String? // Additional metadata field
   template   Template         @relation(fields: [templateId], references: [id])
@@ -267,4 +267,28 @@ model Coupon {
 enum DiscountType {
   PERCENTAGE
   FLAT
+}
+
+model WebsiteHealthReport {
+  id                    String   @id @default(auto()) @map("_id") @db.ObjectId
+  name                  String
+  email                 String
+  websiteUrl            String
+  blacklistVendors      String[]
+  malwareScanDetails    String?
+  malwareScanScreenshot String?
+  isInfected            Boolean  @default(false)
+  seoDetails            String?
+  seoScreenshot         String?
+  hasSeoIssues          Boolean  @default(false)
+  performanceDetails    String?
+  performanceScreenshot String?
+  performanceScore      Int?
+  additionalNotes       String?
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  opened Int? @default(0)
+
+  @@unique([email, websiteUrl])
 }

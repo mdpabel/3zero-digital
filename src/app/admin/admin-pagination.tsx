@@ -11,19 +11,19 @@ import {
 import { useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 
-const ProductsPagination = ({
-  totalProducts,
+const DashboardPagination = ({
+  total,
   currPage = 1,
   pageSize = 10, // Default page size
 }: {
-  totalProducts: number;
+  total: number;
   currPage: number;
   pageSize?: number;
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const totalPages = Math.ceil(totalProducts / pageSize);
+  const totalPages = Math.ceil(total / pageSize);
   const [currentPage, setCurrentPage] = useState(currPage);
 
   // Use search params to set the initial page if available
@@ -110,4 +110,4 @@ const ProductsPagination = ({
   );
 };
 
-export default ProductsPagination;
+export default DashboardPagination;
