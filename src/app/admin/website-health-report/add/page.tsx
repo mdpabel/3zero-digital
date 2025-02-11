@@ -66,7 +66,10 @@ const WebsiteHealthReport = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setPending(true);
-    const { message, success } = await createWebsiteHealthReport(formData);
+    const { message, success } = await createWebsiteHealthReport({
+      ...formData,
+      performanceScore: parseInt(formData.performanceScore.toString(), 10),
+    });
     if (message) {
       if (success) {
         toast({
@@ -160,15 +163,18 @@ const WebsiteHealthReport = () => {
         </div>
 
         <div className='flex items-center gap-2'>
-          <Label>Is Infected</Label>
-          <Input
-            type='checkbox'
-            name='isInfected'
-            checked={formData.isInfected}
-            onChange={(e) =>
-              setFormData({ ...formData, isInfected: e.target.checked })
-            }
-          />
+          <Label htmlFor='isInfected'>Is Infected</Label>
+          <div>
+            <Input
+              type='checkbox'
+              name='isInfected'
+              id='isInfected'
+              checked={formData.isInfected}
+              onChange={(e) =>
+                setFormData({ ...formData, isInfected: e.target.checked })
+              }
+            />
+          </div>
         </div>
 
         {/* SEO Report */}
@@ -191,15 +197,18 @@ const WebsiteHealthReport = () => {
         </div>
 
         <div className='flex items-center gap-2'>
-          <Label>Has SEO Issues</Label>
-          <Input
-            type='checkbox'
-            name='hasSeoIssues'
-            checked={formData.hasSeoIssues}
-            onChange={(e) =>
-              setFormData({ ...formData, hasSeoIssues: e.target.checked })
-            }
-          />
+          <Label htmlFor='seoIssue'>Has SEO Issues</Label>
+          <div>
+            <Input
+              type='checkbox'
+              name='hasSeoIssues'
+              id='seoIssue'
+              checked={formData.hasSeoIssues}
+              onChange={(e) =>
+                setFormData({ ...formData, hasSeoIssues: e.target.checked })
+              }
+            />
+          </div>
         </div>
 
         {/* Performance Report */}

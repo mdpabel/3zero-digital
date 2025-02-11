@@ -10,6 +10,7 @@ import {
   FaThList,
   FaTrash,
   FaCogs,
+  FaBullhorn,
 } from 'react-icons/fa';
 
 export const customerDashboardSidebarItems = [
@@ -152,6 +153,26 @@ export const adminDashboardSidebarItems = [
       },
     ],
   },
+
+  {
+    label: 'Marketing',
+    icon: <FaBullhorn />,
+    href: '#',
+    roles: ['ADMIN'],
+    subItems: [
+      {
+        label: 'Website Health Reports',
+        href: '/admin/website-health-report',
+        icon: <FaThList />,
+      },
+      {
+        label: 'Add',
+        href: '/admin/website-health-report/add',
+        icon: <FaPlus />,
+      },
+    ],
+  },
+
   {
     label: 'Users',
     href: '/admin/users',

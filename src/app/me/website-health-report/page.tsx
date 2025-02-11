@@ -9,10 +9,11 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import prisma from '@/prisma/db';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import React from 'react';
 
-const page = async () => {
+const Page = async () => {
   const session = await auth();
 
   if (!session || !session.user?.email) {
@@ -20,65 +21,96 @@ const page = async () => {
   }
 
   const reports = await prisma.websiteHealthReport.findMany({
-    where: {
-      email: session.user?.email,
-    },
+    where: { email: session.user?.email },
   });
 
   return (
-    <div className='mx-auto p-4 max-w-6xl'>
+    <div className='mx-auto px-6 py-10 max-w-6xl'>
       <h1 className='mb-8 font-bold text-zinc-900 dark:text-zinc-200 text-4xl'>
         Your Website Health Reports
       </h1>
+
       {reports.length === 0 ? (
         <p className='text-zinc-500 dark:text-zinc-400 text-lg'>
-          No reports available.
+          No reports available. Generate one to get started.
         </p>
       ) : (
-        <ul className='space-y-4'>
+        <div className='gap-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3'>
           {reports.map((report) => (
-            <Card className='w-[350px]'>
-              <CardHeader>
-                <CardTitle>{report.websiteUrl}</CardTitle>
+            <Card
+              key={report.id}
+              className='hover:shadow-xl border border-zinc-200 dark:border-zinc-700 hover:scale-[1.02] transition-all duration-300'>
+              <CardHeader className='bg-zinc-100 dark:bg-zinc-800 p-5 rounded-t-xl'>
+                <CardTitle className='font-semibold text-zinc-900 dark:text-zinc-200 text-lg truncate'>
+                  {report.websiteUrl}
+                </CardTitle>
+                <CardDescription className='text-zinc-500 dark:text-zinc-400 text-sm'>
+                  Last updated:{' '}
+                  {new Date(report.updatedAt).toLocaleDateString()}
+                </CardDescription>
               </CardHeader>
-              <CardContent>
-                <p className='text-zinc-500 dark:text-zinc-400'>
-                  <strong className='text-black dark:text-white'>
-                    Blacklisted By:{' '}
-                  </strong>
-                  {report.blacklistVendors.join(', ') || 'None'}
-                </p>
 
-                <p className='text-zinc-500 dark:text-zinc-400'>
-                  <strong className='text-black dark:text-white'>
-                    Website infected:{' '}
-                  </strong>
-                  {report.isInfected || 'None'}
-                </p>
+              <CardContent className='space-y-3 p-5'>
+                <div className='text-sm'>
+                  <p className='flex justify-between'>
+                    <span className='text-zinc-500 dark:text-zinc-400'>
+                      Blacklisted By:
+                    </span>
+                    <span className='font-medium text-zinc-900 dark:text-zinc-200'>
+                      {report.blacklistVendors.length > 0
+                        ? report.blacklistVendors.join(', ')
+                        : 'None'}
+                    </span>
+                  </p>
 
-                <p className='text-zinc-500 dark:text-zinc-400'>
-                  <strong className='text-black dark:text-white'>
-                    SEO Issue:{' '}
-                  </strong>
-                  {report.hasSeoIssues || 'None'}
-                </p>
+                  <p className='flex justify-between'>
+                    <span className='text-zinc-500 dark:text-zinc-400'>
+                      Website Infected:
+                    </span>
+                    <span
+                      className={`font-medium ${
+                        report.isInfected ? 'text-red-500' : 'text-green-500'
+                      }`}>
+                      {report.isInfected ? 'Yes' : 'No'}
+                    </span>
+                  </p>
 
-                <p className='text-zinc-500 dark:text-zinc-400'>
-                  <strong className='text-black dark:text-white'>
-                    Performance Score:{' '}
-                  </strong>
-                  {report.performanceScore || 'None'}
-                </p>
+                  <p className='flex justify-between'>
+                    <span className='text-zinc-500 dark:text-zinc-400'>
+                      SEO Issues:
+                    </span>
+                    <span
+                      className={`font-medium ${
+                        report.hasSeoIssues ? 'text-red-500' : 'text-green-500'
+                      }`}>
+                      {report.hasSeoIssues ? 'Yes' : 'No'}
+                    </span>
+                  </p>
+
+                  <p className='flex justify-between'>
+                    <span className='text-zinc-500 dark:text-zinc-400'>
+                      Performance Score:
+                    </span>
+                    <span className='font-medium text-blue-600 dark:text-blue-400'>
+                      {report.performanceScore ?? 'N/A'}
+                    </span>
+                  </p>
+                </div>
               </CardContent>
-              <CardFooter className='flex justify-between'>
-                <Button>View Details</Button>
+
+              <CardFooter className='flex justify-end p-5 border-zinc-200 dark:border-zinc-700 border-t'>
+                <Button asChild variant='outline' className='w-full'>
+                  <Link href={`/me/website-health-report/${report.id}`}>
+                    View Details
+                  </Link>
+                </Button>
               </CardFooter>
             </Card>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );
 };
 
-export default page;
+export default Page;

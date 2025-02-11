@@ -3,6 +3,7 @@ import ProductsPagination from '../admin-pagination';
 import { Button } from '@/components/ui/button';
 import { auth } from '@/auth';
 import { redirect } from 'next/navigation';
+import SendEmail from './send-email';
 
 type SearchParams = Promise<{ page: string }>;
 
@@ -44,6 +45,9 @@ const Page = async ({ searchParams }: { searchParams: SearchParams }) => {
               <th className='px-4 py-3 text-zinc-800 dark:text-zinc-300'>
                 Website URL
               </th>
+              <th className='px-4 py-3 text-zinc-800 dark:text-zinc-300'>
+                Opened
+              </th>
 
               <th className='px-4 py-3 text-zinc-800 dark:text-zinc-300'>
                 Actions
@@ -65,9 +69,10 @@ const Page = async ({ searchParams }: { searchParams: SearchParams }) => {
                   {report.websiteUrl}
                 </td>
                 <td className='px-4 py-3 border-zinc-200 dark:border-zinc-700 border-b'>
-                  <div className='flex items-center space-x-4'>
-                    <Button className='p-5'>Send Email</Button>
-                  </div>
+                  {report.opened}
+                </td>
+                <td className='px-4 py-3 border-zinc-200 dark:border-zinc-700 border-b'>
+                  <SendEmail report={report} />
                 </td>
               </tr>
             ))}
