@@ -7,6 +7,7 @@ import {
   Heading,
   Text,
   Button,
+  Img,
 } from '@react-email/components';
 
 // Props Type
@@ -19,6 +20,7 @@ interface WebsiteHealthEmailProps {
   hasSeoIssues: boolean;
   performanceScore?: number;
   additionalNotes?: string;
+  id: string;
 }
 
 const WebsiteHealthEmail: React.FC<WebsiteHealthEmailProps> = ({
@@ -29,6 +31,7 @@ const WebsiteHealthEmail: React.FC<WebsiteHealthEmailProps> = ({
   hasSeoIssues,
   performanceScore,
   additionalNotes,
+  id,
 }) => {
   return (
     <Html>
@@ -102,6 +105,13 @@ const WebsiteHealthEmail: React.FC<WebsiteHealthEmailProps> = ({
             </Button>
           )}
 
+          <Img
+            alt='Email tracker'
+            height={1}
+            width={1}
+            src={`${process.env.FRONTEND_URL}/api/track-email?id=${id}`}
+          />
+
           <Button
             style={buttonStyle}
             href='https://www.3zerodigital.com/ongoing-wordpress-maintenance'>
@@ -132,7 +142,7 @@ const containerStyle: React.CSSProperties = {
 const headingStyle: React.CSSProperties = {
   fontSize: '24px',
   fontWeight: 'bold',
-  color: '#3b82f6',
+  color: '#614385',
   marginBottom: '16px',
   textAlign: 'center',
 };
