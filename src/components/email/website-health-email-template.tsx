@@ -115,7 +115,7 @@ const WebsiteHealthEmail: React.FC<WebsiteHealthEmailProps> = ({
 
 // Styles
 const mainStyle: React.CSSProperties = {
-  backgroundColor: '#f9f9f9',
+  background: 'linear-gradient(to right, #614385, #516395)',
   fontFamily: 'Arial, sans-serif',
   color: '#333',
 };
@@ -147,7 +147,7 @@ const bodyTextStyle: React.CSSProperties = {
 const buttonStyle: React.CSSProperties = {
   display: 'block',
   padding: '12px 24px',
-  backgroundColor: '#3b82f6',
+  background: 'linear-gradient(to right, #614385, #516395)',
   color: '#fff',
   textDecoration: 'none',
   borderRadius: '8px',

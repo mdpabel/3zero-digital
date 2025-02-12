@@ -31,7 +31,7 @@ const SendEmail = ({ report }: { report: WebsiteHealthReport }) => {
   return (
     <div className='flex items-center space-x-4'>
       <Button onClick={handleSendEmail} className='p-5 cursor-pointer'>
-        {pending ? <Spinner /> : 'Send Email'}
+        {pending ? <Spinner /> : 'Send Report'}
       </Button>
     </div>
   );

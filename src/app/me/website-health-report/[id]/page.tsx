@@ -21,6 +21,15 @@ const Page = async ({ params }: { params: { id: string } }) => {
     return notFound();
   }
 
+  await prisma.websiteHealthReport.update({
+    where: { id: report.id },
+    data: {
+      opened: {
+        increment: (report?.opened ?? 0) + 1,
+      },
+    },
+  });
+
   return (
     <div className='mx-auto px-6 py-10 max-w-4xl'>
       <h1 className='mb-8 font-bold text-zinc-900 dark:text-zinc-200 text-3xl'>
@@ -114,7 +123,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
         </CardContent>
 
         <CardFooter className='flex justify-between p-5'>
-          <Link href='/admin/website-health-report'>
+          <Link href='/me/website-health-report'>
             <Button variant='outline'>Back to Reports</Button>
           </Link>
         </CardFooter>
