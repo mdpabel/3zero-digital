@@ -20,6 +20,7 @@ export const sendWebsiteReport = async (report: WebsiteHealthReport) => {
         additionalNotes: report.additionalNotes!,
         blacklistVendors: report.blacklistVendors!,
         performanceScore: report.performanceScore!,
+        id: report.id,
       }),
     });
     return {
