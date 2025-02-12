@@ -23,7 +23,7 @@ export const GET = async (req: NextRequest) => {
       },
     });
 
-    NextResponse.json({
+    return NextResponse.json({
       success: true,
     });
   } catch (error) {
