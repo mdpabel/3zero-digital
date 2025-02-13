@@ -124,14 +124,6 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                 className='block bg-gray-800 hover:opacity-90 mt-3 px-6 py-3 rounded-lg font-semibold text-white text-center primary-color'>
                 Ongoing Maintenance
               </a>
-
-              <img
-                alt='Email tracker'
-                height={1}
-                width={1}
-                src={`${process.env.FRONTEND_URL}/api/track-email?id=${id}`}
-                className='hidden'
-              />
             </div>
           </div>
         </CardContent>
