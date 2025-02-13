@@ -1,9 +1,7 @@
 import prisma from '@/prisma/db';
 import ProductsPagination from '../admin-pagination';
-import { Button } from '@/components/ui/button';
-import { auth } from '@/auth';
-import { redirect } from 'next/navigation';
 import SendEmail from './send-email';
+import Link from 'next/link';
 
 type SearchParams = Promise<{ page: string }>;
 
@@ -72,7 +70,14 @@ const Page = async ({ searchParams }: { searchParams: SearchParams }) => {
                   {report.opened}
                 </td>
                 <td className='px-4 py-3 border-zinc-200 dark:border-zinc-700 border-b'>
-                  <SendEmail report={report} />
+                  <div className='flex items-center gap-2'>
+                    <SendEmail report={report} />
+                    <Link
+                      className='text-green-500'
+                      href={`/admin/website-health-report/${report.id}`}>
+                      Details
+                    </Link>
+                  </div>
                 </td>
               </tr>
             ))}

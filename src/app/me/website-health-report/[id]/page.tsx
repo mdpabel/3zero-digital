@@ -8,13 +8,20 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import React from 'react';
+import { auth } from '@/auth';
 
 const Page = async ({ params }: { params: { id: string } }) => {
+  const session = await auth();
+
+  if (!session) {
+    redirect('/login');
+  }
+
   const report = await prisma.websiteHealthReport.findUnique({
-    where: { id: params.id },
+    where: { id: params.id, email: session?.user?.email! },
   });
 
   if (!report) {

@@ -69,6 +69,12 @@ const WebsiteHealthEmail: React.FC<WebsiteHealthEmailProps> = ({
             </li>
           </ul>
 
+          <Button
+            style={buttonStyle}
+            href={`https://www.3zerodigital.com/me/website-health-report/`}>
+            Explore Full Website Audit
+          </Button>
+
           <Text style={bodyTextStyle}>
             Based on our analysis, we recommend the following services:
           </Text>
@@ -105,18 +111,18 @@ const WebsiteHealthEmail: React.FC<WebsiteHealthEmailProps> = ({
             </Button>
           )}
 
+          <Button
+            style={buttonStyle}
+            href='https://www.3zerodigital.com/ongoing-wordpress-maintenance'>
+            Ongoing Maintenance
+          </Button>
+
           <Img
             alt='Email tracker'
             height={1}
             width={1}
             src={`${process.env.FRONTEND_URL}/api/track-email?id=${id}`}
           />
-
-          <Button
-            style={buttonStyle}
-            href='https://www.3zerodigital.com/ongoing-wordpress-maintenance'>
-            Ongoing Maintenance
-          </Button>
         </Container>
       </Body>
     </Html>
