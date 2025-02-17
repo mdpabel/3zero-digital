@@ -17,7 +17,10 @@ export const payPalClient = new Client({
     oAuthClientSecret: PAYPAL_CLIENT_SECRET,
   },
   timeout: 0,
-  environment: Environment.Sandbox,
+  environment:
+    process.env.NODE_ENV === 'development'
+      ? Environment.Sandbox
+      : Environment.Production,
   logging: {
     logLevel: LogLevel.Info,
     logRequest: {
