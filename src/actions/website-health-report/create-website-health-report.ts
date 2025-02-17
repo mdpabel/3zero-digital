@@ -1,33 +1,8 @@
 'use server';
 import { z } from 'zod';
 import prisma from '@/prisma/db';
-
-// Define the validation schema using Zod
-const WebsiteHealthReportSchema = z.object({
-  name: z.string().min(1, 'Name is required'),
-  email: z.string().email('Invalid email format'),
-  websiteUrl: z.string().url('Invalid website URL'),
-  blacklistVendors: z.array(z.string()).default([]),
-  malwareScanDetails: z.string().optional(),
-  malwareScanScreenshot: z.string().url('Invalid URL').optional(),
-  isInfected: z.boolean(),
-  seoDetails: z.string().optional(),
-  seoScreenshot: z.string().url('Invalid URL').optional(),
-  hasSeoIssues: z.boolean(),
-  performanceDetails: z.string().optional(),
-  performanceScreenshot: z.string().url('Invalid URL').optional(),
-  performanceScore: z
-    .number()
-    .int()
-    .min(0, 'Performance score must be a number'),
-  additionalNotes: z.string().optional(),
-  opened: z.number().int().default(0),
-});
-
-type User = {
-  name: string;
-  email: string;
-};
+import { WebsiteHealthReportSchema } from '@/app/admin/website-health-report/add/page';
+import { Prisma } from '@prisma/client';
 
 // Function to create a website health report
 export const createWebsiteHealthReport = async (
@@ -35,22 +10,27 @@ export const createWebsiteHealthReport = async (
 ) => {
   console.log('Received data:', data);
 
-  // Validate data using Zod
-  const result = WebsiteHealthReportSchema.safeParse(data);
-
-  if (!result.success) {
-    console.error('Validation failed:', result.error.format());
-    return {
-      success: false,
-      message: 'Validation error. Please check your inputs.',
-      errors: result.error.format(), // Return detailed errors
-    };
-  }
-
   try {
+    // Ensure unique constraints before inserting into the database
+    const existingReport = await prisma.websiteHealthReport.findFirst({
+      where: {
+        websiteUrl: data.websiteUrl, // Checking if the report already exists for this URL
+      },
+    });
+
+    if (existingReport) {
+      return {
+        success: false,
+        message: 'A health report for this website URL already exists.',
+      };
+    }
+
     // Save the validated data to the database
     await prisma.websiteHealthReport.create({
-      data: result.data,
+      data: {
+        ...data,
+        performanceScore: parseInt(data.performanceScore, 10),
+      },
     });
 
     return {
@@ -59,9 +39,30 @@ export const createWebsiteHealthReport = async (
     };
   } catch (error) {
     console.error('Database error:', error);
+
+    // Prisma error handling
+    if (error instanceof Prisma.PrismaClientKnownRequestError) {
+      // Unique constraint violation
+      if (error.code === 'P2002') {
+        return {
+          success: false,
+          message:
+            'A record with the same value already exists. Please use a different value.',
+        };
+      }
+
+      // Handle other known Prisma errors
+      return {
+        success: false,
+        message: `Database error: ${error.message}`,
+      };
+    }
+
+    // Generic error fallback
     return {
       success: false,
-      message: 'Failed to create website health report',
+      message:
+        'An unexpected error occurred while creating the website health report.',
     };
   }
 };
