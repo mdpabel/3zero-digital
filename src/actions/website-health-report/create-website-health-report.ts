@@ -3,6 +3,7 @@ import { z } from 'zod';
 import prisma from '@/prisma/db';
 import { WebsiteHealthReportSchema } from '@/app/admin/website-health-report/add/page';
 import { Prisma } from '@prisma/client';
+import { revalidatePath } from 'next/cache';
 
 // Function to create a website health report
 export const createWebsiteHealthReport = async (
@@ -32,6 +33,8 @@ export const createWebsiteHealthReport = async (
         performanceScore: parseInt(data.performanceScore, 10),
       },
     });
+
+    revalidatePath('/admin/website-health-report');
 
     return {
       success: true,

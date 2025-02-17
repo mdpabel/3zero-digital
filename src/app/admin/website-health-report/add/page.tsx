@@ -24,9 +24,7 @@ export const WebsiteHealthReportSchema = z.object({
   name: z.string().min(1, { message: 'Name is required' }),
   email: z.string().email({ message: 'Invalid email format' }),
   websiteUrl: z.string().url({ message: 'Invalid website URL' }),
-  blacklistVendors: z
-    .array(z.string())
-    .min(1, { message: 'At least one vendor is required' }),
+  blacklistVendors: z.array(z.string()).optional(),
   malwareScanDetails: z
     .string()
     .min(1, { message: 'Malware scan details are required' }),
