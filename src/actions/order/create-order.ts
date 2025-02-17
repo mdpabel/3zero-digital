@@ -78,9 +78,13 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
       metaData && metaData !== 'undefined' ? JSON.parse(metaData) : {};
 
     // fetch coupon
-    const coupon = await prisma.coupon.findUnique({
-      where: { id: couponId },
-    });
+    let coupon = undefined;
+
+    if (couponId) {
+      coupon = await prisma.coupon.findUnique({
+        where: { id: couponId },
+      });
+    }
 
     if (coupon) {
       if (coupon.discountType === 'FLAT' && coupon.discount < price) {
@@ -131,7 +135,7 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
         customerName: `${firstName} ${lastName}`,
         orderId: result.order.id,
         productName,
-        productPrice: `$${price}`,
+        productPrice: `$${price.toFixed(2)}`,
       }),
     });
 

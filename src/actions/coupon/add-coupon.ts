@@ -28,6 +28,8 @@ export const addCoupon = async (data: CouponPayload) => {
       applicableCountries,
     } = data;
 
+    console.log({ data });
+
     if (!code || !discountType || !discount || !validFrom) {
       throw new Error(
         'Required fields are missing: code, discountType, discount, validFrom.',
