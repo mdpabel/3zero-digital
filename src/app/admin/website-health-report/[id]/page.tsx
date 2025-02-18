@@ -50,6 +50,11 @@ const page = async ({ params }: { params: Promise<{ id: string }> }) => {
                 <p className='text-gray-700'>{report.additionalNotes}</p>
               )}
 
+              <h3 className='my-5 p-4 rounded-md font-semibold text-white text-center primary-color'>
+                Use coupon code <strong>OFF50</strong> to get 50% off all
+                services at 3 Zero Digital – limited time offer!
+              </h3>
+
               <p className='mt-4 text-gray-700'>
                 Here’s a quick summary of your website health for{' '}
                 <strong>{report.websiteUrl}</strong>:

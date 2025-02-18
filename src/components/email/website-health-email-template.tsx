@@ -45,6 +45,11 @@ const WebsiteHealthEmail: React.FC<WebsiteHealthEmailProps> = ({
             <Text style={bodyTextStyle}>{additionalNotes}</Text>
           )}
 
+          <Text style={couponMessage}>
+            Use coupon code OFF50 to get 50% off all services at 3 Zero Digital
+            – limited time offer!
+          </Text>
+
           <Text style={bodyTextStyle}>
             Here’s a quick summary of your website health for{' '}
             <strong>{websiteUrl}</strong>:
@@ -114,7 +119,7 @@ const WebsiteHealthEmail: React.FC<WebsiteHealthEmailProps> = ({
           <Button
             style={buttonStyle}
             href='https://www.3zerodigital.com/ongoing-wordpress-maintenance'>
-            Ongoing Maintenance
+            Ongoing Security Maintenance
           </Button>
 
           <Img
@@ -134,6 +139,18 @@ const mainStyle: React.CSSProperties = {
   background: 'linear-gradient(to right, #614385, #516395)',
   fontFamily: 'Arial, sans-serif',
   color: '#333',
+};
+
+const couponMessage: React.CSSProperties = {
+  background: `linear-gradient(to right, #614385, #516395)`,
+  fontFamily: 'Arial, sans-serif',
+  color: '#fff',
+  padding: '10px 20px',
+  borderRadius: '5px',
+  fontSize: '16px',
+  textAlign: 'center',
+  fontWeight: 'bold',
+  margin: '16px 0',
 };
 
 const containerStyle: React.CSSProperties = {
