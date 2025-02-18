@@ -15,6 +15,7 @@ interface GetPostsOptions {
   page?: number;
   perPage?: number;
   slug?: string; // Slug of a specific post
+  authorId?: number;
 }
 
 export const getPosts = cache(
@@ -65,6 +66,11 @@ export const getPosts = cache(
         }
         if (options.perPage) {
           params.append('per_page', options.perPage.toString());
+        }
+
+        // Add author filter
+        if (options.authorId) {
+          params.append('author', options.authorId.toString());
         }
       }
 

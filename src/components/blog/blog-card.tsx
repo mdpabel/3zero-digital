@@ -22,7 +22,7 @@ const BlogCard = ({ post, style = 1 }: Props) => {
         {/* Date */}
         <dl>
           <dt className='sr-only'>Published on</dt>
-          <dd className='font-medium text-base text-muted-foreground leading-6'>
+          <dd className='font-medium text-muted-foreground text-base leading-6'>
             <time dateTime={post.date}>{formatDate(post.date)}</time>
           </dd>
         </dl>
@@ -40,19 +40,30 @@ const BlogCard = ({ post, style = 1 }: Props) => {
               </h2>
 
               {/* Tags */}
-              <div className='flex flex-wrap'>
-                {post.tagDetails?.length ? (
-                  post.tagDetails.map((tagDetail) => (
-                    <Link
-                      key={tagDetail.name}
-                      href={`/tag/${tagDetail.slug}`}
-                      className='mr-3 font-medium text-[#614385] text-sm hover:text-[#614385] uppercase transition'>
-                      {tagDetail.name}
-                    </Link>
-                  ))
-                ) : (
-                  <span className='text-muted-foreground'>No tags</span>
-                )}
+              <div className='flex justify-between items-center'>
+                <div className='flex flex-wrap'>
+                  {post.tagDetails?.length ? (
+                    post.tagDetails.map((tagDetail) => (
+                      <Link
+                        key={tagDetail.name}
+                        href={`/tag/${tagDetail.slug}`}
+                        className='mr-3 font-medium text-[#614385] hover:text-[#614385] text-sm uppercase transition'>
+                        {tagDetail.name}
+                      </Link>
+                    ))
+                  ) : (
+                    <span className='text-muted-foreground'>No tags</span>
+                  )}
+                </div>
+
+                {/* Author */}
+                <div className='font-medium text-neutral-800 dark:text-neutral-200 text-sm'>
+                  By{' '}
+                  <Link href={`/blog/author/${post.author}`}>
+                    {(post.yoast_head_json as any)?.author ||
+                      '3Zero digital editorial'}
+                  </Link>
+                </div>
               </div>
             </div>
 

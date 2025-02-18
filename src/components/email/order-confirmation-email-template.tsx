@@ -45,13 +45,13 @@ const OrderConfirmationEmailTemplate: React.FC<OrderConfirmationEmailProps> = ({
             <strong>Product Name:</strong> {productName}
           </Text>
           <Text style={bodyTextStyle}>
-            <strong>Price:</strong> {productPrice}
+            <strong>Price:</strong> {Number(productPrice).toFixed(2)}
           </Text>
 
           {/* CTA */}
           <Button
             style={buttonStyle}
-            href={`https://www.3zerodigital.com/order-details/${orderId}`}>
+            href={`https://www.3zerodigital.com/me/orders/${orderId}`}>
             View Order Details
           </Button>
 
@@ -72,7 +72,7 @@ const OrderConfirmationEmailTemplate: React.FC<OrderConfirmationEmailProps> = ({
 
 // Styles
 const mainStyle: React.CSSProperties = {
-  backgroundColor: '#f9f9f9',
+  backgroundColor: '#614385',
   fontFamily: 'Arial, sans-serif',
   color: '#333',
 };
@@ -104,7 +104,7 @@ const bodyTextStyle: React.CSSProperties = {
 const buttonStyle: React.CSSProperties = {
   display: 'inline-block',
   padding: '12px 24px',
-  backgroundColor: '#3b82f6',
+  backgroundColor: 'linear-gradient(to right, #614385, #516395)',
   color: '#fff',
   textDecoration: 'none',
   borderRadius: '8px',

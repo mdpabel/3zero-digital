@@ -111,6 +111,9 @@ const BlogPage = async ({ params }: Props) => {
     return <div>Post not found</div>;
   }
 
+  const author =
+    (post.yoast_head_json as any)?.author || '3Zero digital editorial';
+
   return (
     <article className='space-y-4 mx-auto px-4 py-8 max-w-3xl'>
       {/* Date */}
@@ -131,7 +134,7 @@ const BlogPage = async ({ params }: Props) => {
           </Link>
         </div>
         <div className='flex flex-wrap justify-end'>
-          {post.tagDetails?.length ? (
+          {/* {post.tagDetails?.length ? (
             post.tagDetails.map(({ name, slug }) => (
               <Link
                 key={slug}
@@ -142,13 +145,21 @@ const BlogPage = async ({ params }: Props) => {
             ))
           ) : (
             <span className='text-muted-foreground'>No tags</span>
-          )}
+          )} */}
+
+          {/* Author */}
+          <div className='font-medium text-neutral-800 dark:text-neutral-200 text-sm'>
+            By{' '}
+            <Link href={`/blog/author/${post.author}`}>
+              {author || 'Unknown'}
+            </Link>
+          </div>
         </div>
       </div>
 
       {/* Content */}
       <div
-        className='pb-10 border-b border-b-neutral-400 max-w-full dark:prose-invert prose'
+        className='dark:prose-invert pb-10 border-b border-b-neutral-400 max-w-full prose'
         dangerouslySetInnerHTML={{ __html: post.content.rendered }}
       />
 
