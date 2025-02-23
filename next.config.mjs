@@ -35,6 +35,18 @@ const nextConfig = {
           '/blog/how-we-removed-242000-japanese-seo-spam-pages-from-a-hacked-site-in-10-hours',
         permanent: true,
       },
+
+      {
+        source: '/affordable-personal-website-development',
+        destination: '/affordable-personal-web-development',
+        permanent: true,
+      },
+
+      {
+        source: '/affordable-personal-website-development-lite',
+        destination: '/affordable-personal-web-development',
+        permanent: true,
+      },
     ];
   },
 };
