@@ -26,6 +26,17 @@ const nextConfig = {
   experimental: {
     nextScriptWorkers: true,
   },
+  async redirects() {
+    return [
+      {
+        source:
+          '/blog/how-we-cleaned-242000-japanese-hack-pages-from-a-site-in-10-hours',
+        destination:
+          '/blog/how-we-removed-242000-japanese-seo-spam-pages-from-a-hacked-site-in-10-hours',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
