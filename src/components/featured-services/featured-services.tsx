@@ -11,23 +11,9 @@ const FeaturedServices = async () => {
     'affordable-web-development',
   );
 
-  const affordablePersonalWebDevelopment = await getProduct(
-    'affordable-personal-website-development',
-  );
-
-  const affordablePersonalLiteWebDevelopment = await getProduct(
-    'affordable-personal-website-development-lite',
-  );
-
   return (
     <FeaturedServicesCarousel
       affordableWebDevelopmentId={affordableWebDevelopment.productId}
-      affordablePersonalWebDevelopmentId={
-        affordablePersonalWebDevelopment.productId
-      }
-      affordablePersonalLiteWebDevelopmentId={
-        affordablePersonalLiteWebDevelopment.productId
-      }
     />
   );
 };

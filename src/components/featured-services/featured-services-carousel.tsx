@@ -13,8 +13,6 @@ import personalWebsiteLiteDark from '@/../public/images/personal-website-lite-da
 
 type Props = {
   affordableWebDevelopmentId: string;
-  affordablePersonalLiteWebDevelopmentId: string;
-  affordablePersonalWebDevelopmentId: string;
 };
 
 const FeaturedServicesCarousel = (props: Props) => {
@@ -38,7 +36,7 @@ const FeaturedServicesCarousel = (props: Props) => {
   };
 
   return (
-    <div className='mx-auto py-12 p-4 max-w-6xl'>
+    <div className='mx-auto p-4 py-12 max-w-6xl'>
       <div className='grid grid-cols-1'>
         <Slider {...settings}>
           <FeaturedService
@@ -48,24 +46,6 @@ const FeaturedServicesCarousel = (props: Props) => {
             title='Get Your Business Website in Just 7 Days for Only $79'
             darkImage={websitePrototypeDark}
             lightImage={websitePrototype}
-          />
-
-          <FeaturedService
-            productId={props.affordablePersonalWebDevelopmentId}
-            description='Website, domain (.com), hosting, SSL, email and
-            more—at a price that won’t break the bank.'
-            title='Get Your Personal Website in Just 2 Days for Only $12'
-            darkImage={personalWebsite}
-            lightImage={personalWebsiteLight}
-          />
-
-          <FeaturedService
-            productId={props.affordablePersonalLiteWebDevelopmentId}
-            description='Website, domain (.xyz), hosting, SSL, email and
-            more—at a price that won’t break the bank.'
-            title='Get Your Simple Personal Website in Just 2 Days for Only $7'
-            darkImage={personalWebsiteLiteDark}
-            lightImage={personalWebsiteLiteLight}
           />
         </Slider>
       </div>

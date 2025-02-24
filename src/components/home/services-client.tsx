@@ -47,7 +47,7 @@ const ServicesClient = ({
               key={service.id}
               value={service.name}>
               <div>
-                <h2 className='mb-4 sm:mb-6 font-bold text-gray-800 text-lg sm:text-2xl dark:text-gray-200'>
+                <h2 className='mb-4 sm:mb-6 font-bold text-gray-800 dark:text-gray-200 text-lg sm:text-2xl'>
                   {service.description}
                 </h2>
                 <ul className='space-y-4 sm:space-y-6'>
@@ -61,22 +61,13 @@ const ServicesClient = ({
                             <IconRenderer iconName={product.icon!} />
                           </span>
                           <div className='relative'>
-                            <h3 className='flex items-center font-semibold text-gray-800 text-md sm:text-lg dark:text-gray-200'>
+                            <h3 className='flex items-center font-semibold text-gray-800 text-md dark:text-gray-200 sm:text-lg'>
                               {product.name}:
                               {product.price > 0 ? (
                                 <span className='flex items-center bg-white ml-2 px-1 rounded-sm text-[#604485]'>
                                   <FaTag className='mr-1' />${product.price}
                                 </span>
-                              ) : (
-                                <div>
-                                  <Image
-                                    className='ml-2'
-                                    src={freeStamp}
-                                    alt='free stamp'
-                                    width={50}
-                                  />
-                                </div>
-                              )}
+                              ) : null}
                             </h3>
                             <p className=''>{product.description}</p>
                           </div>

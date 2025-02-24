@@ -4,7 +4,9 @@ import SmallScreenNavbar from './small-screen-navbar';
 import { getProductWithServices } from '@/lib/product/get-product';
 
 const Header = async () => {
-  const services = await getProductWithServices();
+  const services = (await getProductWithServices()).filter(
+    (s) => s.products.length > 0,
+  );
 
   return (
     <div>

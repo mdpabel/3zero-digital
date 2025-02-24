@@ -12,7 +12,6 @@ export async function deleteProduct(productId: string) {
       },
     });
 
-    await deleteStripeProduct(product.stripeProductId!);
     revalidatePath('/admin/products');
     return { success: true };
   } catch (error) {
