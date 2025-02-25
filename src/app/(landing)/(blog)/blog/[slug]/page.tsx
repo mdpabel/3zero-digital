@@ -11,6 +11,7 @@ import { WP_REST_API_Post } from 'wp-types';
 type Props = {
   params: Promise<{ slug: string }>;
 };
+
 export async function generateMetadata({
   params,
 }: Props): Promise<Metadata | undefined> {
@@ -81,6 +82,25 @@ export async function generateMetadata({
   };
 }
 
+const transformSchemaData = (schemaData: any) => {
+  return schemaData['@graph'].map((item: any) => {
+    if (item.url) {
+      item.url = item.url.replace(
+        'https://blog.3zerodigital.com',
+        'https://www.3zerodigital.com/blog',
+      );
+    }
+    if (item['@id']) {
+      item['@id'] = item['@id'].replace(
+        'https://blog.3zerodigital.com',
+        'https://www.3zerodigital.com/blog',
+      );
+    }
+
+    return item;
+  });
+};
+
 export async function generateStaticParams() {
   const { posts } = await getPosts();
 
@@ -110,6 +130,10 @@ const BlogPage = async ({ params }: Props) => {
   if (!post) {
     return <div>Post not found</div>;
   }
+
+  const jsonLd = transformSchemaData((post.yoast_head_json as any).schema);
+
+  console.log({ jsonLd });
 
   const author =
     (post.yoast_head_json as any)?.author || '3Zero digital editorial';
@@ -167,6 +191,11 @@ const BlogPage = async ({ params }: Props) => {
         {/* Comments */}
         <Comments postId={post.id} />
       </Suspense>
+
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </article>
   );
 };
