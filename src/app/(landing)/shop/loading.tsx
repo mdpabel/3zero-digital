@@ -3,6 +3,7 @@ import { FaCartShopping } from 'react-icons/fa6';
 import Link from 'next/link';
 import { Button } from '../../../components/ui/button';
 import CardBorder from '../../../components/common/card-border';
+import TemplateCategory from '@/components/shop/template-category';
 
 const TemplatesSkeleton = ({
   title = 'Explore Premium Templates for Your Business',
@@ -20,12 +21,13 @@ const TemplatesSkeleton = ({
 
       {/* Skeleton Product Cards Section */}
       <section className='mb-10'>
+        <TemplateCategory />
         <h2 className='mb-6 font-semibold text-2xl'>Featured Products</h2>
         <div className='gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
           {[...Array(12)].map((_, index) => (
             <div
               key={index}
-              className='border-slate-300 dark:border-slate-700 bg-white dark:bg-gray-900 shadow-md border rounded-lg animate-pulse'>
+              className='bg-white dark:bg-gray-900 shadow-md border border-slate-300 dark:border-slate-700 rounded-lg animate-pulse'>
               <CardBorder />
               <div className='p-6'>
                 {/* Placeholder for Image */}

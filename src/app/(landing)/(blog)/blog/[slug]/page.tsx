@@ -133,8 +133,6 @@ const BlogPage = async ({ params }: Props) => {
 
   const jsonLd = transformSchemaData((post.yoast_head_json as any).schema);
 
-  console.log({ jsonLd });
-
   const author =
     (post.yoast_head_json as any)?.author || '3Zero digital editorial';
 

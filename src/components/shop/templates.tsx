@@ -51,7 +51,20 @@ const Templates = async ({
     },
   });
 
-  const totalTemplates = await prisma.template.count();
+  const totalTemplates = await prisma.template.count({
+    where: {
+      deleted: false,
+      categories: {
+        some: {
+          category: {
+            slug: category,
+          },
+        },
+      },
+    },
+  });
+
+  console.log({ totalTemplates });
 
   return (
     <div className='relative mx-auto px-4 py-10 w-full max-w-6xl container'>
@@ -68,11 +81,13 @@ const Templates = async ({
       {/* Product Cards Section */}
       {templates.length > 0 ? (
         <section className='mb-10'>
-          <h2 className='mb-6 font-semibold text-2xl'>Featured Templates</h2>
+          {featured && (
+            <h2 className='mb-6 font-semibold text-2xl'>Featured Templates</h2>
+          )}
           <div className='gap-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
             {templates.map((product, index) => (
               <div key={index}>
-                <div className='border-slate-300 dark:border-slate-700 bg-white dark:bg-gray-900 shadow-md border rounded-lg'>
+                <div className='bg-white dark:bg-gray-900 shadow-md border border-slate-300 dark:border-slate-700 rounded-lg'>
                   <CardBorder />
                   <div className='p-6'>
                     {/* Image Slider */}
