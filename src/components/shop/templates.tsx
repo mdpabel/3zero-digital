@@ -101,7 +101,7 @@ const Templates = async ({
                     <div className='flex justify-between items-center'>
                       <div className='flex flex-col'>
                         <span className='line-through'>${product.price}</span>
-                        <span className='font-bold text-pink-500 text-xl'>
+                        <span className='font-bold text-[#614586] text-xl'>
                           ${product.salePrice}
                         </span>
                       </div>
