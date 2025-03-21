@@ -14,81 +14,96 @@ interface SecurityStrengthMeterProps {
   score: number;
   totalPoints: number;
 }
-
 // Define the checklist items array
 const checklistItems: ChecklistItem[] = [
   {
     id: 1,
-    label: 'Keep themes, plugins, and WordPress up to date.',
+    label: 'Keep WordPress, themes, and plugins updated regularly.',
     points: 10,
   },
   {
     id: 2,
-    label: 'Ensure PHP version 8.2 or higher is being used.',
+    label: 'Ensure your site is running PHP version 8.2 or higher.',
     points: 10,
   },
-  { id: 3, label: 'Choose a well-reputed hosting provider.', points: 10 },
+  {
+    id: 3,
+    label: 'Choose a reliable and reputable hosting provider.',
+    points: 10,
+  },
   {
     id: 4,
-    label: 'Enable automatic updates for themes, plugins, and WordPress.',
+    label: 'Enable automatic updates for WordPress, themes, and plugins.',
     points: 10,
   },
-  { id: 5, label: 'Set up automatic backups of your website.', points: 10 },
+  {
+    id: 5,
+    label: 'Set up automatic backups to secure your website data.',
+    points: 10,
+  },
   {
     id: 6,
     label:
-      'Use security plugins (recommended: Wordfence and All In One Security).',
+      'Use security plugins like Wordfence or All In One Security for protection.',
     points: 10,
   },
   {
     id: 7,
     label:
-      'Implement form protection (recommended: WP Armour – Honeypot Anti-Spam).',
+      'Implement anti-spam measures, such as WP Armour’s Honeypot protection.',
     points: 10,
   },
   {
     id: 8,
-    label: 'Regularly review administrator users for security.',
+    label: 'Regularly review administrator accounts for unauthorized access.',
     points: 10,
   },
   {
     id: 9,
-    label:
-      'Check for updates frequently (at least weekly) and install them as soon as possible.',
+    label: 'Check for and install updates at least once a week.',
     points: 10,
   },
   {
     id: 10,
-    label: 'Only download themes and plugins from trusted sources.',
+    label:
+      'Only download themes and plugins from trusted and verified sources.',
     points: 10,
   },
   {
     id: 11,
     label:
-      'Remove unused themes, plugins, and outdated WordPress installations immediately.',
+      'Remove unused themes, plugins, and outdated installations promptly.',
     points: 10,
   },
-  { id: 12, label: 'Use the strongest passwords possible.', points: 10 },
+  {
+    id: 12,
+    label: 'Use strong, unique passwords for all accounts.',
+    points: 10,
+  },
   {
     id: 13,
-    label: 'Enable two-factor authentication whenever possible.',
+    label: 'Enable two-factor authentication for an added layer of security.',
     points: 10,
   },
-  { id: 14, label: 'Hide the default WordPress login URL.', points: 10 },
+  {
+    id: 14,
+    label: 'Change and hide the default WordPress login URL.',
+    points: 10,
+  },
   {
     id: 15,
-    label: 'Limit the number of login attempts to prevent brute force attacks.',
+    label: 'Limit login attempts to prevent brute force attacks.',
     points: 10,
   },
   {
     id: 16,
-    label: 'Install and configure an SSL certificate for HTTPS.',
+    label: 'Install an SSL certificate to enable HTTPS for your site.',
     points: 10,
   },
   {
     id: 17,
     label:
-      'Regularly scan your site using Wordfence and Sucuri (at least weekly or monthly).',
+      'Perform regular security scans using plugins like Wordfence or Sucuri.',
     points: 10,
   },
   {
@@ -98,30 +113,28 @@ const checklistItems: ChecklistItem[] = [
   },
   {
     id: 19,
-    label:
-      'Visit your site regularly (at least once or twice a week) to monitor for any issues.',
+    label: 'Visit your website weekly to monitor for issues or changes.',
     points: 10,
   },
   {
     id: 20,
-    label:
-      "Frequently search for your website on Google to ensure it's indexed and appears in search results.",
+    label: 'Search for your website on Google to ensure it’s indexed properly.',
     points: 10,
   },
   {
     id: 21,
     label:
-      'Watch for unexpected spikes in site traffic that could indicate a security issue.',
+      'Monitor traffic for unusual spikes that could signal a security issue.',
     points: 10,
   },
   {
     id: 22,
-    label: 'Use a strong password for your MySQL database user account.',
+    label: 'Use a strong password for your MySQL database account.',
     points: 10,
   },
   {
     id: 23,
-    label: 'Avoid using the default WordPress database table prefix (_wp).',
+    label: 'Avoid using the default WordPress table prefix (_wp).',
     points: 10,
   },
   {
@@ -131,12 +144,12 @@ const checklistItems: ChecklistItem[] = [
   },
   {
     id: 25,
-    label: 'Set the permissions for wp-config.php file to 640.',
+    label: 'Restrict wp-config.php file permissions to 640 for security.',
     points: 10,
   },
   {
     id: 26,
-    label: 'Check WordPress admin users at least once a month.',
+    label: 'Review WordPress administrator accounts at least monthly.',
     points: 10,
   },
 ];
