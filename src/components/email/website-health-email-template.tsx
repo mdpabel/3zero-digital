@@ -126,7 +126,7 @@ const WebsiteHealthEmail: React.FC<WebsiteHealthEmailProps> = ({
             alt='Email tracker'
             height={1}
             width={1}
-            src={`${process.env.FRONTEND_URL}/api/track-email?id=${id}`}
+            src={`${process.env.NEXT_PUBLIC_FRONTEND_URL}/api/track-email?id=${id}`}
           />
         </Container>
       </Body>

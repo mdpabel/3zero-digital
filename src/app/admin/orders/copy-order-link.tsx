@@ -4,7 +4,7 @@ import React from 'react';
 
 const CopyOrderLink = ({ orderId }: { orderId: string }) => {
   const { toast } = useToast();
-  const orderLink = `${process.env.FRONTEND_URL}/order-details/${orderId}`;
+  const orderLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/order-details/${orderId}`;
 
   // Handle copy action
   const handleCopy = async () => {

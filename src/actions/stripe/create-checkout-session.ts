@@ -68,8 +68,8 @@ export const createStripeCheckoutSession = async (orderId: string) => {
           quantity: order.quantity,
         },
       ],
-      success_url: `${process.env.FRONTEND_URL}/order-details/${order.id}?stripe_payment_success=true`,
-      cancel_url: `${process.env.FRONTEND_URL}/order-details/${order.id}`,
+      success_url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/order-details/${order.id}?stripe_payment_success=true`,
+      cancel_url: `${process.env.NEXT_PUBLIC_FRONTEND_URL}/order-details/${order.id}`,
       metadata: {
         orderId: order.id,
       },

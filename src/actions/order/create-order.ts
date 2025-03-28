@@ -159,7 +159,7 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
       });
 
       // Create the reset URL with the JWT token
-      const resetUrl = `${process.env.FRONTEND_URL}/update-password?token=${resetToken}`;
+      const resetUrl = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/update-password?token=${resetToken}`;
 
       // Send the reset password email with the token (use your email service)
       await sendEmail({
