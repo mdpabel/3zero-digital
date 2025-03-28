@@ -33,7 +33,7 @@ const SmallScreenNavbar = ({
   };
 
   return (
-    <div className='block z-50 lg:hidden mx-auto px-4 max-w-6xl max-h-screen container'>
+    <div className='lg:hidden block z-50 mx-auto px-4 max-w-6xl max-h-screen container'>
       <div className='flex justify-between items-center h-16'>
         <Logo />
         <div className='flex items-center space-x-5'>
@@ -86,7 +86,7 @@ const SmallScreenNavbar = ({
                           }}
                           asChild
                           onClick={handleMenuItemClick}>
-                          <div className='block py-2 w-full font-medium text-sm text-zinc-800 hover:text-teal-500 dark:text-zinc-100 transition cursor-pointer'>
+                          <div className='block py-2 w-full font-medium text-zinc-800 hover:text-teal-500 dark:text-zinc-100 text-sm transition cursor-pointer'>
                             {name}
                           </div>
                         </DropdownMenuItem>
@@ -97,9 +97,16 @@ const SmallScreenNavbar = ({
                 ),
               )}
               <div>
+                {/* <DropdownMenuItem asChild onClick={handleMenuItemClick}>
+                  <Link
+                    className='block py-2 pb-6 pl-1 w-full font-medium text-zinc-800 hover:text-teal-500 dark:text-zinc-100 text-sm transition cursor-pointer'
+                    href='/recent-projects'>
+                    Recent Projects
+                  </Link>
+                </DropdownMenuItem> */}
                 <DropdownMenuItem asChild onClick={handleMenuItemClick}>
                   <Link
-                    className='block py-2 pb-6 pl-1 w-full font-medium text-sm text-zinc-800 hover:text-teal-500 dark:text-zinc-100 transition cursor-pointer'
+                    className='block py-2 pb-6 pl-1 w-full font-medium text-zinc-800 hover:text-teal-500 dark:text-zinc-100 text-sm transition cursor-pointer'
                     href='/shop'>
                     Shop
                   </Link>

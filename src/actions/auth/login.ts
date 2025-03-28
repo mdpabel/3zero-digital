@@ -3,6 +3,8 @@
 import { signIn } from '@/auth';
 import prisma from '@/prisma/db';
 import { LoginSchema } from '@/schema/auth/login-schmea';
+import { AuthError } from 'next-auth';
+import { redirect } from 'next/navigation';
 
 export const loginAction = async (_: any, formData: FormData) => {
   // Validate the input data using the schema
@@ -10,10 +12,17 @@ export const loginAction = async (_: any, formData: FormData) => {
     Object.fromEntries(formData.entries()),
   );
 
+  if (parsedResult.data?.honeypot) {
+    return {
+      success: false,
+      message: 'Bot detected!',
+    };
+  }
+
   const callbackUrl = formData.get('callbackUrl') as string;
 
+  // If validation fails, return the formatted error message
   if (!parsedResult.success) {
-    // Handle validation error
     return {
       success: false,
       message: `Validation error: ${parsedResult.error.errors
@@ -22,43 +31,59 @@ export const loginAction = async (_: any, formData: FormData) => {
     };
   }
 
-  const user = await prisma.user.findUnique({
-    where: {
-      email: parsedResult.data.email,
-    },
-  });
-
-  if (!user) {
-    return {
-      success: false,
-      message: 'User does not exist.',
-    };
-  }
+  const { email, password } = parsedResult.data;
 
   try {
-    // Attempt to sign in using Auth.js
-    const result = await signIn('resend', {
-      email: parsedResult.data.email,
+    // Check if the user exists in the database
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (!user) {
+      return {
+        success: false,
+        message: 'User does not exist.',
+      };
+    }
+
+    // Attempt to sign in using Auth.js (Credentials Provider)
+    const result = await signIn('credentials', {
+      email,
+      password,
       redirect: false, // We are handling the redirection manually
-      redirectTo: callbackUrl ? callbackUrl : '/dashboard', // Specify the desired redirect
+      // redirectTo: callbackUrl || '/dashboard', // Redirect if provided, otherwise default to '/dashboard'
     });
 
     return {
       success: true,
-      message: 'Login successful. Check your email for the magic link.',
+      message: 'Login successful. Redirecting...',
     };
   } catch (error: any) {
-    // Extract and return Resend error message
-    console.error('Login Error:', error);
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return { message: 'Invalid credentials', success: false };
+        case 'CredentialsSignin':
+          throw error;
+        default:
+          return { message: 'Something went wrong', success: false };
+      }
+    }
+    // Catch any unexpected errors that occur during the login process
+    console.log('Login Error:', error);
 
-    const resendErrorMessage =
-      error.message ||
-      (error.response && error.response.data && error.response.data.message) ||
-      'An unexpected error occurred.';
+    let errorMessage = 'An unexpected error occurred during the login process.';
+
+    // Check if the error is from Auth.js
+    if (error instanceof Error && error.message) {
+      errorMessage = error.message;
+    }
 
     return {
       success: false,
-      message: resendErrorMessage,
+      message: errorMessage,
     };
   }
 };

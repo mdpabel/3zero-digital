@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   CreditCard,
   LifeBuoy,
@@ -24,7 +24,6 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { logout } from '@/actions/auth/logout';
 import { useRouter } from 'next/navigation';
 
 // Define menu items as an array
@@ -46,17 +45,10 @@ const menuItems = [
     shortcut: '⇧⌘P',
     href: '/me/profile',
   },
-  // {
-  //   label: 'Settings',
-  //   icon: <Settings />,
-  //   shortcut: '⌘S',
-  //   href: '/me/settings',
-  // },
 ];
 
 const UserButton = () => {
-  const router = useRouter();
-  const { status, data } = useSession();
+  const { status, data, update } = useSession();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const handleMenuItemClick = () => {
@@ -69,7 +61,7 @@ const UserButton = () => {
       <Button
         asChild
         variant='outline'
-        className='border-zinc-800 dark:border-zinc-200 px-4 py-2 border text-base'>
+        className='px-4 py-2 border border-zinc-800 dark:border-zinc-200 text-base'>
         <Link prefetch={true} href='/login' className='space-x-1'>
           <span>Login</span> <LogIn className='w-4 h-4' />
         </Link>

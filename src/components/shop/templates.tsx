@@ -64,8 +64,6 @@ const Templates = async ({
     },
   });
 
-  console.log({ totalTemplates });
-
   return (
     <div className='relative mx-auto px-4 py-10 w-full max-w-6xl container'>
       {/* Header Section */}

@@ -15,10 +15,17 @@ import { cn } from '@/lib/utils';
 import ThemeSwitcher from '@/components/common/theme-switcher';
 import { ServiceWithProducts } from '@/lib/product/get-product';
 import UserButton from './user-button';
+import { auth } from '@/auth';
 
-const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
+const BigScreenNavbar = async ({
+  services,
+}: {
+  services: ServiceWithProducts[];
+}) => {
+  const session = await auth();
+
   return (
-    <div className='lg:block z-50 hidden mx-auto px-4 max-w-6xl container'>
+    <div className='hidden lg:block z-50 mx-auto px-4 max-w-6xl container'>
       <div className='flex justify-between items-center h-16'>
         <Logo />
         <NavigationMenu>
@@ -55,6 +62,15 @@ const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
                 )}
               </NavigationMenuItem>
             ))}
+            {/* <li>
+              <NavigationMenuLink
+                asChild
+                className={cn(navigationMenuTriggerStyle(), '')}>
+                <Link prefetch={true} href='/recent-projects'>
+                  Recent Projects
+                </Link>
+              </NavigationMenuLink>
+            </li> */}
             <li>
               <NavigationMenuLink
                 asChild
@@ -95,7 +111,7 @@ const ListItem = React.forwardRef<
           )}
           {...props}>
           <div className='font-medium text-sm leading-none'>{title}</div>
-          <p className='line-clamp-2 text-muted-foreground text-sm leading-snug'>
+          <p className='text-muted-foreground text-sm line-clamp-2 leading-snug'>
             {children}
           </p>
         </Link>

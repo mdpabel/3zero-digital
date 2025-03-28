@@ -1,6 +1,8 @@
 'use server';
 import { auth } from '@/auth';
 import OrderConfirmationEmailTemplate from '@/components/email/order-confirmation-email-template';
+import ResetPasswordEmailTemplate from '@/components/email/reset-password-email-template';
+import { encrypt } from '@/lib/jwt/jwt-token';
 import { sendEmail } from '@/lib/send-email';
 import prisma from '@/prisma/db';
 import { orderSchema } from '@/schema/payment/order-schema';
@@ -22,15 +24,17 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
 
   try {
     const session = await auth();
-    let userId: string;
+    let userId: string | undefined = undefined; // Initialize userId as undefined
 
     if (session) {
+      // If the session exists, fetch the user
       const user = await prisma.user.findFirst({
         where: { email: session.user?.email },
       });
       if (!user) throw new Error("User doesn't exist");
-      userId = user.id;
+      userId = user.id; // Assign the userId from the session
     } else {
+      // If no session, check if the user exists by email
       const user = await prisma.user.findFirst({ where: { email } });
 
       if (user) {
@@ -43,14 +47,19 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
       }
 
       if (!user) {
+        // If no user exists, create a new one
         const newUser = await prisma.user.create({
           data: {
             email,
             name: `${firstName} ${lastName}`,
           },
         });
-        userId = newUser.id;
+        userId = newUser.id; // Assign the new user's id to userId
       }
+    }
+
+    if (!userId) {
+      throw new Error('User ID is not assigned');
     }
 
     let price: number;
@@ -126,18 +135,46 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
       return { order, payment };
     });
 
-    // Step 3: Send confirmation email
-    await sendEmail({
-      name: `${firstName} ${lastName}`,
-      subject: 'Order Confirmation',
-      to: email,
-      react: OrderConfirmationEmailTemplate({
-        customerName: `${firstName} ${lastName}`,
-        orderId: result.order.id,
-        productName,
-        productPrice: `$${price.toFixed(2)}`,
-      }),
-    });
+    try {
+      // Step 3: Send confirmation email
+      await sendEmail({
+        name: `${firstName} ${lastName}`,
+        subject: 'Order Confirmation',
+        to: email,
+        react: OrderConfirmationEmailTemplate({
+          customerName: `${firstName} ${lastName}`,
+          orderId: result.order.id,
+          productName,
+          productPrice: `$${price.toFixed(2)}`,
+        }),
+      });
+    } catch (error) {
+      console.log('Error sending order confirmation email', error);
+    }
+
+    try {
+      // Generate a JWT for the password reset with a 1-hour expiration
+      const resetToken = await encrypt({
+        userId: userId,
+      });
+
+      // Create the reset URL with the JWT token
+      const resetUrl = `${process.env.FRONTEND_URL}/update-password?token=${resetToken}`;
+
+      // Send the reset password email with the token (use your email service)
+      await sendEmail({
+        to: email,
+        subject: 'Password Reset Request',
+        replyTo: 'no-reply@3zerodigital.com',
+        name: firstName + ' ' + lastName,
+        react: ResetPasswordEmailTemplate({
+          name: firstName + ' ' + lastName,
+          resetLink: resetUrl,
+        }),
+      });
+    } catch (error) {
+      console.log('Error sending password reset email', error);
+    }
 
     return {
       success: true,

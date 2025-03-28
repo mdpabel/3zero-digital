@@ -6,6 +6,7 @@ import './globals.css';
 import Providers from './providers';
 import { siteMetadata } from './metadata';
 import { cn } from '@/lib/utils';
+import { auth } from '@/auth';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.url),

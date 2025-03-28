@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { useActionState, useEffect, useTransition } from 'react';
+import { useActionState, useTransition } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,44 +24,32 @@ import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 import Message from './message';
 import Spinner from '../common/spinner';
-import { loginAction } from '@/actions/auth/login';
-import { LoginSchema } from '@/schema/auth/login-schmea';
-import { useRouter, useSearchParams } from 'next/navigation';
-import PasswordInputField from './password-field';
+import { useSearchParams } from 'next/navigation';
+import { ResetPasswordSchema } from '@/schema/auth/reset-password-schema';
+import { resetPassword } from '@/actions/auth/reset-password';
 
-type LoginFormSchema = z.infer<typeof LoginSchema>;
+type ResetPasswordFormSchema = z.infer<typeof ResetPasswordSchema>;
 
-const LoginForm = () => {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [{ message, success }, action] = useActionState(loginAction, {
-    success: false,
+const ResetPasswordForm = () => {
+  const [{ message, success }, action] = useActionState(resetPassword, {
+    success: true,
     message: '',
   });
   const [pending, startTransition] = useTransition();
 
-  const form = useForm<LoginFormSchema>({
-    resolver: zodResolver(LoginSchema),
+  const form = useForm<ResetPasswordFormSchema>({
+    resolver: zodResolver(ResetPasswordSchema),
     defaultValues: {
       email: '',
-      password: '',
     },
   });
-
-  const callbackUrl = searchParams.get('callbackUrl') ?? '/';
-
-  useEffect(() => {
-    if (success && message) {
-      router.push(callbackUrl);
-    }
-  }, [message, message]);
 
   return (
     <Card className='mx-auto my-10 max-w-md'>
       <CardHeader className='space-y-1'>
-        <CardTitle className='text-2xl'>Sign in to your account</CardTitle>
+        <CardTitle className='text-2xl'>Reset your password</CardTitle>
         <CardDescription className=''>
-          Enter your email below to login to your account
+          Enter your email below to reset your password
         </CardDescription>
       </CardHeader>
       <Form {...form}>
@@ -73,7 +61,6 @@ const LoginForm = () => {
             }
           }}
           className='space-y-4'>
-          <input type='hidden' name='callbackUrl' value={callbackUrl} />
           <CardContent className='gap-4 grid pb-4'>
             {message && (
               <Message type={success ? 'success' : 'error'} message={message} />
@@ -93,42 +80,21 @@ const LoginForm = () => {
               )}
             />
 
-            <FormField
-              control={form.control}
-              name='password'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <PasswordInputField field={field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
             <input type='hidden' name='honeypot' />
           </CardContent>
           <CardFooter className='flex flex-col gap-2 x'>
             <Button className='w-full' type='submit'>
-              {pending ? <Spinner /> : 'Sign In'}
+              {pending ? <Spinner /> : 'Reset Password'}
             </Button>
             <div className='text-center'>
               <span className='text-muted-foreground text-sm'>
-                Don&apos;t have an account?{' '}
+                Remember your password?{' '}
                 <Link
-                  href='/signup'
+                  href='/login'
                   className='text-primary text-sm hover:underline'>
-                  Register
+                  Login here
                 </Link>
               </span>
-            </div>
-            <div className='text-center'>
-              <Link
-                href='/reset-password'
-                className='text-primary text-sm hover:underline'>
-                Forgot Password?
-              </Link>
             </div>
           </CardFooter>
         </form>
@@ -137,4 +103,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default ResetPasswordForm;

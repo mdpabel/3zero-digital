@@ -27,6 +27,7 @@ import Spinner from '../common/spinner';
 import Message from './message';
 import { SignUpSchema } from '@/schema/auth/create-user-schema';
 import { signUpAction } from '@/actions/auth/signup';
+import PasswordInputField from './password-field';
 
 type SignUpFormSchema = z.infer<typeof SignUpSchema>;
 
@@ -44,6 +45,7 @@ const SignUpForm = () => {
       email: '',
       firstName: '',
       lastName: '',
+      password: '',
     },
   });
 
@@ -77,7 +79,7 @@ const SignUpForm = () => {
                     <FormLabel>First Name</FormLabel>
                     <FormControl>
                       <Input
-                        className='border-zinc-800 dark:border-zinc-200 border'
+                        className='border border-zinc-800 dark:border-zinc-200'
                         placeholder='First Name'
                         {...field}
                       />
@@ -94,7 +96,7 @@ const SignUpForm = () => {
                     <FormLabel>Last Name</FormLabel>
                     <FormControl>
                       <Input
-                        className='border-zinc-800 dark:border-zinc-200 border'
+                        className='border border-zinc-800 dark:border-zinc-200'
                         placeholder='Last Name'
                         {...field}
                       />
@@ -112,7 +114,7 @@ const SignUpForm = () => {
                   <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
-                      className='border-zinc-800 dark:border-zinc-200 border'
+                      className='border border-zinc-800 dark:border-zinc-200'
                       placeholder='m@example.com'
                       {...field}
                     />
@@ -121,6 +123,22 @@ const SignUpForm = () => {
                 </FormItem>
               )}
             />
+
+            <FormField
+              control={form.control}
+              name='password'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Password</FormLabel>
+                  <FormControl>
+                    <PasswordInputField field={field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <input type='hidden' name='honeypot' />
           </CardContent>
           <CardFooter className='flex flex-col gap-2'>
             <Button className='w-full' type='submit'>

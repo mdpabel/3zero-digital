@@ -15,7 +15,7 @@ export async function sendEmail({
 }) {
   try {
     const response = await resend.emails.send({
-      from: process.env.EMAIL_TO!,
+      from: '3Zero Digital <info@3zerodigital.com>',
       replyTo,
       to,
       subject,
