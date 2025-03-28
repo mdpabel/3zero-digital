@@ -107,6 +107,7 @@ const UserButton = () => {
                 signOut({
                   redirectTo: '/',
                 });
+                update();
                 setDropdownOpen(false);
               }}
               type='submit'

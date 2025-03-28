@@ -28,10 +28,12 @@ import { loginAction } from '@/actions/auth/login';
 import { LoginSchema } from '@/schema/auth/login-schmea';
 import { useRouter, useSearchParams } from 'next/navigation';
 import PasswordInputField from './password-field';
+import { useSession } from 'next-auth/react';
 
 type LoginFormSchema = z.infer<typeof LoginSchema>;
 
 const LoginForm = () => {
+  const session = useSession();
   const router = useRouter();
   const searchParams = useSearchParams();
   const [{ message, success }, action] = useActionState(loginAction, {
@@ -53,6 +55,7 @@ const LoginForm = () => {
   useEffect(() => {
     if (success && message) {
       router.push(callbackUrl);
+      session.update();
     }
   }, [message, message]);
 
