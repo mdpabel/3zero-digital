@@ -12,6 +12,7 @@ import { ArrowRight, Trash } from 'lucide-react';
 import DeleteOrder from './delete-order';
 import { MdDetails } from 'react-icons/md';
 import Link from 'next/link';
+import CopyOrderLink from './copy-order-link';
 
 const Page = async () => {
   // Fetch orders along with related product and payment information
@@ -38,6 +39,7 @@ const Page = async () => {
             <TableHead>Quantity</TableHead>
             <TableHead>Gateway</TableHead>
             <TableHead>Payment Status</TableHead>
+            <TableHead>Order Link</TableHead>
             <TableHead>Action</TableHead>
           </TableRow>
         </TableHeader>
@@ -74,6 +76,11 @@ const Page = async () => {
                   {order.payment.length > 0
                     ? order.payment[0]?.status // assuming one payment per order
                     : 'Not Paid'}
+                </TableCell>
+
+                {/* Order Link */}
+                <TableCell>
+                  <CopyOrderLink orderId={order.id} />
                 </TableCell>
 
                 {/* Action */}
