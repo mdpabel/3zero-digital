@@ -36,8 +36,9 @@ model User {
   // Optional for WebAuthn support
   Authenticator Authenticator[]
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Message   Message[]
 }
 
 model Account {
@@ -218,6 +219,7 @@ model Order {
 
   // Payments
   payment Payment[]
+  Message Message[]
 }
 
 enum PaymentStatus {
@@ -246,6 +248,17 @@ model Payment {
   updatedAt     DateTime       @updatedAt
 
   order Order @relation(fields: [orderId], references: [id], onDelete: Cascade)
+}
+
+model Message {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  content   String
+  createdAt DateTime @default(now())
+  isAdmin   Boolean  @default(false) // true if the sender is an admin
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?  @db.ObjectId
+  order     Order    @relation(fields: [orderId], references: [id])
+  orderId   String   @db.ObjectId
 }
 
 model Coupon {

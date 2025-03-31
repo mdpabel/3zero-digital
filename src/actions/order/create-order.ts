@@ -132,6 +132,17 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
         },
       });
 
+      // Create a welcome message automatically after the order is created
+      await tx.message.create({
+        data: {
+          content:
+            "Thank you for your order! We're excited to start working on your service. Please provide any additional details you’d like us to know.",
+          userId,
+          orderId: order.id, // Link the message to the order
+          isAdmin: false, // Customer message
+        },
+      });
+
       return { order, payment };
     });
 

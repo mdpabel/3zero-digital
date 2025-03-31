@@ -16,15 +16,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         // Fetch the role from the database
         const dbUser = await prisma.user.findUnique({
           where: { id: user.id },
-          select: { role: true }, // Adjust field to match your schema
+          select: { role: true, id: true }, // Adjust field to match your schema
         });
 
         token.role = dbUser?.role; // Default to 'user' if no role is found
+        token.id = dbUser?.id;
       }
       return token;
     },
     session: async ({ session, token }) => {
       session.user.role = token.role as UserRole; // Pass role to session
+      session.user.id = token.sub as string;
       return session;
     },
   },

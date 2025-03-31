@@ -54,6 +54,12 @@ export const adminDashboardSidebarItems = [
     roles: ['ADMIN'],
   },
   {
+    label: 'Support',
+    href: '/admin/support',
+    icon: <FaLifeRing />,
+    roles: ['ADMIN'],
+  },
+  {
     label: 'Products',
     href: '#',
     icon: <FaBox />,
