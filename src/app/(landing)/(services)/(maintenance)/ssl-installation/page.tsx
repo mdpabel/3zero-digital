@@ -79,7 +79,7 @@ const SSLInstallation = async () => {
           <h2 className='font-extrabold text-4xl'>
             SSL Installation & Configuration
           </h2>
-          <p className='mt-4 text-lg text-zinc-600 dark:text-zinc-400'>
+          <p className='mt-4 text-zinc-600 dark:text-zinc-400 text-lg'>
             Secure your website with our comprehensive SSL installation service.
             We handle everything from setup to ongoing support.
           </p>
@@ -87,7 +87,7 @@ const SSLInstallation = async () => {
 
         {/* Pricing Table */}
         <PricingTable
-          origPrice={origPrice}
+          origPrice={origPrice!}
           price={price}
           productId={productId}
           services={benefits.map((b) => b.text)}
@@ -102,8 +102,8 @@ const SSLInstallation = async () => {
             {benefits.map((benefit, index) => (
               <li
                 key={index}
-                className='flex items-center space-x-4 bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl p-4 rounded-lg transform transition-transform hover:scale-[1.02]'>
-                <div className='text-3xl text-indigo-600 dark:text-indigo-400'>
+                className='flex items-center space-x-4 bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl p-4 rounded-lg hover:scale-[1.02] transition-transform transform'>
+                <div className='text-indigo-600 dark:text-indigo-400 text-3xl'>
                   {benefit.icon}
                 </div>
                 <p className='text-lg'>{benefit.text}</p>

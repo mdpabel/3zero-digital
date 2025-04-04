@@ -1,27 +1,35 @@
 import { getServiceMetadata } from '@/app/seo';
 import { getProduct } from '@/lib/product/get-product';
 import Hero from '@/components/common/Hero';
-import PricingTable from '../pricing-table';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
+import PricingTable from '../../../(troubleshooting)/pricing-table';
+import { blacklistData } from '../data';
 
 export const dynamic = 'force-static';
 
-const slug = 'ssl-mixed-content-error';
+const slug = 'blacklist-removal';
 
 export const metadata = getServiceMetadata(slug);
 
-export default async function FixMixedContentErrorService() {
+export default async function Fix500ErrorService({
+  params,
+}: {
+  params: Promise<{ vendor: string }>;
+}) {
+  const blacklistSlug = (await params).vendor;
   const { origPrice, price, productId } = await getProduct(slug);
+
+  const blacklist = blacklistData.find((b) => (b.slug = blacklistSlug))!;
 
   const jsonLd = generateSchemaMarkup(slug);
 
   return (
     <div className='flex flex-col justify-center items-center p-6 min-h-[100dvh]'>
       <Hero
-        description="Are mixed content errors affecting your website's security and performance? Let us resolve these issues to ensure a fully secure and compliant website."
-        headline='Fix Mixed Content Errors'
-        subHeadline='Ensure a secure, HTTPS-compliant website with our expert solutions.'
+        description={blacklist?.meta?.description}
+        headline={blacklist?.meta.title}
+        subHeadline='Being Blacklisted Costs You Traffic, Trust, and Revenue!'
       />
 
       <div className='p-8 w-full max-w-5xl'>
@@ -48,7 +56,7 @@ export default async function FixMixedContentErrorService() {
                     strokeWidth='2'
                     d='M5 13l4 4L19 7'></path>
                 </svg>
-                Identification of mixed content issues on your website.
+                Diagnosis of server issues causing 500 errors.
               </li>
               <li className='flex items-start'>
                 <svg
@@ -63,7 +71,7 @@ export default async function FixMixedContentErrorService() {
                     strokeWidth='2'
                     d='M5 13l4 4L19 7'></path>
                 </svg>
-                Correction of insecure content links (HTTP to HTTPS).
+                Fixes to server configurations and code issues.
               </li>
               <li className='flex items-start'>
                 <svg
@@ -78,7 +86,7 @@ export default async function FixMixedContentErrorService() {
                     strokeWidth='2'
                     d='M5 13l4 4L19 7'></path>
                 </svg>
-                Verification of website security and HTTPS status.
+                Post-fix monitoring to ensure stability.
               </li>
             </ul>
           </div>
@@ -89,9 +97,8 @@ export default async function FixMixedContentErrorService() {
                 Why Choose Us?
               </h3>
               <p className='text-zinc-600 dark:text-zinc-400 text-center'>
-                Our experts will ensure that your website is fully secured with
-                HTTPS, eliminating mixed content errors that could compromise
-                your site’s performance and security.
+                We specialize in quickly diagnosing and resolving 500 server
+                errors, ensuring your site remains online and fully functional.
               </p>
             </div>
           </div>

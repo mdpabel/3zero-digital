@@ -88,11 +88,11 @@ const WordPressMaintenance = async () => {
 
       <div className='mt-32'>
         <div className='mx-auto max-w-4xl'>
-          <h2 className='mb-6 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
+          <h2 className='mb-6 font-bold text-zinc-800 dark:text-zinc-200 text-3xl md:text-5xl text-center'>
             Ongoing WordPress Security Maintenance
           </h2>
 
-          <p className='mb-10 text-center text-lg text-zinc-600 md:text-xl dark:text-zinc-400'>
+          <p className='mb-10 text-zinc-600 dark:text-zinc-400 text-lg md:text-xl text-center'>
             Secure your WordPress site with our comprehensive maintenance
             services. Our team ensures your site is protected, updated, and
             performing at its best.
@@ -100,7 +100,7 @@ const WordPressMaintenance = async () => {
         </div>
 
         <PricingTable
-          origPrice={origPrice}
+          origPrice={origPrice!}
           price={price}
           productId={productId}
           services={services.map((s) => s.title)}
@@ -110,13 +110,13 @@ const WordPressMaintenance = async () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className='flex items-start border-gray-200 dark:border-gray-900 bg-gray-200 dark:bg-gray-900 p-6 border rounded-lg'>
-              <div className='flex-shrink-0 mr-4 text-[#614385] text-3xl dark:text-[#516395]'>
+              className='flex items-start bg-gray-200 dark:bg-gray-900 p-6 border border-gray-200 dark:border-gray-900 rounded-lg'>
+              <div className='flex-shrink-0 mr-4 text-[#614385] dark:text-[#516395] text-3xl'>
                 {service.icon}
               </div>
               <div>
                 <h3 className='font-bold text-xl'>{service.title}</h3>
-                <p className='mt-2 text-sm text-zinc-600 dark:text-zinc-400'>
+                <p className='mt-2 text-zinc-600 dark:text-zinc-400 text-sm'>
                   {service.description}
                 </p>
               </div>

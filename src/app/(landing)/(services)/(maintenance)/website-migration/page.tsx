@@ -43,18 +43,18 @@ const WebsiteMigration = async () => {
 
       <Video videoId='na2iB6nBzIc' pageSlug={slug} />
 
-      <h2 className='mt-32 mb-8 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
+      <h2 className='mt-32 mb-8 font-bold text-zinc-800 dark:text-zinc-200 text-3xl md:text-5xl text-center'>
         Website Migration Services
       </h2>
 
-      <p className='mb-10 text-center text-lg text-zinc-600 md:text-xl dark:text-zinc-400'>
+      <p className='mb-10 text-zinc-600 dark:text-zinc-400 text-lg md:text-xl text-center'>
         Transition your website to a new platform or hosting provider with
         minimal downtime and zero data loss. Our expert team handles the entire
         process for a smooth migration.
       </p>
 
       <PricingTable
-        origPrice={origPrice}
+        origPrice={origPrice!}
         price={price}
         productId={productId}
         services={migrationSteps}
@@ -64,13 +64,13 @@ const WebsiteMigration = async () => {
         {migrationSteps.map((step, index) => (
           <div
             key={index}
-            className='flex items-start border-gray-200 dark:border-gray-900 bg-gray-50 dark:bg-gray-800 shadow-md hover:shadow-lg p-6 border rounded-lg transition-shadow'>
+            className='flex items-start bg-gray-50 dark:bg-gray-800 shadow-md hover:shadow-lg p-6 border border-gray-200 dark:border-gray-900 rounded-lg transition-shadow'>
             <div className='flex flex-shrink-0 justify-center items-center bg-gradient-to-r from-[#614385] to-[#516395] mr-4 rounded-full w-12 h-12 text-white'>
               <span className='font-semibold text-lg'>{index + 1}</span>
             </div>
             <div>
               <h3 className='font-semibold text-lg'>{step}</h3>
-              <p className='mt-2 text-sm text-zinc-600 dark:text-zinc-400'>
+              <p className='mt-2 text-zinc-600 dark:text-zinc-400 text-sm'>
                 {index % 2 === 0
                   ? 'We carefully plan and execute each step to ensure a seamless transition with no impact on your site’s performance or SEO.'
                   : 'Our team ensures that your site remains fully functional throughout the migration process, with comprehensive testing and post-migration support.'}

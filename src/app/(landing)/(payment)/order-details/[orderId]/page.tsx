@@ -30,7 +30,7 @@ const Order = async ({ params }: { params: Promise<{ orderId: string }> }) => {
   const isPaid = order.payment[0].status === 'paid';
 
   return (
-    <div className='mx-auto py-12 p-4 max-w-6xl'>
+    <div className='mx-auto p-4 py-12 max-w-6xl'>
       <h1 className='mb-8 font-semibold text-3xl text-center'>
         Complete your payment
       </h1>
@@ -93,7 +93,7 @@ const Order = async ({ params }: { params: Promise<{ orderId: string }> }) => {
 
                 <p className='flex justify-between items-center pt-3 border-t'>
                   <span>Subtotal Price</span>{' '}
-                  <span>${order.total.toFixed(2)}</span>
+                  <span>${(order.total * order.quantity).toFixed(2)}</span>
                 </p>
               </CardContent>
             </Card>

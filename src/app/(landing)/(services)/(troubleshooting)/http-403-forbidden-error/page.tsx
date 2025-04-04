@@ -26,7 +26,7 @@ export default async function Fix403ErrorService() {
       />
       <div className='p-8 w-full max-w-5xl'>
         <PricingTable
-          origPrice={origPrice}
+          origPrice={origPrice!}
           price={price}
           productId={productId}
         />
@@ -50,12 +50,12 @@ export default async function Fix403ErrorService() {
             </ul>
           </div>
 
-          <div className='flex justify-center items-center dark:bg-gray-900 p-6shadow-xl shadow-md p-6 rounded-lg'>
+          <div className='flex justify-center items-center dark:bg-gray-900 shadow-md p-6 p-6shadow-xl rounded-lg'>
             <div>
               <h3 className='mb-4 font-bold text-2xl text-center'>
                 Why Choose Us?
               </h3>
-              <p className='text-center text-zinc-600 dark:text-zinc-400'>
+              <p className='text-zinc-600 dark:text-zinc-400 text-center'>
                 Our team has the expertise to quickly identify and resolve 403
                 Forbidden errors, ensuring your website remains accessible and
                 secure.

@@ -63,7 +63,9 @@ const Page = async () => {
                 <TableCell>{order.product?.name}</TableCell>
 
                 {/* Display total price */}
-                <TableCell>${order.total.toFixed(2)}</TableCell>
+                <TableCell>
+                  ${parseFloat(order.total.toFixed(2)) * order.quantity}
+                </TableCell>
 
                 {/* Display quantity */}
                 <TableCell>{order.quantity}</TableCell>

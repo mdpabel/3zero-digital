@@ -25,7 +25,7 @@ const PricingTable = ({
       id='getStarted'
       className='flex md:flex-row flex-col justify-between items-center bg-gray-100 dark:bg-gray-900 shadow-md p-6 rounded-lg text-gray-900 dark:text-white'>
       {/* Pricing Details */}
-      <div className='flex-1 mb-6 md:mb-0 text-center md:text-left'>
+      <div className='flex-1 mb-6 md:mb-0 md:text-left text-center'>
         <p className='mt-2 text-lg'>
           {origPrice > price && (
             <span className='mr-2 line-through'>

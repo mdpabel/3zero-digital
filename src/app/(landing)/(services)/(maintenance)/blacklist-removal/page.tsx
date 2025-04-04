@@ -34,7 +34,7 @@ const page = async () => {
       <Video videoId='na2iB6nBzIc' pageSlug='blacklist-removal' />
 
       <BlacklistRemovalVendors
-        origPrice={origPrice}
+        origPrice={origPrice!}
         price={price}
         productId={productId}
       />

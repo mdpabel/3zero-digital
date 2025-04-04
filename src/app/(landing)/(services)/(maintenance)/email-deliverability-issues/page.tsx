@@ -44,29 +44,33 @@ const EmailDeliverabilityIssues = async () => {
 
       <Video videoId='na2iB6nBzIc' pageSlug={slug} />
 
-      <h2 className='mt-32 mb-8 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
+      <h2 className='mt-32 mb-8 font-bold text-zinc-800 dark:text-zinc-200 text-3xl md:text-5xl text-center'>
         Email Deliverability Solutions
       </h2>
 
-      <p className='mb-10 text-center text-lg text-zinc-600 md:text-xl dark:text-zinc-400'>
+      <p className='mb-10 text-zinc-600 dark:text-zinc-400 text-lg md:text-xl text-center'>
         Resolve your email deliverability challenges with our expert services.
         Identify and fix issues that prevent your emails from reaching the
         inbox.
       </p>
 
-      <PricingTable origPrice={origPrice} price={price} productId={productId} />
+      <PricingTable
+        origPrice={origPrice!}
+        price={price}
+        productId={productId}
+      />
 
       <div className='gap-8 grid grid-cols-1 md:grid-cols-2'>
         {issues.map((issue, index) => (
           <div
             key={index}
-            className='flex items-start border-gray-200 dark:border-gray-900 bg-gray-50 dark:bg-gray-800 shadow-md hover:shadow-lg p-6 border rounded-lg transition-shadow'>
+            className='flex items-start bg-gray-50 dark:bg-gray-800 shadow-md hover:shadow-lg p-6 border border-gray-200 dark:border-gray-900 rounded-lg transition-shadow'>
             <div className='flex flex-shrink-0 justify-center items-center bg-gradient-to-r from-[#614385] to-[#516395] mr-4 rounded-full w-12 h-12 text-white'>
               <span className='font-semibold text-lg'>{index + 1}</span>
             </div>
             <div>
               <h3 className='font-semibold text-lg'>{issue}</h3>
-              <p className='mt-2 text-sm text-zinc-600 dark:text-zinc-400'>
+              <p className='mt-2 text-zinc-600 dark:text-zinc-400 text-sm'>
                 {index % 2 === 0
                   ? 'Our experts will identify this issue and provide targeted solutions to improve your email deliverability.'
                   : 'We’ll help you mitigate this problem to ensure your emails land in the inbox, not the spam folder.'}

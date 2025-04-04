@@ -26,7 +26,7 @@ export default async function Fix500ErrorService() {
 
       <div className='p-8 w-full max-w-5xl'>
         <PricingTable
-          origPrice={origPrice}
+          origPrice={origPrice!}
           price={price}
           productId={productId}
         />
@@ -88,7 +88,7 @@ export default async function Fix500ErrorService() {
               <h3 className='mb-4 font-bold text-2xl text-center'>
                 Why Choose Us?
               </h3>
-              <p className='text-center text-zinc-600 dark:text-zinc-400'>
+              <p className='text-zinc-600 dark:text-zinc-400 text-center'>
                 We specialize in quickly diagnosing and resolving 500 server
                 errors, ensuring your site remains online and fully functional.
               </p>

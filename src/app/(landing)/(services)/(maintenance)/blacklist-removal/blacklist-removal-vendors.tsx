@@ -53,10 +53,10 @@ const BlacklistRemovalVendors = ({
     <div
       id='getStarted'
       className='shadow-lg mx-auto my-10 mt-32 p-8 rounded-lg max-w-6xl container'>
-      <h2 className='mb-6 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
+      <h2 className='mb-6 font-bold text-zinc-800 dark:text-zinc-200 text-3xl md:text-5xl text-center'>
         Blacklist Removal Service
       </h2>
-      <p className='mb-8 text-center text-lg text-zinc-700 md:text-xl dark:text-zinc-400'>
+      <p className='mb-8 text-zinc-700 dark:text-zinc-400 text-lg md:text-xl text-center'>
         Select the blacklists you want to remove. Each removal costs{' '}
         {formatCurrency({ amount: price })}.
       </p>
@@ -74,7 +74,7 @@ const BlacklistRemovalVendors = ({
                 : '$0.0'}
             </span>
           </h3>
-          <p className='mb-4 text-sm text-zinc-600 dark:text-zinc-400'>
+          <p className='mb-4 text-zinc-600 dark:text-zinc-400 text-sm'>
             The total cost for removing the selected blacklists.
           </p>
         </div>
@@ -95,7 +95,7 @@ const BlacklistRemovalVendors = ({
           placeholder='Search blacklists...'
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className='border-gray-300 dark:border-gray-700 dark:bg-gray-800 px-4 py-2 border rounded-lg w-full dark:text-white'
+          className='dark:bg-gray-800 px-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg w-full dark:text-white'
         />
       </div>
 
@@ -104,7 +104,7 @@ const BlacklistRemovalVendors = ({
           filteredBlacklistData.map((item, index) => (
             <div
               key={index}
-              className='flex items-center bg-gray-50 hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-800 p-4 rounded-lg transition'>
+              className='flex items-center bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 p-4 rounded-lg transition'>
               <input
                 type='checkbox'
                 id={`blacklist-${index}`}
@@ -112,7 +112,7 @@ const BlacklistRemovalVendors = ({
                 value={item.name}
                 checked={selectedBlacklists.includes(item.name)}
                 onChange={() => handleCheckboxChange(item.name)}
-                className='border-gray-300 mr-3 rounded focus:ring-indigo-500 w-4 h-4 text-indigo-600'
+                className='mr-3 border-gray-300 rounded focus:ring-indigo-500 w-4 h-4 text-indigo-600'
               />
               <label
                 htmlFor={`blacklist-${index}`}
@@ -121,7 +121,7 @@ const BlacklistRemovalVendors = ({
               </label>
               <div className='text-right'>
                 {origPrice > price && (
-                  <span className='block font-semibold text-sm text-zinc-500 dark:text-zinc-400 line-through'>
+                  <span className='block font-semibold text-zinc-500 dark:text-zinc-400 text-sm line-through'>
                     {formatCurrency({ amount: origPrice })}
                   </span>
                 )}
@@ -132,7 +132,7 @@ const BlacklistRemovalVendors = ({
             </div>
           ))
         ) : (
-          <p className='text-center text-zinc-700 dark:text-zinc-400'>
+          <p className='text-zinc-700 dark:text-zinc-400 text-center'>
             No blacklists found.
           </p>
         )}

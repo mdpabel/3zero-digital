@@ -26,7 +26,7 @@ export default async function FixWSODService() {
 
       <div className='p-8 w-full max-w-5xl'>
         <PricingTable
-          origPrice={origPrice}
+          origPrice={origPrice!}
           price={price}
           productId={productId}
         />
@@ -88,7 +88,7 @@ export default async function FixWSODService() {
               <h3 className='mb-4 font-bold text-2xl text-center'>
                 Why Choose Us?
               </h3>
-              <p className='text-center text-zinc-600 dark:text-zinc-400'>
+              <p className='text-zinc-600 dark:text-zinc-400 text-center'>
                 Our experienced team quickly identifies and resolves the causes
                 of the White Screen of Death, ensuring your WordPress site is
                 back online and functioning smoothly.

@@ -44,11 +44,11 @@ const WordPressSpeedOptimization = async () => {
       <Video videoId='na2iB6nBzIc' pageSlug={slug} />
 
       <div className='mx-auto mt-32 max-w-5xl'>
-        <h2 className='mb-6 font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
+        <h2 className='mb-6 font-bold text-zinc-800 dark:text-zinc-200 text-3xl md:text-5xl text-center'>
           WordPress Speed Optimization
         </h2>
 
-        <p className='mb-8 text-center text-lg text-zinc-700 md:text-xl dark:text-zinc-400'>
+        <p className='mb-8 text-zinc-700 dark:text-zinc-400 text-lg md:text-xl text-center'>
           Supercharge your WordPress site with our comprehensive speed
           optimization services. Improve loading times, enhance user experience,
           and boost your search engine rankings.
@@ -62,7 +62,7 @@ const WordPressSpeedOptimization = async () => {
               {services.map((service, index) => (
                 <li key={index} className='flex items-start'>
                   <div className='flex-shrink-0 bg-gradient-to-r from-[#614385] to-[#516395] mr-3 rounded-full w-4 h-4'></div>
-                  <span className='text-base text-zinc-700 dark:text-zinc-300'>
+                  <span className='text-zinc-700 dark:text-zinc-300 text-base'>
                     {service}
                   </span>
                 </li>
@@ -72,7 +72,7 @@ const WordPressSpeedOptimization = async () => {
 
           {/* Pricing Table */}
           <PricingTable
-            origPrice={origPrice}
+            origPrice={origPrice!}
             price={price}
             productId={productId}
             services={services}
