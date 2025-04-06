@@ -9,7 +9,6 @@ import CompaniesLogo from '@/components/home/company-logos';
 import Comparison from '@/components/development/comparison';
 import Script from 'next/script';
 import FeaturedServices from '@/components/featured-services/featured-services';
-import CouponPopup from '@/components/common/coupon-popup';
 
 export const dynamic = 'force-static';
 
@@ -31,7 +30,6 @@ const Home = () => {
         </Suspense>
       )}
 
-      <CouponPopup />
       <Script
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
