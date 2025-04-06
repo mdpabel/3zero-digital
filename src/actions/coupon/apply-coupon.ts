@@ -3,12 +3,16 @@
 import prisma from '@/prisma/db';
 
 export const applyCoupon = async (code: string) => {
+  console.log({ code });
+
   try {
     const coupon = await prisma.coupon.findFirst({
       where: {
         code,
       },
     });
+
+    console.log({ coupon });
 
     if (!coupon) {
       return {

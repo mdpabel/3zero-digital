@@ -15,11 +15,11 @@ const CouponPopup = () => {
 
   useEffect(() => {
     if (!showPopup || !mounted) return; // Don't show if the popup is already closed
-    toast('🎉 10% OFF for Palestine!', {
+    toast('🎉 15% OFF for Palestine!', {
       position: 'bottom-left',
       closeButton: true,
       description:
-        'Use code FREEPALESTINE to get 10% off. We encourage you to donate the saved amount to support Palestine 🇵🇸.',
+        'Use code FREEPALESTINE to get 15% off. We encourage you to donate the saved amount to support Palestine 🇵🇸.',
       duration: Number.POSITIVE_INFINITY, // 10 seconds
       className: cn(
         'bottom-1 left-1 flex fixed md:max-w-[420px] max-h-[100px] ',
