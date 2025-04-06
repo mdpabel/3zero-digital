@@ -19,6 +19,7 @@ const quickLinks = [
   { name: 'Contact', href: '/contact' },
   { name: 'Blog', href: '/blog' },
   { name: 'Book a call', href: '/book-a-call' },
+  { name: 'Offers', href: '/offers' },
 ];
 
 const policiesLinks = [
@@ -43,12 +44,12 @@ const Footer: React.FC = async () => {
                 <Image src={logoDark} alt='Logo' width={110} />
               </Link>
             </div>
-            <p className='mt-2 text-center text-sm md:text-left'>
+            <p className='mt-2 text-sm md:text-left text-center'>
               Achieving perfection with 0 Vulnerability, 0 Downtime, 0 Error.
             </p>
 
             {/* Contact Info */}
-            <div className='mt-6 text-center md:text-left'>
+            <div className='mt-6 md:text-left text-center'>
               <p className='text-sm'>
                 <strong>Phone:</strong> +44 7878 798374
               </p>
@@ -150,7 +151,7 @@ const Footer: React.FC = async () => {
         </div>
 
         {/* Copyright Section */}
-        <div className='border-zinc-200 dark:border-zinc-700 mt-8 pt-6 border-t text-center text-sm'>
+        <div className='mt-8 pt-6 border-zinc-200 dark:border-zinc-700 border-t text-sm text-center'>
           <p>
             &copy; {new Date().getFullYear()} 3Zero Digital. All rights
             reserved.

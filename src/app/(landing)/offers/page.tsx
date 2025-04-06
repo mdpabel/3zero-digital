@@ -8,10 +8,10 @@ import { useState } from 'react';
 const offers = [
   {
     id: 1,
-    title: '10% OFF for Palestine 🇵🇸',
+    title: '15% OFF for Palestine 🇵🇸',
     code: 'FREEPALESTINE',
     description:
-      'Show your support for Palestine. Use this code to get 10% off. We encourage you to donate the saved amount for the cause.',
+      'Show your support for Palestine. Use this code to get 15% off. We encourage you to donate the saved amount for the cause.',
   },
   // Add more offers here
 ];
