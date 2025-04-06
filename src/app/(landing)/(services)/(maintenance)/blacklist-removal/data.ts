@@ -1000,8 +1000,6 @@ export const blacklistData = [
   },
 ];
 
-console.log({ blacklistData });
-
 export const questions = [
   {
     question:

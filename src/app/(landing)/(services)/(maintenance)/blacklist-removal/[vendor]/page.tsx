@@ -5,19 +5,51 @@ import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
 import PricingTable from '../../../(troubleshooting)/pricing-table';
 import { blacklistData } from '../data';
+import Comparison from '@/components/development/comparison';
+import type { Metadata, ResolvingMetadata } from 'next';
+
+type Props = {
+  params: Promise<{ vendor: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
 export const dynamic = 'force-static';
 
 const slug = 'blacklist-removal';
 
-export const metadata = getServiceMetadata(slug);
+export async function generateMetadata(
+  { params, searchParams }: Props,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  // read route params
+  const { vendor } = await params;
 
-export default async function Fix500ErrorService({
+  // fetch data
+  const blacklist = blacklistData.find((b) => (b.slug = vendor))!;
+
+  return {
+    title: blacklist.meta.title,
+    description: blacklist.meta.description,
+    alternates: {
+      canonical: `https://www.3zerodigital.com/blacklist-removal/${blacklist.slug}`,
+    },
+  };
+}
+
+// Return a list of `params` to populate the [slug] dynamic segment
+export async function generateStaticParams() {
+  return blacklistData.map((vendor) => ({
+    vendor: vendor.slug,
+  }));
+}
+
+export default async function BlacklistServicePage({
   params,
 }: {
   params: Promise<{ vendor: string }>;
 }) {
   const blacklistSlug = (await params).vendor;
+
   const { origPrice, price, productId } = await getProduct(slug);
 
   const blacklist = blacklistData.find((b) => (b.slug = blacklistSlug))!;
@@ -104,6 +136,8 @@ export default async function Fix500ErrorService({
           </div>
         </div>
       </div>
+
+      <Comparison />
 
       <Script
         type='application/ld+json'

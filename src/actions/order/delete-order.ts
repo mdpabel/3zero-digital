@@ -7,9 +7,14 @@ import { revalidatePath } from 'next/cache';
 export const deleteOrder = async (orderId: string) => {
   const session = await auth();
 
-  console.log(session);
+  if (process.env.NODE_ENV === 'production') {
+    return {
+      success: false,
+      message: 'Only super admin can delete the orders.',
+    };
+  }
 
-  if (!session) {
+  if (!session || !session.user || session.user.role !== 'ADMIN') {
     return {
       success: false,
       message: 'You are not authorized to delete order',

@@ -6,6 +6,7 @@ import prisma from '@/prisma/db';
 import { services } from '@/services';
 import type { MetadataRoute } from 'next';
 import { WP_REST_API_Post, WP_REST_API_Posts } from 'wp-types';
+import { blacklistData } from './(landing)/(services)/(maintenance)/blacklist-removal/data';
 
 const generateServicesSitemap = () => {
   const urls: MetadataRoute.Sitemap = [];
@@ -119,12 +120,28 @@ const generateTemplateCategorySitemap = async () => {
   return categoriesUrl;
 };
 
+export const blacklistSitemap = () => {
+  const blacklist = blacklistData;
+  const baseUrl = 'https://www.3zerodigital.com/blacklist-removal';
+
+  // Generate category URLs
+  const urls: MetadataRoute.Sitemap = blacklist.map((b) => ({
+    url: `${baseUrl}/${b.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.4,
+  }));
+
+  return urls;
+};
+
 export default async function sitemap() {
   const staticPages = generateStaticSitemap();
   const services = generateServicesSitemap();
   const caseStudies = await generateCaseStudiesSitemap();
   const blogs = await generateBlogSitemap();
   const templateCategory = await generateTemplateCategorySitemap();
+  const blacklist = blacklistSitemap();
 
   return [
     ...staticPages,
@@ -132,5 +149,6 @@ export default async function sitemap() {
     ...caseStudies,
     ...blogs,
     ...templateCategory,
+    ...blacklist,
   ];
 }

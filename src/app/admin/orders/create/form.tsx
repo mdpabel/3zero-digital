@@ -72,7 +72,7 @@ const AdminOrderForm = ({
   };
 
   return (
-    <div className='mx-auto p-4 max-w-md'>
+    <div className='mx-auto p-4'>
       <h2 className='mb-4 font-semibold text-2xl'>Create Order for Client</h2>
       <form onSubmit={handleSubmit}>
         <div className='mb-4'>

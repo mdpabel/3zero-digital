@@ -100,7 +100,7 @@ export const createAdminOrder = async (data: OrderData) => {
 
     // Use a transaction for atomicity
     const result = await prisma.$transaction(async (tx) => {
-      const order = await prisma.order.create({
+      const order = await tx.order.create({
         data: {
           productId: dbProductId!,
           // templateId: dbTemplateId,
@@ -123,6 +123,17 @@ export const createAdminOrder = async (data: OrderData) => {
             note,
             websites,
           },
+        },
+      });
+
+      // Create a welcome message automatically after the order is created
+      await tx.message.create({
+        data: {
+          content:
+            "Thank you for your order! We're excited to start working on your service. Please provide any additional details you’d like us to know.",
+          userId,
+          orderId: order.id, // Link the message to the order
+          isAdmin: false, // Customer message
         },
       });
 

@@ -83,8 +83,10 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
       productName = product.name;
     }
 
-    // const parsedMetaData =
-    //   metaData && metaData !== 'undefined' ? JSON.parse(metaData) : {};
+    const parsedMetaData =
+      metaData && metaData !== 'undefined'
+        ? metaData.split(',').map((item) => item.trim())
+        : [];
 
     // fetch coupon
     let coupon = undefined;
@@ -114,7 +116,7 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
           productId,
           note,
           websiteDetails: websites,
-          // metadata: parsedMetaData,
+          metadata: parsedMetaData,
           couponId: coupon?.id,
         },
       });

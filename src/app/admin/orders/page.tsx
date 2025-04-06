@@ -87,7 +87,7 @@ const Page = async () => {
 
                 {/* Action */}
                 <TableCell className='flex items-center gap-2'>
-                  {/* <DeleteOrder orderId={order.id} /> */}
+                  <DeleteOrder orderId={order.id} />
                   <Link href={`/admin/orders/${order.id}`}>
                     <ArrowRight className='cursor-pointer' />
                   </Link>
