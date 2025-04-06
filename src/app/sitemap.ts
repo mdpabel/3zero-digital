@@ -35,7 +35,26 @@ const generateServicesSitemap = () => {
 };
 
 const generateStaticSitemap = () => {
-  const staticPages = ['/', '/login', '/signup'];
+  const staticPages = [
+    '/',
+    '/login',
+    '/signup',
+    '/offers',
+    '/privacy-policy',
+    '/terms-of-service',
+    '/contact',
+    '/about-us',
+    '/case-studies',
+    '/blogs',
+    '/shop',
+    '/faq',
+    '/careers',
+    '/book-a-call',
+    '/cookie-policy',
+    '/refund-policy',
+    '/login',
+    '/signup',
+  ];
   const urls: MetadataRoute.Sitemap = [];
 
   staticPages.forEach((page) => {
