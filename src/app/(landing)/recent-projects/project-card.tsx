@@ -81,7 +81,7 @@ const ProjectCard = ({ project, style = 1 }: Props) => {
           {/* Read More */}
           <div className='font-medium text-base leading-6'>
             <Link
-              href={project.slug}
+              href={`/recent-projects/${project.slug}`}
               aria-label={`Read more: "${project.title}"`}>
               Read more →
             </Link>
