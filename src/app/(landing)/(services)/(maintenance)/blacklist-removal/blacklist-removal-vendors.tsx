@@ -62,9 +62,9 @@ const BlacklistRemovalVendors = ({
       </p>
 
       {/* Top Total Price and Checkout Button */}
-      <div className='flex justify-between items-center mb-8 p-6 rounded-lg'>
+      <div className='flex md:flex-row flex-col justify-between items-center mb-8 p-6 rounded-lg'>
         <div>
-          <h3 className='flex items-center space-x-2 font-semibold text-2xl'>
+          <p className='flex items-center space-x-2 font-semibold text-2xl text-center'>
             Total Price:{' '}
             <span className='ml-2'>
               {totalPrice > 0
@@ -73,7 +73,7 @@ const BlacklistRemovalVendors = ({
                   })
                 : '$0.0'}
             </span>
-          </h3>
+          </p>
           <p className='mb-4 text-zinc-600 dark:text-zinc-400 text-sm'>
             The total cost for removing the selected blacklists.
           </p>

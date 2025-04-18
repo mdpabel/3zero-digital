@@ -130,6 +130,14 @@ const Footer: React.FC = async () => {
                   </AccordionContent>
                 </AccordionItem>
               ))}
+
+              <div className='py-3 border-b'>
+                <Link
+                  href='/services'
+                  className='hover:text-zinc-300 transition-colors list-none'>
+                  Services
+                </Link>
+              </div>
             </Accordion>
           </div>
 

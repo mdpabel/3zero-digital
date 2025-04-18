@@ -1,29 +1,46 @@
 import React from 'react';
 import ProjectCard from './project-card';
 import { cn } from '@/lib/utils';
-import { WP_REST_API_Posts } from 'wp-types';
+import { fetchCaseStudies } from '@/lib/wordpress/case-study';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
-const ProjectList = ({
-  style = 1,
-  posts,
-}: {
-  style?: 1 | 2;
-  posts: WP_REST_API_Posts;
-}) => {
+const ProjectList = async ({ style = 1 }: { style?: 1 | 2 }) => {
+  const projects = await fetchCaseStudies();
+
   return (
-    <div>
-      <ul>
-        {posts.map((post, index) => (
-          <li
-            key={index}
-            className={cn(
-              'py-8',
-              index !== posts.length - 1 && 'border-b-neutral-400 border-b',
-            )}>
-            <ProjectCard style={style} post={post} />
-          </li>
-        ))}
-      </ul>
+    <div className='mx-auto p-4 max-w-6xl'>
+      <div className='mx-auto px-4 py-10 max-w-6xl'>
+        {/* Header Section */}
+        <div className='mx-auto mb-10 max-w-4xl text-center'>
+          <h2 className='font-bold text-4xl'>
+            Showcasing Excellence: Our Recent Projects
+          </h2>
+          <p className='mt-2 text-lg'>
+            Explore the latest digital solutions crafted by 3 Zero Digital,
+            focusing on innovation, security, and seamless performance.
+          </p>
+        </div>
+        <ul>
+          {projects.map((project, index) => (
+            <li
+              key={index}
+              className={cn(
+                'py-8',
+                index !== projects.length - 1 &&
+                  'border-b-neutral-400 border-b',
+              )}>
+              <ProjectCard style={style} project={project} />
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className='flex justify-center mb-10'>
+        <Button>
+          <Link href='/recent-projects'>Explore More</Link>
+        </Button>
+      </div>
     </div>
   );
 };

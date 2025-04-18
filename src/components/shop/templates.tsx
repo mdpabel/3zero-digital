@@ -129,9 +129,11 @@ const Templates = async ({
         <div>No template found</div>
       )}
       {featured && (
-        <Button asChild>
-          <Link href='/shop'>View All Templates</Link>
-        </Button>
+        <div className='flex justify-center'>
+          <Button asChild>
+            <Link href='/shop'>View All Templates</Link>
+          </Button>
+        </div>
       )}
 
       {!featured && (

@@ -9,6 +9,7 @@ import CompaniesLogo from '@/components/home/company-logos';
 import Comparison from '@/components/development/comparison';
 import Script from 'next/script';
 import FeaturedServices from '@/components/featured-services/featured-services';
+import ProjectList from './recent-projects/project-list';
 
 export const dynamic = 'force-static';
 
@@ -24,11 +25,7 @@ const Home = () => {
       <Suspense fallback='loading...'>
         <Templates featured limit={6} />
       </Suspense>
-      {process.env.NODE_ENV === 'production' && (
-        <Suspense fallback='loading...'>
-          <CaseStudies />
-        </Suspense>
-      )}
+      <ProjectList />
 
       <Script
         type='application/ld+json'

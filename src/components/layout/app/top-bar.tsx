@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 
 // Define the navigation items in an array
 const navItems = [
-  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/recent-projects', label: 'Recent Projects' },
   { href: '/contact', label: 'Contact' },
   { href: '/careers', label: 'Careers' },
   { href: '/blog', label: 'Blog' },
@@ -17,7 +17,7 @@ const TopBar = () => {
       )}>
       <div className='mx-auto px-4 max-w-6xl container'>
         <div className='flex justify-between items-center font-medium text-sm'>
-          <div className='lg:block hidden'>
+          <div className='hidden lg:block'>
             <Link
               href='/affordable-web-development'
               className='max-w-fit typewriter'>
@@ -25,7 +25,7 @@ const TopBar = () => {
               SSL, and More for Just $79!
             </Link>
           </div>
-          <div className='block lg:hidden'>
+          <div className='lg:hidden block'>
             <Link
               href='/affordable-web-development'
               className='max-w-fit typewriter'>
@@ -33,7 +33,7 @@ const TopBar = () => {
             </Link>
           </div>
 
-          <nav className='lg:block hidden'>
+          <nav className='hidden lg:block'>
             <ul className='flex justify-between items-center space-x-4'>
               {navItems.map((item) => (
                 <li key={item.href}>

@@ -1,13 +1,12 @@
 import { fetchRecentProjects } from '@/lib/wordpress/recent-projects/get-projects';
 import React from 'react';
 import ProjectList from './project-list';
+import { fetchCaseStudies } from '@/lib/wordpress/case-study';
 
-const RecentProjectsPage = async () => {
-  const projects = await fetchRecentProjects();
-
+const RecentProjectsPage = () => {
   return (
     <div className='mx-auto'>
-      <ProjectList posts={projects} />
+      <ProjectList />
     </div>
   );
 };

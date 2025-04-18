@@ -10,6 +10,7 @@ export interface CaseStudy {
   description: string;
   afterImage: string;
   beforeImage: string;
+  featuredImage: string;
   screenshot: string;
 }
 
@@ -40,6 +41,11 @@ interface CaseStudyNode {
   content: string;
   slug: string;
   caseStudyFields: CaseStudyFields;
+  featuredImage: {
+    node: {
+      sourceUrl: string;
+    };
+  };
 }
 
 interface GraphQLCaseStudiesResponse {
@@ -85,6 +91,12 @@ export async function fetchCaseStudies(): Promise<CaseStudy[]> {
                 }
               }
             }
+            featuredImage {
+              node {
+                altText
+                sourceUrl
+              }
+            }
           }
         }
       }
@@ -123,6 +135,7 @@ export async function fetchCaseStudies(): Promise<CaseStudy[]> {
       afterImage: node.caseStudyFields?.afterImage?.node.sourceUrl || '',
       beforeImage: node.caseStudyFields?.beforeImage?.node.sourceUrl || '',
       screenshot: node.caseStudyFields?.screenshot?.node.sourceUrl || '',
+      featuredImage: node.featuredImage.node.sourceUrl || '',
     }));
 
     return caseStudies;
@@ -198,6 +211,7 @@ export async function fetchCaseStudyBySlug(
       afterImage: node.caseStudyFields?.afterImage?.node.sourceUrl || '',
       beforeImage: node.caseStudyFields?.beforeImage?.node.sourceUrl || '',
       screenshot: node.caseStudyFields?.screenshot?.node.sourceUrl || '',
+      featuredImage: node.featuredImage.node.sourceUrl || '',
     };
   } catch (error) {
     console.error('Fetch Error:', error);

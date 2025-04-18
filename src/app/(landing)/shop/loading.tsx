@@ -56,9 +56,11 @@ const TemplatesSkeleton = ({
         </div>
       </section>
 
-      <Button asChild>
-        <Link href='/shop'>View All Templates</Link>
-      </Button>
+      <div className='flex justify-center'>
+        <Button asChild>
+          <Link href='/shop'>View All Templates</Link>
+        </Button>
+      </div>
     </div>
   );
 };
