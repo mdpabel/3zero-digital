@@ -65,9 +65,9 @@ export default function RootLayout({
       lang='en'
       className={cn('scroll-smooth', poppins.className)}
       suppressHydrationWarning>
-      <Head>
+      <head>
         <PixelTracker />
-      </Head>
+      </head>
       <body>
         <Providers>{children}</Providers>
         <Toaster />
