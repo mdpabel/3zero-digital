@@ -12,11 +12,11 @@ export const metadata = genMetaData({
 const ContactPage = () => {
   return (
     <div className='px-4 md:px-20 py-12 md:py-24'>
-      <div className='mx-auto p-4 max-w-7xl'>
-        <h2 className='font-bold text-3xl text-center text-zinc-800 md:text-5xl dark:text-zinc-200'>
+      <div className='mx-auto p-4 max-w-4xl'>
+        <h2 className='font-bold text-zinc-800 dark:text-zinc-200 text-3xl md:text-5xl text-center'>
           Contact Us
         </h2>
-        <p className='mt-4 text-center text-lg text-zinc-700 md:text-xl dark:text-zinc-400'>
+        <p className='mt-4 text-zinc-700 dark:text-zinc-400 text-lg md:text-xl text-center'>
           Have questions or need assistance? Reach out to us, and we’ll be happy
           to help.
         </p>

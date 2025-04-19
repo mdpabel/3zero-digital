@@ -7,6 +7,8 @@ import Providers from './providers';
 import { siteMetadata } from './metadata';
 import { cn } from '@/lib/utils';
 import { auth } from '@/auth';
+import PixelTracker from '@/components/common/pixel-tracker';
+import Head from 'next/head';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.url),
@@ -63,6 +65,9 @@ export default function RootLayout({
       lang='en'
       className={cn('scroll-smooth', poppins.className)}
       suppressHydrationWarning>
+      <Head>
+        <PixelTracker />
+      </Head>
       <body>
         <Providers>{children}</Providers>
         <Toaster />
