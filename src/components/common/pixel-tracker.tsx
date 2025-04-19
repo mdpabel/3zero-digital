@@ -5,7 +5,6 @@ const PixelTracker = () => {
     <>
       {/* Meta Pixel Code */}
       <Script
-        strategy='afterInteractive'
         dangerouslySetInnerHTML={{
           __html: `
             !function(f,b,e,v,n,t,s) {
