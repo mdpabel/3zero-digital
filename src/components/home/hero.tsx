@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const Hero = () => {
   return (
-    <div className='relative mx-auto py-10 p-4 md:pt-10 max-w-6xl'>
+    <div className='relative mx-auto p-4 py-10 md:pt-10 max-w-6xl'>
       <div className='mx-auto w-full max-w-6xl container'>
         <div className='gap-8 grid grid-cols-1 md:grid-cols-5'>
           <div className='flex flex-col justify-center col-span-3'>
@@ -46,7 +46,7 @@ const Hero = () => {
 
           <div className='relative flex justify-center items-center col-span-2'>
             <video
-              className='dark:block hidden'
+              className='hidden dark:block pointer-events-none select-none'
               width='320'
               height='240'
               autoPlay
@@ -65,7 +65,7 @@ const Hero = () => {
             </video>
 
             <video
-              className='block dark:hidden'
+              className='dark:hidden block pointer-events-none select-none'
               width='320'
               height='240'
               autoPlay

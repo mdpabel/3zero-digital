@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Poppins } from 'next/font/google';
+// import { Poppins } from 'next/font/google';
 import { Toaster } from '@/components/ui/toaster';
 import { GoogleTagManager } from '@next/third-parties/google';
 import './globals.css';
@@ -49,11 +49,11 @@ export const metadata: Metadata = {
   },
 };
 
-export const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  display: 'swap',
-});
+// export const poppins = Poppins({
+//   subsets: ['latin'],
+//   weight: ['400', '700'],
+//   display: 'swap',
+// });
 
 export default function RootLayout({
   children,
@@ -61,10 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang='en'
-      className={cn('scroll-smooth', poppins.className)}
-      suppressHydrationWarning>
+    <html lang='en' className={cn('scroll-smooth')} suppressHydrationWarning>
       <head>
         <PixelTracker />
       </head>
