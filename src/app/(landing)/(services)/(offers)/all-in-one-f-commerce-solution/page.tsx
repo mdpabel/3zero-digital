@@ -12,8 +12,16 @@ import {
 import React from 'react';
 import Hero from '@/components/common/Hero';
 import Link from 'next/link';
+import { getProduct } from '@/lib/product/get-product';
+import Checkout from '@/components/payment/checkout';
 
-const FCommerce = () => {
+export const dynamic = 'force-static';
+
+const slug = 'all-in-one-f-commerce-solution';
+
+const FCommerce = async () => {
+  const { origPrice, price, productId } = await getProduct(slug);
+
   return (
     <div className='mx-auto p-4 max-w-6xl'>
       <Hero
@@ -241,12 +249,12 @@ const FCommerce = () => {
                   </p>
                 </div>
                 <div className='flex items-baseline mt-6 font-bold text-6xl'>
-                  $199
+                  ${price}
                   <span className='ml-1 font-normal text-muted-foreground text-xl'>
                     /one-time
                   </span>
                 </div>
-                <ul className='space-y-3 mt-8'>
+                <ul className='space-y-3 my-8'>
                   <li className='flex items-center'>
                     <CheckCircle2 className='mr-2 w-5 h-5 text-primary' />
                     <span>Domain Name (1-year registration)</span>
@@ -276,9 +284,11 @@ const FCommerce = () => {
                     <span>Training & 1-month Support</span>
                   </li>
                 </ul>
-                <Button size='lg' className='mt-8'>
-                  Get Started Now
-                </Button>
+                <Checkout
+                  productId={productId}
+                  paymentMode='payment'
+                  quantity={1}
+                />
               </div>
             </div>
           </div>
