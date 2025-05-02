@@ -1,8 +1,6 @@
 'use client';
 import { FaSignOutAlt } from 'react-icons/fa';
-import Spinner from '@/components/common/spinner';
 import { signOut } from '@/auth';
-import { useRouter } from 'next/navigation';
 
 const Logout = () => {
   return (

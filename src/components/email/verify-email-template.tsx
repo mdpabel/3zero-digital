@@ -10,7 +10,7 @@ import {
 } from '@react-email/components';
 
 type EmailVerificationEmailProps = {
-  verificationLink: string; // The verification link that includes the JWT token
+  verificationLink: string;
 };
 
 const EmailVerificationEmailTemplate: React.FC<EmailVerificationEmailProps> = ({
@@ -21,29 +21,29 @@ const EmailVerificationEmailTemplate: React.FC<EmailVerificationEmailProps> = ({
       <Head />
       <Body style={mainStyle}>
         <Container style={containerStyle}>
-          {/* Header */}
-          <Heading style={headingStyle}>Verify Your Email Address</Heading>
+          <Heading style={headingStyle}>🔒 Verify Your Email</Heading>
 
-          {/* Verification Info */}
-          <Text style={bodyTextStyle}>
-            <strong>Thank you for signing up!</strong> Please click the button
-            below to verify your email address and complete the registration
-            process.
+          <Text style={textStyle}>
+            <strong>Thank you for signing up!</strong> Please verify your email
+            to complete your registration and activate your account.
           </Text>
 
-          <Text style={bodyTextStyle}>
-            If you didn't sign up, please ignore this email.
-          </Text>
-
-          {/* CTA Button */}
           <Button style={buttonStyle} href={verificationLink}>
             Verify Your Email
           </Button>
 
-          {/* Footer */}
+          <Text style={textStyle}>
+            If you didn't sign up or received this by mistake, you can ignore
+            this message.
+          </Text>
+
           <Text style={footerTextStyle}>
-            If you have any issues or didn’t request this verification, feel
-            free to contact us.
+            Need help? Contact us at
+            <a href='mailto:support@3zerodigital.com' style={linkStyle}>
+              {' '}
+              support@3zerodigital.com
+            </a>
+            .
           </Text>
         </Container>
       </Body>
@@ -53,42 +53,41 @@ const EmailVerificationEmailTemplate: React.FC<EmailVerificationEmailProps> = ({
 
 // Styles
 const mainStyle: React.CSSProperties = {
-  backgroundColor: '#f8f9fa',
+  backgroundColor: '#614385',
+  backgroundImage: 'linear-gradient(to right, #614385, #516395)',
   fontFamily: 'Arial, sans-serif',
-  color: '#2D2D2D', // Zinc-like tone
+  padding: '20px 0',
 };
 
 const containerStyle: React.CSSProperties = {
-  backgroundColor: 'white',
+  backgroundColor: 'transparent',
   padding: '20px',
   borderRadius: '8px',
   maxWidth: '600px',
   margin: '0 auto',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+  color: '#ffffff',
 };
 
 const headingStyle: React.CSSProperties = {
   fontSize: '24px',
   fontWeight: 'bold',
   color: '#ffffff',
-  background: 'linear-gradient(to right, #614385, #516395)', // Gradient color
-  padding: '16px',
-  borderRadius: '8px',
+  marginBottom: '16px',
   textAlign: 'center',
 };
 
-const bodyTextStyle: React.CSSProperties = {
+const textStyle: React.CSSProperties = {
   fontSize: '16px',
   lineHeight: '24px',
-  color: '#666',
-  marginBottom: '16px',
+  color: '#ffffff',
+  marginBottom: '12px',
 };
 
 const buttonStyle: React.CSSProperties = {
   display: 'inline-block',
   padding: '12px 24px',
-  backgroundColor: '#516395', // Gradient Start
-  color: '#fff',
+  backgroundColor: '#ffffff',
+  color: '#614385',
   textDecoration: 'none',
   borderRadius: '8px',
   marginTop: '20px',
@@ -98,9 +97,14 @@ const buttonStyle: React.CSSProperties = {
 
 const footerTextStyle: React.CSSProperties = {
   fontSize: '14px',
-  color: '#999',
+  color: '#eeeeee',
   textAlign: 'center',
   marginTop: '24px',
+};
+
+const linkStyle: React.CSSProperties = {
+  color: '#ffffff',
+  textDecoration: 'underline',
 };
 
 export default EmailVerificationEmailTemplate;

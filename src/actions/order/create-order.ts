@@ -1,7 +1,9 @@
 'use server';
 import { auth } from '@/auth';
+import AdminOrderPlacedEmail from '@/components/email/admin-order-email-template';
 import OrderConfirmationEmailTemplate from '@/components/email/order-confirmation-email-template';
 import ResetPasswordEmailTemplate from '@/components/email/reset-password-email-template';
+import SetPasswordEmailTemplate from '@/components/email/set-password-email-template';
 import { encrypt } from '@/lib/jwt/jwt-token';
 import { sendEmail } from '@/lib/send-email';
 import prisma from '@/prisma/db';
@@ -25,6 +27,7 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
   try {
     const session = await auth();
     let userId: string | undefined = undefined; // Initialize userId as undefined
+    let isNewUser = false;
 
     if (session) {
       // If the session exists, fetch the user
@@ -55,6 +58,7 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
           },
         });
         userId = newUser.id; // Assign the new user's id to userId
+        isNewUser = true;
       }
     }
 
@@ -149,7 +153,7 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
     });
 
     try {
-      // Step 3: Send confirmation email
+      // Step 3: Send confirmation email to the customer
       await sendEmail({
         name: `${firstName} ${lastName}`,
         subject: 'Order Confirmation',
@@ -161,32 +165,57 @@ export const createOrder = async (data: z.infer<typeof orderSchema>) => {
           productPrice: `$${price.toFixed(2)}`,
         }),
       });
-    } catch (error) {
-      console.log('Error sending order confirmation email', error);
-    }
 
-    try {
-      // Generate a JWT for the password reset with a 1-hour expiration
-      const resetToken = await encrypt({
-        userId: userId,
-      });
-
-      // Create the reset URL with the JWT token
-      const resetUrl = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/update-password?token=${resetToken}`;
-
-      // Send the reset password email with the token (use your email service)
+      // Step 4: Send confirmation email to the admin
       await sendEmail({
-        to: email,
-        subject: 'Password Reset Request',
-        replyTo: 'no-reply@3zerodigital.com',
-        name: firstName + ' ' + lastName,
-        react: ResetPasswordEmailTemplate({
-          name: firstName + ' ' + lastName,
-          resetLink: resetUrl,
+        name: `3Zero Digital Admin`,
+        subject: 'Order Confirmation',
+        to: 'info@3zerodigital.com', // ✅ make sure this is the admin's email!
+        react: AdminOrderPlacedEmail({
+          customerName: `${firstName} ${lastName}`,
+          orderId: result.order.id,
+          orderDate: result.order.createdAt.toISOString().split('T')[0], // or format it nicely
+          totalAmount: `$${(price * parseInt(quantity)).toFixed(2)}`,
+          items: [
+            {
+              name: productName,
+              quantity: parseInt(quantity),
+              price: `$${price.toFixed(2)}`,
+            },
+          ],
         }),
       });
     } catch (error) {
-      console.log('Error sending password reset email', error);
+      console.log(
+        'Order is placed, Error sending order confirmation email',
+        error,
+      );
+    }
+
+    if (isNewUser) {
+      try {
+        // Generate a JWT for the password reset with a 1-hour expiration
+        const resetToken = await encrypt({
+          userId: userId,
+        });
+
+        // Create the reset URL with the JWT token
+        const setPasswordLink = `${process.env.NEXT_PUBLIC_FRONTEND_URL}/update-password?token=${resetToken}`;
+
+        // Send the reset password email with the token (use your email service)
+        await sendEmail({
+          to: email,
+          subject: 'Welcome! Set your password to access your account',
+          replyTo: 'no-reply@3zerodigital.com',
+          name: firstName + ' ' + lastName,
+          react: SetPasswordEmailTemplate({
+            name: firstName + ' ' + lastName,
+            setPasswordLink: setPasswordLink,
+          }),
+        });
+      } catch (error) {
+        console.log('Error sending password reset email', error);
+      }
     }
 
     return {

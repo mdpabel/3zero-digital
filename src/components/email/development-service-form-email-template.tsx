@@ -35,43 +35,40 @@ const DevelopmentServiceFormTemplate: React.FC<BackendSubmissionEmailProps> = ({
       <Body style={mainStyle}>
         <Container style={containerStyle}>
           {/* Header */}
-          <Heading style={headingStyle}>New Project Request</Heading>
+          <Heading style={headingStyle}>
+            🧩 New Development Service Request
+          </Heading>
 
-          {/* Project Information */}
-          <Text style={bodyTextStyle}>
+          {/* Project Info */}
+          <Text style={textStyle}>
             <strong>Project Type:</strong> {projectType || 'Not provided'}
           </Text>
-          <Text style={bodyTextStyle}>
+          <Text style={textStyle}>
             <strong>Estimated Budget:</strong> {budget || 'Not provided'}
           </Text>
-          <Text style={bodyTextStyle}>
-            <strong>Project Timeline:</strong> {timeline || 'Not provided'}
+          <Text style={textStyle}>
+            <strong>Timeline:</strong> {timeline || 'Not provided'}
           </Text>
-          <Text style={bodyTextStyle}>
-            <strong>Required Functionalities:</strong>{' '}
-            {functionalities?.join(', ') || 'Not provided'}
+          <Text style={textStyle}>
+            <strong>Functionalities:</strong>{' '}
+            {functionalities?.length
+              ? functionalities.join(', ')
+              : 'Not provided'}
           </Text>
-          <Text style={bodyTextStyle}>
+          <Text style={textStyle}>
             <strong>Sample Sites:</strong> {sampleSites || 'Not provided'}
           </Text>
 
-          {/* Client Information */}
-          <Text style={bodyTextStyle}>
+          {/* Client Info */}
+          <Text style={textStyle}>
             <strong>Client Name:</strong> {name || 'Not provided'}
           </Text>
-          <Text style={bodyTextStyle}>
+          <Text style={textStyle}>
             <strong>Client Email:</strong> {email || 'Not provided'}
           </Text>
-          <Text style={bodyTextStyle}>
+          <Text style={textStyle}>
             <strong>Additional Details:</strong> {message || 'Not provided'}
           </Text>
-
-          {/* CTA */}
-          <Button
-            style={buttonStyle}
-            href='https://www.3zerodigital.com/admin-dashboard'>
-            View Full Submission
-          </Button>
         </Container>
       </Body>
     </Html>
@@ -80,43 +77,46 @@ const DevelopmentServiceFormTemplate: React.FC<BackendSubmissionEmailProps> = ({
 
 // Styles
 const mainStyle: React.CSSProperties = {
-  backgroundColor: '#f8f9fa',
+  backgroundColor: '#614385',
+  backgroundImage: 'linear-gradient(to right, #614385, #516395)',
   fontFamily: 'Arial, sans-serif',
-  color: '#2D2D2D', // Zinc-like tone
+  padding: '20px 0',
 };
 
 const containerStyle: React.CSSProperties = {
-  backgroundColor: 'white',
+  backgroundColor: 'transparent',
   padding: '20px',
   borderRadius: '8px',
   maxWidth: '600px',
   margin: '0 auto',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+  color: '#ffffff',
 };
 
 const headingStyle: React.CSSProperties = {
   fontSize: '24px',
   fontWeight: 'bold',
-  color: '#614385', // Gradient Color
+  color: '#ffffff',
   marginBottom: '16px',
   textAlign: 'center',
 };
 
-const bodyTextStyle: React.CSSProperties = {
+const textStyle: React.CSSProperties = {
   fontSize: '16px',
   lineHeight: '24px',
-  color: '#666',
-  marginBottom: '8px',
+  color: '#ffffff',
+  marginBottom: '12px',
 };
 
 const buttonStyle: React.CSSProperties = {
   display: 'inline-block',
   padding: '12px 24px',
-  backgroundColor: '#614385', // Gradient Start
-  color: '#fff',
+  backgroundColor: '#ffffff',
+  color: '#614385',
   textDecoration: 'none',
   borderRadius: '8px',
+  textAlign: 'center',
   marginTop: '20px',
+  fontWeight: 'bold',
 };
 
 export default DevelopmentServiceFormTemplate;

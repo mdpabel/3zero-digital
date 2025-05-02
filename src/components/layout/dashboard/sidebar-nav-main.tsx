@@ -18,24 +18,15 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from '@/components/ui/sidebar';
-import { SidebarItem } from './data';
+import { adminDashboardSidebarItems, SidebarItem } from './data';
 
-export function SidebarNavMain({ items }: { items: SidebarItem[] }) {
-  const { data, status } = useSession();
-
-  console.log({ data, status });
-
-  const role = data?.user?.role ?? 'CUSTOMER';
-
+export function SidebarNavMain() {
   return (
     <SidebarGroup>
       <SidebarMenu>
-        {items.map((item) => {
-          const isAllowed = item.roles.includes(role ?? '');
-          if (!isAllowed) return null;
-
+        {adminDashboardSidebarItems.map((item, i) => {
           return (
-            <Collapsible key={item.label} asChild defaultOpen={false}>
+            <Collapsible key={item.label + ' ' + i} asChild defaultOpen={false}>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild tooltip={item.label}>
                   <Link
@@ -55,8 +46,8 @@ export function SidebarNavMain({ items }: { items: SidebarItem[] }) {
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <SidebarMenuSub>
-                        {item.subItems.map((subItem) => (
-                          <SidebarMenuSubItem key={subItem.label}>
+                        {item.subItems.map((subItem, j) => (
+                          <SidebarMenuSubItem key={subItem.label + i + ' ' + j}>
                             <SidebarMenuSubButton asChild>
                               <Link
                                 href={subItem.href}

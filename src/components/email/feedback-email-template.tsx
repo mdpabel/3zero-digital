@@ -8,7 +8,6 @@ import {
   Heading,
 } from '@react-email/components';
 
-// Define types for user confirmation email
 type UserConfirmationEmailProps = {
   name: string;
 };
@@ -21,18 +20,17 @@ const UserConfirmationEmail: React.FC<UserConfirmationEmailProps> = ({
       <Head />
       <Body style={mainStyle}>
         <Container style={containerStyle}>
-          <Heading style={headingStyle}>We Received Your message</Heading>
+          <Heading style={headingStyle}>✅ We Received Your Message</Heading>
 
-          <Text style={bodyTextStyle}>Hi {name},</Text>
-          <Text style={bodyTextStyle}>
-            Thank you for submitting your interest. Our team has received your
-            project details and will review them shortly. We’ll be in touch soon
-            to discuss your project in more detail.
+          <Text style={textStyle}>Hi {name},</Text>
+          <Text style={textStyle}>
+            Thank you for reaching out to 3Zero Digital. We've received your
+            project details and our team will review them shortly.
           </Text>
-
-          <Text style={bodyTextStyle}>
-            In the meantime, if you have any questions or need to provide
-            additional information, feel free to reply to this email.
+          <Text style={textStyle}>
+            We'll get back to you soon to discuss the next steps. In the
+            meantime, feel free to reply to this email if you have questions or
+            more info.
           </Text>
 
           <Text style={footerTextStyle}>
@@ -48,39 +46,41 @@ const UserConfirmationEmail: React.FC<UserConfirmationEmailProps> = ({
 
 // Styles
 const mainStyle: React.CSSProperties = {
-  backgroundColor: '#f8f9fa',
+  backgroundColor: '#614385',
+  backgroundImage: 'linear-gradient(to right, #614385, #516395)',
   fontFamily: 'Arial, sans-serif',
-  color: '#2D2D2D', // Zinc-like tone
+  padding: '20px 0',
 };
 
 const containerStyle: React.CSSProperties = {
-  backgroundColor: 'white',
+  backgroundColor: 'transparent',
   padding: '20px',
   borderRadius: '8px',
   maxWidth: '600px',
   margin: '0 auto',
-  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+  color: '#ffffff',
 };
 
 const headingStyle: React.CSSProperties = {
   fontSize: '24px',
   fontWeight: 'bold',
-  color: '#614385', // From gradient color
+  color: '#ffffff',
   marginBottom: '16px',
   textAlign: 'center',
 };
 
-const bodyTextStyle: React.CSSProperties = {
+const textStyle: React.CSSProperties = {
   fontSize: '16px',
   lineHeight: '24px',
-  color: '#666',
-  marginBottom: '8px',
+  color: '#ffffff',
+  marginBottom: '12px',
 };
 
 const footerTextStyle: React.CSSProperties = {
   fontSize: '14px',
-  color: '#888',
+  color: '#eeeeee',
   marginTop: '20px',
+  textAlign: 'left',
 };
 
 export default UserConfirmationEmail;

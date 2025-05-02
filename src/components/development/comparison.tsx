@@ -38,19 +38,19 @@ const Comparison = () => {
 
       <div className='gap-8 grid grid-cols-1 md:grid-cols-2'>
         {/* Card 1: With 3Zero */}
-        <div className='border-slate-300 dark:border-slate-700 bg-gray-50 dark:bg-gray-950 shadow-lg border rounded-lg'>
+        <div className='bg-gray-50 dark:bg-gray-950 shadow-lg border border-slate-300 dark:border-slate-700 rounded-lg'>
           <CardBorder />
           <div className='p-6'>
-            <h4 className='pb-5 font-semibold text-2xl text-black text-center dark:text-white'>
+            <h4 className='pb-5 font-semibold text-black dark:text-white text-2xl text-center'>
               Websites{' '}
               <span className='bg-green-600 px-2 rounded-[2px]'>
                 with 3 Zero
               </span>
             </h4>
-            <ul className='pl-8 text-gray-700 list-none'>
+            <ul className='md:pl-8 text-gray-700 list-none'>
               {with3ZeroItems.map((item, index) => (
                 <li key={index} className='flex items-center mb-2'>
-                  <MdCheck className='border-green-600 mr-2 border text-green-600' />{' '}
+                  <MdCheck className='mr-2 border border-green-600 text-green-600' />{' '}
                   <span className='text-black dark:text-white'>{item}</span>
                 </li>
               ))}
@@ -59,16 +59,16 @@ const Comparison = () => {
         </div>
 
         {/* Card 2: Without 3Zero */}
-        <div className='border-slate-300 dark:border-slate-700 bg-gray-50 dark:bg-gray-950 shadow-lg border rounded-lg'>
+        <div className='bg-gray-50 dark:bg-gray-950 shadow-lg border border-slate-300 dark:border-slate-700 rounded-lg'>
           <CardBorder />
           <div className='p-6'>
-            <h4 className='pb-5 font-semibold text-2xl text-black text-center dark:text-white'>
+            <h4 className='pb-5 font-semibold text-black dark:text-white text-2xl text-center'>
               Websites{' '}
               <span className='bg-red-600 px-2 rounded-[2px]'>
                 without 3 Zero
               </span>
             </h4>
-            <ul className='pl-8 text-gray-700 list-none'>
+            <ul className='md:pl-8 text-gray-700 list-none'>
               {without3ZeroItems.map((item, index) => (
                 <li key={index} className='flex items-center mb-2'>
                   <MdClose className='mr-2 border border-red-600 text-red-600' />{' '}

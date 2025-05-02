@@ -84,7 +84,7 @@ const BigScreenNavbar = async ({
         </NavigationMenu>
 
         <div className='flex items-center space-x-6'>
-          <ThemeSwitcher />
+          {/* <ThemeSwitcher /> */}
 
           {/* Conditionally show based on login status */}
           <UserButton />

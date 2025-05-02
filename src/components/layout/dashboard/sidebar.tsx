@@ -15,25 +15,8 @@ import {
 import logo from '@/../public/images/logo-dark.png';
 import Link from 'next/link';
 import Image from 'next/image';
-import { auth } from '@/auth';
-import { redirect } from 'next/navigation';
 
-const DashboardSidebar = async ({ type }: { type: 'admin' | 'dashboard' }) => {
-  const session = await auth();
-
-  if (!session) {
-    return redirect('/login');
-  }
-
-  const name = session?.user?.name!;
-  const email = session?.user?.email!;
-  const avatar = '';
-
-  const items =
-    type === 'admin'
-      ? adminDashboardSidebarItems
-      : customerDashboardSidebarItems;
-
+const DashboardSidebar = async () => {
   return (
     <Sidebar variant='sidebar'>
       <SidebarHeader className='primary-color'>
@@ -42,10 +25,10 @@ const DashboardSidebar = async ({ type }: { type: 'admin' | 'dashboard' }) => {
         </Link>
       </SidebarHeader>
       <SidebarContent className='primary-color'>
-        <SidebarNavMain items={items} />
+        <SidebarNavMain />
       </SidebarContent>
       <SidebarFooter className='primary-color'>
-        <NavUser avatar={avatar} email={email} name={name} />
+        <NavUser />
       </SidebarFooter>
     </Sidebar>
   );

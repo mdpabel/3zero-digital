@@ -9,51 +9,43 @@ import {
   Button,
 } from '@react-email/components';
 
-type ContactUsEmailProps = {
+type SetPasswordEmailProps = {
   name: string;
-  email: string;
-  inquiryType: string;
-  message?: string;
+  setPasswordLink: string;
 };
 
-const ContactUsEmailTemplate: React.FC<ContactUsEmailProps> = ({
+const SetPasswordEmailTemplate: React.FC<SetPasswordEmailProps> = ({
   name,
-  email,
-  inquiryType,
-  message,
+  setPasswordLink,
 }) => {
   return (
     <Html>
       <Head />
       <Body style={mainStyle}>
         <Container style={containerStyle}>
-          {/* Header */}
-          <Heading style={headingStyle}>📩 New Contact Us Submission</Heading>
+          <Heading style={headingStyle}>🔐 Welcome! Set Your Password</Heading>
 
-          {/* Contact Details */}
+          <Text style={textStyle}>Hello {name},</Text>
+
           <Text style={textStyle}>
-            <strong>Name:</strong> {name}
-          </Text>
-          <Text style={textStyle}>
-            <strong>Email:</strong> {email}
-          </Text>
-          <Text style={textStyle}>
-            <strong>Inquiry Type:</strong> {inquiryType}
+            We've created your account. To get started, please set your password
+            by clicking the button below:
           </Text>
 
-          {/* Message */}
-          {message && (
-            <Text style={textStyle}>
-              <strong>Message:</strong> {message}
-            </Text>
-          )}
-
-          {/* CTA */}
-          <Button
-            style={buttonStyle}
-            href='https://www.3zerodigital.com/admin-dashboard'>
-            View Submission
+          <Button style={buttonStyle} href={setPasswordLink}>
+            Set Your Password
           </Button>
+
+          <Text style={textStyle}>
+            After setting your password, you’ll be able to log in and manage
+            your orders anytime.
+          </Text>
+
+          <Text style={footerTextStyle}>
+            Welcome aboard,
+            <br />
+            The 3Zero Digital Team
+          </Text>
         </Container>
       </Body>
     </Html>
@@ -80,9 +72,9 @@ const containerStyle: React.CSSProperties = {
 const headingStyle: React.CSSProperties = {
   fontSize: '24px',
   fontWeight: 'bold',
+  color: '#ffffff',
   marginBottom: '16px',
   textAlign: 'center',
-  color: '#ffffff',
 };
 
 const textStyle: React.CSSProperties = {
@@ -104,4 +96,11 @@ const buttonStyle: React.CSSProperties = {
   fontWeight: 'bold',
 };
 
-export default ContactUsEmailTemplate;
+const footerTextStyle: React.CSSProperties = {
+  fontSize: '14px',
+  color: '#eeeeee',
+  marginTop: '20px',
+  textAlign: 'left',
+};
+
+export default SetPasswordEmailTemplate;

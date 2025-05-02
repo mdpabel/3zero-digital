@@ -19,12 +19,15 @@ import { FaBars } from 'react-icons/fa';
 import Logo from './logo';
 import { services } from '@/services';
 import { ServiceWithProducts } from '@/lib/product/get-product';
+import MobileUserButton from './mobile-user-button';
+import { useSession } from 'next-auth/react';
 
 const SmallScreenNavbar = ({
   services,
 }: {
   services: ServiceWithProducts[];
 }) => {
+  const { status } = useSession();
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const handleMenuItemClick = () => {
@@ -37,12 +40,14 @@ const SmallScreenNavbar = ({
       <div className='flex justify-between items-center h-16'>
         <Logo />
         <div className='flex items-center space-x-5'>
-          <ThemeSwitcher className='shadow-lg shadow-zinc-800/9 rounded-full w-9 h-9' />
+          {/* <ThemeSwitcher className='shadow-lg shadow-zinc-800/9 rounded-full w-9 h-9' /> */}
+          <MobileUserButton />
+
           <DropdownMenu
             open={isDropdownOpen}
             onOpenChange={(open) => setDropdownOpen(open)}>
             <DropdownMenuTrigger>
-              <div className='flex justify-center items-center bg-white/90 dark:bg-zinc-800/90 shadow-lg shadow-zinc-800/9 backdrop-blur rounded-full w-9 h-9'>
+              <div className='flex justify-center items-center shadow-lg shadow-zinc-800/9 backdrop-blur rounded-full w-9 h-9'>
                 <FaBars className='w-5 h-5' />
               </div>
             </DropdownMenuTrigger>
@@ -97,20 +102,42 @@ const SmallScreenNavbar = ({
                 ),
               )}
               <div>
-                {/* <DropdownMenuItem asChild onClick={handleMenuItemClick}>
-                  <Link
-                    className='block py-2 pb-6 pl-1 w-full font-medium text-zinc-800 hover:text-teal-500 dark:text-zinc-100 text-sm transition cursor-pointer'
-                    href='/recent-projects'>
-                    Recent Projects
-                  </Link>
-                </DropdownMenuItem> */}
-                <DropdownMenuItem asChild onClick={handleMenuItemClick}>
-                  <Link
-                    className='block py-2 pb-6 pl-1 w-full font-medium text-zinc-800 hover:text-teal-500 dark:text-zinc-100 text-sm transition cursor-pointer'
-                    href='/shop'>
-                    Shop
-                  </Link>
-                </DropdownMenuItem>
+                <div>
+                  <DropdownMenuItem asChild onClick={handleMenuItemClick}>
+                    <Link
+                      className='block py-2 pl-1 w-full font-medium text-zinc-800 hover:text-teal-500 dark:text-zinc-100 text-sm transition cursor-pointer'
+                      href='/shop'>
+                      Shop
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                </div>
+
+                {status === 'unauthenticated' && (
+                  <div className='flex justify-between items-center gap-10 mt-3 mb-8'>
+                    <div className='w-full'>
+                      <DropdownMenuItem asChild onClick={handleMenuItemClick}>
+                        <Link
+                          prefetch={true}
+                          href='/login'
+                          className='flex flex-shrink-0 justify-center items-center gap-x-2 space-x-1 bg-gray-50 aria-disabled:bg-gray-50 hover:bg-gray-100 disabled:bg-gray-50 dark:aria-disabled:bg-gray-800 dark:bg-gray-800 dark:hover:bg-gray-700/50 dark:disabled:bg-gray-800 aria-disabled:opacity-75 disabled:opacity-75 shadow-sm px-3 py-2 rounded-md focus-visible:outline-0 focus:outline-none ring-1 ring-gray-300 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 dark:ring-gray-700 ring-inset w-full font-medium text-gray-700 dark:text-gray-200 text-sm text-center aria-disabled:cursor-not-allowed disabled:cursor-not-allowed'>
+                          <span>Login</span>
+                        </Link>
+                      </DropdownMenuItem>
+                    </div>
+
+                    <div className='w-full'>
+                      <DropdownMenuItem asChild onClick={handleMenuItemClick}>
+                        <Link
+                          prefetch={true}
+                          href='/signup'
+                          className='flex flex-shrink-0 justify-center items-center gap-x-2 bg-gray-900 aria-disabled:bg-gray-900 hover:bg-gray-800 disabled:bg-gray-900 dark:aria-disabled:bg-white dark:bg-white dark:hover:bg-gray-100 dark:disabled:bg-white aria-disabled:opacity-75 disabled:opacity-75 shadow-sm px-3 py-2 rounded-md focus-visible:outline-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-inset w-full font-medium !text-white dark:text-gray-900 text-sm text-center aria-disabled:cursor-not-allowed disabled:cursor-not-allowed primary-color'>
+                          <span>Register</span>
+                        </Link>
+                      </DropdownMenuItem>
+                    </div>
+                  </div>
+                )}
               </div>
             </DropdownMenuContent>
           </DropdownMenu>

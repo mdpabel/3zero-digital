@@ -232,7 +232,7 @@ html {
 .alignright,
 .aligncenter,
 .is-resized {
-  @apply mr-0 ml-0 table;
+  @apply table mr-0 ml-0;
 }
 
 .alignleft > figcaption,
@@ -359,4 +359,15 @@ html {
 
 .dark .affordable-web-dev-dark {
   display: block !important;
+}
+
+.banner-top {
+  background-image: linear-gradient(to top right, var(--tw-gradient-stops));
+  /* border-bottom-width: 1px; */
+  display: flex;
+  --tw-gradient-from: #6dc5ff14 var(--tw-gradient-from-position);
+  --tw-gradient-stops: var(--tw-gradient-from),
+    #20a6ff14 var(--tw-gradient-via-position), var(--tw-gradient-to);
+  --tw-gradient-to: #0099ff14 var(--tw-gradient-to-position);
+  /* border-color: rgba(109, 197, 255, 0.3); */
 }
