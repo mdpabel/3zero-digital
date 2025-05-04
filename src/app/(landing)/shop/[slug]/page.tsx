@@ -2,8 +2,10 @@ import { notFound } from 'next/navigation';
 import prisma from '@/prisma/db';
 import ImageCarousel from './image-carousel';
 import { FaRegClock, FaRegFileAlt } from 'react-icons/fa'; // For "Recently Updated" and "Well Documented" icons
+import Checkout from '@/components/payment/checkout';
 import { Button } from '@/components/ui/button';
 import { Metadata } from 'next';
+import PlaceOrder from '@/components/home/place-order';
 
 export async function generateMetadata({
   params,
@@ -64,7 +66,7 @@ const ProductDetails = async ({
       {/* Top Section: Product Name, Recently Updated, Well Documented */}
       <div className='flex md:flex-row flex-col justify-between items-start'>
         <div className='mb-6 md:mb-0'>
-          <h1 className='font-semibold text-3xl text-gray-800 dark:text-white'>
+          <h1 className='font-semibold text-gray-800 dark:text-white text-3xl'>
             {product.name}
           </h1>
 
@@ -105,7 +107,7 @@ const ProductDetails = async ({
             <div className='space-y-4'>
               <div className='flex justify-between items-center'>
                 <span className='text-gray-200 text-lg'>Price</span>
-                <p className='font-bold text-3xl text-white'>
+                <p className='font-bold text-white text-3xl'>
                   ${product.salePrice.toFixed(2)}
                 </p>
               </div>
@@ -116,7 +118,7 @@ const ProductDetails = async ({
                   <span className='text-gray-200 text-lg line-through'>
                     ${product.price.toFixed(2)}
                   </span>
-                  <p className='font-bold text-2xl text-red-400'>
+                  <p className='font-bold text-red-400 text-2xl'>
                     {`Save $${(product.price - product.salePrice).toFixed(2)} `}
                     <span className='text-gray-300 text-sm'>
                       (
@@ -132,14 +134,14 @@ const ProductDetails = async ({
 
               {/* Pricing Badge */}
               <div className='mt-4'>
-                <span className='bg-yellow-500 px-3 py-1 rounded-full text-sm text-white'>
+                <span className='bg-yellow-500 px-3 py-1 rounded-full text-white text-sm'>
                   Best Value
                 </span>
               </div>
 
               {/* Checkout Button */}
               <div className='mt-6'>
-                <Button className='w-full'>Checkout</Button>
+                <PlaceOrder productId={product.id} />
               </div>
             </div>
           </div>
@@ -148,7 +150,7 @@ const ProductDetails = async ({
 
       {/* Links Section */}
       <div className='mt-10'>
-        <h2 className='font-semibold text-gray-800 text-xl dark:text-white'>
+        <h2 className='font-semibold text-gray-800 dark:text-white text-xl'>
           Links
         </h2>
         <div className='mt-2'>
@@ -164,11 +166,11 @@ const ProductDetails = async ({
 
       {/* Product Description */}
       <div className='mt-10'>
-        <h2 className='font-semibold text-2xl text-gray-800 dark:text-white'>
+        <h2 className='font-semibold text-gray-800 dark:text-white text-2xl'>
           Description
         </h2>
         <div
-          className='mt-4 max-w-full dark:prose-invert prose'
+          className='dark:prose-invert mt-4 max-w-full prose'
           dangerouslySetInnerHTML={{ __html: product.description || '' }}
         />
       </div>

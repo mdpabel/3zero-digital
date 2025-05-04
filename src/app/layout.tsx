@@ -62,13 +62,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className={cn('scroll-smooth')} suppressHydrationWarning>
-      <head>
+      {/* <head>
         <PixelTracker />
-      </head>
+      </head> */}
       <body>
         <Providers>{children}</Providers>
         <Toaster />
-        <GoogleTagManager gtmId='AW-17015436100' />
+        {/* <GoogleTagManager gtmId='AW-17015436100' /> */}
       </body>
     </html>
   );

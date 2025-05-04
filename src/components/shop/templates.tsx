@@ -7,6 +7,8 @@ import { Button } from '../ui/button';
 import TemplatePagination from './pagination';
 import CardBorder from '../common/card-border';
 import TemplateCategory from './template-category';
+import Checkout from '@/components/payment/checkout';
+import PlaceOrder from '../home/place-order';
 
 const Templates = async ({
   featured = false,
@@ -110,13 +112,13 @@ const Templates = async ({
                           className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-md px-4 py-1.5 rounded-lg font-semibold text-white'>
                           Live Preview
                         </Link>
-                        <form action=''>
-                          <button className='bg-gray-100 dark:bg-gray-800 shadow-md px-4 py-2 rounded-full'>
-                            <span role='img' aria-label='cart'>
-                              <FaCartShopping />
-                            </span>
-                          </button>
-                        </form>
+                        <div>
+                          <PlaceOrder
+                            productId={product.id}
+                            className='bg-gray-100 dark:bg-gray-800 bg-gradient-to-tr from-transparent to-transparent px-4 py-2 rounded-full'>
+                            <FaCartShopping />
+                          </PlaceOrder>
+                        </div>
                       </div>
                     </div>
                   </div>
