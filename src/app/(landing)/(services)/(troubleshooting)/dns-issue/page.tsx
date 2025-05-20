@@ -1,7 +1,5 @@
 import UnderDevelopment from '@/components/common/under-development';
-import { getServiceMetadata } from '@/app/seo';
-
-export const metadata = getServiceMetadata('3d-model-design');
+import React from 'react';
 
 const page = () => {
   return <UnderDevelopment />;

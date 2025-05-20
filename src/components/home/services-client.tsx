@@ -10,6 +10,7 @@ import { Active } from './services';
 const PlaceOrder = dynamic(() => import('./place-order'));
 import freeStamp from '@/../public/images/freeStamp.png';
 import Image from 'next/image';
+import ComponentWrapper from '../common/component-wrapper';
 
 const ServicesClient = ({
   services,
@@ -19,7 +20,7 @@ const ServicesClient = ({
   active?: Active;
 }) => {
   return (
-    <div id='getStarted' className='mx-auto px-4 py-10 sm:py-16 max-w-6xl'>
+    <ComponentWrapper id='getStarted' className='py-10 sm:py-16'>
       <Title
         title='Explore Our Services'
         subTitle='Discover how we can help you grow and optimize your online presence.'
@@ -93,7 +94,7 @@ const ServicesClient = ({
           );
         })}
       </Tabs>
-    </div>
+    </ComponentWrapper>
   );
 };
 

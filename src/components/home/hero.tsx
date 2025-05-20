@@ -1,10 +1,11 @@
 import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import ComponentWrapper from '../common/component-wrapper';
 
 const Hero = () => {
   return (
-    <div className='relative mx-auto p-4 py-10 md:pt-10 max-w-6xl'>
+    <ComponentWrapper className='relative py-10 md:pt-14'>
       <div className='mx-auto w-full max-w-6xl container'>
         <div className='gap-8 grid grid-cols-1 md:grid-cols-5'>
           <div className='flex flex-col justify-center col-span-3'>
@@ -81,7 +82,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

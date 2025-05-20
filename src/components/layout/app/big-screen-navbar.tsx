@@ -36,7 +36,7 @@ const BigScreenNavbar = async ({
                   <li>
                     <NavigationMenuTrigger>{name}</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <ul className='gap-3 grid md:grid-cols-2 p-4 w-[400px] md:w-[500px] lg:w-[600px]'>
+                      <ul className='gap-3 grid md:grid-cols-2 p-4 w-[800px]'>
                         {products?.map(({ description, slug, name, id }) => (
                           <ListItem
                             key={id}
@@ -71,7 +71,7 @@ const BigScreenNavbar = async ({
                 </Link>
               </NavigationMenuLink>
             </li> */}
-            <li>
+            {/* <li>
               <NavigationMenuLink
                 asChild
                 className={cn(navigationMenuTriggerStyle(), '')}>
@@ -79,7 +79,7 @@ const BigScreenNavbar = async ({
                   Shop
                 </Link>
               </NavigationMenuLink>
-            </li>
+            </li> */}
           </NavigationMenuList>
         </NavigationMenu>
 

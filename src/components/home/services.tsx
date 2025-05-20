@@ -3,16 +3,25 @@ import { getProductWithServices } from '@/lib/product/get-product';
 
 export type Active =
   | 'Development'
-  | 'Marketing'
+  | 'Maintenance'
   | 'Troubleshooting'
-  | 'Maintenance';
+  | 'SEO'
+  | 'Paid Advertising'
+  | 'Graphics & Video';
 
-const Services = async ({ active = 'Maintenance' }: { active?: Active }) => {
+const Services = async ({ active = 'Development' }: { active?: Active }) => {
   const services = (await getProductWithServices()).filter(
     (s) => s.products.length > 0,
   );
 
-  const order = ['Maintenance', 'Development', 'Troubleshooting', 'Marketing'];
+  const order = [
+    'Development',
+    'Maintenance',
+    'Troubleshooting',
+    'SEO',
+    'Paid Advertising',
+    'Graphics & Video',
+  ];
 
   const sortedServices = services.sort((a, b) => {
     const indexA = order.indexOf(a.name);

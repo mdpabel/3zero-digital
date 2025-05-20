@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import React from 'react';
+import ComponentWrapper from '../common/component-wrapper';
 
 const logos = [
   '/logos/1.png',
@@ -20,13 +21,12 @@ const CompaniesLogo = () => {
   const totalItems = logos.length;
 
   return (
-    <div
-      className='mx-auto p-4 max-w-6xl'
+    <ComponentWrapper
       style={{
         maskImage:
           'linear-gradient(to right, rgba(0,0,0,0),rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0))',
       }}>
-      <h2 className='py-10 pt-3 font-medium text-center text-xl text-zinc-800 md:text-2xl dark:text-zinc-200'>
+      <h2 className='py-10 pt-3 font-medium text-zinc-800 dark:text-zinc-200 text-xl md:text-2xl text-center'>
         Companies That Trust Us
       </h2>
 
@@ -55,7 +55,7 @@ const CompaniesLogo = () => {
           );
         })}
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

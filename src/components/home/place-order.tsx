@@ -21,7 +21,7 @@ const PlaceOrder = ({
         href={`/place-order?quantity=1&productId=${productId}&productType=${productType}`}>
         {children ?? (
           <>
-            <FaShoppingCart className='mr-2' /> 'Place order'
+            <FaShoppingCart className='mr-2' /> Place order
           </>
         )}
       </Link>

@@ -10,6 +10,7 @@ import { Button } from '../ui/button';
 import Link from 'next/link';
 import WhySvg from './why-svg';
 import CardBorder from '../common/card-border';
+import ComponentWrapper from '../common/component-wrapper';
 
 const messages = [
   {
@@ -39,10 +40,10 @@ const messages = [
 
 const CustomerIssues = () => {
   return (
-    <div className='lg:block hidden mx-auto px-4 py-10 max-w-6xl'>
+    <ComponentWrapper className='hidden lg:block py-10'>
       <div className='mb-8 text-center'>
         <p className='mb-2 text-xl'>Did you know?</p>
-        <h2 className='mx-auto mb-4 max-w-4xl font-medium text-xl text-zinc-800 md:text-2xl dark:text-zinc-200'>
+        <h2 className='mx-auto mb-4 max-w-4xl font-medium text-zinc-800 dark:text-zinc-200 text-xl md:text-2xl'>
           30,000 websites are hacked every day globally, out of which{' '}
           <span className='font-bold'>43%</span> are targeted at small
           businesses. Over <span className='font-bold'>90%</span> of them are
@@ -54,22 +55,22 @@ const CustomerIssues = () => {
           return (
             <div key={index}>
               {index === 1 && <WhySvg />}
-              <div className='flex flex-col border-slate-300 dark:border-slate-700 shadow-md hover:shadow-lg border rounded-lg transform transition-transform hover:scale-105'>
+              <div className='flex flex-col shadow-md hover:shadow-lg border border-slate-300 dark:border-slate-700 rounded-lg hover:scale-105 transition-transform transform'>
                 <CardBorder />
                 <div className='p-6'>
                   <div className='flex items-center gap-4 mb-4'>
                     <Image
                       src={message.image}
                       alt={message.name}
-                      className='border-gray-300 dark:border-gray-600 border rounded-full w-14 h-14'
+                      className='border border-gray-300 dark:border-gray-600 rounded-full w-14 h-14'
                     />
-                    <h3 className='font-semibold text-gray-800 text-lg dark:text-gray-200'>
+                    <h3 className='font-semibold text-gray-800 dark:text-gray-200 text-lg'>
                       {message.name}
                     </h3>
                   </div>
                   <p className='mb-4 text-sm italic'>"{message.message}"</p>
                   <div className='mt-auto'>
-                    <p className='flex items-center gap-2 font-medium text-gray-700 text-sm dark:text-gray-300'>
+                    <p className='flex items-center gap-2 font-medium text-gray-700 dark:text-gray-300 text-sm'>
                       <span role='img' aria-label='reply'>
                         💬
                       </span>{' '}
@@ -92,7 +93,7 @@ const CustomerIssues = () => {
             style={{
               lineHeight: '1.2em',
             }}
-            className='mb-4 font-bold text-3xl text-zinc-800 md:text-5xl dark:text-zinc-200'>
+            className='mb-4 font-bold text-zinc-800 dark:text-zinc-200 text-3xl md:text-5xl'>
             Thankfully, there is 3Zerodigital
           </h3>
           <p className='mt-2'>
@@ -139,7 +140,7 @@ const CustomerIssues = () => {
           />
         </div>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 
