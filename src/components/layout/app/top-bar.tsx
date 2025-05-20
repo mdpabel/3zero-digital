@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils';
 
 // Define the navigation items in an array
 const navItems = [
+  { href: '/shop', label: 'Templates' },
   { href: '/recent-projects', label: 'Recent Projects' },
   { href: '/contact', label: 'Contact' },
   { href: '/careers', label: 'Careers' },

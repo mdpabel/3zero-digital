@@ -102,17 +102,6 @@ const SmallScreenNavbar = ({
                 ),
               )}
               <div>
-                <div>
-                  <DropdownMenuItem asChild onClick={handleMenuItemClick}>
-                    <Link
-                      className='block py-2 pl-1 w-full font-medium text-zinc-800 hover:text-teal-500 dark:text-zinc-100 text-sm transition cursor-pointer'
-                      href='/shop'>
-                      Shop
-                    </Link>
-                  </DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                </div>
-
                 {status === 'unauthenticated' && (
                   <div className='flex justify-between items-center gap-10 mt-3 mb-8'>
                     <div className='w-full'>
