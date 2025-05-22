@@ -1,4 +1,4 @@
-import headlessPerformance from '../../../../../../public/images/headless-performance.png';
+import headlessPerformance from '@/../public/images/headless-security.png';
 import headlessSecurity from '@/../public/images/headless-security.png';
 import headlessCost from '@/../public/images/headless-cost.png';
 import headlessScale from '@/../public/images/headless-scale.png';
@@ -17,7 +17,7 @@ export const benefits = [
     title: 'Decoupled Security',
     description:
       'Minimize vulnerabilities and reduce the risk of exposing sensitive data by leveraging static hosting and a robust API-first approach. This reduces the potential attack surface, ensuring that your website’s infrastructure remains secure while focusing on securing API routes specifically for safe and controlled interactions.',
-    image: headlessSecurity, // Replace with the correct image for this benefit
+    image: headlessSecurity,
   },
   {
     icon: <FaDollarSign />,

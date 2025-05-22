@@ -62,11 +62,6 @@ const SearchForm = () => {
     fetchData();
   }, [value]);
 
-  console.log({
-    posts,
-    services,
-  });
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
