@@ -1,4 +1,4 @@
-import headlessPerformance from '@/../public/images/headless-performance.png';
+import headlessPerformance from '../../../../../../public/images/headless-performance.png';
 import headlessSecurity from '@/../public/images/headless-security.png';
 import headlessCost from '@/../public/images/headless-cost.png';
 import headlessScale from '@/../public/images/headless-scale.png';
