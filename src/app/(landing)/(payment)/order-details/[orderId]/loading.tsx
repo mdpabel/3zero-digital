@@ -1,8 +1,9 @@
+import ComponentWrapper from '@/components/common/component-wrapper';
 import React from 'react';
 
 const Loading = () => {
   return (
-    <div className='mx-auto py-12 p-4 max-w-6xl'>
+    <ComponentWrapper className='py-12'>
       <h1 className='mb-8 font-semibold text-3xl text-center'>
         <div className='bg-gray-200 mx-auto rounded-md w-3/4 h-8 animate-pulse'></div>
       </h1>
@@ -38,7 +39,7 @@ const Loading = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

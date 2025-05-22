@@ -20,6 +20,7 @@ import Hero from '@/components/common/Hero';
 import Comparison from '@/components/development/comparison';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -62,7 +63,7 @@ const SSLInstallation = async () => {
   const jsonLd = generateSchemaMarkup(slug);
 
   return (
-    <div className='mx-auto p-4 max-w-6xl'>
+    <ComponentWrapper>
       <Hero
         subHeadline="Say Goodbye to 'Not Secure' Warnings Today!"
         headline='Secure Your Website with SSL – Build Trust Instantly!'
@@ -121,7 +122,7 @@ const SSLInstallation = async () => {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </div>
+    </ComponentWrapper>
   );
 };
 

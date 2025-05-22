@@ -5,10 +5,11 @@ import ProjectSteps from '@/components/development/project-steps';
 import { steps } from './data';
 import Comparison from '@/components/development/comparison';
 import ContactUs from '@/components/common/contact-us';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 const page = () => {
   return (
-    <div className='mx-auto p-4 max-w-6xl'>
+    <ComponentWrapper>
       <Hero
         headline='Website Health Check'
         subHeadline='Ensure Your Website is Secure, Fast, and Optimized'
@@ -24,7 +25,7 @@ const page = () => {
         <ContactUs />
       </div>
       <Comparison />
-    </div>
+    </ComponentWrapper>
   );
 };
 

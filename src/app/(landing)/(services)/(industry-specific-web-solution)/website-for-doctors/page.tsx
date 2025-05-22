@@ -12,6 +12,7 @@ import ProjectSteps from '../../../../../components/development/project-steps';
 import { steps } from './data';
 import HeroSection from '@/components/common/hero-section';
 import websiteForDoctors from '@/../public/images/services/website-for-doctors-hero-image.png';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -23,7 +24,7 @@ const page = () => {
   const jsonLd = generateSchemaMarkup(slug);
 
   return (
-    <div className='mx-auto px-4 max-w-6xl'>
+    <ComponentWrapper>
       <HeroSection
         title='Website Development for Doctors'
         subtitle='Build a professional online presence with a custom website tailored for medical professionals.'
@@ -57,7 +58,7 @@ const page = () => {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </div>
+    </ComponentWrapper>
   );
 };
 

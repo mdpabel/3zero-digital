@@ -140,7 +140,7 @@ const LocalSEOPage = () => {
       </section>
 
       {/* Features */}
-      <section className='gap-8 grid grid-cols-1 md:grid-cols-3 mx-auto mb-16 max-w-6xl'>
+      <ComponentWrapper className='gap-8 grid grid-cols-1 md:grid-cols-3 mb-16'>
         {features.map(({ title, description, icon }) => (
           <div
             key={title}
@@ -152,7 +152,7 @@ const LocalSEOPage = () => {
             <p className='text-zinc-700 dark:text-zinc-300'>{description}</p>
           </div>
         ))}
-      </section>
+      </ComponentWrapper>
 
       {/* Why Choose Us */}
       <SEOComparison />

@@ -30,7 +30,9 @@ const policiesLinks = [
 ];
 
 const Footer: React.FC = async () => {
-  const services = await getProductWithServices();
+  const services = (await getProductWithServices()).filter(
+    (s) => s.products.length > 0,
+  );
 
   return (
     <footer className='bg-gradient-to-r from-[#614385] to-[#516395] py-12 text-white'>

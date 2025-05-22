@@ -1,4 +1,5 @@
 import { auth } from '@/auth';
+import ComponentWrapper from '@/components/common/component-wrapper';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -25,7 +26,7 @@ const Page = async () => {
   });
 
   return (
-    <div className='mx-auto px-6 py-10 max-w-6xl'>
+    <ComponentWrapper className='py-10'>
       <h1 className='mb-8 font-bold text-zinc-900 dark:text-zinc-200 text-4xl'>
         Your Website Health Reports
       </h1>
@@ -109,7 +110,7 @@ const Page = async () => {
           ))}
         </div>
       )}
-    </div>
+    </ComponentWrapper>
   );
 };
 

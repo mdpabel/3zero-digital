@@ -13,6 +13,7 @@ import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
 import CompaniesLogo from '@/components/home/company-logos';
 import FeaturedServices from '@/components/featured-services/featured-services';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -24,7 +25,7 @@ const FrontendDevelopment = () => {
   const jsonLd = generateSchemaMarkup(slug);
 
   return (
-    <div className='mx-auto px-4 w-full max-w-6xl container'>
+    <ComponentWrapper>
       {/* Hero Section with a YouTube Video */}
       <Hero
         subHeadline='Build Fast, Scalable, and Beautiful User Interfaces'
@@ -42,7 +43,7 @@ const FrontendDevelopment = () => {
 
       {/* Development Service Form for Frontend */}
       <DevelopmentServiceForm
-        Icon={<FaReact className='text-2xl text-white md:text-3xl' />}
+        Icon={<FaReact className='text-white text-2xl md:text-3xl' />}
         title='Transform Your User Experience with Expert Frontend Development'
       />
 
@@ -63,7 +64,7 @@ const FrontendDevelopment = () => {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </div>
+    </ComponentWrapper>
   );
 };
 

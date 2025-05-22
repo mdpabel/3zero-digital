@@ -1,4 +1,5 @@
 import { genMetaData } from '@/app/seo';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const metadata = genMetaData({
   title: 'Payment cancel',
@@ -8,8 +9,8 @@ export const metadata = genMetaData({
 const PaymentCancel = () => {
   return (
     <div className='relative px-10 md:px-20 py-10 md:py-20'>
-      <div className='mx-auto w-full max-w-6xl text-center container'>
-        <h1 className='mb-6 font-bold text-4xl text-zinc-800 md:text-5xl dark:text-zinc-200'>
+      <ComponentWrapper className='w-full text-center'>
+        <h1 className='mb-6 font-bold text-zinc-800 dark:text-zinc-200 text-4xl md:text-5xl'>
           ❌ Payment Cancelled
         </h1>
 
@@ -31,16 +32,16 @@ const PaymentCancel = () => {
         <div className='space-x-4 mt-10'>
           <a
             href='/products'
-            className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-6 py-3 rounded-lg font-semibold text-white transform transition-transform hover:scale-105'>
+            className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-6 py-3 rounded-lg font-semibold text-white hover:scale-105 transition-transform transform'>
             Continue Shopping
           </a>
           <a
             href='/support'
-            className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-6 py-3 rounded-lg font-semibold text-white transform transition-transform hover:scale-105'>
+            className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-6 py-3 rounded-lg font-semibold text-white hover:scale-105 transition-transform transform'>
             Contact Support
           </a>
         </div>
-      </div>
+      </ComponentWrapper>
     </div>
   );
 };

@@ -12,20 +12,14 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
 import { cn } from '@/lib/utils';
-import ThemeSwitcher from '@/components/common/theme-switcher';
 import { ServiceWithProducts } from '@/lib/product/get-product';
 import UserButton from './user-button';
-import { auth } from '@/auth';
+import ComponentWrapper from '@/components/common/component-wrapper';
+import SearchForm from '@/components/common/search';
 
-const BigScreenNavbar = async ({
-  services,
-}: {
-  services: ServiceWithProducts[];
-}) => {
-  const session = await auth();
-
+const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
   return (
-    <div className='hidden lg:block z-50 mx-auto px-4 max-w-6xl container'>
+    <ComponentWrapper className='hidden lg:block z-50'>
       <div className='flex justify-between items-center h-16'>
         <Logo />
         <NavigationMenu>
@@ -36,7 +30,7 @@ const BigScreenNavbar = async ({
                   <li>
                     <NavigationMenuTrigger>{name}</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <ul className='gap-3 grid md:grid-cols-2 p-4 w-[800px]'>
+                      <ul className='gap-3 grid md:grid-cols-2 p-4 w-[680px]'>
                         {products?.map(({ description, slug, name, id }) => (
                           <ListItem
                             key={id}
@@ -62,35 +56,15 @@ const BigScreenNavbar = async ({
                 )}
               </NavigationMenuItem>
             ))}
-            {/* <li>
-              <NavigationMenuLink
-                asChild
-                className={cn(navigationMenuTriggerStyle(), '')}>
-                <Link prefetch={true} href='/recent-projects'>
-                  Recent Projects
-                </Link>
-              </NavigationMenuLink>
-            </li> */}
-            {/* <li>
-              <NavigationMenuLink
-                asChild
-                className={cn(navigationMenuTriggerStyle(), '')}>
-                <Link prefetch={true} href='/shop'>
-                  Shop
-                </Link>
-              </NavigationMenuLink>
-            </li> */}
           </NavigationMenuList>
         </NavigationMenu>
 
-        <div className='flex items-center space-x-6'>
-          {/* <ThemeSwitcher /> */}
-
-          {/* Conditionally show based on login status */}
+        <div className='flex items-center space-x-3'>
+          <SearchForm />
           <UserButton />
         </div>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

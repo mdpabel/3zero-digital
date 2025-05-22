@@ -13,6 +13,7 @@ import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
 import CompaniesLogo from '@/components/home/company-logos';
 import FeaturedServices from '@/components/featured-services/featured-services';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -24,7 +25,7 @@ const ShopifyWebsiteDevelopment = () => {
   const jsonLd = generateSchemaMarkup(slug);
 
   return (
-    <div className='mx-auto px-4 w-full max-w-6xl container'>
+    <ComponentWrapper>
       <Hero
         subHeadline='Custom, Scalable, and Conversion-Focused Shopify Solutions.'
         headline='Shopify Store Development'
@@ -37,7 +38,7 @@ const ShopifyWebsiteDevelopment = () => {
       <Video videoId='na2iB6nBzIc' pageSlug='shopify-store-development' />
 
       <DevelopmentServiceForm
-        Icon={<FaShopify className='text-2xl text-white md:text-3xl' />}
+        Icon={<FaShopify className='text-white text-2xl md:text-3xl' />}
         title="Build a High-Converting Shopify Store for Your Brand's Success!"
       />
 
@@ -65,7 +66,7 @@ const ShopifyWebsiteDevelopment = () => {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </div>
+    </ComponentWrapper>
   );
 };
 

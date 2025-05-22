@@ -3,6 +3,7 @@ import { MdCheck, MdClose } from 'react-icons/md';
 import Link from 'next/link';
 import CardBorder from '@/components/common/card-border';
 import { Button } from '@/components/ui/button';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 const with3ZeroPaidMarketingItems = [
   'Virtually Zero Vulnerability in campaign strategy',
@@ -30,7 +31,7 @@ const without3ZeroPaidMarketingItems = [
 
 const PaidMarketingComparison = () => {
   return (
-    <div className='mx-auto my-10 p-4 max-w-6xl'>
+    <ComponentWrapper className='my-10'>
       <div className='mb-8 text-center'>
         <h3 className='font-bold text-2xl'>
           Why Choose 3Zero Digital for TikTok Ads?
@@ -86,7 +87,7 @@ const PaidMarketingComparison = () => {
           <Link href='#getStarted'>Get Started</Link>
         </Button>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

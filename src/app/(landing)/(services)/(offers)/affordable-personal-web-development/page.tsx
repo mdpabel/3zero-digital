@@ -8,10 +8,11 @@ import TermsAndConditions from './terms-and-condition';
 import Templates from '@/components/shop/templates';
 import Policy from './policy';
 import Countdown from './count-down';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 const NewYearOffer = () => {
   return (
-    <div className='mx-auto p-4 max-w-6xl'>
+    <ComponentWrapper>
       <Hero
         description="Don't miss out on our exclusive New Year offer! Perfect for kickstarting your online journey with unbeatable deals."
         headline='🎉 New Year Special Offer 🎉'
@@ -26,7 +27,7 @@ const NewYearOffer = () => {
       <Templates />
       <AffordablePricing />
       <Policy />
-    </div>
+    </ComponentWrapper>
   );
 };
 

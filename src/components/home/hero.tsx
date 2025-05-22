@@ -6,7 +6,7 @@ import ComponentWrapper from '../common/component-wrapper';
 const Hero = () => {
   return (
     <ComponentWrapper className='relative py-10 md:pt-14'>
-      <div className='mx-auto w-full max-w-6xl container'>
+      <div>
         <div className='gap-8 grid grid-cols-1 md:grid-cols-5'>
           <div className='flex flex-col justify-center col-span-3'>
             <h1 className={`text-3xl md:text-5xl font-bold mb-4`}>
@@ -55,6 +55,7 @@ const Hero = () => {
               muted
               playsInline
               preload='none'
+              poster='/images/hero-poster.avif'
               style={{
                 backgroundColor: '#030712',
                 border: 'none',

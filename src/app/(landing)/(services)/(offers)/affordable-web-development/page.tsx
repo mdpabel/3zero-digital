@@ -13,6 +13,7 @@ import Comparison from '@/components/development/comparison';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
 import ProjectSteps from '../../../../../components/development/project-steps';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -24,7 +25,7 @@ const page = () => {
   const jsonLd = generateSchemaMarkup(slug);
 
   return (
-    <div className='mx-auto px-4 max-w-6xl'>
+    <ComponentWrapper>
       <Hero
         subHeadline='Ready to create a professional website without the high costs or stress?'
         headline='Get Your Business Website in Just 7 Days for Only $79'
@@ -57,7 +58,7 @@ const page = () => {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </div>
+    </ComponentWrapper>
   );
 };
 

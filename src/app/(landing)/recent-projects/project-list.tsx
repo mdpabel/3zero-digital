@@ -4,13 +4,14 @@ import { cn } from '@/lib/utils';
 import { fetchCaseStudies } from '@/lib/wordpress/case-study';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 const ProjectList = async ({ style = 1 }: { style?: 1 | 2 }) => {
   const projects = await fetchCaseStudies();
 
   return (
-    <div className='mx-auto p-4 max-w-6xl'>
-      <div className='mx-auto px-4 py-10 max-w-6xl'>
+    <ComponentWrapper>
+      <div className='py-10'>
         {/* Header Section */}
         <div className='mx-auto mb-10 max-w-4xl text-center'>
           <h2 className='font-bold text-4xl'>
@@ -41,7 +42,7 @@ const ProjectList = async ({ style = 1 }: { style?: 1 | 2 }) => {
           <Link href='/recent-projects'>Explore More</Link>
         </Button>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

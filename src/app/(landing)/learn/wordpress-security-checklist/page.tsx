@@ -2,6 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import Checklist from './client-component';
 import Services from '@/components/home/services';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 // Define metadata for the page
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
 
 const Page = () => {
   return (
-    <div className='mx-auto px-4 py-10 max-w-6xl'>
+    <ComponentWrapper className='py-10'>
       <div className='mx-auto max-w-3xl'>
         {/* Main Title for the page */}
         <h1 className='mb-6 font-bold text-4xl text-center'>
@@ -34,7 +35,7 @@ const Page = () => {
       <Checklist />
 
       <Services />
-    </div>
+    </ComponentWrapper>
   );
 };
 

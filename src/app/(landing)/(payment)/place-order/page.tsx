@@ -4,6 +4,7 @@ import PlaceOrderForm from './place-order-form';
 import prisma from '@/prisma/db';
 import CouponForm from './coupon-form';
 import { DiscountType } from '@prisma/client';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 type Props = {
   searchParams: Promise<{
@@ -31,7 +32,7 @@ const PlaceOrder = async ({ searchParams }: Props) => {
   } = await searchParams;
 
   if (!productId) {
-    return <div className='mx-auto py-10 p-4 max-w-6xl'>Product not found</div>;
+    return <ComponentWrapper>Product not found</ComponentWrapper>;
   }
 
   const product = await prisma.product.findUnique({
@@ -39,7 +40,9 @@ const PlaceOrder = async ({ searchParams }: Props) => {
   });
 
   if (!product) {
-    return <div className='mx-auto py-10 p-4 max-w-6xl'>Product not found</div>;
+    return (
+      <ComponentWrapper className='py-10'>Product not found</ComponentWrapper>
+    );
   }
 
   let discountedValue = 0;
@@ -53,7 +56,7 @@ const PlaceOrder = async ({ searchParams }: Props) => {
   }
 
   return (
-    <div className='mx-auto py-10 p-4 max-w-6xl'>
+    <ComponentWrapper className='py-10'>
       <div className='gap-10 grid grid-cols-1 md:grid-cols-5'>
         <div className='md:col-span-3'>
           <PlaceOrderForm
@@ -118,7 +121,7 @@ const PlaceOrder = async ({ searchParams }: Props) => {
           </div>
         </div>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

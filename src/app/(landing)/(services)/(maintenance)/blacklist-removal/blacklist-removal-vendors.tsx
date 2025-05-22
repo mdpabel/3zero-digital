@@ -7,6 +7,7 @@ import Spinner from '@/components/common/spinner';
 import Checkout from '@/components/payment/checkout';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 const BlacklistRemovalVendors = ({
   price,
@@ -50,9 +51,9 @@ const BlacklistRemovalVendors = ({
   );
 
   return (
-    <div
+    <ComponentWrapper
       id='getStarted'
-      className='shadow-lg mx-auto my-10 mt-32 p-8 rounded-lg max-w-6xl container'>
+      className='shadow-lg my-10 mt-32 p-8 rounded-lg'>
       <h2 className='mb-6 font-bold text-zinc-800 dark:text-zinc-200 text-3xl md:text-5xl text-center'>
         Blacklist Removal Service
       </h2>
@@ -137,7 +138,7 @@ const BlacklistRemovalVendors = ({
           </p>
         )}
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

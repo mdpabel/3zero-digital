@@ -6,6 +6,7 @@ import {
 
 import type { Metadata, ResolvingMetadata } from 'next';
 import Link from 'next/link';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 type Props = {
   params: Promise<{
@@ -51,7 +52,7 @@ const CaseStudy = async ({ params }: Props) => {
   return (
     <div className='px-4 md:px-20 py-6 md:py-12'>
       {/* Hero Section */}
-      <h1 className='mb-4 pb-3 font-bold text-center text-xl text-zinc-800 md:text-2xl dark:text-zinc-200'>
+      <h1 className='mb-4 pb-3 font-bold text-zinc-800 dark:text-zinc-200 text-xl md:text-2xl text-center'>
         {caseStudy.title}
       </h1>
 
@@ -68,13 +69,13 @@ const CaseStudy = async ({ params }: Props) => {
 
       {/* Content Section */}
       <section>
-        <div className='max-w-none dark:prose-invert prose prose-lg'>
+        <div className='dark:prose-invert max-w-none prose prose-lg'>
           <div dangerouslySetInnerHTML={{ __html: cleanContent }} />
         </div>
       </section>
 
       {/* Call to Action */}
-      <section className='shadow-lg mx-auto py-12 rounded-lg max-w-6xl text-center text-white primary-color'>
+      <ComponentWrapper className='shadow-lg py-12 rounded-lg text-white text-center primary-color'>
         <h2 className='mb-4 font-semibold text-3xl'>
           Interested in similar results?
         </h2>
@@ -87,7 +88,7 @@ const CaseStudy = async ({ params }: Props) => {
           className='bg-white hover:bg-gray-200 px-6 py-3 rounded-lg font-semibold text-indigo-600'>
           Contact Us
         </Link>
-      </section>
+      </ComponentWrapper>
     </div>
   );
 };

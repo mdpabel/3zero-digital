@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 
 const ComponentWrapper = ({ children, className, ...props }: Props) => {
   return (
-    <div className={cn('mx-auto px-4 max-w-6xl', className)} {...props}>
+    <div className={cn('mx-auto w-full px-4 max-w-6xl', className)} {...props}>
       {children}
     </div>
   );

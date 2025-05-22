@@ -9,6 +9,7 @@ import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -32,7 +33,7 @@ const WebsiteMigration = async () => {
   const jsonLd = generateSchemaMarkup(slug);
 
   return (
-    <div className='mx-auto px-4 max-w-6xl'>
+    <ComponentWrapper>
       <Hero
         subHeadline='Switch Hosts or Domains Without Losing a Single Byte!'
         headline='Seamless Website Migration – Zero Downtime, 100% Reliability!'
@@ -86,7 +87,7 @@ const WebsiteMigration = async () => {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </div>
+    </ComponentWrapper>
   );
 };
 

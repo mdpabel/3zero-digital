@@ -9,6 +9,7 @@ import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -22,7 +23,7 @@ const page = async () => {
   const jsonLd = generateSchemaMarkup(slug);
 
   return (
-    <div className='mx-auto p-4 max-w-6xl'>
+    <ComponentWrapper>
       <Hero
         subHeadline='Being Blacklisted Costs You Traffic, Trust, and Revenue!'
         headline='Get Your Website Off Blacklists – Fast and Reliable!'
@@ -45,7 +46,7 @@ const page = async () => {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </div>
+    </ComponentWrapper>
   );
 };
 

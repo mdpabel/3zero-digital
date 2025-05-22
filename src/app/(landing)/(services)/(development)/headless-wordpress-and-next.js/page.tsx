@@ -14,6 +14,7 @@ import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
 import CompaniesLogo from '@/components/home/company-logos';
 import FeaturedServices from '@/components/featured-services/featured-services';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -25,7 +26,7 @@ const HeadlessWordPressAndNextJs = () => {
   const jsonLd = generateSchemaMarkup(slug);
 
   return (
-    <div className='mx-auto px-4 w-full max-w-6xl container'>
+    <ComponentWrapper className='w-full'>
       <Hero
         subHeadline='Build Faster, Safer Websites with Next.js and WordPress.'
         headline='Headless WordPress & Next.js'
@@ -40,7 +41,7 @@ const HeadlessWordPressAndNextJs = () => {
       <PerformanceComparison />
 
       <DevelopmentServiceForm
-        Icon={<FaCogs className='text-2xl text-white md:text-3xl' />}
+        Icon={<FaCogs className='text-white text-2xl md:text-3xl' />}
         title='Headless WordPress & NextJs'
       />
 
@@ -69,7 +70,7 @@ const HeadlessWordPressAndNextJs = () => {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </div>
+    </ComponentWrapper>
   );
 };
 

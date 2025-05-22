@@ -10,6 +10,7 @@ import personalWebsite from '@/../public/images/personal-website.png';
 import personalWebsiteLight from '@/../public/images/personal-website-light.png';
 import personalWebsiteLiteLight from '@/../public/images/personal-website-lite-light.png';
 import personalWebsiteLiteDark from '@/../public/images/personal-website-lite-dark.png';
+import ComponentWrapper from '../common/component-wrapper';
 
 type Props = {
   affordableWebDevelopmentId: string;
@@ -36,7 +37,7 @@ const FeaturedServicesCarousel = (props: Props) => {
   };
 
   return (
-    <div className='mx-auto p-4 py-12 max-w-6xl'>
+    <ComponentWrapper className='py-12'>
       <div className='grid grid-cols-1'>
         <Slider {...settings}>
           <FeaturedService
@@ -49,7 +50,7 @@ const FeaturedServicesCarousel = (props: Props) => {
           />
         </Slider>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

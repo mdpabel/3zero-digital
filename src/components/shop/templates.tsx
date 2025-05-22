@@ -9,6 +9,7 @@ import CardBorder from '../common/card-border';
 import TemplateCategory from './template-category';
 import Checkout from '@/components/payment/checkout';
 import PlaceOrder from '../home/place-order';
+import ComponentWrapper from '../common/component-wrapper';
 
 const Templates = async ({
   featured = false,
@@ -67,7 +68,7 @@ const Templates = async ({
   });
 
   return (
-    <div className='relative mx-auto px-4 py-10 w-full max-w-6xl container'>
+    <ComponentWrapper className='relative py-10 w-full'>
       {/* Header Section */}
       <div className='mb-10 text-center'>
         <h2 className='font-bold text-4xl'>{title}</h2>
@@ -147,7 +148,7 @@ const Templates = async ({
           />
         </Suspense>
       )}
-    </div>
+    </ComponentWrapper>
   );
 };
 

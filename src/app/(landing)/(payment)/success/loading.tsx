@@ -1,7 +1,9 @@
+import ComponentWrapper from '@/components/common/component-wrapper';
+
 const PaymentSuccessLoading = () => {
   return (
     <div className='relative px-10 md:px-20 py-10 md:py-20'>
-      <div className='mx-auto w-full max-w-6xl text-center container'>
+      <ComponentWrapper className='w-full text-center'>
         <div className='bg-gray-200 dark:bg-gray-700 mx-auto mb-6 rounded w-3/4 md:w-2/4 h-10'></div>
 
         <div className='space-y-4 mb-6'>
@@ -17,7 +19,7 @@ const PaymentSuccessLoading = () => {
           <div className='bg-gray-200 dark:bg-gray-700 rounded-lg w-full md:w-40 h-12'></div>
           <div className='bg-gray-200 dark:bg-gray-700 rounded-lg w-full md:w-40 h-12'></div>
         </div>
-      </div>
+      </ComponentWrapper>
     </div>
   );
 };

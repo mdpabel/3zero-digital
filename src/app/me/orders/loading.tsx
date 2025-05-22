@@ -7,6 +7,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 const tableHeaders = [
   'Order Number',
@@ -21,8 +22,8 @@ const pageTitle = 'Your Orders';
 const TableSkeleton = () => {
   return (
     <div className='py-10 md:py-20'>
-      <div className='mx-auto max-w-6xl container'>
-        <h1 className='mb-6 font-bold text-3xl text-zinc-800 md:text-5xl dark:text-zinc-200'>
+      <ComponentWrapper>
+        <h1 className='mb-6 font-bold text-zinc-800 dark:text-zinc-200 text-3xl md:text-5xl'>
           {pageTitle}
         </h1>
 
@@ -58,7 +59,7 @@ const TableSkeleton = () => {
             </TableBody>
           </Table>
         </div>
-      </div>
+      </ComponentWrapper>
     </div>
   );
 };

@@ -20,6 +20,7 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import Checkout from '@/components/payment/checkout';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 const WEBSITE_TYPES = [
   'Personal Portfolio',
@@ -100,7 +101,7 @@ const Configurator = () => {
   };
 
   return (
-    <div className='items-center gap-6 grid grid-cols-1 md:grid-cols-2 mx-auto p-4 rounded-lg max-w-6xl'>
+    <ComponentWrapper className='items-center gap-6 grid grid-cols-1 md:grid-cols-2 rounded-lg'>
       {/* Left Column: Customization Section */}
       <div>
         <h3 className='font-bold text-2xl text-center'>
@@ -210,7 +211,7 @@ const Configurator = () => {
 
             <button
               type='submit'
-              className='bg-black hover:bg-gray-800 dark:hover:bg-gray-300 dark:bg-white mt-4 px-6 py-2 rounded font-semibold text-white dark:text-black'>
+              className='bg-black hover:bg-gray-800 dark:bg-white dark:hover:bg-gray-300 mt-4 px-6 py-2 rounded font-semibold text-white dark:text-black'>
               Save Configuration
             </button>
           </form>
@@ -219,7 +220,7 @@ const Configurator = () => {
 
       {/* Right Column: Pricing Summary */}
       <div className='bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden'>
-        <div className='bg-[#614385] py-6 text-center text-white'>
+        <div className='bg-[#614385] py-6 text-white text-center'>
           <h3 className='font-bold text-2xl'>Affordable Website Development</h3>
           <p className='mt-2 font-extrabold text-5xl'>
             ${calculatePrice(form.watch())}
@@ -264,7 +265,7 @@ const Configurator = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

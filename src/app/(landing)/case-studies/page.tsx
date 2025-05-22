@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { fetchCaseStudies } from '@/lib/wordpress/case-study';
 import { Button } from '@/components/ui/button';
 import { genMetaData } from '@/app/seo';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -16,11 +17,11 @@ const CaseStudyPage = async () => {
 
   return (
     <div className='px-4 md:px-20 py-12 md:py-24'>
-      <div className='mx-auto max-w-6xl'>
+      <ComponentWrapper>
         <h1 className='mb-10 font-bold text-4xl text-center'>
           Our Case Studies
         </h1>
-        <p className='mb-16 text-center text-lg'>
+        <p className='mb-16 text-lg text-center'>
           Explore how 3Zero Digital has empowered businesses with development,
           maintenance, troubleshooting, and more. Here are some of our recent
           projects:
@@ -48,7 +49,7 @@ const CaseStudyPage = async () => {
             </div>
           ))}
         </div>
-      </div>
+      </ComponentWrapper>
     </div>
   );
 };

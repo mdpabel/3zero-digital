@@ -1,5 +1,6 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 const BlogCardSkeleton = () => {
   return (
@@ -95,7 +96,7 @@ const BlogsSidebarSkeleton = () => {
 
 const BlogPageSkeleton = () => {
   return (
-    <div className='flex gap-10 mx-auto p-4 max-w-6xl'>
+    <ComponentWrapper className='flex gap-10'>
       {/* Sidebar Section */}
       <div className='w-full lg:w-1/4'>
         <BlogsSidebarSkeleton />
@@ -104,7 +105,7 @@ const BlogPageSkeleton = () => {
       <div className='w-full lg:w-3/4'>
         <BlogListSkeleton />
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

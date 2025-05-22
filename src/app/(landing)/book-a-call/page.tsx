@@ -1,4 +1,5 @@
 import { genMetaData } from '@/app/seo';
+import ComponentWrapper from '@/components/common/component-wrapper';
 import Title from '@/components/common/title';
 
 export const dynamic = 'force-static';
@@ -10,14 +11,14 @@ export const metadata = genMetaData({
 
 const BookACall: React.FC = () => {
   return (
-    <div className='mx-auto p-4 max-w-6xl'>
+    <ComponentWrapper>
       <Title
         title='Book a Call'
         subTitle='Schedule a 30-minute call with us. Pick a time that works best for you!'
       />
 
       {/* Calendly Embed */}
-      <div className='border-2 border-gray-200 bg-gray-50 shadow-lg rounded-lg w-full h-[650px] md:h-[800px]'>
+      <div className='bg-gray-50 shadow-lg border-2 border-gray-200 rounded-lg w-full h-[650px] md:h-[800px]'>
         <iframe
           src='https://calendly.com/3zerodigital-info/30min'
           width='100%'
@@ -26,7 +27,7 @@ const BookACall: React.FC = () => {
           className='rounded-lg'
           title='Schedule a call with us'></iframe>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

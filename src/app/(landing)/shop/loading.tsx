@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Button } from '../../../components/ui/button';
 import CardBorder from '../../../components/common/card-border';
 import TemplateCategory from '@/components/shop/template-category';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 const TemplateCategorySkeleton = () => {
   return (
@@ -38,7 +39,7 @@ const TemplatesSkeleton = ({
           online presence.`,
 }) => {
   return (
-    <div className='relative mx-auto px-4 py-10 w-full max-w-6xl container'>
+    <ComponentWrapper className='relative py-10 w-full'>
       {/* Header Section */}
       <div className='mb-10 text-center'>
         <h2 className='font-bold text-4xl'>{title}</h2>
@@ -87,7 +88,7 @@ const TemplatesSkeleton = ({
           <Link href='/shop'>View All Templates</Link>
         </Button>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

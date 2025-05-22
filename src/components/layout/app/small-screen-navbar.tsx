@@ -21,6 +21,8 @@ import { services } from '@/services';
 import { ServiceWithProducts } from '@/lib/product/get-product';
 import MobileUserButton from './mobile-user-button';
 import { useSession } from 'next-auth/react';
+import ComponentWrapper from '@/components/common/component-wrapper';
+import SearchForm from '@/components/common/search';
 
 const SmallScreenNavbar = ({
   services,
@@ -36,11 +38,12 @@ const SmallScreenNavbar = ({
   };
 
   return (
-    <div className='lg:hidden block z-50 mx-auto px-4 max-w-6xl max-h-screen container'>
+    <ComponentWrapper className='lg:hidden block z-50 max-h-screen'>
       <div className='flex justify-between items-center h-16'>
         <Logo />
         <div className='flex items-center space-x-5'>
           {/* <ThemeSwitcher className='shadow-lg shadow-zinc-800/9 rounded-full w-9 h-9' /> */}
+          <SearchForm />
           <MobileUserButton />
 
           <DropdownMenu
@@ -132,7 +135,7 @@ const SmallScreenNavbar = ({
           </DropdownMenu>
         </div>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

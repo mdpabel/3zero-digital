@@ -2,12 +2,13 @@ import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
 import prisma from '@/prisma/db';
 import React from 'react';
 import Payment from './payment';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 const Order = async ({ params }: { params: Promise<{ orderId: string }> }) => {
   const { orderId } = await params;
 
   if (!orderId) {
-    return <div className='mx-auto p-4 max-w-6xl'>Order is not found</div>;
+    return <ComponentWrapper>Order is not found</ComponentWrapper>;
   }
 
   const order = await prisma.order.findFirst({
@@ -24,13 +25,13 @@ const Order = async ({ params }: { params: Promise<{ orderId: string }> }) => {
   });
 
   if (!order) {
-    return <div className='mx-auto p-4 max-w-6xl'>Order is not found</div>;
+    return <ComponentWrapper>Order is not found</ComponentWrapper>;
   }
 
   const isPaid = order.payment[0].status === 'paid';
 
   return (
-    <div className='mx-auto p-4 py-12 max-w-6xl'>
+    <ComponentWrapper className='py-12'>
       <h1 className='mb-8 font-semibold text-3xl text-center'>
         Complete your payment
       </h1>
@@ -114,7 +115,7 @@ const Order = async ({ params }: { params: Promise<{ orderId: string }> }) => {
           )}
         </div>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

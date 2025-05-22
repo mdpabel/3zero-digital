@@ -12,6 +12,7 @@ import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
 import CompaniesLogo from '@/components/home/company-logos';
 import FeaturedServices from '@/components/featured-services/featured-services';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -23,7 +24,7 @@ const WordPressDevelopment = () => {
   const jsonLd = generateSchemaMarkup(slug);
 
   return (
-    <div className='mx-auto px-4 w-full max-w-6xl container'>
+    <ComponentWrapper>
       <Hero
         subHeadline='Custom, Scalable, and Secure Solutions for Your Business Growth.'
         headline='Expert WordPress Development'
@@ -35,7 +36,7 @@ const WordPressDevelopment = () => {
       <Video videoId='na2iB6nBzIc' pageSlug='wordpress-development' />
 
       <DevelopmentServiceForm
-        Icon={<FaWordpress className='text-2xl text-white md:text-3xl' />}
+        Icon={<FaWordpress className='text-white text-2xl md:text-3xl' />}
         title='Custom WordPress Solutions for Seamless Performance & Growth'
       />
 
@@ -64,7 +65,7 @@ const WordPressDevelopment = () => {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </div>
+    </ComponentWrapper>
   );
 };
 

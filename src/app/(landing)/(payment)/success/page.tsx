@@ -2,6 +2,7 @@ import { stripe } from '@/lib/stripe/stripe';
 import { redirect } from 'next/navigation';
 import { genMetaData } from '@/app/seo';
 import { auth } from '@/auth';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const metadata = genMetaData({
   title: 'Payment success',
@@ -37,9 +38,9 @@ const PaymentSuccess = async ({ searchParams }: Props) => {
 
     return (
       <div className='relative px-10 md:px-20 py-10 md:py-20'>
-        <div className='mx-auto w-full max-w-6xl text-center container'>
+        <ComponentWrapper className='w-full text-center'>
           <div className='mb-10 text-center'>
-            <h1 className='mb-6 font-bold text-4xl text-zinc-800 md:text-5xl dark:text-zinc-200'>
+            <h1 className='mb-6 font-bold text-zinc-800 dark:text-zinc-200 text-4xl md:text-5xl'>
               🎉 Payment Successful!
             </h1>
             <p className='mb-6 text-lg md:text-xl'>
@@ -63,16 +64,16 @@ const PaymentSuccess = async ({ searchParams }: Props) => {
           <div className='flex md:flex-row flex-col justify-center md:space-x-4 space-y-4 md:space-y-0 mx-auto mt-10'>
             <a
               href='/dashboard'
-              className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-6 py-3 rounded-lg font-semibold text-white transform transition-transform hover:scale-105'>
+              className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-6 py-3 rounded-lg font-semibold text-white hover:scale-105 transition-transform transform'>
               Go to Dashboard
             </a>
             <a
               href='/'
-              className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-6 py-3 rounded-lg font-semibold text-white transform transition-transform hover:scale-105'>
+              className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-6 py-3 rounded-lg font-semibold text-white hover:scale-105 transition-transform transform'>
               Continue Shopping
             </a>
           </div>
-        </div>
+        </ComponentWrapper>
       </div>
     );
   } catch (error) {
@@ -80,8 +81,8 @@ const PaymentSuccess = async ({ searchParams }: Props) => {
 
     return (
       <div className='relative px-10 md:px-20 py-10 md:py-20'>
-        <div className='mx-auto w-full max-w-6xl text-center container'>
-          <h1 className='mb-4 font-bold text-4xl text-red-500 md:text-5xl'>
+        <ComponentWrapper className='w-full text-center'>
+          <h1 className='mb-4 font-bold text-red-500 text-4xl md:text-5xl'>
             ⚠️ Invalid or Unauthorized Session
           </h1>
           <p className='text-lg'>
@@ -92,11 +93,11 @@ const PaymentSuccess = async ({ searchParams }: Props) => {
           <div className='mt-8'>
             <a
               href='/'
-              className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-6 py-3 rounded-lg font-semibold text-white transform transition-transform hover:scale-105'>
+              className='bg-gradient-to-r from-[#614385] to-[#516395] shadow-lg px-6 py-3 rounded-lg font-semibold text-white hover:scale-105 transition-transform transform'>
               Return Home
             </a>
           </div>
-        </div>
+        </ComponentWrapper>
       </div>
     );
   }

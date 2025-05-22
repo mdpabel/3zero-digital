@@ -5,10 +5,11 @@ import Link from 'next/link';
 import ContactForm from './contact-form';
 import FAQ from './faq';
 import Reviews from './reviews';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 const FreeWebsite = () => {
   return (
-    <div className='flex flex-col mx-auto p-4 max-w-6xl'>
+    <ComponentWrapper className='flex flex-col'>
       <main className='flex-1'>
         {/* Hero Section */}
         <section className='py-16 md:py-24'>
@@ -135,7 +136,7 @@ const FreeWebsite = () => {
         {/* FAQ Section */}
         <FAQ />
       </main>
-    </div>
+    </ComponentWrapper>
   );
 };
 

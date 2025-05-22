@@ -47,9 +47,9 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
 
       {/* Case Study Content */}
       <div className='flex flex-col items-center gap-8'>
-        <div className='relative w-full max-w-6xl'>
+        <div className='relative w-full'>
           <div
-            className='flex md:flex-row flex-col items-center gap-8 bg-white dark:bg-gray-900 shadow-lg p-8 rounded-lg w-full transform transition-transform duration-700 ease-in-out'
+            className='flex md:flex-row flex-col items-center gap-8 bg-white dark:bg-gray-900 shadow-lg p-8 rounded-lg w-full transition-transform duration-700 ease-in-out transform'
             key={currentStudy.title}>
             {/* Before and After Images */}
             <div className='flex-1'>
@@ -58,11 +58,11 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
                   <Image
                     src={currentStudy.beforeImage}
                     alt='Before'
-                    className='rounded-lg w-full h-auto max-h-96 md:max-h-[500px] transition-transform duration-500 object-cover'
+                    className='rounded-lg w-full h-auto max-h-96 md:max-h-[500px] object-cover transition-transform duration-500'
                     width={600}
                     height={400}
                   />
-                  <span className='top-2 left-2 absolute bg-red-700 shadow px-3 py-1 rounded text-sm text-white'>
+                  <span className='top-2 left-2 absolute bg-red-700 shadow px-3 py-1 rounded text-white text-sm'>
                     Before
                   </span>
                 </div>
@@ -72,11 +72,11 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
                   <Image
                     src={currentStudy.afterImage}
                     alt='After'
-                    className='rounded-lg w-full h-auto max-h-96 md:max-h-[500px] transition-transform duration-500 object-cover'
+                    className='rounded-lg w-full h-auto max-h-96 md:max-h-[500px] object-cover transition-transform duration-500'
                     width={600}
                     height={400}
                   />
-                  <span className='top-2 left-2 absolute bg-green-700 shadow px-3 py-1 rounded text-sm text-white'>
+                  <span className='top-2 left-2 absolute bg-green-700 shadow px-3 py-1 rounded text-white text-sm'>
                     After
                   </span>
                 </div>
@@ -114,12 +114,12 @@ const CaseStudyCarousel = ({ data }: { data: CaseStudy[] }) => {
         <div className='flex justify-center items-center gap-4'>
           <Button
             onClick={prevSlide}
-            className='shadow-md px-6 py-2 font-semibold text-white transition-transform hover:scale-105'>
+            className='shadow-md px-6 py-2 font-semibold text-white hover:scale-105 transition-transform'>
             Prev
           </Button>
           <Button
             onClick={nextSlide}
-            className='shadow-md px-6 py-2 font-semibold text-white transition-transform hover:scale-105'>
+            className='shadow-md px-6 py-2 font-semibold text-white hover:scale-105 transition-transform'>
             Next
           </Button>
         </div>

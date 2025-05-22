@@ -17,6 +17,7 @@ import Video from '@/components/common/video';
 import Hero from '@/components/common/Hero';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -75,7 +76,7 @@ const WordPressMaintenance = async () => {
   ];
 
   return (
-    <div className='mx-auto p-4 max-w-6xl'>
+    <ComponentWrapper>
       <Hero
         subHeadline='Hackers Don’t Take Vacations – Your Site Can’t Either!'
         headline='Your WordPress Site Is an Easy Target – Fix It Now!'
@@ -131,7 +132,7 @@ const WordPressMaintenance = async () => {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

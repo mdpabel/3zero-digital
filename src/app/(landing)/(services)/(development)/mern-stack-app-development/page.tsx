@@ -13,6 +13,7 @@ import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import Script from 'next/script';
 import CompaniesLogo from '@/components/home/company-logos';
 import FeaturedServices from '@/components/featured-services/featured-services';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -24,7 +25,7 @@ const MernStack = () => {
   const jsonLd = generateSchemaMarkup(slug);
 
   return (
-    <div className='mx-auto px-4 w-full max-w-6xl container'>
+    <ComponentWrapper>
       <Hero
         subHeadline='Dynamic, Scalable, and Efficient Web Applications Built to Empower Your Business.'
         headline='Fullstack App Development with MERN Stack'
@@ -37,7 +38,7 @@ const MernStack = () => {
       <Video videoId='na2iB6nBzIc' pageSlug='mern-stack-app-development' />
 
       <DevelopmentServiceForm
-        Icon={<FaNode className='text-2xl text-white md:text-3xl' />}
+        Icon={<FaNode className='text-white text-2xl md:text-3xl' />}
         title='Fullstack MERN Solutions for Scalable, High-Performance Applications!'
       />
 
@@ -66,7 +67,7 @@ const MernStack = () => {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </div>
+    </ComponentWrapper>
   );
 };
 

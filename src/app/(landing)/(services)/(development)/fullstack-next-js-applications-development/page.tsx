@@ -14,6 +14,7 @@ import Script from 'next/script';
 import { generateSchemaMarkup } from '@/app/schema-markup-generator';
 import CompaniesLogo from '@/components/home/company-logos';
 import FeaturedServices from '@/components/featured-services/featured-services';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -25,7 +26,7 @@ const NextJsFullStack = () => {
   const jsonLd = generateSchemaMarkup(slug);
 
   return (
-    <div className='mx-auto px-4 w-full max-w-6xl container'>
+    <ComponentWrapper className='px-4 w-full'>
       <Hero
         subHeadline='Scalable, Performant, and Secure Applications Tailored for Your Business.'
         headline='Fullstack App Development with Next.js'
@@ -41,7 +42,7 @@ const NextJsFullStack = () => {
       />
 
       <DevelopmentServiceForm
-        Icon={<FaReact className='text-2xl text-white md:text-3xl' />}
+        Icon={<FaReact className='text-white text-2xl md:text-3xl' />}
         title='Fullstack Next.js Solutions for Scalable and Blazing-Fast Applications!'
       />
 
@@ -70,7 +71,7 @@ const NextJsFullStack = () => {
         type='application/ld+json'
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-    </div>
+    </ComponentWrapper>
   );
 };
 

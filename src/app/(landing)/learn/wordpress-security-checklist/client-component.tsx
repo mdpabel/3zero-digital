@@ -1,4 +1,5 @@
 'use client';
+import ComponentWrapper from '@/components/common/component-wrapper';
 import React, { useState } from 'react';
 import GaugeChart from 'react-gauge-chart'; // For the Security Strength Meter
 
@@ -225,7 +226,7 @@ const Checklist: React.FC = () => {
   }, 0);
 
   return (
-    <div className='space-y-6 mx-auto px-4 py-10 max-w-6xl'>
+    <ComponentWrapper className='space-y-6 py-10'>
       <div className='gap-6 grid grid-cols-1 lg:grid-cols-2'>
         {/* Left Column - Checklist Items */}
         <div className='space-y-4'>
@@ -255,7 +256,7 @@ const Checklist: React.FC = () => {
           <SecurityStrengthMeter score={score} totalPoints={totalItems * 10} />
         </div>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

@@ -1,6 +1,7 @@
 import Image, { StaticImageData } from 'next/image';
 import React from 'react';
 import Checkout from '../payment/checkout';
+import ComponentWrapper from '../common/component-wrapper';
 
 const FeaturedService = ({
   productId,
@@ -16,11 +17,11 @@ const FeaturedService = ({
   darkImage: StaticImageData;
 }) => {
   return (
-    <div className='mx-auto px-4 py-14 max-w-6xl'>
+    <ComponentWrapper className='py-14'>
       <div className='items-center gap-8 md:gap-12 grid grid-cols-1 lg:grid-cols-5'>
         {/* Text Section */}
-        <div className='lg:col-span-2 text-center lg:text-left'>
-          <h3 className='mb-4 font-bold text-2xl text-zinc-800 md:text-3xl dark:text-zinc-200'>
+        <div className='lg:col-span-2 lg:text-left text-center'>
+          <h3 className='mb-4 font-bold text-zinc-800 dark:text-zinc-200 text-2xl md:text-3xl'>
             {title}
           </h3>
           <h4 className='mb-8 text-base md:text-lg'>{description}</h4>
@@ -39,7 +40,7 @@ const FeaturedService = ({
           <Image
             src={lightImage}
             alt='Website prototype'
-            className='block dark:hidden shadow-md rounded-lg'
+            className='dark:hidden block shadow-md rounded-lg'
           />
           {/* Dark Theme Image */}
           <Image
@@ -49,7 +50,7 @@ const FeaturedService = ({
           />
         </div>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

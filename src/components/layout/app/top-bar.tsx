@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { SearchMenu } from '@/components/common/search';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 // Define the navigation items in an array
 const navItems = [
   { href: '/shop', label: 'Templates' },
   { href: '/recent-projects', label: 'Recent Projects' },
-  { href: '/contact', label: 'Contact' },
-  { href: '/careers', label: 'Careers' },
   { href: '/blog', label: 'Blog' },
 ];
 
@@ -16,7 +16,7 @@ const TopBar = () => {
       className={cn(
         'bg-gradient-to-r text-white primary-color h-10 flex items-center',
       )}>
-      <div className='mx-auto px-4 max-w-6xl container'>
+      <ComponentWrapper>
         <div className='flex justify-between items-center font-medium text-sm'>
           <div className='hidden lg:block'>
             <Link
@@ -34,7 +34,7 @@ const TopBar = () => {
             </Link>
           </div>
 
-          <nav className='hidden lg:block'>
+          <nav className='hidden lg:flex justify-between items-center space-x-4'>
             <ul className='flex justify-between items-center space-x-4'>
               {navItems.map((item) => (
                 <li key={item.href}>
@@ -44,7 +44,7 @@ const TopBar = () => {
             </ul>
           </nav>
         </div>
-      </div>
+      </ComponentWrapper>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { MdCheck, MdClose } from 'react-icons/md';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import CardBorder from '../common/card-border';
+import ComponentWrapper from '../common/component-wrapper';
 
 const with3ZeroItems = [
   'Virtually Zero Vulnerability',
@@ -30,7 +31,7 @@ const without3ZeroItems = [
 
 const Comparison = () => {
   return (
-    <div className='mx-auto my-10 p-4 max-w-6xl'>
+    <ComponentWrapper className='my-10'>
       <div className='mb-8 text-center'>
         <h3 className='font-bold text-2xl'>Why Choose 3 Zero Digital?</h3>
       </div>
@@ -84,7 +85,7 @@ const Comparison = () => {
           <Link href='#getStarted'>Get Started</Link>
         </Button>
       </div>
-    </div>
+    </ComponentWrapper>
   );
 };
 

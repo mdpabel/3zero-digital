@@ -14,6 +14,7 @@ import Hero from '@/components/common/Hero';
 import Link from 'next/link';
 import { getProduct } from '@/lib/product/get-product';
 import Checkout from '@/components/payment/checkout';
+import ComponentWrapper from '@/components/common/component-wrapper';
 
 export const dynamic = 'force-static';
 
@@ -23,7 +24,7 @@ const FCommerce = async () => {
   const { origPrice, price, productId } = await getProduct(slug);
 
   return (
-    <div className='mx-auto p-4 max-w-6xl'>
+    <ComponentWrapper>
       <Hero
         subHeadline='All-in-One F-Commerce Solution for New Entrepreneurs'
         headline='Launch Your Online Business in One Week'
@@ -320,7 +321,7 @@ const FCommerce = async () => {
           </div>
         </div>
       </section>
-    </div>
+    </ComponentWrapper>
   );
 };
 
