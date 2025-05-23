@@ -27,7 +27,7 @@ export const searchDb = {
       items: [
         {
           title: 'Malware Removal for WordPress',
-          href: '/wordpress-development',
+          href: '/wordpress-malware-removal',
         },
         {
           title: 'Website Blacklist Removal (150+ Vendors)',
@@ -38,16 +38,12 @@ export const searchDb = {
           href: '/fullstack-next-js-applications-development',
         },
         {
-          title: 'Custom MERN Stack Development',
-          href: '/mern-stack-app-development',
-        },
-        {
           title: 'Shopify Store Setup & Customization',
           href: '/shopify-store-development',
         },
         {
-          title: 'WordPress Speed & Performance Optimization',
-          href: '/wordpress-speed-optimization',
+          title: 'WordPress Development',
+          href: '/wordpress-development',
         },
         {
           title: 'Ecommerce SEO Strategy & Implementation',

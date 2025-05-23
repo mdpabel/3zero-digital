@@ -15,7 +15,7 @@ import { cn } from '@/lib/utils';
 import { ServiceWithProducts } from '@/lib/product/get-product';
 import UserButton from './user-button';
 import ComponentWrapper from '@/components/common/component-wrapper';
-import SearchForm from '@/components/common/search';
+import { SearchMenu } from '@/components/common/search-commands';
 
 const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
   return (
@@ -60,7 +60,7 @@ const BigScreenNavbar = ({ services }: { services: ServiceWithProducts[] }) => {
         </NavigationMenu>
 
         <div className='flex items-center space-x-3'>
-          <SearchForm />
+          <SearchMenu />
           <UserButton />
         </div>
       </div>
