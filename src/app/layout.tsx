@@ -68,7 +68,7 @@ export default function RootLayout({
       <body>
         <Providers>{children}</Providers>
         <Toaster />
-        {/* <GoogleTagManager gtmId='AW-17015436100' /> */}
+        <GoogleTagManager gtmId='GTM-NMFF2J6X' />
       </body>
     </html>
   );

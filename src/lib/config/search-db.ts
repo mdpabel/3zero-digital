@@ -67,7 +67,7 @@ export const searchDb = {
         },
         {
           title: 'Meta Ads (Facebook & Instagram)',
-          href: '/meta-facebook-instagram-ads',
+          href: '/meta-ads',
         },
       ],
     },
