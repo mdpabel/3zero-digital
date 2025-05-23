@@ -22,7 +22,7 @@ import { ServiceWithProducts } from '@/lib/product/get-product';
 import MobileUserButton from './mobile-user-button';
 import { useSession } from 'next-auth/react';
 import ComponentWrapper from '@/components/common/component-wrapper';
-import SearchForm from '@/components/common/search';
+import { SearchMenu } from '@/components/common/search-commands';
 
 const SmallScreenNavbar = ({
   services,
@@ -43,7 +43,7 @@ const SmallScreenNavbar = ({
         <Logo />
         <div className='flex items-center space-x-5'>
           {/* <ThemeSwitcher className='shadow-lg shadow-zinc-800/9 rounded-full w-9 h-9' /> */}
-          <SearchForm />
+          <SearchMenu />
           <MobileUserButton />
 
           <DropdownMenu
