@@ -37,29 +37,28 @@ const SearchForm = () => {
       return;
     }
 
-    const fetchData = async () => {
-      setIsLoading(true);
-      try {
-        const [{ posts }, products] = await Promise.all([
-          getPostsWithTagNames({ search: value }),
-          getProducts(value),
-        ]);
+    setIsLoading(true);
 
-        if (Array.isArray(posts)) {
-          setPosts(posts as WP_REST_API_Posts);
-        }
-
+    // Fetch products (MongoDB) — faster
+    getProducts(value)
+      .then((products) => {
         if (Array.isArray(products)) {
-          setServices(products as Product[]);
+          setServices(products);
         }
-      } catch (error) {
-        console.error('Error fetching search data:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      })
+      .catch((err) => console.error('Product fetch error:', err));
 
-    fetchData();
+    // Fetch WordPress posts — slower
+    getPostsWithTagNames({ search: value })
+      .then(({ posts }) => {
+        if (Array.isArray(posts)) {
+          setPosts(posts);
+        }
+      })
+      .catch((err) => console.error('Post fetch error:', err))
+      .finally(() => {
+        setIsLoading(false); // Loading ends after slowest call
+      });
   }, [value]);
 
   return (
