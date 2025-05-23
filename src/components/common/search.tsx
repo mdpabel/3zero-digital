@@ -95,26 +95,29 @@ const SearchForm = () => {
           </DialogDescription>
         </DialogHeader>
 
-        {services.length > 0 && (
+        {(services.length > 0 || posts.length > 0) && (
           <ScrollArea className='p-4 border rounded-md w-full max-h-[250px]'>
-            <div>
-              <div className='p-1 overflow-hidden font-semibold text-foreground text-sm'>
-                Services
+            {services.length > 0 && (
+              <div>
+                <div className='p-1 overflow-hidden font-semibold text-foreground text-sm'>
+                  Services
+                </div>
+                <div className='space-y-0.5'>
+                  {services.map((item) => (
+                    <Link
+                      href={item.slug}
+                      key={item.id}
+                      onClick={() => setOpen(false)}
+                      className={cn(
+                        'relative w-full hover:bg-zinc-500 flex cursor-default gap-2 select-none items-center rounded-sm px-2 py-3 text-sm outline-none data-[disabled=true]:pointer-events-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+                      )}>
+                      <File />
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
-              <div className='space-y-0.5'>
-                {services.map((item) => (
-                  <Link
-                    href={item.slug}
-                    key={item.id}
-                    className={cn(
-                      'relative w-full hover:bg-zinc-500 flex cursor-default gap-2 select-none items-center rounded-sm px-2 py-3 text-sm outline-none data-[disabled=true]:pointer-events-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
-                    )}>
-                    <File />
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </div>
+            )}
 
             {posts.length > 0 && (
               <div className='mt-2 border-t'>
@@ -126,6 +129,7 @@ const SearchForm = () => {
                     <Link
                       href={`/blog/${item.slug}`}
                       key={item.id}
+                      onClick={() => setOpen(false)}
                       className={cn(
                         'relative w-full hover:bg-zinc-500 flex cursor-default gap-2 select-none items-center rounded-sm px-2 py-3 text-sm outline-none data-[disabled=true]:pointer-events-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
                       )}>
@@ -152,6 +156,7 @@ const SearchForm = () => {
                       <Link
                         href={item.href}
                         key={item.href}
+                        onClick={() => setOpen(false)}
                         className={cn(
                           'relative w-full hover:bg-zinc-500 flex cursor-default gap-2 select-none items-center rounded-sm px-2 py-3 text-sm outline-none data-[disabled=true]:pointer-events-none data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
                         )}>
