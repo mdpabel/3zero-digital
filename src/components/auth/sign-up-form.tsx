@@ -131,7 +131,7 @@ const SignUpForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <FormControl>
-                    <PasswordInputField field={field} />
+                    <PasswordInputField showPassGen field={field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

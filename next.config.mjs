@@ -1,9 +1,18 @@
+import nextAnalyzer from '@next/bundle-analyzer';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
     serverActions: {
       bodySizeLimit: '200mb',
     },
+    optimizePackageImports: [
+      '@radix-ui/react-icons',
+      'react-icons',
+      'lucide-react',
+      'react-quill',
+      'react-quill-new',
+    ],
   },
   images: {
     remotePatterns: [
@@ -51,4 +60,8 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+const withBundleAnalyzer = nextAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+export default withBundleAnalyzer(nextConfig);

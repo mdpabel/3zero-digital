@@ -2,8 +2,11 @@
 import { sendMessage } from '@/actions/message/send-message';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import ReactQuill from 'react-quill-new'; // Import React Quill
+const ReactQuill = dynamic(() => import('react-quill-new'), {
+  ssr: false,
+}); // Import React Quill
 import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 import Spinner from '@/components/common/spinner';
 

@@ -6,8 +6,6 @@ import DeleteAllCategory from './delete-all-category';
 const TemplateCategories = async () => {
   const categories = await prisma.templateCategory.findMany();
 
-  console.log({ categories });
-
   return (
     <div className='px-10 py-10'>
       {/* Header */}

@@ -55,8 +55,6 @@ export default async function OrderChatPage({
     },
   });
 
-  console.log(messages);
-
   return (
     <div className='mx-auto mb-12 max-w-4xl'>
       <div className='space-y-4 p-4 card'>
