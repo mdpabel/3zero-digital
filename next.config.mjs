@@ -3,6 +3,10 @@ import nextAnalyzer from '@next/bundle-analyzer';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
+    staleTimes: {
+      dynamic: 300,
+      static: 600,
+    },
     serverActions: {
       bodySizeLimit: '200mb',
     },

@@ -70,7 +70,7 @@ const Templates = async ({
   return (
     <ComponentWrapper className='relative py-10 w-full'>
       {/* Header Section */}
-      <div className='mb-10 text-center'>
+      <div className='mx-auto mb-10 max-w-4xl text-center'>
         <h2 className='font-bold text-4xl'>{title}</h2>
         <p className='mt-2 text-lg'>{subTitle}</p>
       </div>

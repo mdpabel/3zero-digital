@@ -1,6 +1,7 @@
 'use server';
 
 import prisma from '@/prisma/db';
+import { revalidatePath } from 'next/cache';
 import slugify from 'slugify';
 
 export async function addTemplate(formData: FormData) {
@@ -63,6 +64,10 @@ export async function addTemplate(formData: FormData) {
         },
       },
     });
+
+    revalidatePath('/');
+    revalidatePath('/shop');
+    revalidatePath(`/shop/${template.slug}`);
 
     return { success: true, message: 'Template added successfully!' };
   } catch (error: any) {
