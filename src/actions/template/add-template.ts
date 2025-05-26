@@ -35,6 +35,7 @@ export async function addTemplate(formData: FormData) {
     const slug = slugify(name, {
       lower: true,
       trim: true,
+      remove: /[*+~.()'"!:@]/g, // Remove special characters
     });
 
     // Check if all categories exist

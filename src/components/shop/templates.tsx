@@ -67,6 +67,8 @@ const Templates = async ({
     },
   });
 
+  console.log(templates[0]);
+
   return (
     <ComponentWrapper className='relative py-10 w-full'>
       {/* Header Section */}
