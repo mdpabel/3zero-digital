@@ -3,6 +3,7 @@ import nextAnalyzer from '@next/bundle-analyzer';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
+    viewTransition: true,
     staleTimes: {
       dynamic: 300,
       static: 600,
